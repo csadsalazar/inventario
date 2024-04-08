@@ -1,0 +1,11 @@
+controllers\ActualizarBien.class
+utils\ConexionBD.class
+controllers\ListarObservaciones.class
+models\Observacion.class
+controllers\ObtenerBienPorCodigo.class
+controllers\AgregarBien.class
+controllers\ListarBienes.class
+models\Bien.class
+controllers\HomeFuncionario.class
+models\Usuario.class
+controllers\AgregarObservacion.class

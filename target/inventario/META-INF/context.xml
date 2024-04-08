@@ -1,0 +1,10 @@
+<Context>
+    <Resource
+        name="jdbc/dbconnection"
+        type="javax.sql.DataSource"
+        url="jdbc:sqlserver://Cesar:1433;databaseName=inventarioPersonalizado"
+        driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+        username="usersql"
+        password="invima12345"
+    />
+</Context>

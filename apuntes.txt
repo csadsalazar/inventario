@@ -1,0 +1,27 @@
+ruta
+http://localhost:8080/inventario
+
+gits apoyo
+https://github.com/BrayanAlfonso/InLineManageProject-master.git
+https://github.com/csadsalazar/TALLER-8-Y-9/tree/main
+
+iconos  
+https://ionic.io/ionicons
+
+videos sqlserver
+https://www.youtube.com/watch?v=K8MJtUmo8nk
+https://www.youtube.com/watch?v=0Yj6bzNRfss
+
+*conexion file server
+*Numero de ticket - CHG-284994-2-100
+
+Agregar a git
+si se necesita borrar algo: 
+rm -f loquesedeseaborrar
+
+Flujo normal
+git status
+git add .
+git commit -m "Actualizacion (fecha)"
+git push origin main
+
