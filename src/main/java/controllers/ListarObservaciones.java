@@ -1,13 +1,12 @@
 package controllers;
 
-import models.Usuario;
 import models.Observacion;
+import models.Usuario;
 import utils.ConexionBD;
-
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.SQLException; 
 import java.util.ArrayList;
 
 public class ListarObservaciones {
@@ -16,7 +15,7 @@ public class ListarObservaciones {
         Connection conn = null;
         try {
             conn = ConexionBD.getConnection();
-            String query = "{CALL ListarObservacion}";
+            String query = "{CALL ListarObservaciones}";
             CallableStatement cs = (CallableStatement) conn.prepareCall(query);
             ResultSet rs = cs.executeQuery();
             while (rs.next()) {
@@ -28,7 +27,7 @@ public class ListarObservaciones {
                 usuario.setDependencia(rs.getString("dependencia"));
                 observacion.setUsuario(usuario);
                 observaciones.add(observacion);
-            }
+            }            
             rs.close();
             cs.close();
         } catch (SQLException e) {

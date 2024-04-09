@@ -1,10 +1,13 @@
 package controllers;
 
 import utils.ConexionBD;
+import models.Bien;
+import models.Usuario;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -15,45 +18,76 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/ActualizarBien")
 public class ActualizarBien extends HttpServlet {
-    //private static final long serialVersionUID = 1L;
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         // Obtener los parámetros del formulario
-        int codigo = Integer.parseInt(request.getParameter("codigo"));
-        String placa = request.getParameter("placa");
+        int placa = Integer.parseInt(request.getParameter("placa"));
         String nombre = request.getParameter("nombre");
-        String ubicacion = request.getParameter("ubicacion");
         String descripcion = request.getParameter("descripcion");
         int valor = Integer.parseInt(request.getParameter("valor"));
+        String funcionario = request.getParameter("funcionario");
+        String ubicacion = request.getParameter("ubicacion");
+        String estado = request.getParameter("estado");
+        int codigo = Integer.parseInt(request.getParameter("codigo"));
+        // Obtener más parámetros según sea necesario
 
-        // Actualizar la información del bien en la base de datos
         try {
+            // Establecer la conexión y realizar la actualización en la base de datos
             Connection conn = ConexionBD.getConnection();
-            String query = "UPDATE MA_Bienes SET placa=?, nombre=?, ubicacion=?, descripcion=?, valor=? WHERE PK_Codigo=?";
-            PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, placa);
-            ps.setString(2, nombre);
-            ps.setString(3, ubicacion);
-            ps.setString(4, descripcion);
-            ps.setInt(5, valor);
-            ps.setInt(6, codigo);
-            int rowsAffected = ps.executeUpdate();
-            ps.close();
-            conn.close();
+            String sql = "UPDATE MA_Bienes SET placa=?, nombre=?, descripcion=?, valor=?, funcionario=?, ubicacion=?, estado=? WHERE PK_Codigo=?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, placa);
+            statement.setString(2, nombre);
+            statement.setString(3, descripcion);
+            statement.setInt(4, valor);
+            statement.setString(5, funcionario);
+            statement.setString(6, ubicacion);
+            statement.setString(7, estado);
+            statement.setInt(8, codigo);
+            // Establecer más parámetros según sea necesario
+            statement.executeUpdate();
 
-            if (rowsAffected > 0) {
-                // Redirigir a la página de gestión de bienes con un mensaje de éxito
-                response.sendRedirect("gestionbienes.jsp?mensaje=El+bien+se+actualiz%C3%B3+exitosamente");
-            } else {
-                // Redirigir a la página de gestión de bienes con un mensaje de error
-                response.sendRedirect("gestionbienes.jsp?mensaje=Error+al+actualizar+el+bien");
+            // Obtener el objeto bien actualizado desde la base de datos
+            sql = "SELECT * FROM MA_Bienes WHERE PK_Codigo=?";
+            statement = conn.prepareStatement(sql);
+            statement.setInt(1, codigo);
+            ResultSet resultSet = statement.executeQuery();
+            Bien bien = new Bien(); // Inicializar fuera del bloque if
+            try {
+                // Obtener el objeto bien actualizado desde la base de datos
+                if (resultSet.next()) {
+                    // Llenar el objeto bien con los datos de la base de datos
+                    bien.setCodigo(resultSet.getInt("PK_Codigo"));
+                    bien.setPlaca(resultSet.getInt("placa"));
+                    bien.setNombre(resultSet.getString("nombre"));
+                    bien.setDescripcion(resultSet.getString("descripcion"));
+                    bien.setValor(resultSet.getInt("valor"));
+                    Usuario usuario = new Usuario();
+                    usuario.setUsuario(resultSet.getString("funcionario"));
+                    bien.setUsuario(usuario);                
+                    bien.setUbicacion(resultSet.getString("ubicacion"));
+                    bien.setEstado(resultSet.getString("estado"));
+                } else {
+                    // Manejar el caso en el que no hay resultados en resultSet
+                    // Por ejemplo, redireccionar a una página de error
+                    response.sendRedirect("editarbien.jsp");
+                    return; // Salir del método para evitar más procesamiento
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                // Manejar la excepción adecuadamente, por ejemplo, redireccionar a una página de error
+                response.sendRedirect("editarbien.jsp");
             }
-        } catch (SQLException e) {
+             // Establecer el objeto bien como atributo de solicitud y enviar la solicitud al JSP editarbien.jsp
+                request.setAttribute("bien", bien);
+                request.getRequestDispatcher("editarbien.jsp").forward(request, response);
+
+                statement.close();
+                conn.close();
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
-            // Manejar errores de la base de datos
-            response.sendRedirect("gestionbienes.jsp?mensaje=Error+de+base+de+datos");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            response.sendRedirect("editarbien.jsp");
+            return; // Salir del método para evitar más procesamiento
         }
     }
 }

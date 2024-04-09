@@ -1,7 +1,6 @@
 package models;
 
 public class Usuario {
-    private int idUsuario;
     private String nombre;
     private String usuario;
     private int cedula;
@@ -13,15 +12,6 @@ public class Usuario {
 
     // Constructor vacío
     public Usuario() {
-    }
-
-    // Getters y setters
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     public String getNombre() {

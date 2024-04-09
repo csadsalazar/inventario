@@ -62,9 +62,4 @@ public class Observacion {
     public void setFechaObservacion(Date fechaObservacion) {
         this.fechaObservacion = fechaObservacion;
     }
-
-    public void setObservaciones(String string) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setObservaciones'");
-    }
 }

@@ -21,10 +21,10 @@ public class ListarBienes {
             while (rs.next()) {
                 Bien bien = new Bien();
                 bien.setCodigo(rs.getInt("PK_Codigo"));
-                bien.setPlaca(rs.getString("placa"));
-                bien.setNombre(rs.getString("nombreBien"));
+                bien.setPlaca(rs.getInt("placa"));
+                bien.setNombre(rs.getString("nombre"));
                 Usuario usuario = new Usuario();
-                usuario.setUsuario(rs.getString("nombreUsuario"));
+                usuario.setUsuario(rs.getString("usuario"));
                 usuario.setDependencia(rs.getString("dependencia"));
                 bien.setUsuario(usuario);
                 bien.setValor(rs.getInt("valor"));

@@ -1,31 +1,23 @@
 package models;
 
 public class Bien {
-    private int idBien;
     private int codigo;
     private String nombre;
-    private String placa;
+    private int placa;
     private String descripcion;
     private int valor;
     private Usuario usuario;
     private String ubicacion;
+    private String estado;
     private String imagen1;
     private String imagen2;
-    private Observacion observacion;
+    private Observacion informacion;
 
     // Constructor vacío
     public Bien() {
     }
 
     // Getters y setters
-    public int getIdBien() {
-        return idBien;
-    }
-
-    public void setIdBien(int idBien) {
-        this.idBien = idBien;
-    }
-
     public int getCodigo() {
         return codigo;
     }
@@ -42,11 +34,11 @@ public class Bien {
         this.nombre = nombre;
     }
 
-    public String getPlaca() {
+    public int getPlaca() {
         return placa;
     }
 
-    public void setPlaca(String placa) {
+    public void setPlaca(int placa) {
         this.placa = placa;
     }
 
@@ -82,6 +74,14 @@ public class Bien {
         this.ubicacion = ubicacion;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     public String getImagen1() {
         return imagen1;
     }
@@ -99,10 +99,10 @@ public class Bien {
     }
 
     public Observacion getObservacion() {
-        return observacion;
+        return informacion;
     }
 
-    public void setObservacion(Observacion observacion) {
-        this.observacion = observacion;
+    public void setObservacion(Observacion informacion) {
+        this.informacion = informacion;
     }
 }

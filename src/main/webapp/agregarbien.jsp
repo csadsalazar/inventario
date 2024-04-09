@@ -18,7 +18,7 @@
             <tbody>
                 <tr>
                     <td data-label="Item">Funcionario:</td>
-                    <td data-label="Información"><input type="text" name="Funcionario" class="informacion" placeholder="Funcionario" required></td>
+                    <td data-label="Información"><input type="text" name="funcionario" class="informacion" placeholder="Funcionario" required></td>
                 </tr>
                 <tr>
                     <td data-label="Item">Código:</td>
@@ -34,15 +34,15 @@
                 </tr>
                 <tr>
                     <td data-label="Item">Ubicación:</td>
-                    <td data-label="Información"><input type="text" name="descripcion" class="informacion" placeholder="Ubicación" required></td>
+                    <td data-label="Información"><input type="text" name="ubicacion" class="informacion" placeholder="Ubicación" required></td>
                 </tr>
                 <tr>
                     <td data-label="Item">Descripción:</td>
-                    <td data-label="Información"><input type="text" name="grupo" class="informacion" placeholder="Descripción" required></td>
+                    <td data-label="Información"><input type="text" name="descripcion" class="informacion" placeholder="Descripción" required></td>
                 </tr>
                 <tr>
                     <td data-label="Item">Valor:</td>
-                    <td data-label="Información"><input type="number" name="imagenes" class="informacion" placeholder="Valor" required></td>
+                    <td data-label="Información"><input type="number" name="valor" class="informacion" placeholder="Valor" required></td>
                 </tr>
             </tbody>
         </table>
