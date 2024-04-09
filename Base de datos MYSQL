@@ -1,0 +1,139 @@
+CREATE DATABASE Gestion_Inventario;
+USE Gestion_Inventario;
+
+-- Tabla de Usuarios
+CREATE TABLE MA_Usuarios (
+    PK_idUsuario INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50),
+    usuario VARCHAR(15),
+    cedula INT,
+    contrasena VARCHAR(20),
+    dependencia INT NOT NULL,
+    cargo VARCHAR(20) NOT NULL,
+    contrato VARCHAR(20) NOT NULL,
+    sede VARCHAR(30) NOT NULL
+);
+
+-- Tabla de Bienes
+CREATE TABLE MA_Bienes (
+    idBien INT AUTO_INCREMENT PRIMARY KEY,
+    PK_Codigo INT,
+    nombre VARCHAR(50),
+    placa VARCHAR(6),
+    descripcion VARCHAR(150),
+    valor INT,
+    FK_Usuario INT,
+    ubicacion VARCHAR(50),
+    estado VARCHAR(12),
+    imagen1 VARCHAR(50),
+    imagen2 VARCHAR(50),
+    FOREIGN KEY (FK_Usuario) REFERENCES MA_Usuarios(PK_idUsuario)
+);
+
+-- Tabla de Bienes por Usuario
+CREATE TABLE PA_BienesPorUsuario (
+    PK_idBienPorUsuario INT AUTO_INCREMENT PRIMARY KEY,   
+    FK_Usuario INT,
+    FK_Bien INT,
+    asunto VARCHAR(25),
+    informacion VARCHAR(200),
+    fechaObservacion DATE NOT NULL,
+    FOREIGN KEY (FK_Usuario) REFERENCES MA_Usuarios(PK_idUsuario),
+    FOREIGN KEY (FK_Bien) REFERENCES MA_Bienes(idBien)
+);
+
+-- PROCEDURES FOR BIENES
+
+DELIMITER //
+
+CREATE PROCEDURE AgregarBien (
+    IN codigo INT,
+    IN nombre VARCHAR(50),
+    IN placa VARCHAR(6),
+    IN descripcion VARCHAR(150),
+    IN valor INT,
+    IN FK_Usuario INT,
+    IN ubicacion VARCHAR(50),
+    IN estado VARCHAR(12),
+    IN imagen1 VARCHAR(50),
+    IN imagen2 VARCHAR(50)
+)
+BEGIN
+    INSERT INTO MA_Bienes (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, ubicacion, estado, imagen1, imagen2)
+    VALUES (codigo, nombre, placa, descripcion, valor, FK_Usuario, ubicacion, estado, imagen1, imagen2);
+END //
+
+DELIMITER //
+CREATE PROCEDURE ActualizarBien (
+    IN placa VARCHAR(6),
+    IN nombre VARCHAR(50),
+    IN ubicacion VARCHAR(50),
+    IN descripcion VARCHAR(150),
+    IN valor INT,
+    IN codigoBien INT
+)
+BEGIN
+    UPDATE MA_Bienes
+    SET placa = placa,
+        nombre = nombre,
+        ubicacion = ubicacion,
+        descripcion = descripcion,
+        valor = valor
+    WHERE PK_Codigo = codigoBien;
+END //
+
+DELIMITER //
+CREATE PROCEDURE ObtenerDetalleBien(IN codigo INT)
+BEGIN
+    SELECT b.PK_Codigo, b.placa, b.nombre, b.descripcion, b.ubicacion, bu.informacion,
+           u.nombre AS nombreUsuario, u.dependencia, u.cargo, u.sede 
+    FROM MA_Bienes b 
+    INNER JOIN MA_Usuarios u ON b.FK_Usuario = u.PK_idUsuario 
+    INNER JOIN PA_BienesPorUsuario bu ON b.idBien = bu.FK_Bien 
+    WHERE b.PK_Codigo = codigo;
+END //
+
+
+DELIMITER // 
+CREATE PROCEDURE ListarBienes ()
+BEGIN
+    SELECT b.idBien,
+           b.PK_Codigo,
+           b.placa,
+           b.nombre,
+           u.usuario,
+           u.dependencia,
+           b.valor 
+    FROM MA_Bienes b 
+    INNER JOIN MA_Usuarios u ON b.FK_Usuario = u.PK_idUsuario;
+END //
+
+-- PROCEDURE FOR OBSERVACIONES
+
+CREATE PROCEDURE AgregarObservacion (
+    IN usuario INT,
+    IN bien INT,
+    IN asunto VARCHAR(50),
+    IN informacion VARCHAR(250), 
+    IN fechaObservacion DATE
+)
+BEGIN
+    INSERT INTO PA_BienesPorUsuario (FK_Usuario, FK_Bien, asunto, informacion, fechaObservacion)
+    VALUES (usuario, bien, asunto, informacion, fechaObservacion);
+END //
+
+-- INSERCIONES 
+INSERT INTO MA_Usuarios (nombre, usuario, cedula, contrasena, dependencia, cargo, contrato, sede)
+VALUES ('NombreUsuario1', 'usuario1', 123456789, 'contrasena1', 1, 'Cargo1', 'Contrato1', 'INVIMA'),
+       ('NombreUsuario2', 'usuario2', 987654321, 'contrasena2', 2, 'Cargo2', 'Contrato2', 'INVIMA'),
+       ('NombreUsuario3', 'usuario3', 456789123, 'contrasena3', 3, 'Cargo3', 'Contrato3', 'INVIMA');
+
+INSERT INTO MA_Bienes (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, ubicacion, estado, imagen1, imagen2)
+VALUES (1, 'NombreBien1', '1000', 'Descripción1', 1000, 1, 'Ubicación1', 'No reportado', 'Imagen1', 'Imagen1.1'),
+       (2, 'NombreBien2', '2000', 'Descripción2', 2000, 2, 'Ubicación2', 'Reportado', 'Imagen2', 'Imagen2.1'),
+       (3, 'NombreBien3', '3000', 'Descripción3', 3000, 3, 'Ubicación3', 'Reportado', 'Imagen3', 'Imagen3.1');
+
+INSERT INTO PA_BienesPorUsuario (FK_Usuario, FK_Bien, asunto, informacion, fechaObservacion)
+VALUES (1, 1, 'Asunto1', 'Información1', '2024-04-07'),
+       (2, 2, 'Asunto2', 'Información2', '2024-04-08'),
+       (3, 3, 'Asunto3', 'Información3', '2024-04-09');
