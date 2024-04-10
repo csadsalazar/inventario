@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page contentType="text/html; charset=utf-8" %>
 <%@ include file="headera.jsp" %>
 <%@ include file="nava.jsp" %>
 <%@ page import="java.util.ArrayList" %>

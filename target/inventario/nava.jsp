@@ -1,11 +1,13 @@
+<%@ page contentType="text/html; charset=utf-8" %>
 <div class="barra-lateral">
     <div>
         <div class="logo-pagina">
-            <img src="resources/img/logo.png" alt="Logo">
+            <img src="resources/img/logo_blanco.png" alt="Logo">
         </div>
         <div class="nombre-pagina">
             <ion-icon name="person-outline"></ion-icon>
             <span>Administrador</span>
+            <div class="linea"></div>
         </div>
     </div>
 

@@ -74,7 +74,6 @@ body {
 }
 
 .barra-lateral .logo-pagina img {
-    background-color: white;
     width: 200px;
     margin-left: 10px;
     padding: 10px;
@@ -186,7 +185,7 @@ main.min-main {
         margin-left: 0;
     }
     .barra-lateral .navegacion a:hover {
-        background-color: black;
-        color: white;
+        background-color: var(--color-menu-hover);
+        color: var(--color-menu-hover-texto);
     }
 }

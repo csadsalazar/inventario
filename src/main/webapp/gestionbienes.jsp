@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page contentType="text/html; charset=utf-8" %>
 <%@ include file="headera.jsp" %>
 <%@ include file="nava.jsp" %>
 <%@ page import="java.util.ArrayList" %>
@@ -32,7 +32,7 @@
                     <td data-label="Nombre"><%= bien.getNombre() %></td>
                     <td data-label="Funcionario"><%= bien.getUsuario().getUsuario() %></td>
                     <td data-label="Dependencia"><%= bien.getUsuario().getDependencia() %></td>
-                    <td data-label="Valor">$<%= bien.getValor() %></td>
+                    <td data-label="Valor"><%= bien.getValor() %>&nbsp;COP</td>
                     <td data-label="Acciones">
                         <div class="acciones">
                             <a href="verbien.jsp?codigo=<%= bien.getCodigo() %>">
@@ -41,7 +41,7 @@
                             <a href="editarbien.jsp?codigo=<%= bien.getCodigo() %>">
                                 <ion-icon name="create-outline">
                             </a>&nbsp;
-                            <a id="eliminarBien">
+                            <a value="click" onClick="action();">
                                 <ion-icon name="trash-outline">
                             </a>
                         </div>

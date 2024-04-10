@@ -1,8 +1,10 @@
-CREATE DATABASE Gestion_Inventario;
-GO
-
 USE Gestion_Inventario;
 GO
+
+select * from MA_Bienes; 
+select * from MA_Usuarios; 
+select * from PA_BienesPorUsuario; 
+
 
 -- Tabla de Usuarios
 CREATE TABLE MA_Usuarios (
@@ -102,7 +104,7 @@ END;
 GO
 
 
-CREATE PROCEDURE ListarBienes ()
+CREATE PROCEDURE ListarBienes
 AS
 BEGIN
     SELECT b.idBien,
@@ -114,6 +116,20 @@ BEGIN
            b.valor 
     FROM MA_Bienes b 
     INNER JOIN MA_Usuarios u ON b.FK_Usuario = u.PK_idUsuario;
+END;
+GO
+
+CREATE PROCEDURE ListarObservaciones
+AS
+BEGIN
+    SELECT bu.FK_Usuario,
+           u.PK_idUsuario,
+           u.usuario,
+           u.dependencia,
+           bu.asunto,
+           bu.informacion 
+    FROM PA_BienesPorUsuario bu 
+    INNER JOIN MA_Usuarios u ON bu.FK_Usuario = u.PK_idUsuario;
 END;
 GO
 
@@ -132,6 +148,8 @@ BEGIN
     VALUES (@usuario, @bien, @asunto, @informacion, @fechaObservacion);
 END;
 GO
+
+
 
 -- INSERCIONES 
 INSERT INTO MA_Usuarios (nombre, usuario, cedula, contrasena, dependencia, cargo, contrato, sede)

@@ -1,6 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
-//Modal eliminar bien
-document.getElementById('eliminarBien').addEventListener('click', function() {
+function action(){
     Swal.fire({
         title: 'Esta a punto de elminar el bien',
         text: '¿Desea continuar?',
@@ -30,6 +28,4 @@ document.getElementById('eliminarBien').addEventListener('click', function() {
             })
         }
     });
-  });
-//cierre de control DOM
-});
+}

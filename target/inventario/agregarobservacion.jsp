@@ -2,7 +2,6 @@
 <%@ include file="headerf.jsp"%>
 <%@ include file="navf.jsp"%>
 <%@ include file="usuario.jsp"%>
-<main>
     <div class="form-container">
         <form action="AgregarObservacion" method="post">
             <div class="form-group">
@@ -16,7 +15,7 @@
            <!-- <input type="hidden" name="usuario" value="<%= session.getAttribute("idUsuario") %>"> <!-- Asegúrate de tener la sesión iniciada -->
             <div class="button-container">
                 <button type="submit" class="button">Enviar</button>
-                <a href="homef.jsp" class="button">Cancelar</a>
+                <a href="homef.jsp" class="button-second">Cancelar</a>
             </div>
         </form>
     </div>

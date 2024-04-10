@@ -12,18 +12,14 @@
 }
 
 
+
 .table, .usuario {
     width: 100%;
     border: 2px solid #ccc;
     border-collapse: collapse;
     margin: 0;
     padding: 0;
-    table-layout: fixed;
     margin-bottom: 20px;
-}
-
-.usuario {
-    min-height: 80px;
 }
 
 
@@ -51,6 +47,28 @@ h2 {
     font-size: 16px;
     padding: 8px;
     text-align: center;
+}
+
+.table th, .table tr {
+    font-size: 16px;
+    padding: 8px;
+    text-align: center;
+}
+
+.table input{
+    padding: 13px; 
+    border-radius: 5px;
+    border: 1px solid #767676;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.table select{
+    padding: 13px; 
+    border-radius: 5px;
+    border: 1px solid #767676;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .table thead th{ 
@@ -90,27 +108,39 @@ h2 {
 .form-group textarea {
     padding: 15px; 
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #767676;
     box-sizing: border-box;
     width: 100%;
-    font-size: 16px; 
+    font-size: 25px; 
 }
 
 .button-container {
     text-align: center;
-    margin-top: 50px;
+    margin-top: 25px;
 }
 
 .button {
     display: inline-block; 
     padding: 10px 20px;
-    background-color: #333;
+    background-color: #139EC8;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
     font-size: 16px;
-    margin: 0 10px;
+    transition: background-color 0.3s ease;
+    text-decoration: none; 
+}
+
+.button-second {
+    display: inline-block; 
+    padding: 10px 20px;
+    background-color: #E0E0E0;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
     transition: background-color 0.3s ease;
     text-decoration: none; 
 }
@@ -122,11 +152,6 @@ h2 {
 
 .swal2-container {
     z-index: 10000;
-}
-
-.custom-modal {
-    width: 100%;
-    max-width: 200rem; 
 }
 
 table {
@@ -167,3 +192,14 @@ table {
     }
 }
 
+
+@media (max-width: 370px) {
+    .table, .usuario {
+        border: 2px solid #ccc;
+        border-collapse: collapse;
+        margin: 0;
+        padding: 0;
+        table-layout: fixed;
+        margin-bottom: 20px;
+    }
+}

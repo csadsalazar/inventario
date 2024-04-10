@@ -8,7 +8,7 @@
         <h1>Inventario personalizado - INVIMA</h1>
         <h2>Editar bien</h2> 
         <br>
-        <form action="ActualizarBien" method="post">
+        <form action="ActualizarBien" method="POST">
             <table id="verbiena" class="table">
                 <thead>
                     <tr>
