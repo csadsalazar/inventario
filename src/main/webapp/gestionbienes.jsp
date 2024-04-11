@@ -4,7 +4,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="models.Bien" %>
 <%@ page import="controllers.ListarBienes" %>
-
 <main>
     <div class="container">
         <h1>Inventario personalizado - INVIMA</h1>
@@ -36,13 +35,13 @@
                     <td data-label="Acciones">
                         <div class="acciones">
                             <a href="verbien.jsp?codigo=<%= bien.getCodigo() %>">
-                                <ion-icon name="receipt-outline">
+                                <ion-icon name="receipt-outline"></ion-icon>
                             </a>&nbsp;
                             <a href="editarbien.jsp?codigo=<%= bien.getCodigo() %>">
-                                <ion-icon name="create-outline">
+                                <ion-icon name="create-outline"></ion-icon>
                             </a>&nbsp;
                             <a value="click" onClick="action();">
-                                <ion-icon name="trash-outline">
+                                <ion-icon name="trash-outline"></ion-icon>
                             </a>
                         </div>
                     </td>

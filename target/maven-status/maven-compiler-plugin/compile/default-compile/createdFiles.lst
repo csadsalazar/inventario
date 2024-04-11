@@ -3,6 +3,7 @@ controllers\ListarBienPorCodigo.class
 utils\ConexionBD.class
 controllers\ListarObservaciones.class
 models\Observacion.class
+controllers\UsuarioController.class
 controllers\AgregarBien.class
 controllers\ListarBienes.class
 models\Bien.class

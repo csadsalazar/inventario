@@ -34,6 +34,10 @@
                     <td data-label="Información"><%= (bien != null) ? bien.getPlaca() : "" %></td>
                 </tr>
                 <tr>
+                <td data-label="Item">Responsable:</td>
+                <td data-label="Información"><%= (bien != null && bien.getUsuario() != null) ? bien.getUsuario().getUsuario() : "" %></td>
+                </tr>
+                <tr>
                     <td data-label="Item">Nombre:</td>
                     <td data-label="Información"><%= (bien != null) ? bien.getNombre() : "" %></td>
                 </tr>

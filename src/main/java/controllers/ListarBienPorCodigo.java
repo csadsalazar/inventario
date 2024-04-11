@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Bien;
+import models.Usuario;
 import utils.ConexionBD;
 
 import java.sql.Connection;
@@ -14,7 +15,7 @@ public class ListarBienPorCodigo {
         Bien bien = null;
         try {
             conn = ConexionBD.getConnection();
-            String sql = "SELECT * FROM MA_Bienes WHERE PK_Codigo = ?";
+            String sql = "SELECT b.*, u.usuario FROM MA_Bienes b INNER JOIN MA_Usuarios u ON b.FK_Usuario = u.PK_idUsuario WHERE b.PK_Codigo = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, codigo);
             ResultSet rs = ps.executeQuery();
@@ -25,6 +26,9 @@ public class ListarBienPorCodigo {
                 bien.setNombre(rs.getString("nombre"));
                 bien.setDescripcion(rs.getString("descripcion"));
                 bien.setUbicacion(rs.getString("ubicacion"));
+                Usuario usuario = new Usuario();
+                usuario.setUsuario(rs.getString("usuario"));
+                bien.setUsuario(usuario);    
                 bien.setValor(rs.getInt("valor"));
                 bien.setEstado(rs.getString("estado"));
             }

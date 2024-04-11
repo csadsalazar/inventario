@@ -6,7 +6,9 @@
         <h1>Inventario personalizado - INVIMA</h1>
         <h2>Agregar bien</h2>  
     <br>
-    <!-- Aquí comienza el formulario -->
+    <c:if test="${not empty error}">
+            <p style="color: red;">${error}</p>
+        </c:if>
     <form action="AgregarBien" method="POST">
         <table id="agregarbien" class="table">
             <thead>
@@ -18,7 +20,7 @@
             <tbody>
                 <tr>
                     <td data-label="Item">Funcionario:</td>
-                    <td data-label="Información"><input type="text" name="funcionario" class="informacion" placeholder="Funcionario" required></td>
+                    <td data-label="Información"><input type="text" name="usuario" class="informacion" placeholder="Funcionario" required></td>
                 </tr>
                 <tr>
                     <td data-label="Item">Código:</td>
@@ -223,6 +225,19 @@
                 <tr>
                     <td data-label="Item">Valor:</td>
                     <td data-label="Información"><input type="number" name="valor" class="informacion" placeholder="Valor" required></td>
+                </tr>
+                 <tr>
+                <td data-label="Item">Estado:</td>
+                <td data-label="Información">
+                <select class="informacion" name="estado" placeholder="Seleccione el estado del bien">
+                    <option value="No reportado">
+                        No reportado
+                    </option>
+                    <option value="Reportado">
+                        Reportado
+                    </option>
+                </select>
+                </td>
                 </tr>
             </tbody>
         </table>
