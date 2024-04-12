@@ -40,9 +40,18 @@
                             <a href="editarbien.jsp?codigo=<%= bien.getCodigo() %>">
                                 <ion-icon name="create-outline">
                             </a>&nbsp;
-                            <a value="click" onClick="action();">
+                            <a id="openModal">
                                 <ion-icon name="trash-outline">
                             </a>
+        
+                            <a class="openModal">Abrir Modal</a>
+
+                            <div id="myModal" class="modal">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Este es el contenido del modal. Puedes poner lo que quieras aquí.</p>
+                            </div>
+                            </div>
                     </td>
                 </tr>
                 <%

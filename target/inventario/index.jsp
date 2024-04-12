@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="resources/img/checkinvima.png">
     <title>Inicio de sesi&oacute;n - Invima</title>
     <link rel="stylesheet" href="resources/css/styles.css"/>
   </head>
