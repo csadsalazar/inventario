@@ -35,15 +35,14 @@
                     <td data-label="Acciones">
                         <div class="acciones">
                             <a href="verbien.jsp?codigo=<%= bien.getCodigo() %>">
-                                <ion-icon name="receipt-outline"></ion-icon>
+                                <ion-icon name="receipt-outline">
                             </a>&nbsp;
                             <a href="editarbien.jsp?codigo=<%= bien.getCodigo() %>">
-                                <ion-icon name="create-outline"></ion-icon>
+                                <ion-icon name="create-outline">
                             </a>&nbsp;
                             <a value="click" onClick="action();">
-                                <ion-icon name="trash-outline"></ion-icon>
+                                <ion-icon name="trash-outline">
                             </a>
-                        </div>
                     </td>
                 </tr>
                 <%

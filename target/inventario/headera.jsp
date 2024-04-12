@@ -7,6 +7,7 @@
     <title>Administrador-Invima</title>
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/estilos.css">
+    <link rel="icon" type="image/x-icon" href="resources/img/checkinvima.png">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">

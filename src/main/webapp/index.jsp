@@ -52,6 +52,7 @@
                   Todos los derechos reservados - INVIMA
                   <a href="homea.jsp">Admin</a>
                   <a href="homef.jsp">Funcionario</a>
+                  <a href="formulario.jsp">Formulario</a>
                 </p>
               </div>
             </form>

@@ -33,11 +33,11 @@
             <tbody>
                 <tr>
                     <td data-label="Item">Código:</td>
-                    <td data-label="Información"><input type="number" name="codigo" class="informacion" placeholder="Codigo" readonly value="<%= (bien != null) ? bien.getCodigo() : "" %>"></td>
+                    <td data-label="Información"><input type="number" name="codigo" class="informacion" placeholder="Codigo" readonly desabled value="<%= (bien != null) ? bien.getCodigo() : "" %>"></td>
                 </tr>
                 <tr>
                     <td data-label="Item">Placa:</td>
-                    <td data-label="Información"><input type="number" name="placa" class="informacion" placeholder="Placa" required readonly value="<%= (bien != null) ? bien.getPlaca() : "" %>"></td>
+                    <td data-label="Información"><input type="number" name="placa" class="informacion" placeholder="Placa" desabled readonly value="<%= (bien != null) ? bien.getPlaca() : "" %>"></td>
                 </tr>
                 <tr>
                 <td data-label="Item">Responsable:</td>

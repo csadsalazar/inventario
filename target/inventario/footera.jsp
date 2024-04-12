@@ -3,7 +3,5 @@
 <script src="resources/js/dashboard.js"></script>
 <script src="resources/js/administrador.js"></script> 
 <script src="resources/js/tabla.js"></script> 
-
-
 </body>
 </html>
