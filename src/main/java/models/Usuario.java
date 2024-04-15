@@ -1,6 +1,7 @@
 package models;
 
 public class Usuario {
+    private int PK_idUsuario;
     private String nombre;
     private String usuario;
     private int cedula;
@@ -12,6 +13,27 @@ public class Usuario {
 
     // Constructor vacío
     public Usuario() {
+    }
+
+    // Constructor
+    public Usuario(int PK_idUsuario, String nombre, String usuario, int cedula, String contrasena, String dependencia, String cargo, String contrato, String sede) {
+        this.PK_idUsuario = PK_idUsuario;
+        this.nombre = nombre;
+        this.usuario = usuario;
+        this.cedula = cedula;
+        this.contrasena = contrasena;
+        this.dependencia = dependencia;
+        this.cargo = cargo;
+        this.contrato = contrato;
+        this.sede = sede;
+    }
+
+    public int getPK_idUsuario() {
+        return PK_idUsuario;
+    }
+
+    public void setPK_idUsuario(int PK_idUsuario) {
+        this.PK_idUsuario = PK_idUsuario;
     }
 
     public String getNombre() {

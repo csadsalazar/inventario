@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Bien;
+import models.Dependencia;
 import models.Usuario;
 import utils.ConexionBD;
 
@@ -15,8 +16,12 @@ public class ListarBienPorCodigo {
         Bien bien = null;
         try {
             conn = ConexionBD.getConnection();
-            String sql = "SELECT b.*, u.usuario FROM MA_Bienes b INNER JOIN MA_Usuarios u ON b.FK_Usuario = u.PK_idUsuario WHERE b.PK_Codigo = ?";
-            PreparedStatement ps = conn.prepareStatement(sql);
+            String sql = "SELECT b.*, u.usuario, d.nombreDependencia " +
+            "FROM MA_Bienes b " +
+            "INNER JOIN MA_Usuarios u ON b.FK_Usuario = u.PK_idUsuario " +
+            "INNER JOIN MA_Dependencias d ON b.FK_Dependencia = d.PK_idDependencia " +
+            "WHERE b.PK_Codigo = ?";
+           PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, codigo);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -25,7 +30,9 @@ public class ListarBienPorCodigo {
                 bien.setPlaca(rs.getInt("placa"));
                 bien.setNombre(rs.getString("nombre"));
                 bien.setDescripcion(rs.getString("descripcion"));
-                bien.setUbicacion(rs.getString("ubicacion"));
+                Dependencia dependencia = new Dependencia();
+                dependencia.setnombreDependencia(rs.getString("nombreDependencia"));
+                bien.setDependencia(dependencia);
                 Usuario usuario = new Usuario();
                 usuario.setUsuario(rs.getString("usuario"));
                 bien.setUsuario(usuario);    

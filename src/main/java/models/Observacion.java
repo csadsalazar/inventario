@@ -14,6 +14,16 @@ public class Observacion {
     public Observacion() {
     }
 
+    // Constructor
+    public Observacion(int idBienPorUsuario, Usuario usuario, Bien bien, String asunto, String informacion, Date fechaObservacion) {
+        this.idBienPorUsuario = idBienPorUsuario;
+        this.usuario = usuario;
+        this.bien = bien;
+        this.asunto = asunto;
+        this.informacion = informacion;
+        this.fechaObservacion = fechaObservacion;
+    }
+
     // Getters y setters
     public int getIdBienPorUsuario() {
         return idBienPorUsuario;

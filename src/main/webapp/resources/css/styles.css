@@ -10,14 +10,14 @@
 
 body,
 input {
-  font-family: "Poppins", sans-serif;
+  font-family: "Breakpoint-Fontsize-Fontweight";
 }
  
 main {
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  background-color: #2DA4BE;
+  background-color: #139EC8;
   padding: 2rem;
   display: flex;
   align-items: center;
@@ -128,7 +128,7 @@ label {
   display: inline-block;
   width: 100%;
   height: 43px;
-  background-color: #2DA4BE;
+  background-color: #139EC8;
   color: #fff;
   border: none;
   cursor: pointer;

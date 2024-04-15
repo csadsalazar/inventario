@@ -1,8 +1,8 @@
-function action(){
+function action(codigo) {
     Swal.fire({
-        title: 'Esta a punto de elminar el bien',
-        text: '¿Desea continuar?',
-        icon: 'info',
+        title: '¿Está seguro de que desea eliminar este bien?',
+        text: 'Esta acción no se puede deshacer',
+        icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#2DA4BE',
         cancelButtonColor: '#808080',
@@ -13,19 +13,26 @@ function action(){
         }
     }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire({
-                title: '¡Éxito!',
-                text: 'Se ha eliminado el bien.',
-                icon: 'success',
-                confirmButtonColor: '#2DA4BE'
-            })
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-            Swal.fire({
-                title: 'Cancelado',
-                text: 'Se ha cancelado la eliminación del bien.',
-                icon: 'error',
-                confirmButtonColor: '#2DA4BE'
-            })
+            eliminarBien(codigo);
         }
     });
+}
+
+function eliminarBien(codigo) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "EliminarBien", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            Swal.fire({
+                title: '¡Éxito!',
+                text: 'Se ha eliminado el bien correctamente',
+                icon: 'success',
+                confirmButtonColor: '#2DA4BE'
+            }).then((result) => {
+                window.location.href = "gestionbienes.jsp";
+            });
+        }
+    };
+    xhr.send("codigo=" + codigo);
 }

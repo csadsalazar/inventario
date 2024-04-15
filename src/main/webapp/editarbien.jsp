@@ -7,18 +7,18 @@
     // Verificar si el parámetro "codigo" está presente y no es nulo
     String codigoParameter = request.getParameter("codigo");
     int codigoBien = 0; // Valor predeterminado en caso de que el parámetro "codigo" esté ausente o sea nulo
-    
     if (codigoParameter != null && !codigoParameter.isEmpty()) {
         // Convertir el parámetro "codigo" a un entero
         codigoBien = Integer.parseInt(codigoParameter);
     }
-    
     // Obtener la información del bien utilizando el controlador ListarBienPorCodigo
     Bien bien = ListarBienPorCodigo.obtenerBienPorCodigo(codigoBien);
 %>
 <main>
     <div class="container">
-        <h2>Actualizar Bien</h2>
+        <h1>Inventario personalizado - INVIMA</h1>
+        <h2>Editar bien</h2>  
+    <br>
         <c:if test="${not empty error}">
             <p style="color: red;">${error}</p>
         </c:if>

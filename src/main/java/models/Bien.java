@@ -1,13 +1,14 @@
 package models;
 
 public class Bien {
+    private int idBien;
     private int codigo;
     private String nombre;
     private int placa;
     private String descripcion;
     private int valor;
     private Usuario usuario;
-    private String ubicacion;
+    private Dependencia nombreDependencia;
     private String estado;
     private String imagen1;
     private String imagen2;
@@ -17,7 +18,31 @@ public class Bien {
     public Bien() {
     }
 
+    // Constructor
+    public Bien(int idBien, int codigo, String nombre, int placa, String descripcion, int valor, Usuario usuario, Dependencia nombreDependencia, String estado, String imagen1, String imagen2, Observacion informacion) {
+        this.idBien = idBien;
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.placa = placa;
+        this.descripcion = descripcion;
+        this.valor = valor;
+        this.usuario = usuario;
+        this.nombreDependencia = nombreDependencia;
+        this.estado = estado;
+        this.imagen1 = imagen1;
+        this.imagen2 = imagen2;
+        this.informacion = informacion;
+    }
+
     // Getters y setters
+    public int getidBien() {
+        return idBien;
+    }
+
+    public void setidBien(int idBien) {
+        this.idBien = idBien;
+    }
+
     public int getCodigo() {
         return codigo;
     }
@@ -66,12 +91,12 @@ public class Bien {
         this.usuario = usuario;
     }
 
-    public String getUbicacion() {
-        return ubicacion;
+    public Dependencia getDependencia() {
+        return nombreDependencia;
     }
 
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
+    public void setDependencia(Dependencia nombreDependencia) {
+        this.nombreDependencia = nombreDependencia;
     }
 
     public String getEstado() {

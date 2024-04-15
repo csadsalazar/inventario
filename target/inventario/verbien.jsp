@@ -46,7 +46,7 @@
                     <td data-label="Información"><%= (bien != null) ? bien.getDescripcion() : "" %></td>
                 </tr>
                     <td data-label="Item">Ubicación:</td>
-                    <td data-label="Información"><%= (bien != null) ? bien.getUbicacion() : "" %></td>
+                    <td data-label="Información"><%= (bien != null && bien.getDependencia() != null) ? bien.getDependencia().getnombreDependencia() : "" %></td>
                 </tr>
                 <tr>
                     <td data-label="Item">Valor:</td>

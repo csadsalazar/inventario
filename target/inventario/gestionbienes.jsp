@@ -14,7 +14,7 @@
                     <th style="width: 15%;">Codigo</th>
                     <th style="width: 10%;">Placa</th>
                     <th style="width: 10%;">Nombre</th>
-                    <th style="width: 15%;">Funcionario</th>
+                    <th style="width: 15%;">Funcionario</th> 
                     <th style="width: 25%;">Dependencia</th>
                     <th style="width: 20%;">Valor</th>
                     <th style="width: 25%;">Acciones</th>
@@ -40,21 +40,13 @@
                             <a href="editarbien.jsp?codigo=<%= bien.getCodigo() %>">
                                 <ion-icon name="create-outline">
                             </a>&nbsp;
-                            <a id="openModal">
+                            <a onclick="action('<%= bien.getCodigo() %>')">
                                 <ion-icon name="trash-outline">
                             </a>
-        
-                            <a class="openModal">Abrir Modal</a>
-
-                            <div id="myModal" class="modal">
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <p>Este es el contenido del modal. Puedes poner lo que quieras aquí.</p>
-                            </div>
-                            </div>
+                        </div>
                     </td>
                 </tr>
-                <%
+                <%  
                     }
                 %>
             </tbody>

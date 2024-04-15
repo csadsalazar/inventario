@@ -10,7 +10,7 @@
             </div>
             <div class="form-group">
                 <label for="information">Información:</label>
-                <textarea id="information" name="information" rows="5" cols="30" required></textarea>
+                <textarea id="information" name="informacion" rows="5" cols="30" required></textarea>
             </div>
            <!-- <input type="hidden" name="usuario" value="<%= session.getAttribute("idUsuario") %>"> <!-- Asegúrate de tener la sesión iniciada -->
             <div class="button-container">

@@ -18,12 +18,12 @@ import javax.servlet.http.HttpServletResponse;
 public class AgregarObservacion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String usuarioParam = request.getParameter("usuario");
-        int usuario = 1; // Valor predeterminado o valor adecuado en caso de que el parámetro sea nulo
+        int usuario = 1;
         if (usuarioParam != null && !usuarioParam.isEmpty()) {
             usuario = Integer.parseInt(usuarioParam);
         }
         String asunto = request.getParameter("asunto");
-        String informacion = request.getParameter("information");
+        String informacion = request.getParameter("informacion");
         
         try {
             Connection conn = ConexionBD.getConnection();
