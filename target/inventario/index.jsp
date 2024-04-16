@@ -13,7 +13,7 @@
       <div class="box">
         <div class="inner-box">
           <div class="forms-wrap">
-            <form action="User" autocomplete="off" class="sign-in-form">
+              <form action="Login" autocomplete="off" class="sign-in-form" method="POST">
               <div class="logo">
                 <img src="resources/img/logo.png" alt="easyclass"/>
               </div>

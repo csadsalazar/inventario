@@ -55,15 +55,7 @@ h2 {
     text-align: center;
 }
 
-.table input{
-    padding: 13px; 
-    border-radius: 5px;
-    border: 1px solid #767676;
-    box-sizing: border-box;
-    width: 100%;
-}
-
-.table select{
+.table input, select{
     padding: 13px; 
     border-radius: 5px;
     border: 1px solid #767676;

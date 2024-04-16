@@ -3,7 +3,7 @@
 <script src="resources/js/dashboard.js"></script>
 <script src="resources/js/funcionario.js"></script> 
 <script src="resources/js/imagen.js"></script> 
-<script src="resources/js/tabla.js"></script> 
+<script src="resources/js/librerias.js"></script> 
 
 
 </body>

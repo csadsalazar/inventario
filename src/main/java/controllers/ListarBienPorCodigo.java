@@ -21,7 +21,7 @@ public class ListarBienPorCodigo {
             "INNER JOIN MA_Usuarios u ON b.FK_Usuario = u.PK_idUsuario " +
             "INNER JOIN MA_Dependencias d ON b.FK_Dependencia = d.PK_idDependencia " +
             "WHERE b.PK_Codigo = ?";
-           PreparedStatement ps = conn.prepareStatement(sql);
+            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, codigo);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {

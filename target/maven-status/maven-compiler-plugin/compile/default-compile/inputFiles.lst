@@ -1,9 +1,11 @@
 c:\Users\csads\Downloads\inventario\src\main\java\controllers\AgregarObservacion.java
+c:\Users\csads\Downloads\inventario\src\main\java\models\Administrador.java
 c:\Users\csads\Downloads\inventario\src\main\java\controllers\UsuarioController.java
 c:\Users\csads\Downloads\inventario\src\main\java\controllers\ListarBienes.java
-c:\Users\csads\Downloads\inventario\src\main\java\controllers\DependenciaController.java
+c:\Users\csads\Downloads\inventario\src\main\java\controllers\ListarDependencias.java
 c:\Users\csads\Downloads\inventario\src\main\java\models\Observacion.java
 c:\Users\csads\Downloads\inventario\src\main\java\controllers\ActualizarBien.java
+c:\Users\csads\Downloads\inventario\src\main\java\controllers\Login.java
 c:\Users\csads\Downloads\inventario\src\main\java\models\Usuario.java
 c:\Users\csads\Downloads\inventario\src\main\java\utils\ConexionBD.java
 c:\Users\csads\Downloads\inventario\src\main\java\controllers\AgregarBien.java

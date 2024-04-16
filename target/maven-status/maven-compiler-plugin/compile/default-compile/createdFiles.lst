@@ -1,10 +1,11 @@
 controllers\ActualizarBien.class
-controllers\DependenciaController.class
 controllers\EliminarBien.class
 controllers\ListarObservaciones.class
+controllers\Login.class
 models\Dependencia.class
 models\Usuario.class
 controllers\AgregarObservacion.class
+models\Administrador.class
 controllers\ListarBienPorCodigo.class
 utils\ConexionBD.class
 models\Observacion.class
@@ -12,3 +13,4 @@ controllers\UsuarioController.class
 controllers\AgregarBien.class
 controllers\ListarBienes.class
 models\Bien.class
+controllers\ListarDependencias.class

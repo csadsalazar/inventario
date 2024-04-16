@@ -1,156 +1,202 @@
-CREATE DATABASE Gestion_Inventario;
-USE Gestion_Inventario;
+-- Crear base de datos
+IF EXISTS (SELECT * FROM sys.databases WHERE name = N'Gestion_inventario')
+    DROP DATABASE Gestion_inventario
+GO
+
+CREATE DATABASE Gestion_inventario
+GO
+
+USE Gestion_inventario
+GO
 
 -- Tabla de Usuarios
 CREATE TABLE MA_Usuarios (
-    PK_idUsuario INT IDENTITY(1,1) PRIMARY KEY,
-    nombre VARCHAR(50),
-    usuario VARCHAR(15),
+    PK_idUsuario INT PRIMARY KEY IDENTITY,
+    nombre NVARCHAR(50),
+    usuario NVARCHAR(15),
     cedula INT,
-    contrasena VARCHAR(20),
+    contrasena NVARCHAR(20),
     dependencia INT NOT NULL,
-    cargo VARCHAR(20) NOT NULL,
-    contrato VARCHAR(20) NOT NULL
-);
+    cargo NVARCHAR(20) NOT NULL,
+    contrato NVARCHAR(20) NOT NULL,
+    sede NVARCHAR(30) NOT NULL
+)
 
 -- Tabla de Bienes
 CREATE TABLE MA_Bienes (
-    idBien INT IDENTITY(1,1) PRIMARY KEY,
+    idBien INT PRIMARY KEY IDENTITY,
     PK_Codigo INT,
-    nombre VARCHAR(50),
-    placa VARCHAR(6),
-    descripcion VARCHAR(150),
+    nombre NVARCHAR(50),
+    placa NVARCHAR(6),
+    descripcion NVARCHAR(150),
     valor INT,
-    FK_Usuario INT FOREIGN KEY REFERENCES MA_Usuarios(PK_idUsuario),
-    ubicacion VARCHAR(50),
-    imagen VARCHAR(50)
-);
+    FK_Usuario INT,
+    FK_Dependencia INT,
+    estado NVARCHAR(12),
+    imagen1 NVARCHAR(50),
+    imagen2 NVARCHAR(50),
+    FOREIGN KEY (FK_Usuario) REFERENCES MA_Usuarios(PK_idUsuario) ON DELETE CASCADE 
+)
 
 -- Tabla de Bienes por Usuario
 CREATE TABLE PA_BienesPorUsuario (
-    PK_idBienPorUsuario INT IDENTITY(1,1) PRIMARY KEY,
-    FK_Usuario INT FOREIGN KEY REFERENCES MA_Usuarios(PK_idUsuario),
-    FK_Bien INT FOREIGN KEY REFERENCES MA_Bienes(idBien),
-    asunto VARCHAR(25) NOT NULL,
-    informacion VARCHAR(200) NOT NULL,
-    fechaObservacion DATE NOT NULL
-);
+    PK_idBienPorUsuario INT PRIMARY KEY IDENTITY,   
+    FK_Usuario INT,
+    FK_Bien INT,
+    asunto NVARCHAR(25),
+    informacion NVARCHAR(200),
+    fechaObservacion DATE NOT NULL,
+    FOREIGN KEY (FK_Usuario) REFERENCES MA_Usuarios(PK_idUsuario), 
+    FOREIGN KEY (FK_Bien) REFERENCES MA_Bienes(idBien) ON DELETE CASCADE
+)
 
+-- Tabla de Usuarios Independiente
+CREATE TABLE MA_Administradores (
+    PK_idAdministrador INT PRIMARY KEY IDENTITY,
+    usuario NVARCHAR(15),
+    estado NVARCHAR(8)
+)
 
--- PROCEDURES FOR BIENES
+CREATE TABLE MA_Dependencias (
+    PK_idDependencia INT PRIMARY KEY IDENTITY,
+    nombreDependencia NVARCHAR(130) UNIQUE
+)
 
-CREATE PROCEDURE AgregarBien
+-- Procedimientos almacenados para Bienes
+CREATE PROCEDURE AgregarBien (
     @codigo INT,
-    @nombre VARCHAR(50),
-    @placa VARCHAR(6),
-    @descripcion VARCHAR(150),
+    @nombre NVARCHAR(50),
+    @placa NVARCHAR(6),
+    @descripcion NVARCHAR(150),
     @valor INT,
-    @fkUsuario INT,
-    @ubicacion VARCHAR(50),
-    @imagen VARCHAR(50)
+    @FK_Usuario INT,
+    @FK_Dependencia INT,
+    @estado NVARCHAR(12),
+    @imagen1 NVARCHAR(50),
+    @imagen2 NVARCHAR(50)
+)
 AS
 BEGIN
-    INSERT INTO MA_Bienes (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, ubicacion, imagen)
-    VALUES (@codigo, @nombre, @placa, @descripcion, @valor, @fkUsuario, @ubicacion, @imagen);
-END;
-
-
-CREATE PROCEDURE ActualizarBien
-    @placa VARCHAR(6),
-    @nombre VARCHAR(50),
-    @ubicacion VARCHAR(50),
-    @descripcion VARCHAR(150),
-    @valor INT,
-    @codigoBien INT
-AS
-BEGIN
-    UPDATE MA_Bienes
-    SET placa = @placa,
-        nombre = @nombre,
-        ubicacion = @ubicacion,
-        descripcion = @descripcion,
-        valor = @valor
-    WHERE PK_Codigo = @codigoBien;
-END;
-
-
-CREATE PROCEDURE ObtenerBienPorCodigo
-    @codigoBien INT
-AS
-BEGIN
-    SELECT b.PK_Codigo, b.placa, b.nombre, b.descripcion, b.ubicacion, b.observaciones, 
-           u.nombre AS nombreUsuario, u.dependencia, u.cargo, u.sede
-    FROM MA_Bienes b
-    INNER JOIN MA_Usuarios u ON b.FK_Usuario = u.PK_idUsuario
-    WHERE b.PK_Codigo = @codigoBien;
-END;
-
-
-CREATE PROCEDURE EliminarBien
-    @idBien INT
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    -- Eliminar el bien con el ID proporcionado
-    DELETE FROM MA_Bienes WHERE idBien = @idBien;
-END;
-
+    INSERT INTO MA_Bienes (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, imagen1, imagen2)
+    VALUES (@codigo, @nombre, @placa, @descripcion, @valor, @FK_Usuario, @FK_Dependencia, @estado, @imagen1, @imagen2)
+END
 
 CREATE PROCEDURE ListarBienes
 AS
 BEGIN
-    SELECT b.idBien, b.PK_Codigo, b.placa, b.nombre AS nombreBien, u.nombre AS nombreUsuario, u.dependencia, b.valor 
+    SELECT b.idBien,
+           b.PK_Codigo,
+           b.placa,
+           b.nombre,
+           u.usuario,
+           u.dependencia,
+           b.valor 
     FROM MA_Bienes b 
-    INNER JOIN MA_Usuarios u ON b.FK_Usuario = u.PK_idUsuario;
-END;
+    INNER JOIN MA_Usuarios u ON b.FK_Usuario = u.PK_idUsuario
+END
 
-
--- PROCEDURE FOR OBSERVACIONES
-
-CREATE PROCEDURE AgregarObservacion
+CREATE PROCEDURE AgregarObservacion (
     @usuario INT,
     @bien INT,
-    @asunto VARCHAR(50),
-    @informacion VARCHAR(250), 
-    @fechaObservacion Date
+    @asunto NVARCHAR(50),
+    @informacion NVARCHAR(250), 
+    @fechaObservacion DATE
+)
 AS
 BEGIN
-    INSERT INTO MA_Observacioes (FK_Usuario, FK_Bien, asunto, informacion, fechaObservacion)
-    VALUES (@usuario, @bien, @asunto, @informacion, @fechaObservacion);
-END;
-
+    INSERT INTO PA_BienesPorUsuario (FK_Usuario, FK_Bien, asunto, informacion, fechaObservacion)
+    VALUES (@usuario, @bien, @asunto, @informacion, @fechaObservacion)
+END
 
 CREATE PROCEDURE ListarObservaciones
 AS
 BEGIN
-    SELECT b.idBien, b.PK_Codigo, b.placa, b.nombre AS nombreBien, u.nombre AS nombreUsuario, u.dependencia, b.valor 
-    FROM MA_Bienes b 
-    INNER JOIN MA_Usuarios u ON b.FK_Usuario = u.PK_idUsuario;
-END;
-
-
-CREATE PROCEDURE ListarBienesPorUsuario
-AS
-BEGIN
-    SELECT b.idBien, b.PK_Codigo, b.placa, b.nombre AS nombreBien
-    FROM MA_Bienes b 
-    INNER JOIN MA_Usuarios u ON b.FK_Usuario = u.PK_idUsuario;
-END;
-
+    SELECT bu.FK_Usuario,
+           u.PK_idUsuario,
+           u.usuario,
+           u.dependencia,
+           bu.asunto,
+           bu.informacion 
+    FROM PA_BienesPorUsuario bu 
+    INNER JOIN MA_Usuarios u ON bu.FK_Usuario = u.PK_idUsuario
+END
 
 -- INSERCIONES 
-INSERT INTO MA_Usuarios (nombre, usuario, cedula, contrasena, dependencia, cargo, contrato)
-VALUES ('NombreUsuario1', 'usuario1', 123456789, 'contrasena1', 1, 'Cargo1', 'Contrato1'),
-       ('NombreUsuario2', 'usuario2', 987654321, 'contrasena2', 2, 'Cargo2', 'Contrato2'),
-       ('NombreUsuario3', 'usuario3', 456789123, 'contrasena3', 3, 'Cargo3', 'Contrato3');
+INSERT INTO MA_Usuarios (nombre, usuario, cedula, contrasena, dependencia, cargo, contrato, sede)
+VALUES ('NombreUsuario1', 'usuario1', 123456789, 'contrasena1', 1, 'Cargo1', 'Contrato1', 'INVIMA'),
+       ('NombreUsuario2', 'usuario2', 987654321, 'contrasena2', 2, 'Cargo2', 'Contrato2', 'INVIMA'),
+       ('NombreUsuario3', 'usuario3', 456789123, 'contrasena3', 3, 'Cargo3', 'Contrato3', 'INVIMA');
 
-INSERT INTO MA_Bienes (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, ubicacion, imagen)
-VALUES (1, 'NombreBien1', 'Placa1', 'Descripción1', 1000, 1, 'Ubicación1', 'Imagen1'),
-       (2, 'NombreBien2', 'Placa2', 'Descripción2', 2000, 2, 'Ubicación2', 'Imagen2'),
-       (3, 'NombreBien3', 'Placa3', 'Descripción3', 3000, 3, 'Ubicación3', 'Imagen3');
+INSERT INTO MA_Administradores (usuario, estado)
+VALUES ('usuario1', 'Activo');       
+
+INSERT INTO MA_Bienes (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, imagen1, imagen2)
+VALUES (1, 'NombreBien1', '1000', 'Descripción1', 1000, 1, '1', 'No reportado', 'Imagen1', 'Imagen1.1'),
+       (2, 'NombreBien2', '2000', 'Descripción2', 2000, 2, '2', 'Reportado', 'Imagen2', 'Imagen2.1'),
+       (3, 'NombreBien3', '3000', 'Descripción3', 3000, 3, '3', 'Reportado', 'Imagen3', 'Imagen3.1');
 
 INSERT INTO PA_BienesPorUsuario (FK_Usuario, FK_Bien, asunto, informacion, fechaObservacion)
 VALUES (1, 1, 'Asunto1', 'Información1', '2024-04-07'),
        (2, 2, 'Asunto2', 'Información2', '2024-04-08'),
        (3, 3, 'Asunto3', 'Información3', '2024-04-09');
+       
+INSERT INTO MA_Dependencias (nombreDependencia) 
+VALUES
+('DIRECCION GENERAL'),
+('DIRECCIÓN DE MEDICAMENTOS  Y PRODUCTOS BIOLÓGICOS (INCLUYE LOS 12 GRUPOS)'),
+('DIRECCIÓN DE ALIMENTOS Y BEBIDAS  (INCLUYE LOS 6 GRUPOS)'),
+('DIRECCIÓN DE OPERACIONES SANITARIAS (INCLUYE TODOS LOS GRUPOS UBICADOS EN EL PISO 10)'),
+('DIRECCIÓN DE RESPONSABILIDAD SANITARIA (INCLUYE LOS 6 GRUPOS)'),
+('DIRECCION DE DISPOSITIVOS MEDICOS Y OTRAS TECNOLOGIAS (INCLUYE LOS 4 GRUPOS)'),
+('ATENCION AL CIUDADANO PISO (INCLUYE LOS 2 GRUPOS)'),
+('DIRECCIÓN DE COSMETICOS, ASEO, PLAGUICIDAS Y PRODUCTOS DE HIGIENE DOMESTICA'),
+('OFICINA DE ASUNTOS INTERNACIONALES (INCLUYE LOS 2 GRUPOS)'),
+('SECRETARIA GENERAL'),
+('OFICINA DE CONTROL INTERNO'),
+('GRUPO DE TESORERIA'),
+('GRUPO DE SOPORTE TECNOLOGICO'),
+('OFICINA DE TECNOLOGIAS DE LA INFORMACIÓN (INCLUYE LOS 2 GRUPOS)'),
+('GRUPO DE GESTION ADMINISTRATIVA (INCLUYE CAFETERIAS, GUARDAS Y ZONAS COMUNES)'),
+('OFICINA ASESORA JURÍDICA (INCLUYE LOS 5 GRUPOS)'),
+('OFICINA ASESORA DE PLANEACION (INCLUYE LOS 2 GRUPOS Y EL ÁREA DE RIESGOS)'),
+('GRUPO DE GESTIÓN CONTRACTUAL'),
+('GRUPO FINANCIERO Y PRESUPUESTAL'),
+('GRUPO DE COMUNICACIONES'),
+('GRUPO DE TALENTO HUMANO'),
+('GRUPO UNIDAD DE REACCIÓN INMEDIATA -GURI'),
+('GRUPO DE INSTRUCCION DISCIPLINARIA'),
+('GRUPO LABORATORIO FISICOQUIMICO DE ALIMENTOS Y BEBIDAS'),
+('GRUPO LABORATORIO MICROBIOLOGIA DE ALIMENTOS Y BEBIDAS'),
+('GRUPO LABORATORIO DE FISICOQUÍMICO DE PRODUCTOS FARMACÉUTICOS Y OTRAS TECNOLOGÍAS'),
+('GRUPO DE LABORATORIO DE MICROBIOLOGÍA DE PRODUCTOS FARMACÉUTICOS Y OTRAS TECNOLOGÍAS'),
+('OFICINA DE LABORATORIOS  Y CONTROL DE CALIDAD'),
+('GRUPO LABORATORIO DE PRODUCTOS BIOLOGICOS'),
+('GRUPO DE GESTIÓN DOCUMENTAL Y CORRESPONDENCIA (INCLUYE DIFERENTES SEDES )'),
+('GRUPO LABORATORIO FISICO-MECANICO DE DISPOSITIVOS MEDICOS Y OTRAS TECNOLOGIAS'),
+('GRUPO LABORATORIO DE ORGANISMOS GENETICAMENTE MODIFICADOS -OGM'),
+('GRUPO RED DE LABORATORIOS Y CALIDAD'),
+('GRUPO DE TRABAJO TERRITORIAL CENTRO ORIENTE 2 (BOGOTA)'),
+('ÁREA DE ALMACEN GENERAL E INVENTARIOS'),
+('GRUPO DE CONTROL EN PUERTOS, AEROPUERTOS Y PASOS DE FRONTERA (AEROPUERTO BOGOTA)'),
+('GRUPO DE INSPECCIÓN VIGILANCIA Y CONTROL DE TRÁFICO POSTAL Y MENSAJERÍA EXPRESA'),
+('OFICINA PUERTO DE SANTA MARTA'),
+('OFICINA PASO FRONTERIZO DE PARAGUACHON (GUAJIRA)'),
+('OFICINA PASO FRONTERIZO ARAUCA'),
+('OFICINA DE IBAGUE'),
+('GRUPO DE TRABAJO TERRITORIAL CENTRO ORIENTE 3 - NEIVA'),
+('OFICINA PASO FRONTERIZO DE LETICIA'),
+('OFICINA PASO FRONTERIZO DE SAN MIGUEL PUTUMAYO'),
+('GRUPO DE TRABAJO TERRITORIAL COSTA CARIBE 1 - BARRANQUILLA'),
+('OFICINA PUERTO DE BARRANQUILLA'),
+('OFICINA PUERTO DE CARTAGENA'),
+('GRUPO DE TRABAJO TERRITORIAL OCCIDENTE 2 - CALI'),
+('OFICINA PUERTO DE BUENAVENTURA'),
+('GRUPO DE APOYO A NARIÑO PASTO'),
+('OFICINA PASO FRONTERIZO DE  IPIALES'),
+('GRUPO DE TRABAJO TERRITORIAL OCCIDENTE 1 - MEDELLIN'),
+('OFICINA AEROPUERTO DE RIONEGRO'),
+('GRUPO DE TRABAJO TERRITORIAL CENTRO ORIENTE 1 - BUCARAMANGA'),
+('OFICINA PASO FRONTERIZO DE CÚCUTA'),
+('GRUPO DE TRABAJO TERRITORIAL  ORINOQUIA- VILLAVICENCIO'),
+('GRUPO DE TRABAJO TERRITORIAL  EJE CAFETERO - ARMENIA'),
+('GRUPO DE TRABAJO TERRITORIAL COSTA CARIBE 2 - MONTERIA')
