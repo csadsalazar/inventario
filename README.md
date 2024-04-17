@@ -19,6 +19,11 @@
 5. Maven 3.9.3
 6. Git (Git Hub) como repositorio del proyecto
 
+	## Librerias utilizadas
+	- DataTables: gestión de todas las tablas (Buscador, paginacion, filtracion, orden de las columnas)
+	- Select2: gestion de las etiquetas select (Buscador dentro de las etiquetas select)
+ 	- SwalAlert: Creacion de modales (Modales eliminar bien, reporte final, reportar bien, cargar imagenes y  modales de accion)
+  	  
 # Pasos a seguir
 - Se configura variables de entorno en variables del sistema > Path agregar variables de entorno jdk y %MAVEN_HOME%\bin
 - Configurar en variables del sistema > Nuevo > En nombre de la JAVA_HOME y MAVEN_HOME > En valor de la se pone la ruta del jdk y maven
