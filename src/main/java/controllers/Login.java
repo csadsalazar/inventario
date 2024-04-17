@@ -20,7 +20,7 @@ public class Login extends HttpServlet {
             conn = ConexionBD.getConnection();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-            response.sendRedirect("index.jsp?error=3");
+            response.sendRedirect("index.jsp");
             return; 
         }
     
@@ -51,11 +51,11 @@ public class Login extends HttpServlet {
                 }
             } else {
                 // Si el usuario no existe en MA_Usuarios, mostrar mensaje de error
-                response.sendRedirect("index.jsp?error=1");
+                response.sendRedirect("index.jsp");
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            response.sendRedirect("index.jsp?error=4");
+            response.sendRedirect("index.jsp");
         } finally {
             try {
                 if (conn != null) {

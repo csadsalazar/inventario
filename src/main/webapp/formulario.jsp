@@ -18,7 +18,7 @@
         </select>
         <div id="Nodoc">
         <label for="Nodoc">No. Documento</label>
-        <input type="number" id="Nodoc" name="Nodoc" placeholder="Numero Documento" class="">
+        <input type="number" id="Nodoc" name="Nodoc" placeholder="Numero Documento">
         <div class="feedback"></div>
         </div>
         <div id="Nom">

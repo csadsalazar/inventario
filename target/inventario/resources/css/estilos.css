@@ -2,7 +2,7 @@
     width: 100%;
     max-width: 1000px;
     margin: auto;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     text-align: center;
 }
 
@@ -11,17 +11,14 @@
     vertical-align: top;
 }
 
-
-
 .table, .usuario {
     width: 100%;
-    border: 2px solid #ccc;
+    border: 1px solid #ccc;
     border-collapse: collapse;
     margin: 0;
     padding: 0;
     margin-bottom: 20px;
 }
-
 
 .usuario caption, h1 {
     font-size: 28px;
@@ -55,12 +52,16 @@ h2 {
     text-align: center;
 }
 
-.table input, select{
+.table input, select, textarea{
     padding: 13px; 
     border-radius: 5px;
     border: 1px solid #767676;
     box-sizing: border-box;
     width: 100%;
+}
+
+input:focus {
+    border: #39A5C7;
 }
 
 .table thead th{ 
@@ -120,25 +121,28 @@ h2 {
     font-size: 16px;
     transition: background-color 0.3s ease;
     text-decoration: none;
-    margin-right: 10px; /* Añade un margen entre los botones */
+    margin-right: 10px; 
 }
 
 .button {
     background-color: #139EC8;
     color: #fff;
-    border: none;
+    border: 2px solid #139EC8
 }
 
 .button:hover {
-    background-color: #555;
+    font-size: 16px;
 }
 
 .button-second {
     background-color: #fff;
     color: #139EC8;
-    border: 2px solid #139EC8; /* Ajusta el borde */
+    border: 2px solid #139EC8; 
 }
 
+.button-second:hover {
+   font-size: 16px;
+}
 
 .swal2-container {
     z-index: 10000;

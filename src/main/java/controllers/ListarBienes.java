@@ -20,14 +20,14 @@ public class ListarBienes {
             ResultSet rs = cs.executeQuery();
             while (rs.next()) {
                 Bien bien = new Bien();
-                bien.setCodigo(rs.getInt("PK_Codigo"));
+                bien.setCodigo(rs.getLong("PK_Codigo"));
                 bien.setPlaca(rs.getInt("placa"));
                 bien.setNombre(rs.getString("nombre"));
                 Usuario usuario = new Usuario();
                 usuario.setUsuario(rs.getString("usuario"));
                 usuario.setDependencia(rs.getString("dependencia"));
                 bien.setUsuario(usuario);
-                bien.setValor(rs.getInt("valor"));
+                bien.setValor(rs.getLong("valor"));
                 bienes.add(bien);
             }
             rs.close();

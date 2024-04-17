@@ -44,11 +44,11 @@ public class AgregarBien extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
 
-    int codigo = Integer.parseInt(request.getParameter("codigo"));
+    long codigo = Long.parseLong(request.getParameter("codigo"));
     int placa = Integer.parseInt(request.getParameter("placa"));
     String nombre = request.getParameter("nombre");
     String descripcion = request.getParameter("descripcion");
-    int valor = Integer.parseInt(request.getParameter("valor"));
+    long valor = Long.parseLong(request.getParameter("valor"));
     String usuario = request.getParameter("usuario");
     int dependenciaId = Integer.parseInt(request.getParameter("dependencia")); // Obtener el ID de la dependencia
     String estado = request.getParameter("estado");
@@ -63,11 +63,11 @@ public class AgregarBien extends HttpServlet {
             Connection conn = ConexionBD.getConnection();
             String sql = "INSERT INTO MA_Bienes (PK_Codigo, placa, nombre, descripcion, valor, FK_Usuario, FK_Dependencia, estado) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, codigo);
+            statement.setLong(1, codigo);
             statement.setInt(2, placa);
             statement.setString(3, nombre);
             statement.setString(4, descripcion);
-            statement.setInt(5, valor);
+            statement.setLong(5, valor);
             statement.setInt(6, idUsuario);
             statement.setInt(7, dependenciaId); // Insertar el ID de la dependencia en lugar del nombre
             statement.setString(8, estado);

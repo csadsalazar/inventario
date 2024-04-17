@@ -10,10 +10,10 @@
     <%
         // Verificar si el parámetro "codigo" está presente y no es nulo
         String codigoParameter = request.getParameter("codigo");
-        int codigoBien = 0; // Valor predeterminado en caso de que el parámetro "codigo" esté ausente o sea nulo
+        long codigoBien = 0; // Valor predeterminado en caso de que el parámetro "codigo" esté ausente o sea nulo
         if (codigoParameter != null && !codigoParameter.isEmpty()) {
             // Convertir el parámetro "codigo" a un entero
-            codigoBien = Integer.parseInt(codigoParameter);
+            codigoBien = Long.parseLong(codigoParameter);
         }
         // Obtener la información del bien utilizando el controlador ListarBienPorCodigo
         Bien bien = ListarBienPorCodigo.obtenerBienPorCodigo(codigoBien);
@@ -81,7 +81,7 @@
                         </tr>
                     <tr>
                         <td data-label="Item">Descripción:</td>
-                        <td data-label="Información"><input type="text" name="descripcion" class="informacion" placeholder="Descripción" required value="<%= (bien != null) ? bien.getDescripcion() : "" %>"></td>
+                        <td data-label="Información"><textarea name="descripcion" class="informacion" rows="5" cols="30" required value="<%= (bien != null) ? bien.getDescripcion() : "" %>"></textarea></td>
                     </tr>
                     <tr>
                         <td data-label="Item">Valor:</td>

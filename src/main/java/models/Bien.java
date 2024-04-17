@@ -2,11 +2,11 @@ package models;
 
 public class Bien {
     private int idBien;
-    private int codigo;
+    private long codigo;
     private String nombre;
     private int placa;
     private String descripcion;
-    private int valor;
+    private long valor;
     private Usuario usuario;
     private Dependencia nombreDependencia;
     private String estado;
@@ -19,7 +19,7 @@ public class Bien {
     }
 
     // Constructor
-    public Bien(int idBien, int codigo, String nombre, int placa, String descripcion, int valor, Usuario usuario, Dependencia nombreDependencia, String estado, String imagen1, String imagen2, Observacion informacion) {
+    public Bien(int idBien, long codigo, String nombre, int placa, String descripcion, long valor, Usuario usuario, Dependencia nombreDependencia, String estado, String imagen1, String imagen2, Observacion informacion) {
         this.idBien = idBien;
         this.codigo = codigo;
         this.nombre = nombre;
@@ -43,11 +43,11 @@ public class Bien {
         this.idBien = idBien;
     }
 
-    public int getCodigo() {
+    public long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(long codigo) {
         this.codigo = codigo;
     }
 
@@ -75,11 +75,11 @@ public class Bien {
         this.descripcion = descripcion;
     }
 
-    public int getValor() {
+    public long getValor() {
         return valor;
     }
 
-    public void setValor(int valor) {
+    public void setValor(long valor) {
         this.valor = valor;
     }
 

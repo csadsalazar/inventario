@@ -1,3 +1,4 @@
+controllers\CerrarSesion.class
 controllers\ActualizarBien.class
 controllers\EliminarBien.class
 controllers\ListarObservaciones.class
@@ -9,6 +10,7 @@ models\Administrador.class
 controllers\ListarBienPorCodigo.class
 utils\ConexionBD.class
 models\Observacion.class
+controllers\ListarBienesUsuario.class
 controllers\UsuarioController.class
 controllers\AgregarBien.class
 controllers\ListarBienes.class

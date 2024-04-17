@@ -45,10 +45,10 @@ public class ActualizarBien extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int codigo = Integer.parseInt(request.getParameter("codigo"));
+        long codigo = Long.parseLong(request.getParameter("codigo"));
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
-        int valor = Integer.parseInt(request.getParameter("valor"));
+        long valor = Long.parseLong(request.getParameter("valor"));
         String usuario = request.getParameter("usuario");
         int dependencia =  Integer.parseInt(request.getParameter("dependencia"));
         String estado = request.getParameter("estado");
@@ -66,10 +66,10 @@ public class ActualizarBien extends HttpServlet {
                 statement.setInt(1, idUsuario);
                 statement.setString(2, nombre);
                 statement.setString(3, descripcion);
-                statement.setInt(4, valor);
+                statement.setLong(4, valor);
                 statement.setInt(5, dependencia);
                 statement.setString(6, estado);
-                statement.setInt(7, codigo);
+                statement.setLong(7, codigo);
                 statement.executeUpdate();
 
                 System.out.println("Se ha actualizado con éxito");

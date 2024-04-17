@@ -5,7 +5,7 @@ document.querySelectorAll('.table:not(#verbien):not(#verbiena):not(#agregarbien)
         pagingType: 'simple_numbers',
         language: {
             search: 'Buscar:',
-            lengthMenu: 'Mostrar _MENU_ registros por página',
+            lengthMenu: 'Mostrar _MENU_ registros',
             info: 'Mostrando _START_ a _END_ de _TOTAL_ registros',
             infoEmpty: 'Mostrando 0 a 0 de 0 registros',
             infoFiltered: '(filtrado de _MAX_ registros totales)',
@@ -17,6 +17,7 @@ document.querySelectorAll('.table:not(#verbien):not(#verbiena):not(#agregarbien)
         }
     });
 });
+
 // Buscador dentro de selecionables (select2)
 $(document).ready(function() {
     $("select").select2();

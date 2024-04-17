@@ -9,9 +9,6 @@
                 <h1>Inventario personalizado - INVIMA</h1>
                 <h2>Agregar bien</h2>  
                 <br>
-                <c:if test="${not empty error}">
-                    <p style="color: red;">${error}</p>
-                </c:if>
                 <form action="AgregarBien" method="POST">
                     <table id="agregarbien" class="table">
                         <thead>
@@ -27,11 +24,11 @@
                             </tr>
                             <tr>
                                 <td data-label="Item">Código:</td>
-                                <td data-label="Información"><input type="number" name="codigo" class="informacion" placeholder="Codigo" required></td>
+                                <td data-label="Información"><div id="cod"><input id="cod" type="number" name="codigo" class="informacion" placeholder="Codigo" required></div></td>
                             </tr>
                             <tr>
                                 <td data-label="Item">Placa:</td>
-                                <td data-label="Información"><input type="number" name="placa" class="informacion" placeholder="Placa" required></td>
+                                <td data-label="Información"><div id="plq"><input id="pla" type="number" name="placa" class="informacion" placeholder="Placa" required></div></td>
                             </tr>
                             <tr>
                                 <td data-label="Item">Nombre:</td>
@@ -51,10 +48,10 @@
                                 %>
                                 </select>
                             </td>
-                            </tr>
+                            </tr> 
                             <tr>
                                 <td data-label="Item">Descripción:</td>
-                                <td data-label="Información"><input type="text" name="descripcion" class="informacion" placeholder="Descripción" required></td>
+                                <td data-label="Información"><textarea name="descripcion" class="informacion" rows="5" cols="30" required></textarea></td>
                             </tr>
                             <tr>
                                 <td data-label="Item">Valor:</td>

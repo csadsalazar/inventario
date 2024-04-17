@@ -46,15 +46,7 @@
                   />
                   <label>Contrase&ntilde;a</label>
                 </div>
-
                 <button class="sign-btn" name="enviar" value="iniciar">Enviar</button>
-
-                <p class="text">
-                  Todos los derechos reservados - INVIMA
-                  <a href="homea.jsp">Admin</a>
-                  <a href="homef.jsp">Funcionario</a>
-                  <a href="formulario.jsp">Formulario</a>
-                </p>
               </div>
             </form>
           </div>
@@ -67,9 +59,6 @@
         </div>
       </div>
     </main>
-
-    <!-- Javascript file -->
-
     <script src="resources/js/index.js"></script>
   </body>
 </html>

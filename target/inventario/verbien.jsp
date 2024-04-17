@@ -6,7 +6,7 @@
 
 <%
     // Recuperar el parámetro "codigo" de la URL
-    int codigoBien = Integer.parseInt(request.getParameter("codigo"));
+    long codigoBien = Long.parseLong(request.getParameter("codigo"));
     
     // Obtener la información del bien utilizando el controlador ListarBienPorCodigo
     Bien bien = ListarBienPorCodigo.obtenerBienPorCodigo(codigoBien);
@@ -14,7 +14,7 @@
 <main>
 <div class="container">
         <h1>Inventario personalizado - INVIMA</h1>
-        <h2>Detalles del bien: <%= (bien != null) ? bien.getPlaca() : "" %></h2>  
+        <h2>Detalles del bien <%= (bien != null) ? bien.getPlaca() : "" %></h2>  
     <br>
 
 <table id="agregarbien" class="table">
