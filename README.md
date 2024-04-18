@@ -43,7 +43,7 @@
 
 # Proyecto Inventario Personalizado - Documentacion del proyecto
 ## Indice
-El presente desarrollo esta enfocado para el grupo de gestión administrativa con el fin de satisfacer la gestion de los bienes de cada funcionario, este desarrollo se esta haciendo bajo la supervision de la oficina de las tecnologias de la información, se presento el [cronograma](https://pages.github.com/) de trabajo el cual es:
+El presente desarrollo esta enfocado para el grupo de gestión administrativa con el fin de satisfacer la gestion de los bienes de cada funcionario, este desarrollo se esta haciendo bajo la supervision de la oficina de las tecnologias de la información, se presento el [cronograma](PK) de trabajo el cual es:
 
 | Semana | Actividades |
 | --- | --- |
