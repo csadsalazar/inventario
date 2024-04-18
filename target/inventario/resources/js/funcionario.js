@@ -6,8 +6,9 @@ document.getElementById('verificarModal').addEventListener('click', function() {
       text: '¿Desea continuar?',
       icon: 'info',
       showCancelButton: true,
-      confirmButtonColor: '#2DA4BE',
-      cancelButtonColor: '#808080',
+      confirmButtonColor: '#139EC8',
+      confirmButtonBorder: '',
+      cancelButtonColor: '#fff',
       confirmButtonText: 'Aceptar',
       cancelButtonText: 'Cancelar',
       customClass: {
@@ -19,14 +20,14 @@ document.getElementById('verificarModal').addEventListener('click', function() {
               title: '¡Éxito!',
               text: 'Se ha verificado el bien.',
               icon: 'success',
-              confirmButtonColor: '#2DA4BE'
+              confirmButtonColor: '#139EC8'
           })
       } else if (result.dismiss === Swal.DismissReason.cancel) {
           Swal.fire({
               title: 'Cancelado',
               text: 'Se ha cancelado la verificación de su bien.',
               icon: 'error',
-              confirmButtonColor: '#2DA4BE'
+              confirmButtonColor: '#139EC8'
           })
       }
   });
@@ -39,8 +40,8 @@ document.getElementById('reporteModal').addEventListener('click', function() {
       text: '¿Desea continuar?',
       icon: 'info',
       showCancelButton: true,
-      confirmButtonColor: '#2DA4BE',
-      cancelButtonColor: '#808080',
+      confirmButtonColor: '#139EC8',
+      cancelButtonColor: '#fff',
       confirmButtonText: 'Aceptar',
       cancelButtonText: 'Cancelar',
       customClass: {
@@ -52,14 +53,14 @@ document.getElementById('reporteModal').addEventListener('click', function() {
               title: '¡Éxito!',
               text: 'Se ha cargado de forma exitosa el reporte de sus bienes.',
               icon: 'success',
-              confirmButtonColor: '#2DA4BE'
+              confirmButtonColor: '#139EC8'
           })
       } else if (result.dismiss === Swal.DismissReason.cancel) {
           Swal.fire({
               title: 'Cancelado',
               text: 'Se ha cancelado el reporte de sus bienes.',
               icon: 'error',
-              confirmButtonColor: '#2DA4BE'
+              confirmButtonColor: '#139EC8'
           })
       }
   });

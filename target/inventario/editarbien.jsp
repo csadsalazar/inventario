@@ -61,21 +61,18 @@ ArrayList<Dependencia> dependencias = ListarDependencias.obtenerDependencias();
                     <tr>
                         <td data-label="Item">Ubicación:</td>
                         <td data-label="Información">
-<select class="informacion" name="dependencia" placeholder="Seleccione la ubicación del bien" style="width: 100%">
-    <% for (Dependencia dependencia : dependencias) { %>
-        <option value="<%= dependencia.getPK_idDependencia() %>" <%= (bien.getDependencia() != null && dependencia.getPK_idDependencia() == bien.getDependencia().getPK_idDependencia()) ? "selected" : "" %>>
-            <%= dependencia.getnombreDependencia() %>
-        </option>
-    <% } %>
-</select>
-
-
-
+                        <select class="informacion" name="dependencia" placeholder="Seleccione la ubicación del bien" style="width: 100%">
+                            <% for (Dependencia dependencia : dependencias) { %>
+                                <option value="<%= dependencia.getPK_idDependencia() %>" <%= (bien.getDependencia() != null && dependencia.getPK_idDependencia() == bien.getDependencia().getPK_idDependencia()) ? "selected" : "" %>>
+                                    <%= dependencia.getnombreDependencia() %>
+                                </option>
+                            <% } %>
+                        </select>
                         </td>
                         </tr>
                     <tr>
                         <td data-label="Item">Descripción:</td>
-                        <td data-label="Información"><textarea name="descripcion" class="informacion" rows="5" cols="30" required value="<%= (bien != null) ? bien.getDescripcion() : "" %>"></textarea></td>
+                        <td data-label="Información"><textarea name="descripcion" class="informacion" rows="5" cols="30" required><%= (bien != null) ? bien.getDescripcion() : "" %></textarea></td>
                     </tr>
                     <tr>
                         <td data-label="Item">Valor:</td>

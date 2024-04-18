@@ -329,10 +329,32 @@ git push origin main
 				                   
 				
                     
+<!--
+            <%
+                    ArrayList<Bien> bienes = ListarBienesUsuario.obtenerBienUsuario();
+                    for (Bien bien : bienes) {
+            %>
 
+                <tr>
+                    <td data-label="Nombre"><%= bien.getNombre() %></td>
+                    <td data-label="Placa"><%= bien.getPlaca() %></td>
+                    <td data-label="Codigo"><%= bien.getCodigo() %></td>
+                    <td data-label="Acciones">
+                    <%= bien.getUsuario().getUsuario() %>
+
+                    -->
+
+					<!-- <%  
+                    }
+                %> -->
                     
 
-
+<!--
+<%@ page import="models.Bien" %>
+-->
+<!--
+<%@ page import="controllers.ListarBienesUsuario" %>
+-->
 
 
 

@@ -2,9 +2,7 @@
 <%@include file="headerf.jsp"%>
 <%@include file="navf.jsp"%>
 <%@include file="usuario.jsp"%>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="models.Bien" %>
-<%@ page import="controllers.ListarBienesUsuario" %>
 
         <table class="table">
             <h2>Bienes del usuario</h2>
@@ -18,34 +16,24 @@
                 </tr>
             </thead>
             <tbody>  
-
-            <%
-                    ArrayList<Bien> bienes = ListarBienesUsuario.obtenerBienUsuario();
-                    for (Bien bien : bienes) {
-            %>
-
                 <tr>
-                    <td data-label="Nombre"><%= bien.getNombre() %></td>
-                    <td data-label="Placa"><%= bien.getPlaca() %></td>
-                    <td data-label="Codigo"><%= bien.getCodigo() %></td>
+                    <td data-label="Nombre"></td>
+                    <td data-label="Placa"></td>
+                    <td data-label="Codigo"></td>
                     <td data-label="Acciones">
-                    <%= bien.getUsuario().getUsuario() %>
                         <div class="acciones">
                             <a id="cargarImagenes">
-                                <ion-icon name="share-outline">
+                            <img src="resources/img/camera.svg" alt="camera">
                             </a>&nbsp;
                             <a href="verbienf.jsp">
-                                <ion-icon name="receipt-outline">
+                            <img src="resources/img/airplay.svg" alt="airplay">
                             </a>&nbsp;
                             <a id="verificarModal">
-                                <ion-icon name="checkmark-circle-outline">
+                            <img src="resources/img/check-circle.svg" alt="check-circle">
                             </a>
                         </div>   
                     </td>
                 </tr>
-                <%  
-                    }
-                %>
             </tbody>
         </table>
         <div class="button-container">
@@ -55,3 +43,4 @@
     </div>
 </main>
 <%@include file="footerf.jsp"%>
+ 

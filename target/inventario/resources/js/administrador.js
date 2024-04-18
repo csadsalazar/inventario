@@ -4,8 +4,8 @@ function action(codigo) {
         text: 'Esta acción no se puede deshacer',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#2DA4BE',
-        cancelButtonColor: '#808080',
+        confirmButtonColor: '#139EC8',
+        cancelButtonColor: '#fff',
         confirmButtonText: 'Aceptar',
         cancelButtonText: 'Cancelar',
         customClass: {
@@ -28,7 +28,7 @@ function eliminarBien(codigo) {
                 title: '¡Éxito!',
                 text: 'Se ha eliminado el bien correctamente',
                 icon: 'success',
-                confirmButtonColor: '#2DA4BE'
+                confirmButtonColor: '#139EC8'
             }).then((result) => {
                 window.location.href = "gestionbienes.jsp";
             });

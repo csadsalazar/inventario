@@ -9,6 +9,7 @@
                 <h1>Inventario personalizado - INVIMA</h1>
                 <h2>Agregar bien</h2>  
                 <br>
+                <div class="form-container">
                 <form action="AgregarBien" method="POST">
                     <table id="agregarbien" class="table">
                         <thead>
@@ -16,7 +17,7 @@
                                 <th style="width: 15%;">Item</th>
                                 <th style="width: 50%;">Información</th>
                             </tr>
-                        </thead>
+                        </thead> 
                         <tbody>
                             <tr>
                                 <td data-label="Item">Funcionario:</td>
@@ -74,5 +75,6 @@
                     </div>
                 </form>
             </div>
-        </main>
+        </div>
+    </main>
  <%@ include file="footera.jsp" %>

@@ -27,7 +27,7 @@ public class ListarBienes {
                 usuario.setUsuario(rs.getString("usuario"));
                 usuario.setDependencia(rs.getString("dependencia"));
                 bien.setUsuario(usuario);
-                bien.setValor(rs.getLong("valor"));
+                //bien.setValor(rs.getLong("valor"));
                 bienes.add(bien);
             }
             rs.close();

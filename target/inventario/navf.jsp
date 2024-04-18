@@ -15,14 +15,14 @@
         <ul>
             <li>
                 <a href="homef.jsp">
-                    <ion-icon name="home-outline"></ion-icon>
+                    <img src="resources/img/home.svg" alt="home">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="agregarobservacion.jsp">
-                    <ion-icon name="grid-outline"></ion-icon>
-                    <span>Observaciones</span>
+                <a href="agregarobservacion.jsp">             
+                    <img src="resources/img/alert-triangle.svg" alt="alert-triangle">
+                    <span>Observaci&oacute;n</span>
                 </a>
             </li>
         </ul>
@@ -35,7 +35,7 @@
         <div class="navegacion">
             <li>
                 <a href="index.jsp">
-                    <ion-icon name="exit-outline"></ion-icon>
+                    <img src="resources/img/trash.svg" alt="trash">
                     <span>Cerrar sesi&oacute;n</span>
                 </a>
             </li>

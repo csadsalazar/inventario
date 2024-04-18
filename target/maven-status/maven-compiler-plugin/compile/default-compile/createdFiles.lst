@@ -5,14 +5,16 @@ controllers\ListarObservaciones.class
 controllers\Login.class
 models\Dependencia.class
 models\Usuario.class
+controllers\ActualizarBienUsuario.class
 controllers\AgregarObservacion.class
+controllers\VerBienesUsuario.class
 models\Administrador.class
 controllers\ListarBienPorCodigo.class
 utils\ConexionBD.class
 models\Observacion.class
-controllers\ListarBienesUsuario.class
 controllers\UsuarioController.class
 controllers\AgregarBien.class
 controllers\ListarBienes.class
 models\Bien.class
+controllers\Dependencia.class
 controllers\ListarDependencias.class

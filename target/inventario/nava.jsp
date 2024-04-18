@@ -15,31 +15,31 @@
         <ul>
             <li>
                 <a href="homea.jsp">
-                    <ion-icon name="home-outline"></ion-icon>
+                    <img src="resources/img/home.svg" alt="home">
                     <span>Home</span>
                 </a>
             </li>
             <li>
                 <a href="gestionbienes.jsp">
-                    <ion-icon name="server-outline"></ion-icon>
+                    <img src="resources/img/database.svg" alt="database">
                     <span>Gesti&oacute;n de bienes</span>
                 </a>
             </li>
             <li>
                 <a href="agregarbien.jsp">
-                    <ion-icon name="add-circle-outline"></ion-icon>
+                    <img src="resources/img/plus-circle.svg" alt="plus-circle">
                     <span>Agregar bien</span>
                 </a>
             </li>
             <li>
                 <a href="reportesyalertas.jsp">
-                    <ion-icon name="warning-outline"></ion-icon>
-                    <span>Reportes y alertas</span>
+                    <img src="resources/img/alert-triangle.svg" alt="alert-triangle">
+                    <span>Reportes y alertas</span>  
                 </a>
             </li>
             <li>
                 <a href="gestionobservaciones.jsp">
-                    <ion-icon name="grid-outline"></ion-icon>
+                    <img src="resources/img/book-open.svg" alt="book-open">
                     <span>Observaciones</span>
                 </a>
             </li>
@@ -53,7 +53,7 @@
         <div class="navegacion">
             <li>
                 <a href="index.jsp">
-                    <ion-icon name="exit-outline"></ion-icon>
+                    <img src="resources/img/trash.svg" alt="trash">
                     <span>Cerrar sesi&oacute;n</span>
                 </a>
             </li>

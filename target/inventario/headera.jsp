@@ -14,7 +14,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/estilos.css">
-    <link rel="stylesheet" href="resources/css/formulario.css">
 </head>
 <body>
     <div class="menu">

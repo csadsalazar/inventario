@@ -70,16 +70,16 @@ input:focus {
 }
 
 .acciones{
-    font-size: 24px; 
     cursor: pointer;
+    text-decoration: none;
 }
 
 .form-container {
     background-color: #f8f8f8;
     border: 2px solid #ccc;
     border-radius: 10px;
-    padding: 20px;
-    box-sizing: border-box;
+    padding: 20px; 
+    box-sizing: border-box; 
     margin-bottom: 20px;
 }
 
@@ -104,7 +104,6 @@ input:focus {
     border: 1px solid #767676;
     box-sizing: border-box;
     width: 100%;
-    font-size: 25px; 
 }
 
 .button-container {

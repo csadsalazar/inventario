@@ -95,9 +95,10 @@ public class Bien {
         return PK_idDependencia;
     }
 
-    //public int getDependencia() {
+    //
+    /*public int getDependencia() {
       //  return PK_idDependencia.getPK_idDependencia();
-    //}
+    }*/
 
 
     public void setDependencia(Dependencia PK_idDependencia) {

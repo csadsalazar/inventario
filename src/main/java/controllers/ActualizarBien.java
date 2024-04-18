@@ -36,7 +36,7 @@ public class ActualizarBien extends HttpServlet {
                 // Obtener los datos del bien de la consulta
                 long codigoBien = resultSet.getLong("PK_Codigo");
                 String nombre = resultSet.getString("nombre");
-                String descripcion = resultSet.getString("descripcion");
+                String descripcion = resultSet.getString("descripcion");  
                 long valor = resultSet.getLong("valor");
                 int idUsuario = resultSet.getInt("FK_Usuario");
                 int idDependencia = resultSet.getInt("FK_Dependencia");
@@ -52,6 +52,10 @@ public class ActualizarBien extends HttpServlet {
                 // Obtener la lista de dependencias para el menú desplegable
                 List<Dependencia> dependencias = ListarDependencias.obtenerDependencias();
                 request.setAttribute("dependencias", dependencias);
+
+                System.out.println(
+                    "Se optiene lista"+ dependencias
+                );
                     
                 // Redirigir al formulario de edición
                 request.getRequestDispatcher("editarbien.jsp").forward(request, response);
@@ -107,7 +111,7 @@ public class ActualizarBien extends HttpServlet {
             statement.setString(2, nombre);
             statement.setString(3, descripcion);
             statement.setLong(4, valor);
-            statement.setInt(5, dependencia);
+            statement.setInt(5, dependencia); 
             statement.setString(6, estado);
             statement.setLong(7, codigo);
             statement.executeUpdate();

@@ -12,8 +12,8 @@ document.getElementById('cargarImagenes').addEventListener('click', function() {
             <input type="file" id="fileInput2" accept="image/*" title="Foto del bien">
         `,
         showCancelButton: true,
-        confirmButtonColor: '#2DA4BE',
-        cancelButtonColor: '#808080',
+        confirmButtonColor: '#139EC8',
+        cancelButtonColor: '#fff',
         confirmButtonText: 'Aceptar',
         cancelButtonText: 'Cancelar',
         preConfirm: () => {
@@ -36,14 +36,14 @@ document.getElementById('cargarImagenes').addEventListener('click', function() {
                 title: '¡Éxito!',
                 text: 'Se han cargado las imágenes con éxito.',
                 icon: 'success',
-                confirmButtonColor: '#2DA4BE'
+                confirmButtonColor: '#139EC8'
             })
         } else if (result.dismiss === Swal.DismissReason.cancel) {
             Swal.fire({
                 title: 'Cancelado',
                 text: 'Se ha cancelado la carga de imágenes.',
                 icon: 'error',
-                confirmButtonColor: '#2DA4BE'
+                confirmButtonColor: '#139EC8'
             })
         }
     });

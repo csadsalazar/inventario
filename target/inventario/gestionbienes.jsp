@@ -17,7 +17,7 @@
                     <th style="width: 15%;">Funcionario</th> 
                     <th style="width: 25%;">Dependencia</th>
                     <th style="width: 20%;">Valor</th>
-                    <th style="width: 25%;">Acciones</th>
+                <!--<th style="width: 25%;">Acciones</th>-->
                 </tr>
             </thead> 
             <tbody>
@@ -31,17 +31,17 @@
                     <td data-label="Nombre"><%= bien.getNombre() %></td>
                     <td data-label="Funcionario"><%= bien.getUsuario().getUsuario() %></td>
                     <td data-label="Dependencia"><%= bien.getUsuario().getDependencia() %></td>
-                    <td data-label="Valor"><%= bien.getValor() %>&nbsp;COP</td>
+                  <!--  <td data-label="Valor"><%= bien.getValor() %>&nbsp;COP</td> -->
                     <td data-label="Acciones">
                         <div class="acciones">
                             <a href="verbien.jsp?codigo=<%= bien.getCodigo() %>">
-                                <ion-icon name="receipt-outline">
+                            <img src="resources/img/airplay.svg" alt="airplay">
                             </a>&nbsp;
                             <a href="editarbien.jsp?codigo=<%= bien.getCodigo() %>">
-                                <ion-icon name="create-outline">
-                            </a>&nbsp;
+                            <img src="resources/img/edit.svg" alt="edit">
+                            </a>&nbsp; 
                             <a onclick="action('<%= bien.getCodigo() %>')">
-                                <ion-icon name="trash-outline">
+                            <img src="resources/img/trash.svg" alt="trash" >
                             </a>
                         </div>
                     </td>

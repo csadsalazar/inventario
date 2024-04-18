@@ -49,7 +49,7 @@ body {
     width: 250px;
     height: 100%;
     overflow: hidden;
-    padding: 20px 15px;
+    padding: 20px 22px;
     background-color: #139EC8;
     transition: width 0.5s ease, background-color 0.3s ease, left 0.5s ease;
     z-index: 50;
@@ -62,9 +62,6 @@ body {
 .barra-lateral span {
     width: 100px;
     white-space: nowrap;
-    font-size: 18px;
-    text-align: left;
-    opacity: 1;
     transition: opacity 0.5s ease, width 0.5s ease;
 }
 
@@ -85,7 +82,7 @@ body {
     padding: 10px;
 }
 
-.barra-lateral .nombre-pagina ion-icon {
+.barra-lateral .nombre-pagina img {
     font-size: 25px;
     cursor: pointer;
 }
@@ -99,6 +96,7 @@ body {
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
+    margin-left: 18px;
 }
 
 .barra-lateral .navegacion::-webkit-scrollbar {
@@ -112,7 +110,7 @@ body {
 
 .barra-lateral .navegacion::-webkit-scrollbar-thumb:hover {
     background-color: var(--color-scroll-hover);
-}
+} 
 
 .barra-lateral .navegacion li {
     list-style: none;
@@ -133,11 +131,13 @@ body {
 .barra-lateral .navegacion a:hover {
     background-color: var(--color-menu-hover);
     color: var(--color-menu-hover-texto);
+    width: 200px;
 }
 
-.barra-lateral .navegacion ion-icon {
-    min-width: 50px;
-    font-size: 20px;
+.barra-lateral .navegacion img {
+    max-width: 20px;
+    margin-right: 10px;
+    margin-left: 15;
 }
 
 .barra-lateral .linea {
@@ -187,5 +187,6 @@ main.min-main {
     .barra-lateral .navegacion a:hover {
         background-color: var(--color-menu-hover);
         color: var(--color-menu-hover-texto);
+        width: 200px;
     }
 }
