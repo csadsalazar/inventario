@@ -44,14 +44,14 @@
 # Proyecto Inventario Personalizado
 ## Indice
 El presente desarrollo esta enfocado para el grupo de gestión administrativa con el fin de satisfacer la gestion de los bienes de cada funcionario, este desarrollo se esta haciendo bajo la supervision de la oficina de las tecnologias de la información, se presento el cronograma de trabajo el cual es:
-
+| Cronograma |
+| --- |
 | Semana1 | Semana2 | Semana3 | Semana4 | Semana5 | Semana6 | Semana7 |
 | --- | --- | --- | --- | --- | --- | --- |
 | Levantamiento de información | Primera semana 20/03/2024 - 27/03/2024 | Segunda semana 28/03/2024 - 04/04/2024 | Tercera semana 05/04/2024 - 12/04/2024 | Cuarta semana 15/04/2024 - 22/04/2024 | Quinta semana 15/04/2024 - 22/04/2024 | Sexta semana 23/04/2024 - 30/04/2024 |
 | Se levanta información sobre el aplicativo, se entrega mockups, requerimientos y acta sobre el aplicativo, quedan dibidamente firmadas y ademas la oficina juridica hace el procedimiento de control de cambios. | Se realizara la parte frondend del aplicativo: 1. Vistas 2. Formulas 3. Ventanas modales 4. Dashboard | Se realizara la parte backend del aplicativo en rol administrador y funcionarios (conexión ELDA) 1. Creacion base de datos 2. Ingreso en Login 3. Administrar roles del aplicativo | Se realizara la parte backend del aplicativo en rol administrador: 1. Agregar un bien 2. Editar un bien 3. Eliminar un bien 4. Consultar un biene 5. Reportes de las diferentes tablas | Se realizara la parte de backend del aplicativo en rol funcionario: 1. Aprobar un bien 2. Agregar observación 3. Finalizar reporte 4. Adjuntar imágenes | Se realizara la parte de de backend del aplicativo en rol funcionario: 1. Aprobar un bien 2. Agregar observación 3. Finalizar reporte 4. Adjuntar imágenes 5. Diagramas de pastel en el home administrador | Se realizaran pruebas del aplicativo |
-
-
-					
+| --- |
+| Observaciones: 1. Se tiene que conectar el aplicativo a el directorio activo ELDA. 2. Se necesita tener la ruta del file server, hacer la conexión con el file server y ademas guardar la ruta de las imágenes en bases de datos. |
 
 # Documentacion del proyecto
 ## Misión
