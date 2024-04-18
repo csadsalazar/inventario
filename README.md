@@ -42,10 +42,14 @@
     10. ...
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Proyecto Inventario Personalizado
 =======
 # Proyecto Inventario Personalizado - Documentacion del proyecto
 >>>>>>> 7d8ee1d (Actualizacion 18/04/2024)
+=======
+# Proyecto Inventario Personalizado - Documentacion del proyecto
+>>>>>>> 563d8a426dca3b8d3ad4b3a1f01bb9ab0d2962b5
 ## Indice
 El presente desarrollo esta enfocado para el grupo de gestión administrativa con el fin de satisfacer la gestion de los bienes de cada funcionario, este desarrollo se esta haciendo bajo la supervision de la oficina de las tecnologias de la información, se presento el cronograma de trabajo el cual es:
 
@@ -61,12 +65,17 @@ El presente desarrollo esta enfocado para el grupo de gestión administrativa co
 | Observaciones | Se tiene que conectar el aplicativo a el directorio activo ELDA. Se necesita tener la ruta del file server, hacer la conexión con el file server y además guardar la ruta de las imágenes en bases de datos. |
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 # Documentacion del proyecto
 =======
 El desarrollo se siguio segun cronograma, evidencia de esto se puede evidenciar en el siguinte archivo [DOCUMENTO TECNICO](https://pages.github.com/) en el cual se encontrara lo siguiente:
 
 >>>>>>> 7d8ee1d (Actualizacion 18/04/2024)
+=======
+El desarrollo se siguio segun cronograma, evidencia de esto se puede evidenciar en el siguinte archivo [DOCUMENTO TECNICO](https://pages.github.com/) en el cual se encontrara lo siguiente:
+
+>>>>>>> 563d8a426dca3b8d3ad4b3a1f01bb9ab0d2962b5
 ## Misión
 La misión del aplicativo es gestionar el control de inventarios satisfaciendo la necesidad de los participantes que serán administradores con su rol de gestión de bienes y de los funcionarios con su rol de verificar el bien a nombre de este.
 ## Visión
@@ -116,8 +125,16 @@ Como resultado final, el aplicativo ofrecerá una interfaz intuitiva y funcional
 Para el ciclo de vida del aplicativo se plantean cuatro fases; análisis, desarrollo, pruebas y entrega, actualmente se encuentra en la fase de desarrollo, se tiene ya desarrollado la parte visual del aplicativo, los cuales son todos sus módulos que se mencionan en los objetivos específicos en el apartado de diseñar software. Como evidencia de esto a continuación se plasman evidencias graficas de los módulos.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 Ademas de imagenes sobre el desarrollo
 
 Por otra parte se encontrara
 >>>>>>> 7d8ee1d (Actualizacion 18/04/2024)
+=======
+Ademas de imagenes sobre el desarrollo
+
+Por otra parte se encontrara
+
+
+>>>>>>> 563d8a426dca3b8d3ad4b3a1f01bb9ab0d2962b5
