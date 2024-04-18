@@ -20,6 +20,7 @@ public class ListarDependencias {
             while (rs.next()) {
                 Dependencia dependencia = new Dependencia();
                 dependencia.setPK_idDependencia(rs.getInt("PK_idDependencia"));
+                dependencia.setCodigo(rs.getInt("codigo"));
                 dependencia.setnombreDependencia(rs.getString("nombreDependencia"));
                 // Agregar el objeto Dependencia a la lista
                 dependencias.add(dependencia);

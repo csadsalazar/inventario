@@ -2,6 +2,7 @@ package models;
 
 public class Dependencia {
     private int PK_idDependencia;
+    private int codigo;
     private String nombreDependencia;
 
     // Constructor vacio
@@ -9,9 +10,10 @@ public class Dependencia {
     }
 
     // Constructor 
-    public Dependencia(int PK_idDependencia, String nombreDependencia) {
+    public Dependencia(int PK_idDependencia, String nombreDependencia, int codigo) {
         this.PK_idDependencia = PK_idDependencia;
         this.nombreDependencia = nombreDependencia;
+        this.codigo = codigo;
     }
 
     // Getters y Setters
@@ -29,5 +31,13 @@ public class Dependencia {
 
     public void setnombreDependencia(String nombreDependencia) {
         this.nombreDependencia = nombreDependencia;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 }

@@ -1,11 +1,18 @@
-    <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
-    <%@ include file="headera.jsp" %>
-    <%@ include file="nava.jsp" %>
-    <%@ page import="java.util.ArrayList" %>
-    <%@ page import="models.Bien" %>
-    <%@ page import="models.Dependencia" %>
-    <%@ page import="controllers.ListarDependencias" %>
-    <%@ page import="controllers.ListarBienPorCodigo" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ include file="headera.jsp" %>
+<%@ include file="nava.jsp" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ page import="models.Bien" %>
+<%@ page import="models.Dependencia" %>
+<%@ page import="controllers.ListarDependencias" %>
+<%@ page import="controllers.ListarBienPorCodigo" %>
+
+<%
+// Obtener la lista de dependencias utilizando el controlador
+ArrayList<Dependencia> dependencias = ListarDependencias.obtenerDependencias();
+%>
+
 
     <%
         // Verificar si el parámetro "codigo" está presente y no es nulo
@@ -54,29 +61,16 @@
                     <tr>
                         <td data-label="Item">Ubicación:</td>
                         <td data-label="Información">
-                        <select class="informacion" name="dependencia" placeholder="Seleccione la ubicacion del bien" style="width: 100%"   >
-                            <%
-                            boolean dependenciaEncontrada = false;
-                            ArrayList<Dependencia> dependencias = ListarDependencias.obtenerDependencias();
-                            for (Dependencia dependencia : dependencias) {
-                                if (bien != null && bien.getDependencia() != null && bien.getDependencia().getPK_idDependencia() == dependencia.getPK_idDependencia()) {
-                                    dependenciaEncontrada = true;
-                            %>
-                                    <option value="<%= dependencia.getPK_idDependencia() %>" selected><%= dependencia.getnombreDependencia() %></option>
-                            <%
-                                } else {
-                            %>
-                                    <option value="<%= dependencia.getPK_idDependencia() %>"><%= dependencia.getnombreDependencia() %></option>
-                            <%
-                                }
-                            }
-                            if (!dependenciaEncontrada && bien != null && bien.getDependencia() != null) {
-                            %>
-                                <option value="<%= bien.getDependencia().getPK_idDependencia() %>" selected><%= bien.getDependencia().getnombreDependencia() %></option>
-                            <%
-                            }
-                            %>
-                        </select>
+<select class="informacion" name="dependencia" placeholder="Seleccione la ubicación del bien" style="width: 100%">
+    <% for (Dependencia dependencia : dependencias) { %>
+        <option value="<%= dependencia.getPK_idDependencia() %>" <%= (bien.getDependencia() != null && dependencia.getPK_idDependencia() == bien.getDependencia().getPK_idDependencia()) ? "selected" : "" %>>
+            <%= dependencia.getnombreDependencia() %>
+        </option>
+    <% } %>
+</select>
+
+
+
                         </td>
                         </tr>
                     <tr>

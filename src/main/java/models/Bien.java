@@ -8,7 +8,7 @@ public class Bien {
     private String descripcion;
     private long valor;
     private Usuario usuario;
-    private Dependencia nombreDependencia;
+    private Dependencia PK_idDependencia;
     private String estado;
     private String imagen1;
     private String imagen2;
@@ -19,7 +19,7 @@ public class Bien {
     }
 
     // Constructor
-    public Bien(int idBien, long codigo, String nombre, int placa, String descripcion, long valor, Usuario usuario, Dependencia nombreDependencia, String estado, String imagen1, String imagen2, Observacion informacion) {
+    public Bien(int idBien, long codigo, String nombre, int placa, String descripcion, long valor, Usuario usuario, Dependencia PK_idDependencia, String estado, String imagen1, String imagen2, Observacion informacion) {
         this.idBien = idBien;
         this.codigo = codigo;
         this.nombre = nombre;
@@ -27,7 +27,7 @@ public class Bien {
         this.descripcion = descripcion;
         this.valor = valor;
         this.usuario = usuario;
-        this.nombreDependencia = nombreDependencia;
+        this.PK_idDependencia = PK_idDependencia;
         this.estado = estado;
         this.imagen1 = imagen1;
         this.imagen2 = imagen2;
@@ -92,11 +92,16 @@ public class Bien {
     }
 
     public Dependencia getDependencia() {
-        return nombreDependencia;
+        return PK_idDependencia;
     }
 
-    public void setDependencia(Dependencia nombreDependencia) {
-        this.nombreDependencia = nombreDependencia;
+    //public int getDependencia() {
+      //  return PK_idDependencia.getPK_idDependencia();
+    //}
+
+
+    public void setDependencia(Dependencia PK_idDependencia) {
+        this.PK_idDependencia = PK_idDependencia;
     }
 
     public String getEstado() {
