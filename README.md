@@ -43,7 +43,7 @@
 
 # Proyecto Inventario Personalizado - Documentacion del proyecto
 ## Indice
-El presente desarrollo esta enfocado para el grupo de gestión administrativa con el fin de satisfacer la gestion de los bienes de cada funcionario, este desarrollo se esta haciendo bajo la supervision de la oficina de las tecnologias de la información, se presento el [cronograma](PK) de trabajo el cual es:
+El presente desarrollo esta enfocado para el grupo de gestión administrativa con el fin de satisfacer la gestion de los bienes de cada funcionario, este desarrollo se esta haciendo bajo la supervision de la oficina de las tecnologias de la información, se presento el [cronograma](https://github.com/csadsalazar/inventario/blob/main/DOCUMENTACION/DOCUMENTOS/CRONOGRAMA.xlsx) de trabajo el cual es:
 
 | Semana | Actividades |
 | --- | --- |
@@ -57,7 +57,7 @@ El presente desarrollo esta enfocado para el grupo de gestión administrativa co
 | Observaciones | Se tiene que conectar el aplicativo a el directorio activo ELDA. Se necesita tener la ruta del file server, hacer la conexión con el file server y además guardar la ruta de las imágenes en bases de datos. |
 
 # Documentacion del proyecto
-El desarrollo se siguio segun cronograma, evidencia de esto se puede evidenciar en el siguinte archivo [DOCUMENTO TECNICO](https://pages.github.com/) en el cual se encontrara lo siguiente:
+El desarrollo se siguio segun cronograma, evidencia de esto se puede evidenciar en el siguinte archivo [DOCUMENTO TECNICO](https://github.com/csadsalazar/inventario/blob/main/DOCUMENTACION/DOCUMENTOS/DOCUMENTO%20TECNICO.docx) en el cual se encontrara lo siguiente:
 
 ## Misión
 La misión del aplicativo es gestionar el control de inventarios satisfaciendo la necesidad de los participantes que serán administradores con su rol de gestión de bienes y de los funcionarios con su rol de verificar el bien a nombre de este.
@@ -108,7 +108,7 @@ Como resultado final, el aplicativo ofrecerá una interfaz intuitiva y funcional
 Para el ciclo de vida del aplicativo se plantean cuatro fases; análisis, desarrollo, pruebas y entrega, actualmente se encuentra en la fase de desarrollo, se tiene ya desarrollado la parte visual del aplicativo, los cuales son todos sus módulos que se mencionan en los objetivos específicos en el apartado de diseñar software. Como evidencia de esto a continuación se plasman evidencias graficas de los módulos.
 
 Ademas de imagenes sobre el desarrollo.
-Por otra parte se encontrara los requisitos de administrador [administrador](https://pages.github.com/), [funcionario](https://pages.github.com/), [funcionales y no funcionales](https://pages.github.com/), por ultimo el [acta del desarrollo](https://pages.github.com/)
+Por otra parte se encontrara los requisitos de administrador [administrador](https://github.com/csadsalazar/inventario/tree/main/DOCUMENTACION/REQUISITOS/ADMIN), [funcionario]([https://pages.github.com/](https://github.com/csadsalazar/inventario/tree/main/DOCUMENTACION/REQUISITOS/FUNCIONARIO), [funcionales y no funcionales](https://github.com/csadsalazar/inventario/blob/main/DOCUMENTACION/REQUISITOS/REQUERIMIENTOS.xlsx), por ultimo el [acta del desarrollo](https://github.com/csadsalazar/inventario/blob/main/DOCUMENTACION/DOCUMENTOS/ACTA%20DEL%20DESARROLLO.pdf)
 
 
 
