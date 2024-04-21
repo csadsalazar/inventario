@@ -40,5 +40,37 @@ public class ListarDependencias {
         }
         return dependencias;
     }
+
+    public static Dependencia obtenerDependenciaPorId(int id) throws ClassNotFoundException {
+        Dependencia dependencia = null;
+        Connection conn = null;
+        try {
+            conn = ConexionBD.getConnection();
+            String sql = "SELECT * FROM MA_Dependencias WHERE PK_idDependencia = ?";   
+            PreparedStatement cs = conn.prepareStatement(sql);   
+            cs.setInt(1, id);
+            ResultSet rs = cs.executeQuery();
+            if (rs.next()) {
+                dependencia = new Dependencia();
+                dependencia.setPK_idDependencia(rs.getInt("PK_idDependencia"));
+                dependencia.setCodigo(rs.getInt("codigo"));
+                dependencia.setnombreDependencia(rs.getString("nombreDependencia"));
+            }
+            rs.close();
+            cs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return dependencia;
+    }
+    
 }
     

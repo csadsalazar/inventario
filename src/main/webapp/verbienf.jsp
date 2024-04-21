@@ -1,30 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
-<%@include file="headerf.jsp"%>
-<%@include file="navf.jsp"%>
-<%@include file="usuario.jsp"%>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.List" %>
+<%@ include file="headerf.jsp" %>
+<%@ include file="navf.jsp" %>
+<%@ include file="usuario.jsp" %>
 <%@ page import="models.Bien" %>
-<%@ page import="models.Dependencia" %>
-<%@ page import="controllers.ListarDependencias" %>
 <%@ page import="controllers.ListarBienPorCodigo" %>
 <%
-// Obtener la lista de dependencias utilizando el controlador
-ArrayList<Dependencia> dependencias = ListarDependencias.obtenerDependencias();
+    // Recuperar el parámetro "codigo" de la URL
+    long codigoBien = Long.parseLong(request.getParameter("codigo"));
+    // Obtener la información del bien utilizando el controlador ListarBienPorCodigo
+    Bien bien = ListarBienPorCodigo.obtenerBienPorCodigo(codigoBien);
 %>
-    <%
-        // Verificar si el parámetro "codigo" está presente y no es nulo
-        String codigoParameter = request.getParameter("codigo");
-        long codigoBien = 0; // Valor predeterminado en caso de que el parámetro "codigo" esté ausente o sea nulo
-        if (codigoParameter != null && !codigoParameter.isEmpty()) {
-            // Convertir el parámetro "codigo" a un entero
-            codigoBien = Long.parseLong(codigoParameter);
-        }
-        // Obtener la información del bien utilizando el controlador ListarBienPorCodigo
-        Bien bien = ListarBienPorCodigo.obtenerBienPorCodigo(codigoBien);
-    %>
 <div class="container">
-    <h2>Información del bien</h2>
+    <h2>Información del bien <%= (bien != null) ? bien.getPlaca() : "" %></h2>
     <br>
     <table id="verbien" class="table">
         <thead>
@@ -36,19 +23,19 @@ ArrayList<Dependencia> dependencias = ListarDependencias.obtenerDependencias();
         <tbody>
             <tr>
                 <td data-label="Item">Código:</td>
-                <td data-label="Información"><%= (bien != null) ? bien.getCodigo() : "" %>"</td>
+                <td data-label="Información"><%= (bien != null) ? bien.getCodigo() : "" %></td>
             </tr>
             <tr>
                 <td data-label="Item">Placa:</td>
-                <td data-label="Información"><%= (bien != null) ? bien.getPlaca() : "" %>"</td>
+                <td data-label="Información"><%= (bien != null) ? bien.getPlaca() : "" %></td>
             </tr>
             <tr>
                 <td data-label="Item">Nombre:</td>
-                <td data-label="Información"><%= (bien != null) ? bien.getNombre() : "" %>"</td>
+                <td data-label="Información"><%= (bien != null) ? bien.getNombre() : "" %></td>
             </tr>
             <tr>
                 <td data-label="Item">Descripción:</td>
-                <td data-label="Información"><%= (bien != null) ? bien.getDescripcion() : "" %>"</td>
+                <td data-label="Información"><%= (bien != null) ? bien.getDescripcion() : "" %></td>
             </tr>
             <tr>
                 <td data-label="Item">Ubicación:</td>
@@ -56,18 +43,20 @@ ArrayList<Dependencia> dependencias = ListarDependencias.obtenerDependencias();
             </tr>
             <tr>
                 <td data-label="Item">Imágenes:</td>
-                <td data-label="Información">Imagenes que pertenecen al bien</td>
+                <td data-label="Información">Imágenes que pertenecen al bien</td>
             </tr>
         </tbody>
     </table>
-    <form action="ActualizarBienUsuario" method="POST">
-    <div class="form-group">
-        <label for="information">Observación:</label>
-        <textarea id="information" name="information" rows="5" cols="30" required></textarea>
-    </div>
-    <form>
-    <div class="button-container">
-        <button class="button">Enviar observación</button>
-    </div>
+    <form action="Observacion" method="POST"> <!-- Utiliza el servlet Observacion para procesar la observación -->
+        <input type="hidden" name="codigoBien" value="<%= bien.getCodigo() %>"> <!-- Enviar el código del bien como parámetro oculto -->
+        <input type="hidden" name="idUsuario" value="<%= (bien != null && bien.getUsuario() != null) ? bien.getUsuario().getPK_idUsuario() : "" %>"> <!-- Enviar el ID del usuario como parámetro oculto -->
+        <div class="form-group">
+            <label for="informacion">Observación:</label> <!-- Cambiar "information" a "informacion" -->
+            <textarea id="informacion" name="informacion" rows="5" cols="30" required></textarea>
+        </div>
+        <div class="button-container">
+            <button class="button">Enviar observación</button>
+        </div>
+    </form>
 </div>
-<%@include file="footerf.jsp"%>
+<%@ include file="footerf.jsp" %>

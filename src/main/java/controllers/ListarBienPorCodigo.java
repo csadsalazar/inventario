@@ -16,7 +16,7 @@ public class ListarBienPorCodigo {
         Bien bien = null;
         try {
             conn = ConexionBD.getConnection();
-            String sql = "SELECT b.*, u.usuario, d.nombreDependencia " +
+            String sql = "SELECT b.*, u.PK_idUsuario as idUsuario, u.usuario, d.nombreDependencia " +
             "FROM MA_Bienes b " +
             "INNER JOIN MA_Usuarios u ON b.FK_Usuario = u.PK_idUsuario " +
             "INNER JOIN MA_Dependencias d ON b.FK_Dependencia = d.PK_idDependencia " +
@@ -26,7 +26,7 @@ public class ListarBienPorCodigo {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 bien = new Bien();
-                bien.setCodigo(rs.getLong("PK_Codigo"));
+                bien.setCodigo(rs.getLong("PK_Codigo")); 
                 bien.setPlaca(rs.getInt("placa"));
                 bien.setNombre(rs.getString("nombre"));
                 bien.setDescripcion(rs.getString("descripcion"));
@@ -34,6 +34,7 @@ public class ListarBienPorCodigo {
                 dependencia.setnombreDependencia(rs.getString("nombreDependencia"));
                 bien.setDependencia(dependencia);
                 Usuario usuario = new Usuario();
+                usuario.setPK_idUsuario(rs.getInt("idUsuario")); // Establecer el ID del usuario
                 usuario.setUsuario(rs.getString("usuario"));
                 bien.setUsuario(usuario);    
                 bien.setValor(rs.getLong("valor"));

@@ -17,19 +17,16 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/AgregarObservacion")
 public class AgregarObservacion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String usuarioParam = request.getParameter("usuario");
-        int usuario = 1;
-        if (usuarioParam != null && !usuarioParam.isEmpty()) {
-            usuario = Integer.parseInt(usuarioParam);
-        }
+        Integer idUsuario = (Integer) request.getSession().getAttribute("idUsuario"); // Corregido para manejar el valor null
+
         String asunto = request.getParameter("asunto");
         String informacion = request.getParameter("informacion");
-        
+
         try {
             Connection conn = ConexionBD.getConnection();
             String sql = "INSERT INTO PA_BienesPorUsuario (FK_Usuario, FK_Bien, asunto, informacion, fechaObservacion) VALUES (?, 1, ?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, usuario);
+            statement.setInt(1, idUsuario); // Corregido para manejar el valor null
             statement.setString(2, asunto);
             statement.setString(3, informacion);
             statement.setTimestamp(4, new Timestamp(System.currentTimeMillis())); // Fecha actual

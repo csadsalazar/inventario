@@ -1,31 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@include file="headerf.jsp"%>
 <%@include file="navf.jsp"%>
+<%@ page import="java.util.List" %>
 <%@include file="usuario.jsp"%>
 <%@ page import="models.Bien" %>
-
-        <table class="table">
-            <h2>Bienes del usuario</h2>
-            <br>
-            <thead>
-                <tr>
-                    <th style="width: 15%;">Nombre</th> 
-                    <th style="width: 15%;">Placa</th>
-                    <th style="width: 15%;">Codigo</th> 
-                    <th style="width: 25%;">Acciones</th> 
-                </tr>
-            </thead>
-            <tbody>  
-                <tr>
-                    <td data-label="Nombre"></td>
-                    <td data-label="Placa"></td>
-                    <td data-label="Codigo"></td>
+<table class="table">
+    <h2>Bienes del usuario</h2>
+    <br>
+    <thead>
+        <tr>
+            <th style="width: 15%;">Nombre</th> 
+            <th style="width: 15%;">Placa</th>
+            <th style="width: 15%;">Codigo</th> 
+            <th style="width: 25%;">Acciones</th> 
+        </tr>
+    </thead>
+    <tbody>
+          <% List<Bien> bienesUsuario = (List<Bien>) request.getSession().getAttribute("bienesUsuario");
+            // Iterar sobre los bienes del usuario y mostrar cada uno en una fila de la tabla
+            if (bienesUsuario != null) {
+            for (Bien unBien : bienesUsuario) {
+            %>
+            <tr>
+                <td data-label="Nombre"><%= unBien.getNombre() %></td>
+                <td data-label="Placa"><%= unBien.getPlaca() %></td>
+                <td data-label="Codigo"><%= unBien.getCodigo() %></td>
                     <td data-label="Acciones">
                         <div class="acciones">
                             <a id="cargarImagenes">
                             <img src="resources/img/camera.svg" alt="camera">
                             </a>&nbsp;
-                            <a href="verbienf.jsp">
+                            <a href="verbienf.jsp?codigo=<%= unBien.getCodigo() %>">
                             <img src="resources/img/airplay.svg" alt="airplay">
                             </a>&nbsp;
                             <a id="verificarModal">
@@ -34,6 +39,8 @@
                         </div>   
                     </td>
                 </tr>
+                       <% }
+           } %>
             </tbody>
         </table>
         <div class="button-container">
