@@ -20,9 +20,9 @@
 							CREATE TABLE IF NOT EXISTS MA_Administradores (
 								PK_idAdministrador INT AUTO_INCREMENT PRIMARY KEY,
 								usuario VARCHAR(15),
+                                permiso VARCHAR(2),
 								estado VARCHAR(8)
 							);
-
 
 							CREATE TABLE IF NOT EXISTS MA_Dependencias (
 								PK_idDependencia INT AUTO_INCREMENT PRIMARY KEY,
@@ -128,13 +128,14 @@
 					VALUES ('NombreUsuario1', 'usuario1', 123456789, 'contrasena1', 1, 'Cargo1', 'Contrato1', 'INVIMA'),
 						   ('NombreUsuario2', 'usuario2', 987654321, 'contrasena2', 2, 'Cargo2', 'Contrato2', 'INVIMA'),
 						   ('NombreUsuario3', 'usuario3', 456789123, 'contrasena3', 3, 'Cargo3', 'Contrato3', 'INVIMA'),
-						   ('NombreUsuario3', 'usuario4', 456789123, 'contrasena3', 3, 'Cargo3', 'Contrato3', 'INVIMA');
+						   ('NombreUsuario4', 'usuario4', 456789123, 'contrasena4', 3, 'Cargo4', 'Contrato4', 'INVIMA');
 
                            
                            
                     INSERT INTO MA_Administradores (usuario, estado)
-					VALUES ('usuario1', 'Activo');       
-                    
+					VALUES ('usuario1', 'Activo'),      
+						   ('usuario4', 'Inactivo');
+                           
 					INSERT INTO MA_Dependencias (codigo, nombreDependencia) VALUES
 					(1000, 'Dirección General'),
 					(1001, 'Grupo de Comunicaciones'),
@@ -279,4 +280,3 @@
 						   (2, 2, 'Asunto2', 'Información2', '2024-04-08'),
 						   (3, 3, 'Asunto3', 'Información3', '2024-04-09');
                            
-							
