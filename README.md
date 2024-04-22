@@ -144,3 +144,37 @@ Serian los desarrollos faltantes frente al proyecto en general, se tiene estimad
 Ademas de mirar resto de documentacion ya que no se sabe si con la documentacion generada en este espacio es la correcta.
 
 
+# Documentacion tecnica del proyecto 
+## Estructura del proyecto, el proyecto cuenta con la siguiente estructura de carpetas
+
+- .idea **(Generado automaticamente por visual)** 
+- .vscode **(Generado automaticamente por visual)**
+- directorioactivo **(Modulos de conexion para Elda)**
+- DOCUMENTACION 
+  --DOCUMENTOS **(Documentacion tecnica del desarrollo)**
+  --REQUISITOS
+  	--ADMIN
+  	--FUNCIONARIO
+  	REQUERIMIENTOS.xlxs
+- src
+  --java
+  	--controllers **(Servlets del aplicativo)**
+  	--models **(Modelos del aplicativo)**
+  	--utils **(Conexion a base de datos)**
+  --webapp **JSPs del proyecto**
+  	--META-INF
+  	context.xml
+	--resources
+  		--css
+  		--img
+  		--js
+  	--WEB-INF
+  		--lib **Librerias para el proyecto**
+  	web.xml
+  
+- target **Maven guardará el proyecto después de compilarlo**
+apuntes.txt
+pom.xml **Project Object Model (POM) para describir el proyecto de software a construir, sus dependencias de otros módulos y componentes externos, y el orden de construcción de los elementos**
+README.md
+ 
+
