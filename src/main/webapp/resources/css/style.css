@@ -83,13 +83,12 @@ body {
 }
 
 .barra-lateral .nombre-pagina img {
-    font-size: 25px;
+    font-size: 24px;
     cursor: pointer;
 }
 
 .barra-lateral .nombre-pagina span {
-    font-size: 25px;
-    white-space: nowrap;
+    font-size: 23px;
 }
 
 .barra-lateral .navegacion {
@@ -157,12 +156,6 @@ main.min-main {
     margin-left: 80px;
 }
 
-/*------------------> Responsive*/
-@media (max-height: 960px) {
-    .barra-lateral .nombre-pagina {
-        margin-bottom: 2px;
-    }
-}
 
 @media (max-width: 900px) {
     .barra-lateral {

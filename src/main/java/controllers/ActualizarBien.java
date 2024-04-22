@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +19,7 @@ public class ActualizarBien extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     Connection conn = null;
-    try {
+    try { 
         // Obtener el código del bien a actualizar
         long codigo = Long.parseLong(request.getParameter("codigo"));
 
@@ -45,15 +44,11 @@ public class ActualizarBien extends HttpServlet {
             bien.setNombre(nombre);
             bien.setDescripcion(descripcion);
             bien.setValor(valor);
-           
             // Obtener la dependencia asociada al bien
             Dependencia dependencia = ListarDependencias.obtenerDependenciaPorId(idDependencia);
             request.setAttribute("dependenciaBien", dependencia);
-
-
             // Pasar el objeto bien al JSP como un atributo de solicitud
             request.setAttribute("bien", bien);
-
             // Redirigir al formulario de edición
             request.getRequestDispatcher("editarbien.jsp").forward(request, response);
         } else {
@@ -108,7 +103,7 @@ public class ActualizarBien extends HttpServlet {
             statement.setString(2, nombre);
             statement.setString(3, descripcion);
             statement.setLong(4, valor);
-            statement.setInt(5, dependenciaId); // Usar el ID de la dependencia
+            statement.setInt(5, dependenciaId); 
             statement.setString(6, estado);
             statement.setLong(7, codigo);
             statement.executeUpdate();

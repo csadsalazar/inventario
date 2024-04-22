@@ -16,8 +16,8 @@
                     <th style="width: 10%;">Nombre</th>
                     <th style="width: 15%;">Funcionario</th> 
                     <th style="width: 25%;">Dependencia</th>
-                    <th style="width: 20%;">Valor</th>
-                <!--<th style="width: 25%;">Acciones</th>-->
+                    <!-- <th style="width: 20%;">Valor</th> -->
+                    <th style="width: 25%;">Acciones</th>
                 </tr>
             </thead> 
             <tbody>
@@ -36,14 +36,14 @@
                         <div class="acciones">
                             <a href="verbien.jsp?codigo=<%= bien.getCodigo() %>">
                             <img src="resources/img/airplay.svg" alt="airplay">
-                            </a>&nbsp;
+                            </a>&nbsp;&nbsp;&nbsp;
                             <a href="editarbien.jsp?codigo=<%= bien.getCodigo() %>">
                             <img src="resources/img/edit.svg" alt="edit">
-                            </a>&nbsp; 
+                            </a>&nbsp;&nbsp;&nbsp; 
                             <a onclick="action('<%= bien.getCodigo() %>')">
                             <img src="resources/img/trash.svg" alt="trash" >
                             </a>
-                        </div>
+                        </div>  
                     </td>
                 </tr>
                 <%  

@@ -5,7 +5,7 @@ public class Administrador {
     private int PK_idAdministrador;
     private String usuario;
     private String estado;
-
+ 
     // Constructor vacío
     public Administrador() {
     }
@@ -17,11 +17,11 @@ public class Administrador {
         this.estado = estado;
     }
 
-    public int getPK_idAdministrador() {
+    public int getCodigo() {
         return PK_idAdministrador;
     }
 
-    public void setPK_idAdministrador(int PK_idAdministrador) {
+    public void setCodigo(int PK_idAdministrador) {
         this.PK_idAdministrador = PK_idAdministrador;
     }
 

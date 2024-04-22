@@ -33,7 +33,7 @@
                             <a href="verbienf.jsp?codigo=<%= unBien.getCodigo() %>">
                             <img src="resources/img/airplay.svg" alt="airplay">
                             </a>&nbsp;
-                            <a id="verificarModal">
+                            <a onclick="reportar('<%= unBien.getCodigo() %>')">
                             <img src="resources/img/check-circle.svg" alt="check-circle">
                             </a>
                         </div>   

@@ -5,7 +5,7 @@
             <img src="resources/img/logo_blanco.png" alt="Logo">
         </div>
         <div class="nombre-pagina">
-            <ion-icon name="person-outline"></ion-icon>
+            <img src="resources/img/user.svg" alt="user">
             <span>Administrador</span>
             <div class="linea"></div>
         </div>
@@ -43,6 +43,12 @@
                     <span>Observaciones</span>
                 </a>
             </li>
+             <li>
+                <a href="gestionadministradores.jsp">
+                    <img src="resources/img/users.svg" alt="users">
+                    <span>Administradores</span>
+                </a>
+            </li>
         </ul>
     </nav>
 
@@ -53,7 +59,7 @@
         <div class="navegacion">
             <li>
                 <a href="index.jsp">
-                    <img src="resources/img/trash.svg" alt="trash">
+                    <img src="resources/img/log-out.svg" alt="log-out">
                     <span>Cerrar sesi&oacute;n</span>
                 </a>
             </li>

@@ -4,7 +4,7 @@
 <%@ include file="nava.jsp" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
-<%@ page import="models.Bien" %>
+<%@ page import="models.Bien" %> 
 <%@ page import="models.Dependencia" %>
 <%@ page import="controllers.ListarDependencias" %>
 <%@ page import="controllers.ListarBienPorCodigo" %>
@@ -70,7 +70,7 @@ Bien bien = ListarBienPorCodigo.obtenerBienPorCodigo(codigoBien);
                                             <%= dep.getnombreDependencia() %>
                                         </option>
                                     <% } %>
-                                <% } %>
+                                <% } %> 
                             </select>
                         </td>
                     </tr>
