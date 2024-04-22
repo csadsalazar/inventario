@@ -23,12 +23,14 @@
 	- DataTables: gestión de todas las tablas (Buscador, paginacion, filtracion, orden de las columnas)
 	- Select2: gestion de las etiquetas select (Buscador dentro de las etiquetas select)
  	- SwalAlert: Creacion de modales (Modales eliminar bien, reporte final, reportar bien, cargar imagenes y  modales de accion)
+  	- JavaMail: Para facilitar el envio de correos electronicos se utilizara esta libreria de Java para realizar el debido proceso de envio de correos
+   	- Grafica: Para la grafica respectiva se necesita saber mas sobre como realizar graficas en Java, la primera opcion es la posibilidad de usar power bi 	  	
   	  
 # Pasos a seguir
 - Se configura variables de entorno en variables del sistema > Path agregar variables de entorno jdk y %MAVEN_HOME%\bin
 - Configurar en variables del sistema > Nuevo > En nombre de la JAVA_HOME y MAVEN_HOME > En valor de la se pone la ruta del jdk y maven
 - Si se presenta errores ir a la configuracion de visual y buscar el archivo settings.json en el cual cambiar la ruta de "maven.executable.path" en el cual se pone la ruta hasta el archico mvn "\\ruta\hasta\archivo\bin\mvn"
-- **Si** se encuentra ya creado un proyecto dar en open folder en el apartado de java project
+- **Si** se encuentra ya creado un proyecto dar en open folder en el apartado de java project 
 - **Si NO** se encuentra creado un proyecto dar en Create Java Project:
     1. Maven
     2. maven-archetype-webapp
@@ -110,5 +112,15 @@ Para el ciclo de vida del aplicativo se plantean cuatro fases; análisis, desarr
 Ademas de imagenes sobre el desarrollo.
 Por otra parte se encontrara los requisitos de administrador [administrador](https://github.com/csadsalazar/inventario/tree/main/DOCUMENTACION/REQUISITOS/ADMIN), [funcionario]([https://pages.github.com/](https://github.com/csadsalazar/inventario/tree/main/DOCUMENTACION/REQUISITOS/FUNCIONARIO), [funcionales y no funcionales](https://github.com/csadsalazar/inventario/blob/main/DOCUMENTACION/REQUISITOS/REQUERIMIENTOS.xlsx), por ultimo el [acta del desarrollo](https://github.com/csadsalazar/inventario/blob/main/DOCUMENTACION/DOCUMENTOS/ACTA%20DEL%20DESARROLLO.pdf)
 
+
+A fecha de hoy 22/04/2024 se tiene como finalizado la CRUD de bienes
+- Faltan algunas validaciones como longitud de los algunas letras y demas 
+- Falta la posibilidad de poder cambiar de Inactivo a Activo el estado de los usuarios administradores, dentro de esta posibilidad no se esta mostrando la informacion de el administrador ya que por medio de la ruta se pierde el codigo
+- Faltan indicadores
+- Falta la posibilidad del envio de correos
+- Falta comexion a ELDA
+- Falta conexion a file server, por ende la posibilidad de agregar fotos tanto al file server como el link para quedar registrado en la base de datos
+Serian los desarrollos faltantes frente al proyecto en general, se tiene estimado dejar como finalizado esto para la proxima semana aproximadamente.
+Ademas de mirar resto de documentacion ya que no se sabe si con la documentacion generada en este espacio es la correcta.
 
 
