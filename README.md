@@ -7,7 +7,7 @@
     * Instancia: SRVVSANDIEGO\SRVDESARROLLO
     * Rol del usuario: owner de la bd
 
-# Recursos utilizados
+# Recursos informaticos utilizados
 1. Visual Studio Code
 	## Extensiones
 	- Community Server Connectors
@@ -18,14 +18,34 @@
 4. JDK 17
 5. Maven 3.9.3
 6. Git (Git Hub) como repositorio del proyecto
+7. MySQL Worbench (Base de datos antes de utilizar base de datos definitiva)
+8. XAMPP (Para base de datos antes de utilizar base de datos definitiva)
+9. SQLServer (Base de datos definitiva)
+10. Navegadores Chrome y Microsoft Edge
 
 	## Librerias utilizadas
 	- DataTables: gestión de todas las tablas (Buscador, paginacion, filtracion, orden de las columnas)
 	- Select2: gestion de las etiquetas select (Buscador dentro de las etiquetas select)
  	- SwalAlert: Creacion de modales (Modales eliminar bien, reporte final, reportar bien, cargar imagenes y  modales de accion)
   	- JavaMail: Para facilitar el envio de correos electronicos se utilizara esta libreria de Java para realizar el debido proceso de envio de correos
-   	- Grafica: Para la grafica respectiva se necesita saber mas sobre como realizar graficas en Java, la primera opcion es la posibilidad de usar power bi 	  	
-  	  
+   	- Grafica: Para la grafica respectiva se necesita saber mas sobre como realizar graficas en Java, la primera opcion es la posibilidad de usar power bi
+    	- A la espera de utilizar mas librerias las cuales aporten en la legibilidad del proyecto en distintos aspectos 	  	
+
+# Hardware utilizado
+Portaltil HP con las siguientes caracteristicas:
+	- Nombre del SO: Microsoft Windows 11 Pro
+	- Modelo del sistema: HP ProBook 445 14 inch G9 Notebook PC
+	- Tipo de sistema: PC basado en x64
+	- Procesador: AMD Ryzen 7 5825U with Radeon Graphics, 2000 Mhz, 8 procesadores principales, 16 procesadores lógicos
+	- Versión y fecha de BIOS: HP U88 Ver. 01.14.00, 1/02/2024
+	- Memoria física instalada (RAM): 16,0 GB
+	- Tipo de disco: SSD
+	- Capacidad del disco: 477 GB
+
+# Rendimiento del sistema en ambiente de desarrollo y pruebas
+El proyecto corre normamente bien, no se le ha hecho pruebas de inserciones a gran cantidad, esto se realizara en la ultima semana la cual el plan es entrar a pruebas sea en la oficina administrativa o en la oficina de las tecnologias de la informacion. 
+
+     
 # Pasos a seguir
 - Se configura variables de entorno en variables del sistema > Path agregar variables de entorno jdk y %MAVEN_HOME%\bin
 - Configurar en variables del sistema > Nuevo > En nombre de la JAVA_HOME y MAVEN_HOME > En valor de la se pone la ruta del jdk y maven
