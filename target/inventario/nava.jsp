@@ -44,7 +44,7 @@
                 </a>
             </li>
              <li>
-                <a href="gestionadministradores.jsp">
+                <a href="gestionadmin.jsp">
                     <img src="resources/img/users.svg" alt="users">
                     <span>Administradores</span>
                 </a>

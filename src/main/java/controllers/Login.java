@@ -43,6 +43,9 @@ public class Login extends HttpServlet {
                 // Guardar el ID de usuario en la sesión
                 HttpSession session = request.getSession();
                 session.setAttribute("idUsuario", idUsuario);
+                
+                // Mensaje de depuración para verificar si la sesión se está configurando correctamente
+                System.out.println("Sesión establecida para el usuario: " + usuario);
 
                 // Cargar los bienes asociados al usuario y guardarlos en la sesión
                 String queryBienes = "SELECT * FROM MA_Bienes WHERE FK_Usuario = ?";
@@ -73,6 +76,9 @@ public class Login extends HttpServlet {
 
                 // Guardar la lista de bienes del usuario en la sesión
                 session.setAttribute("bienesUsuario", bienesUsuario);
+                
+                // Mensaje de depuración para verificar si los bienes del usuario se están guardando en la sesión correctamente
+                System.out.println("Bienes del usuario guardados en la sesión.");
 
                 // Verificar si el usuario es un administrador activo
                 String queryAdmins = "SELECT * FROM MA_Administradores WHERE usuario = ? AND estado = 'Activo'";

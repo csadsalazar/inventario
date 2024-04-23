@@ -29,13 +29,30 @@ function reportarBien(codigo) {
                 text: 'Se ha reportado el bien correctamente',
                 icon: 'success',
                 confirmButtonColor: '#139EC8'
-            }).then((result) => {
-                window.location.reload();
+            }).then(() => {
+                // Después de reportar el bien, deshabilitar los enlaces correspondientes
+                disableLinks(codigo);
             });
         }
     };
     xhr.send("codigo=" + codigo);
 }
+
+function disableLinks(codigo) {
+    var links = document.querySelectorAll('.acciones a');
+    links.forEach(function(link) {
+        // Obtener el código del bien asociado a este enlace
+        var bienCodigo = link.getAttribute('data-codigo');
+        if (bienCodigo === codigo) {
+            link.removeAttribute('onclick');
+            link.style.pointerEvents = 'none';
+            link.style.opacity = '0.5';
+        }
+    });
+}
+
+
+
 
 // Modal reporte final de bienes
 document.getElementById('reporteModal').addEventListener('click', function() {

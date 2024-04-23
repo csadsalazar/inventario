@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConexionBD {
 
     public static Connection getConnection() throws SQLException, ClassNotFoundException {
-        String url = "jdbc:mysql://localhost:3306/Gestion_Inventario?useUnicode=true&characterEncoding=UTF-8";
+        String url = "jdbc:mysql://localhost:3309/Gestion_Inventario?useUnicode=true&characterEncoding=UTF-8";
         String username = "root";
         String password = "";
         Class.forName("com.mysql.cj.jdbc.Driver");

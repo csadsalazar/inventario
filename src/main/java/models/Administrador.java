@@ -17,11 +17,11 @@ public class Administrador {
         this.estado = estado;
     }
 
-    public int getCodigo() {
+    public int getPK_idAdministrador() {
         return PK_idAdministrador;
     }
 
-    public void setCodigo(int PK_idAdministrador) {
+    public void setPK_idAdministrador(int PK_idAdministrador) {
         this.PK_idAdministrador = PK_idAdministrador;
     }
 

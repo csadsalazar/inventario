@@ -151,6 +151,11 @@ table {
     margin-top: 20px;
 }
 
+.disabled-link {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
 @media screen and (max-width: 750px) {
     .table {
         border: 0px;

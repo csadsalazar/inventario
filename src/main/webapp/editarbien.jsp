@@ -34,7 +34,7 @@ Bien bien = ListarBienPorCodigo.obtenerBienPorCodigo(codigoBien);
         <c:if test="${not empty error}">
             <p style="color: red;">${error}</p>
         </c:if>
-        <form action="ActualizarBien" method="POST">
+        <form action="EditarBien" method="POST">
             <table id="agregarbien" class="table">
                 <thead>
                     <tr>

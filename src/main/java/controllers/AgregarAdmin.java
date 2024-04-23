@@ -32,7 +32,7 @@ public class AgregarAdmin extends HttpServlet {
             response.setContentType("text/plain");
             response.setCharacterEncoding("UTF-8");
             System.out.println("Se ha insertado con éxito");
-            request.getRequestDispatcher("gestionadministradores.jsp").forward(request, response);
+            request.getRequestDispatcher("gestionadmin.jsp").forward(request, response);
 
             } catch (NumberFormatException e) {
                 // Manejar la excepción de formato incorrecto de número
