@@ -14,6 +14,13 @@
 4. JavaScript (Back y Frond end)
 5. SQL (Almacenamiento de la informacón)
 6. Git (para almacenar el proyecto y bajar y subir cambios respectivos del proceso)
+   	## Codigos para git
+   	1. git add .
+   	2. git commit -m "Actualizacion (fecha en la cual se hicieron los cambios)"
+   	3. git push origin main
+   	   Si no funciona el paso anterior
+   	4. git rebase o git relase
+   	5. A la hora de bajar los cambios no se baja por git pull si no por git clone (se aprendera a utilizar git pull para bajar cambios)
 
 # Recursos informaticos utilizados
 1. Visual Studio Code
@@ -95,7 +102,7 @@ Portaltil HP con las siguientes caracteristicas:
 	- Capacidad del disco: 477 GB
 
 # Rendimiento del sistema en ambiente de desarrollo y pruebas
-El proyecto corre normamente bien, no se le ha hecho pruebas de inserciones a gran cantidad, esto se realizara en la ultima semana la cual el plan es entrar a pruebas sea en la oficina administrativa o en la oficina de las tecnologias de la informacion. 
+El proyecto corre normamente bien, no se le ha hecho pruebas de inserciones a gran cantidad, esto se realizara en la ultima semana la cual el plan es entrar a pruebas sea en la oficina administrativa o en la oficina de las tecnologias de la informacion, se necesitan tambien pruebas de algunas funcionalidades ya que se tiene problena con algunas cosas como al refrecar la pagina se sufre de problemas en algunos modulos
 
      
 # Pasos a seguir
@@ -305,5 +312,5 @@ Por otra parte se encontrara los requisitos de administrador [administrador](htt
 La principal prioridad es terminar la parte de reportes, correos y graficas, el resto serian validaciones que se pueden hacer despues
 Serian los desarrollos faltantes frente al proyecto en general, se tiene estimado dejar como finalizado esto para la proxima semana aproximadamente.
 Ademas de mirar resto de documentacion ya que no se sabe si con la documentacion generada en este espacio es la correcta. 
- 
-
+Al finalizar el dia se define que hay que restructurar ademas de toda la parte anterior nombrada, el frond end ya que no se ve visualmente atractivo, se buscara la forma ya que plantillas que se buscan utilizar trabajan con boostrap y la idea es trabajar con full html y css
+Se utilizar O plantillas en internet o copiloto para porporcionar el frondend-
