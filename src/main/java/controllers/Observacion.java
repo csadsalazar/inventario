@@ -26,15 +26,16 @@ public class Observacion extends HttpServlet {
         // Insertar la observación en la base de datos
         try {
             Connection conn = ConexionBD.getConnection();
-            String sql = "INSERT INTO PA_BienesPorUsuario (FK_Usuario, FK_Bien, informacion, fechaObservacion) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO PA_BienesPorUsuario (FK_Usuario, FK_Bien, asunto, informacion, fechaObservacion) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, idUsuario);
             statement.setLong(2, codigoBien);
-            statement.setString(3, observacion);
-            statement.setDate(4, fechaObservacion);
+            statement.setString(3, "Bien:" + codigoBien);
+            statement.setString(4, observacion);
+            statement.setDate(5, fechaObservacion);
             int rowsAffected = statement.executeUpdate();
 
-            System.out.println("Se ha agregado la observacion con valores" + idUsuario + "y" + codigoBien);
+            System.out.println("Se ha agregado la observacion del usuario" +idUsuario + "y" +codigoBien);
             conn.close();
             
             if (rowsAffected > 0) {

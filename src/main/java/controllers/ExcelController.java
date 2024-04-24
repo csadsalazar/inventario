@@ -41,7 +41,7 @@ public class ExcelController {
         }
 
         response.setContentType("application/vnd.ms-excel");
-        response.setHeader("Content-Disposition", "attachment; filename=Bienes.xls");
+        response.setHeader("Content-Disposition", "attachment; filename=ReporteDeBienes.xls");
         workbook.write();
         workbook.close();
     }

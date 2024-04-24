@@ -13,7 +13,7 @@ document.getElementById('cargarImagenes').addEventListener('click', function() {
         `,
         showCancelButton: true,
         confirmButtonColor: '#139EC8',
-        cancelButtonColor: '#fff',
+        cancelButtonColor: '#A8A8A8',
         confirmButtonText: 'Aceptar',
         cancelButtonText: 'Cancelar',
         preConfirm: () => {

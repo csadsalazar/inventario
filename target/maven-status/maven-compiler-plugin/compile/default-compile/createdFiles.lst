@@ -1,4 +1,6 @@
+controllers\ListarUsuarios.class
 controllers\ExcelController.class
+controllers\ObtenerUsuariosServlet.class
 controllers\ListarObservaciones.class
 controllers\ObtenerDependenciasServlet.class
 controllers\Login.class
@@ -17,6 +19,7 @@ models\Dependencia.class
 controllers\EditarAdministrador.class
 models\Usuario.class
 controllers\AgregarObservacion.class
+controllers\ReporteFinal.class
 controllers\ListarBienPorCodigo.class
 controllers\AgregarAdmin.class
 models\Observacion.class

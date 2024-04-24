@@ -13,7 +13,7 @@
 
 .table, .usuario {
     width: 100%;
-    border: 1px solid #ccc;
+    border: 1px solid #E0E0E0;
     border-collapse: collapse;
     margin: 0;
     padding: 0;
@@ -65,8 +65,7 @@ input:focus {
 }
 
 .table thead th{ 
-    text-transform: uppercase;
-    background-color: #ddd;
+    background-color: #F9F9F9;
 }
 
 .acciones{
@@ -75,8 +74,7 @@ input:focus {
 }
 
 .form-container {
-    background-color: #f8f8f8;
-    border: 2px solid #ccc;
+    border: 2px solid #E0E0E0;
     border-radius: 10px;
     padding: 20px; 
     box-sizing: border-box; 
@@ -125,22 +123,26 @@ input:focus {
 
 .button {
     background-color: #139EC8;
-    color: #fff;
+    color: #FFFFFF;
     border: 2px solid #139EC8
 }
 
 .button:hover {
-    font-size: 16px;
+    background-color: #0D8EBA;
+    color: #F9F9F9;
+    border: 2px solid #139EC8
 }
 
 .button-second {
-    background-color: #fff;
+    background-color: #FFFFFF;
     color: #139EC8;
     border: 2px solid #139EC8; 
 }
 
 .button-second:hover {
-   font-size: 16px;
+    background-color: #F9F9F9;
+    color: #0D8EBA;
+    border: 2px solid #0D8EBA; 
 }
 
 .swal2-container {

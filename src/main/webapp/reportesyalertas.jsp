@@ -4,21 +4,42 @@
 <main>
      <div class="container">
         <h1>Inventario personalizado - INVIMA</h1>
-        <h2>Reportes y Alertas</h2>
-    <form id="reportForm">
-        <label for="tipo">Tipo:</label>
-        <select id="tipo" name="tipo" onchange="cargarDependencias()">
+        <h2>Reportes y Alertas</h2> 
+        <div class="form-container">
+        <form id="reportForm">
+        <table id="agregarbien" class="table">
+        <tbody>
+        <td for="tipo" data-label="Item">Tipo:</td>
+        <td data-label="Información">
+        <select id="tipo" name="tipo" class="informacion"style="width: 100%" onchange="cargarDependencias()">
             <option value="reportes">Reportes</option>
             <option value="alertas">Alertas</option>
         </select>
-        <label for="dependencia">Dependencia:</label>
-        <select id="dependencia" name="dependencia">
+        </td>
+        </tr>
+        <td for="dependencia" data-label="Item">Dependencia:</td>
+        <td data-label="Información">
+        <select id="dependencia" name="dependencia" class="informacion" style="width: 100%; height: 45px;">
             <!-- Las opciones de dependencias se cargarán dinámicamente mediante JavaScript -->
         </select>
-        <button type="button" onclick="generarReporte()">Generar</button>
+        </td>
+        </tr>
+        <td for="usuario" data-label="Item">Usuario:</td>
+        <td data-label="Información">
+        <label for="usuario">Usuario:</label>
+        <select id="usuario" name="usuario" class="informacion" style="width: 100%; height: 45px;">
+            <!-- Las opciones de usuarios se cargarán dinámicamente mediante JavaScript -->
+        </select>
+        </td>
+        </tr>
+        </tbody>
+        </table>
+        <div class="button-container">
+            <a class="button" type="button" onclick="generarReporte()">Acci&oacute;n</a>
+        </div>    
     </form>
 </div>
-
+</div>
 <script>
     function cargarDependencias() {
         var tipo = document.getElementById("tipo").value;
@@ -73,6 +94,6 @@
 }
     // Llamar a cargarDependencias al cargar la página
     window.onload = cargarDependencias;
-</script>
+    </script>
 <main>
 <%@ include file="footera.jsp" %>

@@ -52,37 +52,34 @@ function disableLinks(codigo) {
 }
 
 
-
-
-// Modal reporte final de bienes
-document.getElementById('reporteModal').addEventListener('click', function() {
-  Swal.fire({
-      title: 'Esta a punto de dar por finalizado el reporte de sus bienes',
-      text: '¿Desea continuar?',
-      icon: 'info',
-      showCancelButton: true,
-      confirmButtonColor: '#139EC8',
-      cancelButtonColor: '#A8A8A8',
-      confirmButtonText: 'Aceptar',
-      cancelButtonText: 'Cancelar',
-      customClass: {
-          popup: 'custom-modal'
-      }
-  }).then((result) => {
-      if (result.isConfirmed) {
-          Swal.fire({
-              title: '¡Éxito!',
-              text: 'Se ha cargado de forma exitosa el reporte de sus bienes.',
-              icon: 'success',
-              confirmButtonColor: '#139EC8'
-          })
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-          Swal.fire({
-              title: 'Cancelado',
-              text: 'Se ha cancelado el reporte de sus bienes.',
-              icon: 'error',
-              confirmButtonColor: '#139EC8'
-          })
-      }
-  });
-});
+function reportefinal() {
+    Swal.fire({
+        title: 'Esta a punto de dar por finalizado el reporte de sus bienes',
+        text: '¿Desea continuar?',
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#139EC8',
+        cancelButtonColor: '#A8A8A8',
+        confirmButtonText: 'Aceptar',
+        cancelButtonText: 'Cancelar',
+        customClass: {
+            popup: 'custom-modal'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: '¡Éxito!',
+                text: 'Se ha cargado de forma exitosa el reporte de sus bienes.',
+                icon: 'success',
+                confirmButtonColor: '#139EC8'
+            })
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            Swal.fire({
+                title: 'Cancelado',
+                text: 'Se ha cancelado el reporte de sus bienes.',
+                icon: 'error',
+                confirmButtonColor: '#139EC8'
+            })
+        }
+    });
+}

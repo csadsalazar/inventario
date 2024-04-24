@@ -12,6 +12,13 @@ videos sqlserver
 https://www.youtube.com/watch?v=K8MJtUmo8nk
 https://www.youtube.com/watch?v=0Yj6bzNRfss
 
+Librería para indicadores en graficos desde base de datos (MySQL o SQLServer):
+jfree.org/jfreechart/api.html
+El siguiente link te muestra como utilizarlo; 
+https://www.youtube.com/watch?v=fKpafdasfwY 
+Funciona en eclipse mars (probar con visual).
+
+
 *conexion file server
 *Numero de ticket - CHG-284994-2-100
 

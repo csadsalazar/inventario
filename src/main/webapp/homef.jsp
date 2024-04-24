@@ -48,7 +48,7 @@
 </table>
 <div class="button-container">
     <a href="agregarobservacion.jsp" class="button">Observaciones</a>
-    <a id="reporteModal" class="button">Finalizar reporte</a>
+    <a onclick="reportefinal()" class="button">Finalizar reporte</a>
 </div>
 </div>
 </main>

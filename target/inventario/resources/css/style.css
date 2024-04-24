@@ -9,7 +9,6 @@ body {
 :root {
     --color-texto: black;
     --color-texto-menu: black;
-    --color-menu-hover: rgb(238, 238, 238);
     --color-menu-hover-texto: black;
     --color-boton-texto: black;
     --color-linea: black;
@@ -128,7 +127,7 @@ body {
 }
 
 .barra-lateral .navegacion a:hover {
-    background-color: var(--color-menu-hover);
+    background-color: #F9F9F9;
     color: var(--color-menu-hover-texto);
     width: 200px;
 }

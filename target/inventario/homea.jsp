@@ -2,6 +2,14 @@
 <%@include file="headera.jsp"%>
 <%@include file="nava.jsp"%>
 <main>
-    <h1>Home</h1>
+    <div class="container">
+        <h1>Inventario personalizado - INVIMA</h1>
+        <h2>Home</h2>
+        <section>
+        <p>En desarrollo</p>
+        <p>Aca se mostraran graficas e indicadores</p>
+        </section>
+    </div>
 </main>
 <%@include file="footera.jsp"%>
+
