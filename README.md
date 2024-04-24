@@ -203,93 +203,92 @@ Ademas de mirar resto de documentacion ya que no se sabe si con la documentacion
 		DOCUMENTO TECNICO.docx
   		DOCUMENTO.docx
   		-REQUISITOS
-  			-ADMIN (Cuenta con todos los requerimientos frente a los modulos del rol administrador)
-  			-FUNCIONARIO (Cuenta con todos los requerimientos frente a todos los modulos del rol funcionario)
+			-ADMIN (Cuenta con todos los requerimientos frente a los modulos del rol administrador)
+			-FUNCIONARIO (Cuenta con todos los requerimientos frente a todos los modulos del rol funcionario)
   			REQUERIMIENTOS.xlxs
 	- src
   		-java
   			--controllers (Servlets del aplicativo)
-     			// Todos los servlets son
+			// Todos los servlets son
 			AgregarAdmin.java
-   			AgregarBien.java
-      			AgregarObservacion.java
-	 		CerrarSesion.java
-    			EditarAdministrador.java
-       			EditarBien.java
-	  		EliminarAdmin.java
-     			EliminarBien.java
-     			ExcelController.java
+			AgregarBien.java
+			AgregarObservacion.java
+			CerrarSesion.java
+			EditarAdministrador.java
+			EditarBien.java
+			EliminarAdmin.java
+			EliminarBien.java
+			ExcelController.java
 			ListarAdministradores.java
-   			ListarAdministradoresporCodigo.java
-      			ListarBienes.java
-	 		ListarBienPorCodigo.java
-    			ListarDependencias.java
-       			ListarObservaciones.java
-	  		ListarUsuarios.java
-     			Login.java
+			ListarAdministradoresporCodigo.java
+			ListarBienes.java
+			ListarBienPorCodigo.java
+			ListarDependencias.java
+			ListarObservaciones.java
+			ListarUsuarios.java
+			Login.java
 			Observacion.java
-   			ObtenerDependenciasServlet.java
-      			PDFController.java
-	 		ReportarBien.java
-    			ReporteFinal.java
-       			UsuarioController.java
+			ObtenerDependenciasServlet.java
+			PDFController.java
+			ReportarBien.java
+			ReporteFinal.java
+			UsuarioController.java
 	  
   			--models (Modelos del aplicativo)
-	 		// Todos los modelos son
-    			Administrador.java
-       			Bien.java
-	  		Dependencia.java
-     			Observacion.java
+			// Todos los modelos son
+			Administrador.java
+			Bien.java
+			Dependencia.java
+			Observacion.java
 			Usuario.java
 
   			--utils (Conexion a base de datos)
 			//Todos los archivos
-   			BASEDEDATOS.sql
-      			ConexionBD.java
+			BASEDEDATOS.sql
+			ConexionBD.java
      		
   		-webapp **JSPs del proyecto**
   			--META-INF
   			context.xml
 		-	-resources
   				--css
-      				estilos.css
-	  			style.css
-      				styles.css
+				estilos.css
+				style.css
+				styles.css
 	  
   				--img (imagenes en formato png, jpg o svg)
   				--js
 				administrador.js
-    				dashboard.js
+				dashboard.js
 				funcionario.js
-    				imagen.js
+				imagen.js
 				index.js
-    				librerias.js
+				librerias.js
 	  	
   			-WEB-INF
   				-lib **Librerias para el proyecto**
   			web.xml
-  		agregaradmin.jsp
-    		agregarbien.jsp
-    		agregarobservacion.jsp
-      		editaradmin.jsp
+		agregaradmin.jsp
+		agregarbien.jsp
+		agregarobservacion.jsp
+		editaradmin.jsp
 		editarbien.jsp
-  		footera.jsp
-    		footerf.jsp
-      		formulario.jsp
+		footera.jsp
+		footerf.jsp
 		gestionadmin.jsp
-  		gestionbienes.jsp
-    		gestionobservaciones.jsp
-      		headera.jsp
+		gestionbienes.jsp
+		gestionobservaciones.jsp
+		headera.jsp
 		headerf.jsp
-  		homea.jsp
-    		homef.jsp
-      		index.jsp
+		homea.jsp
+		homef.jsp
+		index.jsp
 		nava.jsp
-  		navf.jsp
-    		reportesyalertas.jsp
-      		usuario.jsp
+		navf.jsp
+		reportesyalertas.jsp
+		usuario.jsp
 		verbien.jsp
-  		verbienf.jsp
+		verbienf.jsp
     
 		- target **Maven guardará el proyecto después de compilarlo**
 		apuntes.txt
