@@ -55,18 +55,16 @@
                 plugins: {
                     legend: {
                         position: 'right', // Coloca la leyenda a la derecha
-                        align: 'start', // Divide la leyenda en mitad izquierda y derecha
                         labels: {
                             font: {
-                                size: 10 // Reducción del tamaño de la fuente de la leyenda
+                                size: 5 // Reducción del tamaño de la fuente de la leyenda
                             }
                         },
-                        maxWidth: ctx.canvas.width / 2 // Establece el ancho máximo a la mitad del contenedor
+                        maxWidth: ctx.canvas.width / 3 // Establece el ancho máximo a la mitad del contenedor
                     }
                 }
             }
         });
     });
 </script>
-
 <%@include file="footera.jsp"%>

@@ -22,13 +22,4 @@ menu.addEventListener("click",()=>{
             span.classList.add("oculto");
         })
     }
-});
-
-
-cloud.addEventListener("click",()=>{
-    barraLateral.classList.toggle("mini-barra-lateral");
-    main.classList.toggle("min-main");
-    spans.forEach((span)=>{
-        span.classList.toggle("oculto");
-    });
-});
+})

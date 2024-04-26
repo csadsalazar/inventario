@@ -16,11 +16,11 @@ public class ListarDependencias {
             conn = ConexionBD.getConnection();
             String sql = "SELECT * FROM MA_Dependencias";   
             PreparedStatement cs = conn.prepareStatement(sql);   
-            ResultSet rs = cs.executeQuery();
+            ResultSet rs = cs.executeQuery(); 
             while (rs.next()) {
                 Dependencia dependencia = new Dependencia();
                 dependencia.setPK_idDependencia(rs.getInt("PK_idDependencia"));
-                dependencia.setCodigo(rs.getInt("codigo"));
+                dependencia.setCentroDeCosto(rs.getString("centroDeCosto"));
                 dependencia.setnombreDependencia(rs.getString("nombreDependencia"));
                 // Agregar el objeto Dependencia a la lista
                 dependencias.add(dependencia);
@@ -53,7 +53,7 @@ public class ListarDependencias {
             if (rs.next()) {
                 dependencia = new Dependencia();
                 dependencia.setPK_idDependencia(rs.getInt("PK_idDependencia"));
-                dependencia.setCodigo(rs.getInt("codigo"));
+                dependencia.setCentroDeCosto(rs.getString("centroDeCosto"));
                 dependencia.setnombreDependencia(rs.getString("nombreDependencia"));
             }
             rs.close();

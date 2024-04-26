@@ -31,3 +31,12 @@ git status
 git add .
 git commit -m "Actualizacion (fecha)"
 git push origin main
+
+
+*Si se daña una tabla en mysql*
+REPAIR TABLE mysql.nombretabla;
+
+*Ver ip de los equipos*
+ipconfig
+Ver mas informacion
+ipconfig/all

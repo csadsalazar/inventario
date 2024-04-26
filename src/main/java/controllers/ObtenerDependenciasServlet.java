@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Dependencia;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,7 +18,7 @@ public class ObtenerDependenciasServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
-            ArrayList<models.Dependencia> dependencias = ListarDependencias.obtenerDependencias();
+            ArrayList<Dependencia> dependencias = ListarDependencias.obtenerDependencias();
             Gson gson = new Gson();
             String jsonDependencias = gson.toJson(dependencias);
             out.println(jsonDependencias);

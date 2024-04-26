@@ -19,7 +19,7 @@ public class ObtenerUsuariosServlet extends HttpServlet {
 
         try {
             ArrayList<Usuario> usuarios = ListarUsuarios.obtenerUsuarios();
-            Gson gson = new Gson();
+            Gson gson = new Gson(); 
             String jsonUsuarios = gson.toJson(usuarios);
             out.println(jsonUsuarios);
         } catch (ClassNotFoundException e) {
