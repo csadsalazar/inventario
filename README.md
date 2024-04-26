@@ -44,52 +44,61 @@
  	- SwalAlert: Creacion de modales (Modales eliminar bien, reporte final, reportar bien, cargar imagenes y  modales de accion)
   	- JavaMail: Para facilitar el envio de correos electronicos se utilizara esta libreria de Java para realizar el debido proceso de envio de correos, todavia no se ha imnplementado y podria cambiar si se encuntra otra libreria que facilite el envio de correos
    	- Generacion de reportes: Para la generacion de reportes se usa las librerias Biblioteca PDFBox para generar archivos PDF y Biblioteca JExcelAPI para generar archivos Excel
-   	- Grafica: Para la grafica respectiva se necesita saber mas sobre como realizar graficas en Java, la primera opcion es la posibilidad de usar power bi, pero se peude utilizar la libreria jfreechart la cual permite hacer graficas de pastel, barras, lineales, etc
+   	- Grafica: Para la grafica se utilizo com.googlecode.json-simple el cual es lenguajw JSON, es ua grafica interactiva
     	- A la espera de utilizar mas librerias las cuales aporten en la legibilidad del proyecto en distintos aspectos
 
       ## Dependencias utilizadas en el POM.XML
       	- El siguiente codigo porporcionado son todas las dependencias utilizadas en el pom.xml para facilitar la transaccion o facilitar distintas tareas en el aplcativo
 	<dependencies>
-	        <dependency>
-	            <groupId>javax.servlet</groupId>
-	            <artifactId>javax.servlet-api</artifactId>
-	            <version>3.1.0</version>
-	            <scope>provided</scope>
-	        </dependency>
-	        <dependency>
-	            <groupId>javax.servlet</groupId>
-	            <artifactId>jstl</artifactId>
-	            <version>1.2</version>
-	        </dependency>
-	        <dependency>
-	            <groupId>com.microsoft.sqlserver</groupId>
-	            <artifactId>mssql-jdbc</artifactId>
-	            <version>11.2.1.jre17</version>
-	        </dependency>
-	        <dependency>
-	            <groupId>mysql</groupId>
-	            <artifactId>mysql-connector-java</artifactId>
-	            <version>8.0.27</version>
-	        </dependency>
-	        <dependency>
-	            <groupId>com.google.code.gson</groupId>
-	            <artifactId>gson</artifactId>
-	            <version>2.8.8</version>
-	        </dependency>
-	        <!-- Biblioteca PDFBox para generar archivos PDF -->
-	        <dependency>
-	            <groupId>org.apache.pdfbox</groupId>
-	            <artifactId>pdfbox</artifactId>
-	            <version>2.0.24</version>
-	        </dependency>
-	        <!-- Biblioteca JExcelAPI para generar archivos Excel -->
-	        <dependency>
-	            <groupId>net.sourceforge.jexcelapi</groupId>
-	            <artifactId>jxl</artifactId>
-	            <version>2.6.12</version>
-	        </dependency>
-    	</dependencies>	  	
-
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>11.2.1.jre17</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.27</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.8</version>
+        </dependency>
+        <!-- Biblioteca PDFBox para generar archivos PDF -->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>2.0.24</version>
+        </dependency>
+        <!-- Biblioteca JExcelAPI para generar archivos Excel -->
+        <dependency>
+            <groupId>net.sourceforge.jexcelapi</groupId>
+            <artifactId>jxl</artifactId>
+            <version>2.6.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.5.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+    </dependencies>
 # Hardware utilizado
 Portaltil HP con las siguientes caracteristicas:
 	- Nombre del SO: Microsoft Windows 11 Pro
