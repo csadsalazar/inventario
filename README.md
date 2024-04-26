@@ -197,7 +197,11 @@ Como resultado final, el aplicativo ofrecerá una interfaz intuitiva y funcional
 Para el ciclo de vida del aplicativo se plantean cuatro fases; análisis, desarrollo, pruebas y entrega, actualmente se encuentra en la fase de desarrollo, se tiene ya desarrollado la parte visual del aplicativo, los cuales son todos sus módulos que se mencionan en los objetivos específicos en el apartado de diseñar software. Como evidencia de esto a continuación se plasman evidencias graficas de los módulos.
 
 Ademas de imagenes sobre el desarrollo.
-Por otra parte se encontrara los requisitos de administrador [administrador](https://github.com/csadsalazar/inventario/tree/main/DOCUMENTACION/REQUISITOS/ADMIN), [funcionario]([https://pages.github.com/](https://github.com/csadsalazar/inventario/tree/main/DOCUMENTACION/REQUISITOS/FUNCIONARIO), [funcionales y no funcionales](https://github.com/csadsalazar/inventario/blob/main/DOCUMENTACION/REQUISITOS/REQUERIMIENTOS.xlsx), por ultimo el [acta del desarrollo](https://github.com/csadsalazar/inventario/blob/main/DOCUMENTACION/DOCUMENTOS/ACTA%20DEL%20DESARROLLO.pdf)
+Por otra parte se encontrara los requisitos de:
+[administrador](https://github.com/csadsalazar/inventario/tree/main/DOCUMENTACION/REQUISITOS/ADMIN)
+[funcionario]([https://pages.github.com/](https://github.com/csadsalazar/inventario/tree/main/DOCUMENTACION/REQUISITOS/FUNCIONARIO)
+[funcionales y no funcionales](https://github.com/csadsalazar/inventario/blob/main/DOCUMENTACION/REQUISITOS/REQUERIMIENTOS.xlsx)
+Por ultimo el [acta del desarrollo](https://github.com/csadsalazar/inventario/blob/main/DOCUMENTACION/DOCUMENTOS/ACTA%20DEL%20DESARROLLO.pdf)
 
 # Documentacion tecnica del proyecto 
 ## Estructura del proyecto, el proyecto cuenta con la siguiente estructura de carpetas
