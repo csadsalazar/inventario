@@ -42,7 +42,6 @@
 	- DataTables: gestión de todas las tablas (Buscador, paginacion, filtracion, orden de las columnas)
 	- Select2: gestion de las etiquetas select (Buscador dentro de las etiquetas select)
  	- SwalAlert: Creacion de modales (Modales eliminar bien, reporte final, reportar bien, cargar imagenes y  modales de accion)
-  	- JavaMail: Para facilitar el envio de correos electronicos se utilizara esta libreria de Java para realizar el debido proceso de envio de correos, todavia no se ha imnplementado y podria cambiar si se encuntra otra libreria que facilite el envio de correos
    	- Generacion de reportes: Para la generacion de reportes se usa las librerias Biblioteca PDFBox para generar archivos PDF y Biblioteca JExcelAPI para generar archivos Excel
    	- Grafica: Para la grafica se utilizo com.googlecode.json-simple el cual es lenguajw JSON, es ua grafica interactiva
     	- A la espera de utilizar mas librerias las cuales aporten en la legibilidad del proyecto en distintos aspectos
@@ -309,17 +308,11 @@ Por otra parte se encontrara los requisitos de administrador [administrador](htt
 		README.md
 
 
- A fecha de hoy 24/04/2024 se tiene como finalizado la CRUD de bienes
+ A fecha de hoy 26/04/2024 se tiene como finalizado la CRUD de bienes
 - Faltan algunas validaciones como longitud de los algunas letras y demas (tarea secundaria)
-- Falta la posibilidad de poder que los iconos de los usuarios al estar el estado Reportado se desahbilitemn ademas de proyeger rutas ya que por medio de la ruta pueden ingresar
-- Faltan indicadores
+- Falta la posibilidad de poder que los iconos de los usuarios al estar el estado Reportado se desahbiliten ademas de proyeger rutas ya que por medio de la ruta pueden ingresar
 - Falta la posibilidad del envio de correos
-- Falta la posibilidad de generar repórtes, pero se tiene ya logica y codigo, falta solucionar errores a la hora de la generacion de los mismos no se logran generar
+- Falta la posibilidad de generar repórtes pdf
+- En el apartado de alertas, falta otro selecionable de usuario para facilitar el envio de correos y la descarga del pdf
 - Falta comexion a ELDA
 - Falta conexion a file server, por ende la posibilidad de agregar fotos tanto al file server como el link para quedar registrado en la base de datos
-
-La principal prioridad es terminar la parte de reportes, correos y graficas, el resto serian validaciones que se pueden hacer despues
-Serian los desarrollos faltantes frente al proyecto en general, se tiene estimado dejar como finalizado esto para la proxima semana aproximadamente.
-Ademas de mirar resto de documentacion ya que no se sabe si con la documentacion generada en este espacio es la correcta. 
-Al finalizar el dia se define que hay que restructurar ademas de toda la parte anterior nombrada, el frond end ya que no se ve visualmente atractivo, se buscara la forma ya que plantillas que se buscan utilizar trabajan con boostrap y la idea es trabajar con full html y css
-Se utilizar O plantillas en internet o copiloto para porporcionar el frondend-
