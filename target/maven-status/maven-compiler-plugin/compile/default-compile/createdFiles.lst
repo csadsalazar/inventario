@@ -5,6 +5,7 @@ controllers\ListarObservaciones.class
 controllers\GenerarReporteExcelServlet.class
 controllers\ObtenerDependenciasServlet.class
 controllers\Login.class
+controllers\CorreoUtil$1.class
 controllers\PDFController.class
 models\Administrador.class
 controllers\PieChartServlet.class
@@ -14,6 +15,7 @@ controllers\UsuarioController.class
 controllers\AgregarBien.class
 controllers\ListarBienes.class
 controllers\CerrarSesion.class
+controllers\CorreoUtil.class
 controllers\GenerarReportePDFServlet.class
 controllers\EliminarBien.class
 controllers\ListarAdministradorPorCodigo.class

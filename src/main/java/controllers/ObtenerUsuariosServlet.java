@@ -9,7 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse; 
+import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/ObtenerUsuariosServlet")
 public class ObtenerUsuariosServlet extends HttpServlet {
@@ -18,8 +18,11 @@ public class ObtenerUsuariosServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
+            // Obtener la lista de todos los usuarios
             ArrayList<Usuario> usuarios = ListarUsuarios.obtenerUsuarios();
-            Gson gson = new Gson(); 
+
+            // Convertir la lista de usuarios a formato JSON y enviarla como respuesta
+            Gson gson = new Gson();
             String jsonUsuarios = gson.toJson(usuarios);
             out.println(jsonUsuarios);
         } catch (ClassNotFoundException e) {
@@ -28,3 +31,4 @@ public class ObtenerUsuariosServlet extends HttpServlet {
         }
     }
 }
+
