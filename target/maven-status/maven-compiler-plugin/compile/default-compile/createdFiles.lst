@@ -31,5 +31,6 @@ models\Observacion.class
 models\Bien.class
 controllers\EditarBien.class
 controllers\EliminarAdmin.class
+controllers\Dependencia.class
 controllers\ReportarBien.class
 controllers\ListarDependencias.class

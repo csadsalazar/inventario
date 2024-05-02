@@ -48,7 +48,7 @@ public class PDFController {
             }
 
             response.setContentType("application/pdf");
-            response.setHeader("Content-Disposition", "attachment; filename=Bienes.pdf");
+            response.setHeader("Content-Disposition", "attachment; filename=reporte.pdf");
             document.save(response.getOutputStream());
         }
     }

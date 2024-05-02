@@ -4,11 +4,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;  
-import jxl.write.WriteException;
-import models.Bien;
-import models.Dependencia;
-import models.Usuario;
-import utils.ConexionBD;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +11,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import jxl.write.WriteException; // Agregar esta importación
+import models.Bien;
+import models.Usuario;
+import models.Dependencia;
+import utils.ConexionBD;
 
 @WebServlet("/GenerarReporteExcelServlet")
 public class GenerarReporteExcelServlet extends HttpServlet {
@@ -29,7 +29,6 @@ public class GenerarReporteExcelServlet extends HttpServlet {
                 ExcelController excelController = new ExcelController();
                 excelController.generarArchivoExcel(listaBienes, response);
             } else {
-                // Manejar el caso en el que no se encontraron bienes
                 response.setStatus(HttpServletResponse.SC_NO_CONTENT);
             }
         } catch (ClassNotFoundException | WriteException e) {
@@ -37,14 +36,12 @@ public class GenerarReporteExcelServlet extends HttpServlet {
         }
     }
     
-
     private List<Bien> obtenerBienesPorDependencia(int dependenciaId, int usuarioId) throws ClassNotFoundException {
         try (Connection connection = ConexionBD.getConnection()) {
             List<Bien> bienes = new ArrayList<>();
-            String sql = "SELECT * FROM MA_Bienes WHERE FK_Dependencia = ? AND FK_Usuario = ?";
+            String sql = "SELECT * FROM MA_Bienes WHERE FK_Dependencia = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setInt(1, dependenciaId);
-                statement.setInt(2, usuarioId);
                 try (ResultSet resultSet = statement.executeQuery()) {
                     while (resultSet.next()) {
                         Bien bien = new Bien();

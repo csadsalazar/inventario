@@ -5,16 +5,7 @@
     <div class="container">
         <h1>Inventario personalizado - INVIMA</h1>
         <h2>Reportes y Alertas</h2> 
-        <div class="form-container">
             <form id="reportForm">
-                <table id="agregarbien" class="table">
-                    <thead>
-                        <tr>
-                            <th style="width: 15%;">Item</th>
-                            <th style="width: 50%;">Seleccione</th>
-                        </tr>
-                    </thead> 
-                    <tbody>
                         <tr>
                             <td for="tipo" data-label="Item">Tipo:</td>
                             <td data-label="Información">
@@ -41,17 +32,12 @@
                                 </select>
                             </td>
                         </tr>
-                    </tbody>
-                </table>
                 <div class="button-container">
                     <a class="button" type="button" onclick="generarReporte()">Acci&oacute;n</a>
                 </div>    
             </form>
         </div>
-    </div>
 </main>
-<%@ include file="footera.jsp" %>
-
 <script>
     function cargarDependencias() {
         var tipo = document.getElementById("tipo").value;
@@ -160,5 +146,4 @@
         cargarUsuarios();
     };
 </script>
-<main>
 <%@ include file="footera.jsp" %>

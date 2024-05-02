@@ -4,10 +4,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;  
-import models.Bien;
-import models.Dependencia;
-import models.Usuario;
-import utils.ConexionBD;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import models.Bien;
+import models.Usuario;
+import models.Dependencia;
+import utils.ConexionBD;
 
 @WebServlet("/GenerarReportePDFServlet")
 public class GenerarReportePDFServlet extends HttpServlet {
@@ -35,7 +35,6 @@ public class GenerarReportePDFServlet extends HttpServlet {
         }
     }
     
- 
     private List<Bien> obtenerBienesPorDependencia(int dependenciaId, int usuarioId) throws ClassNotFoundException {
         try (Connection connection = ConexionBD.getConnection()) {
             List<Bien> bienes = new ArrayList<>();

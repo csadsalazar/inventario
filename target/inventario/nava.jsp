@@ -49,6 +49,12 @@
                     <span>Administradores</span>
                 </a>
             </li>
+            <li>
+                <a href="cargueexcel.jsp">
+                    <img src="resources/img/book-open.svg" alt="book-open">
+                    <span>Cargue de inventario</span>
+                </a>
+            </li>
         </ul>
     </nav>
 

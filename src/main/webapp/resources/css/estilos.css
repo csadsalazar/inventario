@@ -202,3 +202,9 @@ table {
         margin-bottom: 20px;
     }
 }
+
+@media screen and (max-width: 650px) {
+    .table {
+        width: auto;
+    }
+}
