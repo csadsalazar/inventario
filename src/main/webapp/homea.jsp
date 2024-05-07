@@ -4,7 +4,6 @@
 
 <main>
     <div class="container">
-        <h1>Inventario personalizado - INVIMA</h1>
         <h2>Home</h2>
         <section>
             <h3 id="general-percentage-header">Porcentaje general: <span id="general-percentage-value"></span>%</h3>

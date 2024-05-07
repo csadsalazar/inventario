@@ -1,210 +1,37 @@
-.container {
-    width: 100%;
-    max-width: 1000px;
-    margin: auto;
-    font-family: 'Work Sans', sans-serif;
-    text-align: center;
-}
-
-.content-wrapper {
-    display: inline-block;
-    vertical-align: top;
-}
-
-.table, .usuario {
-    width: 100%;
-    border: 1px solid #E0E0E0;
-    border-collapse: collapse;
-    margin: 0;
-    padding: 0;
-    margin-bottom: 20px;
-}
-
-.usuario caption, h1 {
-    font-size: 28px;
-    text-transform: uppercase;
-    font-weight: bold;
-    margin: 20px 0px;
-}
-
-h2 {
-    font-size: 23px;
-    text-transform: uppercase;
-    font-weight: bold;
-    margin: 20px 0px;
-    margin-left: 10px;
-}
-
-.table tr {
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
-}
-
-.table th, .table td {
-    font-size: 16px;
-    padding: 8px;
-    text-align: center;
-}
-
-.table th, .table tr {
-    font-size: 16px;
-    padding: 8px;
-    text-align: center;
-}
-
-.table input, select, textarea{
-    padding: 13px; 
-    border-radius: 5px;
-    border: 1px solid #767676;
-    box-sizing: border-box;
-    width: 100%;
-}
-
-input:focus {
-    border: #39A5C7;
-}
-
-.table thead th{ 
-    background-color: #F9F9F9;
-}
-
-.acciones{
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.form-container {
-    border: 2px solid #E0E0E0;
-    border-radius: 10px;
-    padding: 20px; 
-    box-sizing: border-box; 
-    margin-bottom: 20px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    text-align: left;
-    font-size: 18px;
-}
-
-.form-group input,
-.form-group textarea {
-    padding: 15px; 
-    border-radius: 5px;
-    border: 1px solid #767676;
-    box-sizing: border-box;
-    width: 100%;
-}
-
-.button-container {
-    text-align: center;
-    margin-top: 25px;
-}
-
-.button,
-.button-second {
-    display: inline-block; 
-    padding: 10px 20px;
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-    margin-right: 10px; 
-}
-
-.button {
-    background-color: #139EC8;
-    color: #FFFFFF;
-    border: 2px solid #139EC8
-}
-
-.button:hover {
-    background-color: #0D8EBA;
-    color: #F9F9F9;
-    border: 2px solid #139EC8
-}
-
-.button-second {
-    background-color: #FFFFFF;
-    color: #139EC8;
-    border: 2px solid #139EC8; 
-}
-
-.button-second:hover {
-    background-color: #F9F9F9;
-    color: #0D8EBA;
-    border: 2px solid #0D8EBA; 
-}
-
-.swal2-container {
-    z-index: 10000;
-}
-
-table {
-    margin-top: 20px;
-}
-
-.disabled-link {
-    pointer-events: none;
-    opacity: 0.5;
-}
-
-@media screen and (max-width: 750px) {
-    .table {
-        border: 0px;
+#options{
+    background: var(--header-header-Gradiente, linear-gradient(90deg, #139EC8 0%, #01599A 100%));
     }
-    .table caption {
-        font-size: 22px;
-    }
-    .table thead {
-        display: none;
-    }
-    .table tr {
-        margin-bottom: 8px;
-        border-bottom: 4px solid #ddd;
-        display: block;
-    }
-    .table th, .table td {
-        font-size: 12px;
-    }
-    .table td {
-        display: block;
-        border-bottom: 1px solid #ddd;
-        text-align: right;
-    }
-    .table  td:last-child {
-        border-bottom: 0px;
-    }
-    .table td::before {
-        content: attr(data-label);
-        font-weight: bold;
-        text-transform: uppercase;
-        float: left;
-    }
-}
-
-@media (max-width: 370px) {
-    .table, .usuario {
-        border: 2px solid #ccc;
-        border-collapse: collapse;
-        margin: 0;
-        padding: 0;
-        table-layout: fixed;
-        margin-bottom: 20px;
-    }
-}
-
-@media screen and (max-width: 650px) {
-    .table {
-        width: auto;
-    }
-}
+  
+  
+  .footer{
+    background: var(--header-header-Gradiente, linear-gradient(90deg, #139EC8 0%, #01599A 100%));
+    color:white;
+    
+    .links{
+      ul {list-style-type: none;}
+      li a{
+        color: white;
+        transition: color .2s;
+        &:hover{
+          text-decoration:none;
+          color: aliceblue;
+          }
+      }
+    }  
+    .copyright p{border-top:1px solid;} 
+  }
+  
+  .text-white{
+    margin-top: -12px;
+  }
+  
+  .btn{
+    background: var(--header-header-Gradiente, linear-gradient(90deg, #139EC8 0%, #01599A 100%));
+    border: none;
+  }
+  
+  span, button{
+    background-color: white;
+    color: white;
+    border: white;
+  }

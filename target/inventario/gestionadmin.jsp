@@ -4,44 +4,41 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="models.Administrador" %>
 <%@ page import="controllers.ListarAdministradores" %>
-<main>
-    <div class="container">
-        <h1>Inventario personalizado - INVIMA</h1> 
-        <h2>Gestion administradores</h2> 
-        <table class="table">
-            <thead>
+      <h2>Gestión de administradores</h1>
+      </div>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-primary" type="button" href="agregaradmin.jsp">Agregar</button>
+      </div>
+      <br>
+            <table class="table">
+              <thead>
                 <tr>
-                    <th style="width: 20%;">Usuario</th>
-                    <!-- <th style="width: 10%;">Permiso</th> -->
-                    <th style="width: 20%;">Estado</th>
-                    <th style="width: 25%;">Acciones</th>
+                  <th scope="col">Usuario</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Acciones</th>
                 </tr>
-            </thead> 
-            <tbody>
+              </thead>
+              <tbody>
                <% ArrayList<Administrador> administradores = ListarAdministradores.obtenerAdministradores();
                    for (Administrador admin : administradores) { %>
-                <tr> 
-                    <td data-label="Usuario"><%= admin.getUsuario() %></td>
-                    <td data-label="Estado"><%= admin.getEstado() %></td>  
-                    <td data-label="Acciones">
-                        <div class="acciones">
-                            <a href="editaradmin.jsp?codigo=<%= admin.getPK_idAdministrador() %>">
-                            <img src="resources/img/edit.svg" alt="edit">
-                            </a>
-                            <a onclick="eliminar('<%= admin.getPK_idAdministrador() %>')">
-                            <img src="resources/img/trash.svg" alt="trash" >
-                            </a>
-                        </div>
-                    </td>
+                <tr>
+                <td><%= admin.getUsuario() %></td>
+                <td><%= admin.getEstado() %></td>
+                <td>  
+                    <div class="acciones">
+                    <a href="editaradmin.jsp?codigo=<%= admin.getPK_idAdministrador() %>">
+                    <img src="resources/img/icons/edit.svg" alt="edit">
+                    </a>
+                    <a onclick="eliminar('<%= admin.getPK_idAdministrador() %>')">
+                    <img src="resources/img/icons/trash.svg" alt="trash" >
+                    </a>
+                    </div>
+                </td>
                 </tr>
                 <%   
-                    }
+                }
                 %>
-            </tbody>
-        </table>
-           <div class="button-container">
-            <a href="agregaradmin.jsp" class="button">Agregar administrador</a>
-        </div>
-    </div>
+              </tbody>
+            </table>
 </main>
-<%@ include file="footera.jsp" %> 
+<%@ include file="footera.jsp" %>
