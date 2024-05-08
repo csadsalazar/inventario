@@ -7,9 +7,9 @@ import javax.servlet.http.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import models.Bien;
-import models.Usuario;
-import utils.ConexionBD;
+import models.Object;
+import models.User;
+import utils.ConnectionBD;
 
 @WebServlet("/Login")
 public class Login extends HttpServlet {
@@ -20,7 +20,7 @@ public class Login extends HttpServlet {
 
         Connection conn = null;
         try {
-            conn = ConexionBD.getConnection();
+            conn = ConnectionBD.getConnection();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             response.sendRedirect("index.jsp");
@@ -54,10 +54,10 @@ public class Login extends HttpServlet {
                 ResultSet rsBienes = pstmtBienes.executeQuery();
 
                 // Crear una lista para almacenar los bienes del usuario
-                List<Bien> bienesUsuario = new ArrayList<>();
+                List<Object> bienesUsuario = new ArrayList<>();
                 while (rsBienes.next()) {
                     // Crear objetos Bien y agregarlos a la lista
-                    Bien bien = new Bien(
+                    Object bien = new Object(
                             rsBienes.getInt("idBien"),
                             rsBienes.getLong("PK_Codigo"),
                             rsBienes.getString("nombre"),
@@ -88,7 +88,7 @@ public class Login extends HttpServlet {
 
                 // Si el usuario también está en la tabla MA_Administradores y está activo, redirigir a homea.jsp
                 if (rsAdmins.next()) {
-                    Usuario user = new Usuario(idUsuario, rsUsuarios.getString("nombre"), usuario, rsUsuarios.getInt("cedula"), contrasena, rsUsuarios.getString("dependencia"), rsUsuarios.getString("cargo"), rsUsuarios.getString("contrato"), rsUsuarios.getString("sede"));
+                    User user = new User(idUsuario, rsUsuarios.getString("nombre"), usuario, rsUsuarios.getInt("cedula"), contrasena, rsUsuarios.getString("dependencia"), rsUsuarios.getString("cargo"), rsUsuarios.getString("contrato"), rsUsuarios.getString("sede"));
                     session.setAttribute("usuario", user);
                     response.sendRedirect("homea.jsp");
                 } else {

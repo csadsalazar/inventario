@@ -6,13 +6,13 @@ import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
-import models.Bien;
+import models.Object;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
 public class ExcelController {
-    public void generarArchivoExcel(List<Bien> listaBienes, HttpServletResponse response) throws IOException, RowsExceededException, WriteException {
+    public void generateFileExcel(List<Object> listaBienes, HttpServletResponse response) throws IOException, RowsExceededException, WriteException {
         WritableWorkbook workbook = Workbook.createWorkbook(response.getOutputStream());
         WritableSheet sheet = workbook.createSheet("Bienes", 0);
 
@@ -23,7 +23,7 @@ public class ExcelController {
         }
 
         int rowNum = 1;
-        for (Bien bien : listaBienes) {
+        for (Object bien : listaBienes) {
             sheet.addCell(new jxl.write.Number(0, rowNum, bien.getCodigo()));
             sheet.addCell(new jxl.write.Number(1, rowNum, bien.getPlaca()));
             sheet.addCell(new Label(2, rowNum, bien.getNombre()));
@@ -33,7 +33,6 @@ public class ExcelController {
             sheet.addCell(new jxl.write.Number(6, rowNum, bien.getValor()));
             rowNum++;
         }
-
         response.setContentType("application/vnd.ms-excel");
         response.setHeader("Content-Disposition", "attachment; filename=reporte.xls");
         workbook.write();

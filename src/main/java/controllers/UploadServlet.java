@@ -21,7 +21,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
-import utils.ConexionBD;
+import utils.ConnectionBD;
 
 @WebServlet("/UploadServlet")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 10) // 10 MB
@@ -48,7 +48,7 @@ public class UploadServlet extends HttpServlet {
     }
 
     private void processExcel(InputStream fileContent) throws IOException, SQLException, ClassNotFoundException {
-        try (Connection conn = ConexionBD.getConnection();
+        try (Connection conn = ConnectionBD.getConnection();
              HSSFWorkbook workbook = new HSSFWorkbook(fileContent)) { // Usar HSSFWorkbook para archivos en formato OLE2
             Sheet sheet = workbook.getSheetAt(0);
             for (Row row : sheet) {
@@ -158,7 +158,7 @@ public class UploadServlet extends HttpServlet {
         }
     }
     private void processCSV(InputStream fileContent) throws IOException, SQLException, ClassNotFoundException, CsvException {
-        try (Connection conn = ConexionBD.getConnection();
+        try (Connection conn = ConnectionBD.getConnection();
                 CSVReader reader = new CSVReader(new InputStreamReader(fileContent))) {
             List<String[]> records = reader.readAll();
             for (String[] record : records) {

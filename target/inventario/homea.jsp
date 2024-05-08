@@ -1,20 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@include file="headera.jsp"%>
 <%@include file="nava.jsp"%>
-
-<main>
     <div class="container">
-        <h2>Home</h2>
-        <section>
-            <h3 id="general-percentage-header">Porcentaje general: <span id="general-percentage-value"></span>%</h3>
-            <br>
-            <canvas id="myChart" width="600" height="600"></canvas>
-        </section>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Inicio</li>
+      </ol>
+    </nav>
     </div>
-</main>
-
+    <main class="container">
+            <div class="text-center">
+                <h1>Inventario personalizado - INVIMA</h1>
+                <h2>Inicio</h1>
+            </div>
+            <section>
+                <h2 class="text-center" id="general-percentage-header">Porcentaje general: <span style="color: black;" id="general-percentage-value"></span>%</h2>
+                <canvas id="myChart" width="400" height="50"></canvas>
+            </section>
+        </div>
+    </main>
+  
 <script>
-    fetch('PieChartServlet')
+    fetch('GraphicOfObjects')
    .then(response => response.json())
    .then(data => {
         const labels = data.slice(0, -1).map(item => item.nombreDependencia);

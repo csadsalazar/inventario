@@ -1,10 +1,9 @@
 #options{
-    background: var(--header-header-Gradiente, linear-gradient(90deg, #139EC8 0%, #01599A 100%));
+    background: linear-gradient(90deg, #139EC8 0%, #01599A 100%);
     }
-  
-  
+
   .footer{
-    background: var(--header-header-Gradiente, linear-gradient(90deg, #139EC8 0%, #01599A 100%));
+    background: linear-gradient(90deg, #139EC8 0%, #01599A 100%);
     color:white;
     
     .links{
@@ -25,8 +24,8 @@
     margin-top: -12px;
   }
   
-  .btn{
-    background: var(--header-header-Gradiente, linear-gradient(90deg, #139EC8 0%, #01599A 100%));
+  .btn-primary{
+    background: linear-gradient(90deg, #139EC8 0%, #01599A 100%);
     border: none;
   }
   
@@ -34,4 +33,14 @@
     background-color: white;
     color: white;
     border: white;
+  }
+
+  .nav-link{
+    color: white;
+  }
+
+.btn-secondary{
+   background-color: white;
+   color: linear-gradient(90deg, #139EC8 0%, #01599A 100%); 
+   border-color: linear-gradient(90deg, #139EC8 0%, #01599A 100%);
   }

@@ -6,7 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import utils.ConexionBD;
+import utils.ConnectionBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -27,7 +27,7 @@ public class ReporteFinal extends HttpServlet {
         Connection conn = null;
         PreparedStatement stmt = null;
         try {
-            conn = ConexionBD.getConnection(); // Utiliza tu método para obtener la conexión
+            conn = ConnectionBD.getConnection(); // Utiliza tu método para obtener la conexión
             String sql = "SELECT PK_Codigo, nombre, placa, estado FROM MA_Bienes WHERE FK_Usuario = ?;";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, codigo);

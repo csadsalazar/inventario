@@ -1,0 +1,75 @@
+package controllers;
+
+import models.Dependency;
+import utils.ConnectionBD;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException; 
+import java.util.ArrayList;
+
+public class ListDependencies {
+    public static ArrayList<Dependency> getDependencies() throws ClassNotFoundException {
+        ArrayList<Dependency> dependencias = new ArrayList<>();
+        Connection conn = null;
+        try {
+            conn = ConnectionBD.getConnection();
+            String sql = "SELECT * FROM MA_Dependencias";   
+            PreparedStatement cs = conn.prepareStatement(sql);   
+            ResultSet rs = cs.executeQuery(); 
+            while (rs.next()) {
+                Dependency dependencia = new Dependency();
+                dependencia.setPK_idDependencia(rs.getInt("PK_idDependencia"));
+                dependencia.setCentroDeCosto(rs.getString("centroDeCosto"));
+                dependencia.setnombreDependencia(rs.getString("nombreDependencia"));
+                // Agregar el objeto Dependencia a la lista
+                dependencias.add(dependencia);
+            }
+            rs.close();
+            cs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return dependencias;
+    }
+
+    public static Dependency getDependencyById(int id) throws ClassNotFoundException {
+        Dependency dependencia = null;
+        Connection conn = null;
+        try {
+            conn = ConnectionBD.getConnection();
+            String sql = "SELECT * FROM MA_Dependencias WHERE PK_idDependencia = ?";   
+            PreparedStatement cs = conn.prepareStatement(sql);   
+            cs.setInt(1, id);
+            ResultSet rs = cs.executeQuery();
+            if (rs.next()) {
+                dependencia = new Dependency();
+                dependencia.setPK_idDependencia(rs.getInt("PK_idDependencia"));
+                dependencia.setCentroDeCosto(rs.getString("centroDeCosto"));
+                dependencia.setnombreDependencia(rs.getString("nombreDependencia"));
+            }
+            rs.close();
+            cs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return dependencia;
+    }
+    
+}

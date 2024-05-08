@@ -13,14 +13,14 @@ function action(codigo) {
         }
     }).then((result) => {
         if (result.isConfirmed) {
-            eliminarBien(codigo);
+            deleteObject(codigo);
         }
     });
 }
 
-function eliminarBien(codigo) {
+function deleteObject(codigo) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "EliminarBien", true);
+    xhr.open("POST", "DeleteObject", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -30,14 +30,13 @@ function eliminarBien(codigo) {
                 icon: 'success',
                 confirmButtonColor: '#139EC8'
             }).then((result) => {
-                window.location.href = "gestionbienes.jsp";
+                window.location.load();
             });
         }
     };
     xhr.send("codigo=" + codigo);
 }
 
- 
 function eliminar(codigo) {
     Swal.fire({
         title: '¿Está seguro de que desea eliminar este administrador?',
@@ -53,14 +52,14 @@ function eliminar(codigo) {
         }
     }).then((result) => {
         if (result.isConfirmed) {
-            eliminarAdmin(codigo);
+            deleteAdmin(codigo);
         }
     });
 }
 
-function eliminarAdmin(codigo) {
+function deleteAdmin(codigo) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "EliminarAdmin", true);
+    xhr.open("POST", "DeleteAdmin", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -70,7 +69,7 @@ function eliminarAdmin(codigo) {
                 icon: 'success',
                 confirmButtonColor: '#139EC8'
             }).then((result) => {
-                window.location.reload();
+                window.location.load();
             });
         }
     };

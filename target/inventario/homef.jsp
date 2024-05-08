@@ -2,8 +2,7 @@
 <%@ include file="headerf.jsp" %>
 <%@ include file="navf.jsp" %>
 <%@ page import="java.util.List" %>
-<%@ include file="usuario.jsp" %>
-<%@ page import="models.Bien" %>
+<%@ page import="models.Object" %>
 <table class="table">
     <h2>Bienes del usuario</h2>
     <br>
@@ -17,10 +16,10 @@
     </thead>
     <tbody>
         <% 
-        List<Bien> bienesUsuario = (List<Bien>) request.getSession().getAttribute("bienesUsuario");
+        List<Object> bienesUsuario = (List<Object>) request.getSession().getAttribute("bienesUsuario");
         // Iterar sobre los bienes del usuario y mostrar cada uno en una fila de la tabla
         if (bienesUsuario != null) {
-            for (Bien unBien : bienesUsuario) {
+            for (Object unBien : bienesUsuario) {
                 %>
                 <tr>
                     <td data-label="Nombre"><%= unBien.getNombre() %></td>

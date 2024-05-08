@@ -13,14 +13,14 @@ function reportar(codigo) {
         }
     }).then((result) => {
         if (result.isConfirmed) {
-            reportarBien(codigo);
+            reportObject(codigo);
         }
     });
 }
 
-function reportarBien(codigo) {
+function reportObject(codigo) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "ReportarBien", true);
+    xhr.open("POST", "ReportObject", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -52,7 +52,7 @@ function disableLinks(codigo) {
 }
 
 
-function reportefinal() {
+function reportfinish() {
     Swal.fire({
         title: 'Esta a punto de dar por finalizado el reporte de sus bienes',
         text: '¿Desea continuar?',

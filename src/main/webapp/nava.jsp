@@ -1,23 +1,20 @@
   <li class="nav-item">
-              <a class="nav-link" href="homea.jsp">Home</a>
+              <a class="nav-link" href="homea.jsp">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="gestionbienes.jsp">Gestion Bienes</a>
+              <a class="nav-link" href="managementobjects.jsp">Gestion Bienes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="reportesyalertas.jsp">Reportes y Alertas</a>
+              <a class="nav-link" href="reports.jsp">Reportes y Alertas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="gestionobservaciones.jsp">Observaciones</a>
+              <a class="nav-link" href="managementobservations.jsp">Observaciones</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="gestionadmin.jsp">Administradores</a>
+              <a class="nav-link" href="managementadmins.jsp">Administradores</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
     </header>
-    <main class="container">
-      <div class="text-center my-5">
-      <h1>Inventario personalizado - INVIMA</h1>

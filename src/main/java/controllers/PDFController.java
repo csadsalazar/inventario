@@ -4,13 +4,13 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
-import models.Bien;
+import models.Object;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
 public class PDFController {
-    public void generarArchivoPDF(List<Bien> listaBienes, HttpServletResponse response) throws IOException {
+    public void generateFilePDF(List<Object> listaBienes, HttpServletResponse response) throws IOException {
         try (PDDocument document = new PDDocument()) {
             PDPage page = new PDPage();
             document.addPage(page);
@@ -26,7 +26,7 @@ public class PDFController {
                 contentStream.setFont(PDType1Font.HELVETICA, 10);
 
                 // Iterate over the list of assets and add them to the PDF
-                for (Bien bien : listaBienes) {
+                for (Object bien : listaBienes) {
                     yPosition -= 20;
                     contentStream.beginText();
                     contentStream.newLineAtOffset(50, yPosition);
@@ -46,7 +46,6 @@ public class PDFController {
                     contentStream.endText();
                 }
             }
-
             response.setContentType("application/pdf");
             response.setHeader("Content-Disposition", "attachment; filename=reporte.pdf");
             document.save(response.getOutputStream());
