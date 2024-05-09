@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ include file="headera.jsp" %>
-<%@ include file="nava.jsp" %>
+<%@ include file="nav.jsp" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="models.Dependency" %>
 <%@ page import="controllers.ListDependencies" %>
@@ -69,7 +69,7 @@
       </div>
       <div class="col">
           <button class="btn btn-primary">Agregar</button>
-          <a class="btn btn-primary" href="managementobjects.jsp">Cancelar</a>
+          <a class="btn btn-secondary" href="managementobjects.jsp">Cancelar</a>
       </div>
     </form>
   </main>

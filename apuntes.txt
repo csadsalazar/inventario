@@ -37,3 +37,8 @@ REPAIR TABLE mysql.nombretabla;
 ipconfig
 Ver mas informacion
 ipconfig/all
+
+//REGISTROS
+select * from documentos where cdgpraradicacion = 20221160120
+select * from tramites where cdgpraradicacion = 20221160120
+select * from grupo

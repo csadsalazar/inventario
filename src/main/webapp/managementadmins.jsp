@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ include file="headera.jsp" %>
-<%@ include file="nava.jsp" %>
+<%@ include file="nav.jsp" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="models.Admin" %>
 <%@ page import="controllers.ListAdministrators" %>
@@ -15,13 +15,14 @@
 <main class="container">
     <div class="text-center">
       <h1>Inventario personalizado - INVIMA</h1>
-        <h2>Almacen</h1>
+        <h2>Administradores</h1>
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
        <a class="btn btn-primary" type="button" href="addadmin.jsp">Agregar</a>
     </div>
     <br>
-    <table class="table">
+    <div class="table-responsive">
+    <table class="w-100 table table-head">
         <thead>
         <tr>
             <th scope="col">Usuario</th>
@@ -51,5 +52,6 @@
             %>
         </tbody>
         </table> 
+      </div>
 </main>
 <%@ include file="footera.jsp" %>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ include file="headera.jsp" %>
-<%@ include file="nava.jsp" %>
+<%@ include file="nav.jsp" %>
 <%@ page import="models.Admin" %>
 <%@ page import="controllers.ListAdministratorsById" %>
    <div class="container">
@@ -29,7 +29,7 @@
             %>
             <div class="col-md-4">
             <label for="usuario" class="form-label">Usuario</label>
-            <input type="hidden" class="form-control" name="codigo" value="<%= admin.getPK_idAdministrador() %>">
+            <input type="text" class="form-control" name="codigo" readonly value="<%= admin.getPK_idAdministrador() %>">
             </div>
             <div class="col-md-4">
             <label for="estado" class="form-label">Estado</label>
@@ -42,7 +42,7 @@
             </div>
             <div class="col-md-3">
             <button class="btn btn-primary">Guardar</button>
-            <button class="btn btn-primary" type="submit">Cancelar</button>
+            <button class="btn btn-secondary" type="submit">Cancelar</button>
             </div>
         </form>
 </main>

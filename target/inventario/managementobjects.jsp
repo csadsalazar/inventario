@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ include file="headera.jsp" %>
-<%@ include file="nava.jsp" %>
+<%@ include file="nav.jsp" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="models.Object" %>
 <%@ page import="controllers.ListObjects" %>

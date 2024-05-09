@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ include file="headera.jsp" %>
-<%@ include file="nava.jsp" %>
+<%@ include file="nav.jsp" %>
 <main>
     <div class="container">
         <h1>Inventario personalizado - INVIMA</h1>

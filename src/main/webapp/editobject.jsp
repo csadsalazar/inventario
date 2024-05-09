@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="headera.jsp" %>
-<%@ include file="nava.jsp" %>
+<%@ include file="nav.jsp" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%@ page import="models.Object" %> 
@@ -90,7 +90,7 @@ Object bien = ListObjectById.getObjectById(codigoBien);
       </div>
       <div class="col">
           <button class="btn btn-primary" value="Actualizar">Guardar</button>
-          <a class="btn btn-primary" href="managementobjects.jsp">Cancelar</a>
+          <a class="btn btn-secondary" href="managementobjects.jsp">Cancelar</a>
       </div>
     </form>
   </main>

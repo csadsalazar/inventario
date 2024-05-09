@@ -30,6 +30,7 @@ function deleteObject(codigo) {
                 icon: 'success',
                 confirmButtonColor: '#139EC8'
             }).then((result) => {
+                window.location.href="managementobjects";
                 window.location.load();
             });
         }
@@ -69,6 +70,7 @@ function deleteAdmin(codigo) {
                 icon: 'success',
                 confirmButtonColor: '#139EC8'
             }).then((result) => {
+                window.location.href="managementadmins";
                 window.location.load();
             });
         }
