@@ -29,7 +29,7 @@ Object bien = ListObjectById.getObjectById(codigoBien);
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="homea.jsp">Home</a></li>
         <li class="breadcrumb-item"><a href="managementobjects.jsp">Almacen</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Agregar bien</li>
+        <li class="breadcrumb-item active" aria-current="page">Editar bien</li>
       </ol>
     </nav>
     </div>
@@ -49,6 +49,10 @@ Object bien = ListObjectById.getObjectById(codigoBien);
       <div class="col-md-4">
           <label for="placa" class="form-label">Placa</label>
           <input type="number" class="form-control" name="placa" id="placa" readonly value="<%= (bien != null) ? bien.getPlaca() : "" %>">
+      </div>
+      <div class="col-md-4">
+          <label for="fecha" class="form-label">Fecha de creación</label>
+          <input type="date" class="form-control" name="fecha" id="fecha" readonly value="<%= (bien != null) ? bien.getFecha() : "" %>">
       </div>
       <div class="col-md-4">
           <label for="usuario" class="form-label">Responsable</label>

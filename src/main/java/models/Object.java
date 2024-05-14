@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Date;
+
 public class Object {
     private int idBien;
     private long codigo;
@@ -13,13 +15,15 @@ public class Object {
     private String imagen1;
     private String imagen2;
     private Observation informacion;
+    private Date fecha;
+
 
     // Constructor vacío
     public Object() {
     }
 
     // Constructor
-    public Object(int idBien, long codigo, String nombre, int placa, String descripcion, long valor, User usuario, Dependency PK_idDependencia, String estado, String imagen1, String imagen2, Observation informacion) {
+    public Object(int idBien, long codigo, String nombre, int placa, String descripcion, long valor, User usuario, Dependency PK_idDependencia, String estado, String imagen1, String imagen2, Observation informacion, Date fecha) {
         this.idBien = idBien;
         this.codigo = codigo;
         this.nombre = nombre;
@@ -32,6 +36,7 @@ public class Object {
         this.imagen1 = imagen1;
         this.imagen2 = imagen2;
         this.informacion = informacion;
+        this.fecha = fecha;
     }
 
     // Getters y setters
@@ -129,5 +134,13 @@ public class Object {
 
     public void setObservacion(Observation informacion) {
         this.informacion = informacion;
+    }
+
+    public Date getFecha(){
+        return fecha;
+    }
+
+    public void setFecha(Date fecha){
+        this.fecha = fecha;
     }
 }

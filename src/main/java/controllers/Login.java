@@ -69,7 +69,8 @@
                                 rsBienes.getString("estado"),
                                 rsBienes.getString("imagen1"),
                                 rsBienes.getString("imagen2"),
-                                null // Debes obtener la observación asociada a este bien si es necesario
+                                null, // Debes obtener la observación asociada a este bien si es necesario
+                                rsBienes.getDate("fecha")
                         );
                         bienesUsuario.add(bien);
                     }

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -59,7 +60,7 @@ public class AddObject extends HttpServlet {
 
             // Establecer la conexión y realizar la inserción en la base de datos
             Connection conn = ConnectionBD.getConnection();
-            String sql = "INSERT INTO MA_Bienes (PK_Codigo, placa, nombre, descripcion, valor, FK_Usuario, FK_Dependencia, estado) VALUES (?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO MA_Bienes (PK_Codigo, placa, nombre, descripcion, valor, FK_Usuario, FK_Dependencia, estado, fecha) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setLong(1, codigo);
             statement.setInt(2, placa);
@@ -69,6 +70,7 @@ public class AddObject extends HttpServlet {
             statement.setInt(6, idUsuario);
             statement.setInt(7, dependenciaId);
             statement.setString(8, estado);
+            statement.setTimestamp(9, new Timestamp(System.currentTimeMillis())); // Fecha actual
             statement.executeUpdate();
             response.setContentType("text/plain");
             response.setCharacterEncoding("UTF-8");

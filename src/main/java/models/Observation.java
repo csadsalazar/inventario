@@ -8,7 +8,7 @@ public class Observation {
     private Object bien;
     private String asunto;
     private String informacion;
-    private Date fechaObservacion;
+    private Date fechaObservacion; 
 
     // Constructor vacío
     public Observation() {

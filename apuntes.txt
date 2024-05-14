@@ -42,3 +42,48 @@ ipconfig/all
 select * from documentos where cdgpraradicacion = 20221160120
 select * from tramites where cdgpraradicacion = 20221160120
 select * from grupo
+
+
+//REGISTROS
+select * from documentos where cdgpraradicacion = 20221160120
+select * from tramites where cdgpraradicacion = 20221160120
+select * from grupo
+select * from documentos_xml where cdgdocumento = 16528047
+
+
+-- generar cvls (estado En Curso y Finalizado)
+update tramites set estado = 'En Curso' where cdgpraradicacion = 20241032505
+update documentos_xml set doc_generado = '0' where cdgdocumento = 16528047
+
+
+-- cambiar tipo de tramite
+update radicacion_tramite set cdgtiptramite = 68 where cdgpraradicacion = 20241028247
+update tramites set cdgtiptramite = 68 where cdgpraradicacion = 20241028247
+
+
+-- gernerar cvls (estado En Curso y Finalizado)
+update tramites set estado = 'En Curso' where cdgpraradicacion = 20241032505
+update documentos_xml set doc_generado = '0' where cdgdocumento = 16528047
+
+select * from documentos where cdgpraradicacion = 20231083532
+
+-- cambiar tipo de tramite ()
+update radicacion_tramite set cdgtiptramite = 68 where cdgpraradicacion = 20241028247
+update tramites set cdgtiptramite = 68 where cdgpraradicacion = 20241028247
+
+update tramites set estado = 'En Curso', observacion  = 'Venezuela' where cdgpraradicacion = 20241028247
+
+--  actualizar estado 
+update documentos set estadodoc = 'PENDIENTE POR ENTREGAR' where cdgdocumento = 16398182
+
+-- actualizar un estado
+select * from tramites where cdgpraradicacion = 20241117066
+UPDATE tramites set estado = 'Finalizado' where cdgpraradicacion = 20241117066
+
+-- ver funcionario  y ordernar todos los funcionarios
+select * from funcionarios where cdgfuncionario = 3353
+select * from funcionarios order by nmbfuncionario 
+
+-- ver los pasos que siguen a un tramite
+select * from eventos where cdgtiptramite = 39 and cdg_paso = 2
+select * from eventos where cdgtiptramite = 39 and cdg_paso = 176 and fchfinal = '2024/04/29'

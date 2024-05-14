@@ -35,6 +35,7 @@
             <th scope="col">Nombre</th>
             <th scope="col">Funcionario</th>
             <th scope="col">Dependencia</th>
+            <th scope="col">Fecha Creacion</th>
             <th scope="col">Acciones</th>
         </tr>
         </thead>
@@ -49,6 +50,8 @@
             <td><%= bien.getNombre() %></td>
             <td><%= bien.getUsuario().getUsuario() %></td>
             <td><%= bien.getUsuario().getDependencia() %></td>
+            <td><%= bien.getFecha() %></td>
+            
             <td>  
                 <div class="acciones">
                     <a href="seeobjecta.jsp?codigo=<%= bien.getCodigo() %>">

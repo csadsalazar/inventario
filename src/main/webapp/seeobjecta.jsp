@@ -52,6 +52,10 @@
           <label for="estado" class="form-label">Estado</label>
           <input name="estado" id="estado" class="form-control" readonly value="<%= (bien != null) ? bien.getEstado() : "" %>">
       </div>
+          <div class="col-md-4">
+          <label for="fecha" class="form-label">Fecha de creación</label>
+          <input name="fecha" id="fecha" class="form-control" readonly value="<%= (bien != null) ? bien.getFecha() : "" %>">
+      </div>
       <div class="col-md-4">
           <label for="descripcion" class="form-label">Descripción</label>
           <textarea name="descripcion" id="descripcion" class="form-control" readonly><%= (bien != null) ? bien.getDescripcion() : "" %></textarea>

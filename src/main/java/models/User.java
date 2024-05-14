@@ -4,7 +4,7 @@ public class User {
     private int PK_idUsuario;
     private String nombre;
     private String usuario;
-    private int cedula;
+    private long cedula;
     private String contrasena;
     private String dependencia;
     private String cargo;
@@ -16,7 +16,7 @@ public class User {
     }
 
     // Constructor
-    public User(int PK_idUsuario, String nombre, String usuario, int cedula, String contrasena, String dependencia, String cargo, String contrato, String sede) {
+    public User(int PK_idUsuario, String nombre, String usuario, long cedula, String contrasena, String dependencia, String cargo, String contrato, String sede) {
         this.PK_idUsuario = PK_idUsuario;
         this.nombre = nombre;
         this.usuario = usuario;
@@ -52,11 +52,11 @@ public class User {
         this.usuario = usuario;
     }
 
-    public int getCedula() {
+    public long getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(long cedula) {
         this.cedula = cedula;
     }
 

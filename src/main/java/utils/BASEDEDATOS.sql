@@ -7,8 +7,8 @@
 										CREATE TABLE IF NOT EXISTS MA_Usuarios (
 											PK_idUsuario INT AUTO_INCREMENT PRIMARY KEY,
 											nombre VARCHAR(50),
+                                            cedula BIGINT,
 											usuario VARCHAR(15),
-											cedula INT,
 											contrasena VARCHAR(20),
 											dependencia INT NOT NULL,
 											cargo VARCHAR(20) NOT NULL,
@@ -25,8 +25,8 @@
 										);
 
 										CREATE TABLE IF NOT EXISTS MA_Dependencias (
-											PK_idDependencia INT AUTO_INCREMENT PRIMARY KEY,
-                                            centroDeCosto VARCHAR(5),
+											PK_idDependencia INT AUTO_INCREMENT PRIMARY KEY ,
+                                            centroDeCosto varchar (5),
 											nombreDependencia VARCHAR(130) UNIQUE
 										);
 
@@ -36,13 +36,14 @@
 											PK_Codigo BIGINT UNIQUE,
 											nombre VARCHAR(50),
 											placa INT UNIQUE,
-											descripcion VARCHAR(150),
-											valor BIGINT UNIQUE,
+											descripcion TEXT,
+											valor BIGINT,
 											FK_Usuario INT,
 											FK_Dependencia INT,
 											estado VARCHAR(12),
 											imagen1 VARCHAR(50),
 											imagen2 VARCHAR(50),
+                                            fecha DATE,
 											FOREIGN KEY (FK_Dependencia) REFERENCES MA_Dependencias(PK_idDependencia) ON UPDATE CASCADE,
 											FOREIGN KEY (FK_Usuario) REFERENCES MA_Usuarios(PK_idUsuario) ON DELETE CASCADE 
 										);
@@ -52,8 +53,8 @@
 											PK_idBienPorUsuario INT AUTO_INCREMENT PRIMARY KEY,   
 											FK_Usuario INT,
 											FK_Bien BIGINT,
-											asunto VARCHAR(25),
-											informacion VARCHAR(200),
+											asunto VARCHAR(100),
+											informacion TEXT,
 											fechaObservacion DATE NOT NULL,
 											FOREIGN KEY (FK_Usuario) REFERENCES MA_Usuarios(PK_idUsuario), 
 											FOREIGN KEY (FK_Bien) REFERENCES MA_Bienes(PK_Codigo) ON DELETE CASCADE
@@ -66,18 +67,21 @@
 								CREATE PROCEDURE AgregarBien (
 									IN codigo INT,
 									IN nombre VARCHAR(50),
+                                    IN cedula BIGINT,
 									IN placa VARCHAR(6),
-									IN descripcion VARCHAR(150),
+									IN descripcion TEXT,
 									IN valor INT,
 									IN FK_Usuario INT,
 									IN FK_Dependencia INT,
 									IN estado VARCHAR(12),
 									IN imagen1 VARCHAR(50),
-									IN imagen2 VARCHAR(50)
+									IN imagen2 VARCHAR(50),
+                                    IN fecha DATE
+                                    
 								)
 								BEGIN
-									INSERT INTO MA_Bienes (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, imagen1, imagen2)
-									VALUES (codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, imagen1, imagen2);
+									INSERT INTO MA_Bienes (PK_Codigo, nombre, cedula, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, imagen1, imagen2, fecha)
+									VALUES (codigo, nombre, cedula, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, imagen1, imagen2, fecha);
 								END //
 
 								CREATE PROCEDURE ListarBienes()
@@ -89,7 +93,8 @@
 										   u.usuario,
 										   d.nombreDependencia,
 										   u.dependencia,
-										   b.valor 
+										   b.valor, 
+                                           b.fecha
 									FROM MA_Bienes b 
 									INNER JOIN MA_Dependencias d ON b.FK_Dependencia = d.PK_idDependencia
 									INNER JOIN MA_Usuarios u ON b.FK_Usuario = u.PK_idUsuario;
@@ -100,8 +105,8 @@
 								CREATE PROCEDURE AgregarObservacion (
 									IN usuario INT,
 									IN bien INT,
-									IN asunto VARCHAR(50),
-									IN informacion VARCHAR(250), 
+									IN asunto VARCHAR(100),
+									IN informacion TEXT, 
 									IN fechaObservacion DATE
 								)
 								BEGIN
@@ -123,10 +128,10 @@
 
 								-- INSERCIONES 
 								INSERT INTO MA_Usuarios (nombre, usuario, cedula, contrasena, dependencia, cargo, contrato, sede)
-								VALUES ('NombreUsuario1', 'usuario1', 123456789, 'contrasena1', 1, 'Cargo1', 'Contrato1', 'INVIMA'),
-									   ('NombreUsuario2', 'usuario2', 987654321, 'contrasena2', 2, 'Cargo2', 'Contrato2', 'INVIMA'),
-									   ('NombreUsuario3', 'usuario3', 456789123, 'contrasena3', 3, 'Cargo3', 'Contrato3', 'INVIMA'),
-									   ('NombreUsuario4', 'usuario4', 456789123, 'contrasena4', 3, 'Cargo4', 'Contrato4', 'INVIMA');
+								VALUES ('ALBA ROCIO JIMENEZ TOVAR', 'usuario1', 35473824, 'contrasena1', 1, 'Cargo1', 'Contrato1', 'INVIMA'),
+									   ('RHINNEY SALAS', 'usuario2', 45765455, 'contrasena2', 2, 'Cargo2', 'Contrato2', 'INVIMA'),
+									   ('NORMA CONSTANZA SOTO TARQUINO', 'usuario3', 52157691, 'contrasena3', 2, 'Cargo3', 'Contrato3', 'INVIMA'),
+									   ('ANGELA LORENA RUEDA MONTOYA', 'usuario4', 1049612824, 'contrasena4', 1, 'Cargo4', 'Contrato4', 'INVIMA');
 
 								INSERT INTO MA_Administradores (usuario, estado)
 								VALUES ('usuario1', 'Activo'),      
@@ -193,10 +198,10 @@
 								("711", 'GRUPO DE TRABAJO TERRITORIAL EJE CAFETERO - ARMENIA'),
 								("707", 'GRUPO DE TRABAJO TERRITORIAL COSTA CARIBE 2 - MONTERIA');
 								
-								INSERT INTO MA_Bienes (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, imagen1, imagen2)
-								VALUES (1, 'NombreBien1', '1000', 'Descripción1', 1000, 1, 1, 'No reportado', 'Imagen1', 'Imagen1.1'),
-									   (2, 'NombreBien2', '2000', 'Descripción2', 2000, 2, 2, 'Reportado', 'Imagen2', 'Imagen2.1'),
-									   (3, 'NombreBien3', '3000', 'Descripción3', 3000, 3, 3, 'Reportado', 'Imagen3', 'Imagen3.1');
+								INSERT INTO MA_Bienes (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, imagen1, imagen2, fecha)
+								VALUES (1, 'NombreBien1', '1000', 'Descripción1', 1000, 1, 1, 'No reportado', 'Imagen1', 'Imagen1.1', '2024-04-07'),
+									   (2, 'NombreBien2', '2000', 'Descripción2', 2000, 2, 2, 'Reportado', 'Imagen2', 'Imagen2.1', '2024-04-07'),
+									   (3, 'NombreBien3', '3000', 'Descripción3', 3000, 3, 3, 'Reportado', 'Imagen3', 'Imagen3.1', '2024-04-07');
 
 								INSERT INTO PA_BienesPorUsuario (FK_Usuario, FK_Bien, asunto, informacion, fechaObservacion)
 								VALUES (1, 1, 'Asunto1', 'Información1', '2024-04-07'),

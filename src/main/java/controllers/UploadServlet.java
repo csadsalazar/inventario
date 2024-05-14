@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -50,7 +51,7 @@ public class UploadServlet extends HttpServlet {
              HSSFWorkbook workbook = new HSSFWorkbook(fileContent)) {
             Sheet sheet = workbook.getSheetAt(0);
             for (Row row : sheet) {
-                if (row.getRowNum() == 0) {
+                if (row.getRowNum() == 0 ) {
                     continue; // Ignorar la primera fila (encabezados)
                 }
 
@@ -68,10 +69,9 @@ public class UploadServlet extends HttpServlet {
                 long valor = (long) row.getCell(4).getNumericCellValue();
                 String nombreUsuario = row.getCell(5).getStringCellValue();
                 String nombreDependencia = row.getCell(6).getStringCellValue();
-                String estado = row.getCell(7).getStringCellValue();
 
                 // Validar códigos y placas repetidas
-                if (codigoExistente(conn, codigo) || placaExistente(conn, placa)) {
+                if (codigoExistente(conn, codigo) || placaExistente(conn, placa))  {
                     // Omitir fila si el código o la placa ya existen
                     continue;
                 }
@@ -80,7 +80,7 @@ public class UploadServlet extends HttpServlet {
                 int dependenciaId = getDependenciaId(conn, nombreDependencia); // Obtener ID de la dependencia
 
                 // Insertar datos en la base de datos
-                String sql = "INSERT INTO MA_Bienes (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                String sql = "INSERT INTO MA_Bienes (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, fecha) VALUES (?, ?, ?, ?, ?, ?, ?, No reportado, ?)";
                 try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                     pstmt.setLong(1, codigo);
                     pstmt.setString(2, nombre);
@@ -89,7 +89,8 @@ public class UploadServlet extends HttpServlet {
                     pstmt.setLong(5, valor);
                     pstmt.setInt(6, usuarioId);
                     pstmt.setInt(7, dependenciaId);
-                    pstmt.setString(8, estado); 
+                    pstmt.setTimestamp(8, new Timestamp(System.currentTimeMillis())); // Fecha actual
+
                     pstmt.executeUpdate();
                 }
             }
@@ -109,7 +110,6 @@ public class UploadServlet extends HttpServlet {
                 long valor = Long.parseLong(record[4]);
                 String nombreUsuario = record[5]; // Obtener nombre del usuario
                 String nombreDependencia = record[6]; // Obtener nombre de la dependencia
-                String estado = record[7];
 
                 // Validar campos nulos
                 if (record.length < 8 || record[0] == null || record[1] == null || record[2] == null || record[3] == null
@@ -128,7 +128,7 @@ public class UploadServlet extends HttpServlet {
                 int dependenciaId = getDependenciaId(conn, nombreDependencia); // Obtener ID de la dependencia
 
                 // Insertar datos en la base de datos
-                String sql = "INSERT INTO MA_Bienes (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                String sql = "INSERT INTO MA_Bienes (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, fecha) VALUES (?, ?, ?, ?, ?, ?, ?, No reportado, ?)";
                 try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                     pstmt.setLong(1, codigo);
                     pstmt.setString(2, nombre);
@@ -137,7 +137,6 @@ public class UploadServlet extends HttpServlet {
                     pstmt.setLong(5, valor);
                     pstmt.setInt(6, usuarioId);
                     pstmt.setInt(7, dependenciaId);
-                    pstmt.setString(8, estado);
 
                     pstmt.executeUpdate();
                 }

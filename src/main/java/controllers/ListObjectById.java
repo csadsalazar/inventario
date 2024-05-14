@@ -29,6 +29,7 @@ public class ListObjectById {
                 bien.setPlaca(rs.getInt("placa"));
                 bien.setNombre(rs.getString("nombre"));
                 bien.setDescripcion(rs.getString("descripcion"));
+                bien.setFecha(rs.getDate("fecha"));
                 Dependency dependencia = new Dependency();
                 dependencia.setnombreDependencia(rs.getString("nombreDependencia"));
                 bien.setDependencia(dependencia);
