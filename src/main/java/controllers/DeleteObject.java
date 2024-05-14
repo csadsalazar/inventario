@@ -16,10 +16,18 @@ public class DeleteObject extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String codigo = request.getParameter("codigo");
         boolean eliminado = false;
-        try {
-            eliminado = deleteObject(codigo);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        if (codigo != null) {
+            try {
+                eliminado = deleteObject(codigo);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                eliminado = deleteAllObjects();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
         response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");
@@ -35,6 +43,30 @@ public class DeleteObject extends HttpServlet {
             stmt.setString(1, codigo);
             int filasAfectadas = stmt.executeUpdate();
             System.out.println("Se ha eliminado el bien con código: " + codigo);
+            return filasAfectadas > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            // Cierra la conexión y el statement
+            try {
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private boolean deleteAllObjects() throws ClassNotFoundException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+            conn = ConnectionBD.getConnection(); // Utiliza tu método para obtener la conexión
+            String sql = "DELETE FROM MA_Bienes";
+            stmt = conn.prepareStatement(sql);
+            int filasAfectadas = stmt.executeUpdate();
+            System.out.println("Se han eliminado todos los bienes");
             return filasAfectadas > 0;
         } catch (SQLException e) {
             e.printStackTrace();

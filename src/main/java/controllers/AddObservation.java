@@ -15,20 +15,35 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/AddObservation")
 public class AddObservation extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Integer idUsuario = (Integer) request.getSession().getAttribute("idUsuario"); // Corregido para manejar el valor null
+        String idUsuarioParam = request.getParameter("idUsuario");
+        Integer idUsuario = null; // Inicializar como nulo
+        
+        // Verificar si el parámetro no es nulo
+        if (idUsuarioParam != null && !idUsuarioParam.isEmpty()) {
+            try {
+                // Convertir el parámetro a un entero
+                idUsuario = Integer.parseInt(idUsuarioParam);
+            } catch (NumberFormatException e) {
+                // Manejar la excepción si el parámetro no se puede convertir a un entero
+                e.printStackTrace();
+                // Puedes enviar una respuesta de error o redirigir a una página de error
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "El parámetro 'idUsuario' no es un número válido");
+                return; // Salir del método
+            }
+        }
+
         String asunto = request.getParameter("asunto");
         String informacion = request.getParameter("informacion");
 
         try {
             Connection conn = ConnectionBD.getConnection();
-            String sql = "INSERT INTO PA_BienesPorUsuario (FK_Usuario, FK_Bien, asunto, informacion, fechaObservacion) VALUES (?, 1, ?, ?, ?)";
+            String sql = "INSERT INTO PA_BienesPorUsuario (FK_Usuario, FK_Bien, asunto, informacion, fechaObservacion) VALUES (?, null, ?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, idUsuario); // Corregido para manejar el valor null
+            statement.setObject(1, idUsuario); // Utilizar setObject para permitir valores nulos
             statement.setString(2, asunto);
             statement.setString(3, informacion);
             statement.setTimestamp(4, new Timestamp(System.currentTimeMillis())); // Fecha actual
             statement.executeUpdate();
-
             System.out.println("Se ha insertado con éxito la observación");
             response.sendRedirect("homef.jsp");
 

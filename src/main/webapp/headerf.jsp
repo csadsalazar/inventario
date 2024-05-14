@@ -34,5 +34,8 @@
       <div class="container">
         <img src="resources/img/invima_blanco.png" alt="Logo_Invima-Te-Acompana" height="45" >
       </div>
+      <li class="nav-item">
+        <a class="nav-link" href="Logout">Cerrar Sesión</a>
+      </li>
     </nav>
 </header>

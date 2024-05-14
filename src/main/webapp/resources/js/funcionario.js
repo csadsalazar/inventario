@@ -13,11 +13,14 @@ function reportar(codigo) {
         }
     }).then((result) => {
         if (result.isConfirmed) {
+            // Ocultar la fila de la tabla inmediatamente
+            var fila = document.querySelector('tr[data-codigo="' + codigo + '"]');
+            fila.style.display = "none";
+            // Reportar el objeto
             reportObject(codigo);
         }
     });
 }
-
 function reportObject(codigo) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "ReportObject", true);
@@ -36,19 +39,6 @@ function reportObject(codigo) {
         }
     };
     xhr.send("codigo=" + codigo);
-}
-
-function disableLinks(codigo) {
-    var links = document.querySelectorAll('.acciones a');
-    links.forEach(function(link) {
-        // Obtener el código del bien asociado a este enlace
-        var bienCodigo = link.getAttribute('data-codigo');
-        if (bienCodigo === codigo) {
-            link.removeAttribute('onclick');
-            link.style.pointerEvents = 'none';
-            link.style.opacity = '0.5';
-        }
-    });
 }
 
 

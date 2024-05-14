@@ -16,7 +16,6 @@ controllers\ListDependencies.class
 controllers\ReportObject.class
 controllers\EditObject.class
 controllers\ListObjectById.class
-controllers\CerrarSesion.class
 controllers\GetUsersServlet.class
 controllers\GraphicOfObjects.class
 controllers\ListUsers.class
@@ -29,6 +28,7 @@ controllers\ListAdministrators.class
 controllers\UploadServlet.class
 controllers\DeleteObject.class
 models\Dependency.class
+controllers\LogoutServlet.class
 controllers\ReporteFinal.class
 controllers\AddObservation.class
 controllers\ListObservations.class

@@ -2,12 +2,14 @@ package controllers;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import java.io.InputStreamReader;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -15,10 +17,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import utils.ConnectionBD;
@@ -40,103 +38,47 @@ public class UploadServlet extends HttpServlet {
                 processCSV(fileContent); // Procesar archivo CSV
             }
 
-            response.sendRedirect("gestionbienes.jsp"); // Redirigir a página de éxito
+            response.sendRedirect("managementobjects.jsp"); // Redirigir a página de éxito
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("cargueexcel.jsp"); // Redirigir a página de error
+            response.sendRedirect("uploadfile.jsp"); // Redirigir a página de error
         }
     }
 
     private void processExcel(InputStream fileContent) throws IOException, SQLException, ClassNotFoundException {
         try (Connection conn = ConnectionBD.getConnection();
-             HSSFWorkbook workbook = new HSSFWorkbook(fileContent)) { // Usar HSSFWorkbook para archivos en formato OLE2
+             HSSFWorkbook workbook = new HSSFWorkbook(fileContent)) {
             Sheet sheet = workbook.getSheetAt(0);
             for (Row row : sheet) {
-                for (org.apache.poi.ss.usermodel.Cell cell : row) {
-                    int rowNum = row.getRowNum();
-                    int colNum = cell.getColumnIndex();
-                    System.out.println("Reading cell at row: " + rowNum + ", column: " + colNum);
+                if (row.getRowNum() == 0) {
                     continue; // Ignorar la primera fila (encabezados)
                 }
-    
-                long codigo = 0;
-                if (row.getCell(0) != null) {
-                    if (row.getCell(0).getCellType() == CellType.NUMERIC) {
-                        codigo = (int) row.getCell(0).getNumericCellValue();
-                    } else if (row.getCell(0).getCellType() == CellType.STRING) {
-                        // Si el código está representado como una cadena en la celda, puedes convertirlo a entero
-                        codigo = Integer.parseInt(row.getCell(0).getStringCellValue());
-                    }
-                }     
-    
-                String nombre = "";
-                if (row.getCell(1) != null) {
-                    if (row.getCell(1).getCellType() == CellType.NUMERIC) {
-                        // Si la celda es numérica, obtén su valor como cadena y concaténalo al nombre
-                        double numericValue = row.getCell(1).getNumericCellValue();
-                        nombre = "Num" + String.valueOf((int) numericValue); // Por ejemplo, puedes agregar "Num" al principio
-                    } else if (row.getCell(1).getCellType() == CellType.STRING) {
-                        // Si la celda ya es una cadena, obtén su valor directamente
-                        nombre = row.getCell(1).getStringCellValue();
-                    }
-                }                
-    
-                int placa = 0;
-                if (row.getCell(2) != null) {
-                    if (row.getCell(2).getCellType() == CellType.NUMERIC) {
-                        placa = (int) row.getCell(2).getNumericCellValue();
-                    } else if (row.getCell(2).getCellType() == CellType.STRING) {
-                        try {
-                            placa = Integer.parseInt(row.getCell(2).getStringCellValue());
-                        } catch (NumberFormatException e) {
-                            // Manejar el error de conversión de cadena a entero
-                            e.printStackTrace();
-                        }
-                    }
-                }
-    
-                String descripcion = "";
-                if (row.getCell(3) != null) {
-                    descripcion = row.getCell(3).getStringCellValue();
-                }
-    
-                String valorStr = "";
-                if (row.getCell(4) != null) {
-                    if (row.getCell(4).getCellType() == CellType.NUMERIC) {
-                        valorStr = String.valueOf((long) row.getCell(4).getNumericCellValue());
-                    } else if (row.getCell(4).getCellType() == CellType.STRING) {
-                        valorStr = row.getCell(4).getStringCellValue();
-                    }
-                }
-                long valor = 0;
-                try {
-                    valor = Long.parseLong(valorStr);
-                } catch (NumberFormatException e) {
-                    // Manejar el error de conversión de cadena a long
-                    e.printStackTrace();
-                }
-    
-                String nombreUsuario = "";
-                int usuarioId = -1; // Valor predeterminado para el caso en que no se encuentre el usuario
-                if (row.getCell(5) != null) {
-                    nombreUsuario = row.getCell(5).getStringCellValue(); // Obtener nombre del usuario
-                    // Obtener el ID del usuario desde la base de datos
-                    usuarioId = getUserId(conn, nombreUsuario);
+
+                // Validar campos nulos
+                if (row.getCell(0) == null || row.getCell(1) == null || row.getCell(2) == null || row.getCell(3) == null
+                        || row.getCell(4) == null || row.getCell(5) == null || row.getCell(6) == null || row.getCell(7) == null) {
+                    // Omitir fila si hay campos nulos
+                    continue;
                 }
 
-                String nombreDependencia = "";
-                int dependenciaId = -1; // Valor predeterminado para el caso en que no se encuentre el usuario
-                if (row.getCell(5) != null) {
-                    nombreDependencia = row.getCell(5).getStringCellValue(); // Obtener nombre del usuario
-                    // Obtener el ID de la dependencia desde la base de datos
-                    dependenciaId = getDependenciaId(conn, nombreDependencia);
+                long codigo = (long) row.getCell(0).getNumericCellValue();
+                String nombre = row.getCell(1).getStringCellValue();
+                int placa = (int) row.getCell(2).getNumericCellValue();
+                String descripcion = row.getCell(3).getStringCellValue();
+                long valor = (long) row.getCell(4).getNumericCellValue();
+                String nombreUsuario = row.getCell(5).getStringCellValue();
+                String nombreDependencia = row.getCell(6).getStringCellValue();
+                String estado = row.getCell(7).getStringCellValue();
+
+                // Validar códigos y placas repetidas
+                if (codigoExistente(conn, codigo) || placaExistente(conn, placa)) {
+                    // Omitir fila si el código o la placa ya existen
+                    continue;
                 }
 
-                String estado = "";
-                if (row.getCell(7) != null) {
-                    estado = row.getCell(7).getStringCellValue();
-                }
-        
+                int usuarioId = getUserId(conn, nombreUsuario); // Obtener ID del usuario
+                int dependenciaId = getDependenciaId(conn, nombreDependencia); // Obtener ID de la dependencia
+
                 // Insertar datos en la base de datos
                 String sql = "INSERT INTO MA_Bienes (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                 try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -147,25 +89,19 @@ public class UploadServlet extends HttpServlet {
                     pstmt.setLong(5, valor);
                     pstmt.setInt(6, usuarioId);
                     pstmt.setInt(7, dependenciaId);
-                    pstmt.setString(8, estado);
-    
+                    pstmt.setString(8, estado); 
                     pstmt.executeUpdate();
-                } catch (SQLException e) {
-                    // Manejar la excepción SQLException según sea necesario
-                    e.printStackTrace();
                 }
             }
         }
     }
+
     private void processCSV(InputStream fileContent) throws IOException, SQLException, ClassNotFoundException, CsvException {
         try (Connection conn = ConnectionBD.getConnection();
                 CSVReader reader = new CSVReader(new InputStreamReader(fileContent))) {
-            List<String[]> records = reader.readAll();
-            for (String[] record : records) {
-                if (reader.getLinesRead() == 1) {
-                    continue; // Ignorar la primera fila (encabezados)
-                }
-
+            reader.skip(1); // Saltar la primera fila (encabezados)
+            String[] record;
+            while ((record = reader.readNext()) != null) {
                 long codigo = Long.parseLong(record[0]);
                 String nombre = record[1];
                 int placa = Integer.parseInt(record[2]);
@@ -174,6 +110,19 @@ public class UploadServlet extends HttpServlet {
                 String nombreUsuario = record[5]; // Obtener nombre del usuario
                 String nombreDependencia = record[6]; // Obtener nombre de la dependencia
                 String estado = record[7];
+
+                // Validar campos nulos
+                if (record.length < 8 || record[0] == null || record[1] == null || record[2] == null || record[3] == null
+                        || record[4] == null || record[5] == null || record[6] == null || record[7] == null) {
+                    // Omitir fila si hay campos nulos
+                    continue;
+                }
+
+                // Validar códigos y placas repetidas
+                if (codigoExistente(conn, codigo) || placaExistente(conn, placa)) {
+                    // Omitir fila si el código o la placa ya existen
+                    continue;
+                }
 
                 int usuarioId = getUserId(conn, nombreUsuario); // Obtener ID del usuario
                 int dependenciaId = getDependenciaId(conn, nombreDependencia); // Obtener ID de la dependencia
@@ -206,8 +155,8 @@ public class UploadServlet extends HttpServlet {
                 }
             }
         }
-        // Si no se encuentra el usuario, puedes manejarlo como desees (lanzar una excepción, devolver un valor predeterminado, etc.)
-        return -1; // Valor predeterminado para indicar que no se encontró el usuario
+        // Si no se encuentra el usuario, puedes manejarlo como desees
+        return -1;
     }
 
     private int getDependenciaId(Connection conn, String nombreDependencia) throws SQLException {
@@ -220,7 +169,33 @@ public class UploadServlet extends HttpServlet {
                 }
             }
         }
-        // Si no se encuentra la dependencia, puedes manejarlo como desees (lanzar una excepción, devolver un valor predeterminado, etc.)
-        return -1; // Valor predeterminado para indicar que no se encontró la dependencia
+        // Si no se encuentra la dependencia, puedes manejarlo como desees
+        return -1;
+    }
+
+    private boolean codigoExistente(Connection conn, long codigo) throws SQLException {
+        String sql = "SELECT COUNT(*) AS count FROM MA_Bienes WHERE PK_Codigo = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setLong(1, codigo);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("count") > 0;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean placaExistente(Connection conn, int placa) throws SQLException {
+        String sql = "SELECT COUNT(*) AS count FROM MA_Bienes WHERE placa = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, placa);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("count") > 0;
+                }
+            }
+        }
+        return false;
     }
 }

@@ -20,45 +20,49 @@
     </div>
     <br>
     <div class="table-responsive">
-    <table class="w-100 table table-head">
-        <thead>
-        <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Placa</th>
-            <th scope="col">Codigo</th>
-            <th scope="col">Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-            <% 
-            List<Object> bienesUsuario = (List<Object>) request.getSession().getAttribute("bienesUsuario");
-            // Iterar sobre los bienes del usuario y mostrar cada uno en una fila de la tabla
-            if (bienesUsuario != null) {
-            for (Object unBien : bienesUsuario) {
-            %>
-        <tr>
-            <td><%= unBien.getNombre() %></td>
-            <td><%= unBien.getPlaca() %></td>
-            <td><%= unBien.getCodigo() %></td>
-            <td>  
-                <div class="acciones">
-                    <a id="cargarImagenes" data-codigo="<%= unBien.getCodigo() %>" <%= unBien.getEstado().equals("Reportado") ? "disabled" : "" %>>
-                    <img src="resources/img/icons/camera.svg" alt="camera">
-                    </a>&nbsp;
-                    <a href="seeobjectf.jsp?codigo=<%= unBien.getCodigo() %>" data-codigo="<%= unBien.getCodigo() %>" <%= unBien.getEstado().equals("Reportado") ? "disabled" : "" %>>
-                    <img src="resources/img/icons/airplay.svg" alt="airplay">
-                    </a>&nbsp;
-                    <a onclick="reportar('<%= unBien.getCodigo() %>')" data-codigo="<%= unBien.getCodigo() %>" <%= unBien.getEstado().equals("Reportado") ? "disabled" : "" %>>
-                    <img src="resources/img/icons/check-circle.svg" alt="check-circle">
-                    </a>
-                </div>   
-            </td>
-            </tr>
-            <% 
-            }
-            } 
-            %>
-        </tbody>
-    </table> 
+        <table class="w-100 table table-head">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Placa</th>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% 
+                List<Object> bienesUsuario = (List<Object>) request.getSession().getAttribute("bienesUsuario");
+                // Iterar sobre los bienes del usuario y mostrar solo los no reportados en una fila de la tabla
+                if (bienesUsuario != null) {
+                    for (Object unBien : bienesUsuario) {
+                        // Verificar si el estado del bien es no reportado
+                        if (unBien.getEstado().equals("No reportado")) {
+                %>
+                            <tr data-codigo="<%= unBien.getCodigo() %>">
+                            <td><%= unBien.getNombre() %></td>
+                            <td><%= unBien.getPlaca() %></td>
+                            <td><%= unBien.getCodigo() %></td>
+                            <td>  
+                                <div class="acciones">
+                                    <a id="cargarImagenes" data-codigo="<%= unBien.getCodigo() %>">
+                                        <img src="resources/img/icons/camera.svg" alt="camera">
+                                    </a>&nbsp;
+                                    <a href="seeobjectf.jsp?codigo=<%= unBien.getCodigo() %>" data-codigo="<%= unBien.getCodigo() %>">
+                                        <img src="resources/img/icons/airplay.svg" alt="airplay">
+                                    </a>&nbsp;
+                                    <a onclick="reportar('<%= unBien.getCodigo() %>')" data-codigo="<%= unBien.getCodigo() %>">
+                                        <img src="resources/img/icons/check-circle.svg" alt="check-circle">
+                                    </a>
+                                </div>   
+                            </td>
+                        </tr>
+                <% 
+                } // Cierre de la condición if
+                } // Cierre del bucle for
+                } 
+                %>
+            </tbody>
+        </table> 
+    </div>
 </main>
 <%@ include file="footerf.jsp" %>

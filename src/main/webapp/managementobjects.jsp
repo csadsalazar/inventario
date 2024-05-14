@@ -15,11 +15,16 @@
 <main class="container">
     <div class="text-center">
       <h1>Inventario personalizado - INVIMA</h1>
-        <h2>Almacen</h1>
+      <h2>Almacen</h1>
     </div>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-       <a class="btn btn-primary" type="button" href="addobject.jsp">Agregar</a>
-       <a class="btn btn-primary" type="button" href="uploadfile.jsp">Subir almacen</a>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-between">
+        <div>
+            <a class="btn btn-primary" type="button" onclick="deleteAllObjects()">Eliminar almacen</a>
+        </div>
+        <div>
+            <a class="btn btn-primary" type="button" href="addobject.jsp">Agregar</a>
+            <a class="btn btn-primary" type="button" href="uploadfile.jsp">Subir almacen</a>
+        </div>
     </div>
     <br>
     <table class="table">

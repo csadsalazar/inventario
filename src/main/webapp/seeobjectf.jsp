@@ -24,7 +24,7 @@
         <c:if test="${not empty error}">
             <p style="color: red;">${error}</p>
         </c:if>
-    <form class="row g-3 py-3">
+    <form class="row g-3 py-3" action="AddObservation" method="POST">
       <div class="col-md-4">
           <label for="codigo" class="form-label">Codigo</label>
           <input class="form-control" id="codigo" name="codigo" readonly value="<%= (bien != null) ? bien.getCodigo() : "" %>">
@@ -52,8 +52,10 @@
                 <label  class="form-label" for="informacion">Observación:</label> <!-- Cambiar "information" a "informacion" -->
                 <textarea class="form-control" id="informacion" name="informacion" rows="5" cols="30" required></textarea>
             </div>
-            <div class="button-container">
-                <button class="button">Enviar observación</button>
+             <div>
+            </div>
+            <div class="col-md-4">
+            <button class="btn btn-primary">Enviar observación</button>
             </div>
         </form>
     </form>
