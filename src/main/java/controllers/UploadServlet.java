@@ -55,28 +55,59 @@ public class UploadServlet extends HttpServlet {
                 if (row.getRowNum() == 0 ) {
                     continue; // Ignorar la primera fila (encabezados)
                 }
-
+    
                 // Validar campos nulos
-                if (row.getCell(0) == null || row.getCell(1) == null || row.getCell(2) == null || row.getCell(3) == null
-                        || row.getCell(4) == null || row.getCell(5) == null || row.getCell(6) == null || row.getCell(7) == null || row.getCell(8) == null) {
+                if (row.getCell(0) == null || row.getCell(1) == null || row.getCell(3) == null || row.getCell(9) == null
+                        || row.getCell(11) == null || row.getCell(12) == null || row.getCell(52) == null || row.getCell(55) == null || row.getCell(56) == null) {
                     // Omitir fila si hay campos nulos
                     continue;
                 }
-
-                long codigo = (long) row.getCell(0).getNumericCellValue();
-                String nombre = row.getCell(1).getStringCellValue();
-                int placa = (int) row.getCell(2).getNumericCellValue();
-                String centroDeCosto;
-                if(row.getCell(3).getCellType() == CellType.NUMERIC) {
-                    centroDeCosto = String.valueOf((int)row.getCell(3).getNumericCellValue());
-                } else {
-                    centroDeCosto = row.getCell(3).getStringCellValue();
+    
+                long codigo;
+                try {
+                    codigo = (long) row.getCell(0).getNumericCellValue();
+                } catch (IllegalStateException e) {
+                    // Si la celda contiene texto en lugar de un valor numérico, intenta obtener el valor como texto
+                    codigo = Long.parseLong(row.getCell(0).getStringCellValue());
                 }
-                long cedula = (long) row.getCell(4).getNumericCellValue();
-                String descripcion = row.getCell(5).getStringCellValue();
-                long valor = (long) row.getCell(6).getNumericCellValue();
-                String nombreUsuario = row.getCell(7).getStringCellValue();
-                String nombreDependencia = row.getCell(8).getStringCellValue();
+    
+                String nombre = row.getCell(1).getStringCellValue();
+
+                int placa;
+                try {
+                    placa = (int) row.getCell(3).getNumericCellValue();
+                } catch (IllegalStateException e) {
+                    // Si la celda contiene texto en lugar de un valor numérico, intenta obtener el valor como texto
+                    placa = Integer.parseInt(row.getCell(3).getStringCellValue());
+                }
+
+                long valor;
+                try {
+                    valor = (long) row.getCell(9).getNumericCellValue();
+                } catch (IllegalStateException e) {
+                    // Si la celda contiene texto en lugar de un valor numérico, intenta obtener el valor como texto
+                    valor = Long.parseLong(row.getCell(9).getStringCellValue());
+                }
+
+                String centroDeCosto;
+                if(row.getCell(11).getCellType() == CellType.NUMERIC) {
+                    centroDeCosto = String.valueOf((int)row.getCell(11).getNumericCellValue());
+                } else {
+                    centroDeCosto = row.getCell(11).getStringCellValue();
+                }
+
+                long cedula = 0;
+                try {
+                    cedula = (long) row.getCell(12).getNumericCellValue();
+                } catch (IllegalStateException e) {
+                    // Si la celda contiene texto en lugar de un valor numérico, intenta obtener el valor como texto
+                    valor = Long.parseLong(row.getCell(12).getStringCellValue());
+                }
+
+                String descripcion = row.getCell(52).getStringCellValue();
+                String nombreUsuario = row.getCell(55).getStringCellValue();
+                String nombreDependencia = row.getCell(56).getStringCellValue();
+
 
                 // Validar códigos y placas repetidas
                 if (codigoExistente(conn, codigo) || placaExistente(conn, placa))  {
@@ -126,13 +157,13 @@ public class UploadServlet extends HttpServlet {
             while ((record = reader.readNext()) != null) {
                 long codigo = Long.parseLong(record[0]);
                 String nombre = record[1];
-                int placa = Integer.parseInt(record[2]);
-                String centroDeCosto = record[3]; // Obtener centro de costo
-                long cedula = Long.parseLong(record[4]); // Obtener cédula
-                String descripcion = record[5];
-                long valor = Long.parseLong(record[6]);
-                String nombreUsuario = record[7]; // Obtener nombre del usuario
-                String nombreDependencia = record[8]; // Obtener nombre de la dependencia
+                int placa = Integer.parseInt(record[3]);
+                long valor = Long.parseLong(record[9]);
+                String centroDeCosto = record[11]; // Obtener centro de costo
+                long cedula = Long.parseLong(record[12]); // Obtener cédula
+                String descripcion = record[52];
+                String nombreUsuario = record[55]; // Obtener nombre del usuario
+                String nombreDependencia = record[56]; // Obtener nombre de la dependencia
 
 
                 // Validar campos nulos

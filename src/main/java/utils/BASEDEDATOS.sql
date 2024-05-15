@@ -128,10 +128,10 @@
 
 								-- INSERCIONES 
 								INSERT INTO MA_Usuarios (nombre, usuario, cedula, contrasena, dependencia, cargo, contrato, sede)
-								VALUES ('ALBA ROCIO JIMENEZ TOVAR', 'usuario1', 35473824, 'contrasena1', 1, 'Cargo1', 'Contrato1', 'INVIMA'),
-									   ('RHINNEY SALAS', 'usuario2', 45765455, 'contrasena2', 2, 'Cargo2', 'Contrato2', 'INVIMA'),
-									   ('NORMA CONSTANZA SOTO TARQUINO', 'usuario3', 52157691, 'contrasena3', 2, 'Cargo3', 'Contrato3', 'INVIMA'),
-									   ('ANGELA LORENA RUEDA MONTOYA', 'usuario4', 1049612824, 'contrasena4', 1, 'Cargo4', 'Contrato4', 'INVIMA');
+								VALUES ('GLORIA CECILIA PEÑUELA SANCHEZ', 'usuario1', 1032358047, 'contrasena1', 1, 'Cargo1', 'Contrato1', 'INVIMA'),
+									   ('IDANELA RIVERA CARREÑO', 'usuario2', 53101254, 'contrasena2', 2, 'Cargo2', 'Contrato2', 'INVIMA'),
+									   ('JUAN FERNANDO JUEZ', 'usuario3', 1023866725, 'contrasena3', 2, 'Cargo3', 'Contrato3', 'INVIMA'),
+									   ('KELLY JOHANA OSPINA VELASQUEZ', 'usuario4', 1014186790, 'contrasena4', 1, 'Cargo4', 'Contrato4', 'INVIMA');
 
 								INSERT INTO MA_Administradores (usuario, estado)
 								VALUES ('usuario1', 'Activo'),      
@@ -139,7 +139,7 @@
 									   
 										   
 								INSERT INTO MA_Dependencias (centroDeCosto, nombreDependencia) VALUES
-								("600", 'DIRECCIÓN DE MEDICAMENTOS Y PRODUCTOS BIOLÓGICOS (INCLUYE LOS 12 GRUPOS)'),
+								("600", 'DIRECCIÓN DE MEDICAMENTOS Y PRODUCTOS BIOLÓGICOS'),
 								("400", 'DIRECCIÓN DE ALIMENTOS Y BEBIDAS (INCLUYE LOS 6 GRUPOS)'),
 								("700", 'DIRECCIÓN DE OPERACIONES SANITARIAS (INCLUYE TODOS LOS GRUPOS UBICADOS EN EL PISO 10)'),
 								("500", 'DIRECCION DE DISPOSITIVOS MEDICOS Y OTRAS TECNOLOGIAS (INCLUYE LOS 4 GRUPOS)'),

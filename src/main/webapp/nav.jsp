@@ -1,20 +1,20 @@
             <li class="nav-item">
-              <a class="nav-link" href="homea.jsp">Inicio</a>
+              <a class="nav-link text-white" href="homea.jsp">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="managementobjects.jsp">Gestion Bienes</a>
+              <a class="nav-link text-white" href="managementobjects.jsp">Gestion Bienes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="reports.jsp">Reportes y Alertas</a>
+              <a class="nav-link text-white" href="reports.jsp">Reportes y Alertas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="managementobservations.jsp">Observaciones</a>
+              <a class="nav-link text-white" href="managementobservations.jsp">Observaciones</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="managementadmins.jsp">Administradores</a>
+              <a class="nav-link text-white" href="managementadmins.jsp">Administradores</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="Logout">Cerrar Sesión</a>
+              <a class="nav-link text-white" href="Logout">Cerrar Sesión</a>
             </li>
           </ul>
         </div>

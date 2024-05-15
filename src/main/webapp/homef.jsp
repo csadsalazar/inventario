@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page contentType="text/html; charset=utf-8" %>
 <%@ include file="headerf.jsp" %>
 <%@ page import="java.util.List" %>
 <%@ page import="models.Object" %>
@@ -14,7 +14,7 @@
       <h1>Inventario personalizado - INVIMA</h1>
         <h2>Bines Totales</h1>
     </div>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end py-3">
        <a class="btn btn-primary" type="button" href="addobservation.jsp">Agregar Observacion</a>
        <a onclick="reportefinal()" class="btn btn-primary" type="button">Finalizar Reporte</a>
     </div>
