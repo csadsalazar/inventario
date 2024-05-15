@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import javax.servlet.ServletException;
@@ -57,7 +58,7 @@ public class UploadServlet extends HttpServlet {
 
                 // Validar campos nulos
                 if (row.getCell(0) == null || row.getCell(1) == null || row.getCell(2) == null || row.getCell(3) == null
-                        || row.getCell(4) == null || row.getCell(5) == null || row.getCell(6) == null || row.getCell(7) == null) {
+                        || row.getCell(4) == null || row.getCell(5) == null || row.getCell(6) == null || row.getCell(7) == null || row.getCell(8) == null) {
                     // Omitir fila si hay campos nulos
                     continue;
                 }
@@ -65,10 +66,17 @@ public class UploadServlet extends HttpServlet {
                 long codigo = (long) row.getCell(0).getNumericCellValue();
                 String nombre = row.getCell(1).getStringCellValue();
                 int placa = (int) row.getCell(2).getNumericCellValue();
-                String descripcion = row.getCell(3).getStringCellValue();
-                long valor = (long) row.getCell(4).getNumericCellValue();
-                String nombreUsuario = row.getCell(5).getStringCellValue();
-                String nombreDependencia = row.getCell(6).getStringCellValue();
+                String centroDeCosto;
+                if(row.getCell(3).getCellType() == CellType.NUMERIC) {
+                    centroDeCosto = String.valueOf((int)row.getCell(3).getNumericCellValue());
+                } else {
+                    centroDeCosto = row.getCell(3).getStringCellValue();
+                }
+                long cedula = (long) row.getCell(4).getNumericCellValue();
+                String descripcion = row.getCell(5).getStringCellValue();
+                long valor = (long) row.getCell(6).getNumericCellValue();
+                String nombreUsuario = row.getCell(7).getStringCellValue();
+                String nombreDependencia = row.getCell(8).getStringCellValue();
 
                 // Validar códigos y placas repetidas
                 if (codigoExistente(conn, codigo) || placaExistente(conn, placa))  {
@@ -76,11 +84,24 @@ public class UploadServlet extends HttpServlet {
                     continue;
                 }
 
+                // Obtener IDs de usuario y dependencia
                 int usuarioId = getUserId(conn, nombreUsuario); // Obtener ID del usuario
                 int dependenciaId = getDependenciaId(conn, nombreDependencia); // Obtener ID de la dependencia
 
+                // Verificar si el centro de costo corresponde a la dependencia
+                if (!centroDeCostoCorresponde(conn, dependenciaId, centroDeCosto)) {
+                    // Omitir fila si el centro de costo no corresponde a la dependencia
+                    continue;
+                }
+
+                // Verificar si la cédula corresponde al nombre de usuario
+                if (!cedulaCorresponde(conn, usuarioId, cedula)) {
+                    // Omitir fila si la cédula no corresponde al usuario
+                    continue;
+                }
+
                 // Insertar datos en la base de datos
-                String sql = "INSERT INTO MA_Bienes (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, fecha) VALUES (?, ?, ?, ?, ?, ?, ?, No reportado, ?)";
+                String sql = "INSERT INTO MA_Bienes (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, fecha) VALUES (?, ?, ?, ?, ?, ?, ?, 'No reportado', ?)";
                 try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                     pstmt.setLong(1, codigo);
                     pstmt.setString(2, nombre);
@@ -106,14 +127,17 @@ public class UploadServlet extends HttpServlet {
                 long codigo = Long.parseLong(record[0]);
                 String nombre = record[1];
                 int placa = Integer.parseInt(record[2]);
-                String descripcion = record[3];
-                long valor = Long.parseLong(record[4]);
-                String nombreUsuario = record[5]; // Obtener nombre del usuario
-                String nombreDependencia = record[6]; // Obtener nombre de la dependencia
+                String centroDeCosto = record[3]; // Obtener centro de costo
+                long cedula = Long.parseLong(record[4]); // Obtener cédula
+                String descripcion = record[5];
+                long valor = Long.parseLong(record[6]);
+                String nombreUsuario = record[7]; // Obtener nombre del usuario
+                String nombreDependencia = record[8]; // Obtener nombre de la dependencia
+
 
                 // Validar campos nulos
-                if (record.length < 8 || record[0] == null || record[1] == null || record[2] == null || record[3] == null
-                        || record[4] == null || record[5] == null || record[6] == null || record[7] == null) {
+                if (record.length < 9 || record[0] == null || record[1] == null || record[2] == null || record[3] == null
+                        || record[4] == null || record[5] == null || record[6] == null || record[7] == null || record[8] == null) {
                     // Omitir fila si hay campos nulos
                     continue;
                 }
@@ -124,11 +148,24 @@ public class UploadServlet extends HttpServlet {
                     continue;
                 }
 
+                // Obtener IDs de usuario y dependencia
                 int usuarioId = getUserId(conn, nombreUsuario); // Obtener ID del usuario
                 int dependenciaId = getDependenciaId(conn, nombreDependencia); // Obtener ID de la dependencia
 
+                // Verificar si el centro de costo corresponde a la dependencia
+                if (!centroDeCostoCorresponde(conn, dependenciaId, centroDeCosto)) {
+                    // Omitir fila si el centro de costo no corresponde a la dependencia
+                    continue;
+                }
+
+                // Verificar si la cédula corresponde al nombre de usuario
+                if (!cedulaCorresponde(conn, usuarioId, cedula)) {
+                    // Omitir fila si la cédula no corresponde al usuario
+                    continue;
+                }
+
                 // Insertar datos en la base de datos
-                String sql = "INSERT INTO MA_Bienes (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, fecha) VALUES (?, ?, ?, ?, ?, ?, ?, No reportado, ?)";
+                String sql = "INSERT INTO MA_Bienes (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, fecha) VALUES (?, ?, ?, ?, ?, ?, ?, 'No reportado', ?)";
                 try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                     pstmt.setLong(1, codigo);
                     pstmt.setString(2, nombre);
@@ -137,9 +174,32 @@ public class UploadServlet extends HttpServlet {
                     pstmt.setLong(5, valor);
                     pstmt.setInt(6, usuarioId);
                     pstmt.setInt(7, dependenciaId);
+                    pstmt.setTimestamp(8, new Timestamp(System.currentTimeMillis())); // Fecha actual
 
                     pstmt.executeUpdate();
                 }
+            }
+        }
+    }
+
+    private boolean centroDeCostoCorresponde(Connection conn, int dependenciaId, String centroDeCosto) throws SQLException {
+        String sql = "SELECT centroDeCosto FROM MA_Dependencias WHERE PK_idDependencia = ? AND centroDeCosto = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, dependenciaId);
+            pstmt.setString(2, centroDeCosto);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                return rs.next(); // Si existe un resultado, el centro de costo corresponde a la dependencia
+            }
+        }
+    }
+
+    private boolean cedulaCorresponde(Connection conn, int usuarioId, long cedula) throws SQLException {
+        String sql = "SELECT cedula FROM MA_Usuarios WHERE PK_idUsuario = ? AND cedula = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, usuarioId);
+            pstmt.setLong(2, cedula);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                return rs.next(); // Si existe un resultado, la cédula corresponde al usuario
             }
         }
     }
