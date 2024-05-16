@@ -26,6 +26,7 @@ models\Observation.class
 controllers\GenerateReportPDFServlet.class
 controllers\ListAdministrators.class
 controllers\UploadServlet.class
+controllers\GenerateReportExcelt.class
 controllers\DeleteObject.class
 models\Dependency.class
 controllers\LogoutServlet.class

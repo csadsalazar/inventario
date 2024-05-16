@@ -16,7 +16,7 @@
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end py-3">
        <a class="btn btn-primary" type="button" href="addobservation.jsp">Agregar Observacion</a>
-       <a onclick="reportefinal()" class="btn btn-primary" type="button">Finalizar Reporte</a>
+       <a onclick="reportfinish()" class="btn btn-primary" type="button">Finalizar Reporte</a>
     </div>
     <br>
     <div class="table-responsive">

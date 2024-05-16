@@ -47,15 +47,15 @@
                 </div>
               </div>
             </div>
-            <form action="#!">
+            <form action="Login" method="POST">
               <div class="row gy-3 gy-md-4 overflow-hidden">
                 <div class="col-12">
-                  <label for="email" class="form-label">Dirección de correo electronico <span class="text-danger">*</span></label>
-                  <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
+                  <label for="usuario" class="form-label">Dirección de correo electronico <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="usuario" id="usuario" placeholder="name@example.com" required>
                 </div>
                 <div class="col-12">
-                  <label for="password" class="form-label">Contraseña <span class="text-danger">*</span></label>
-                  <input type="password" class="form-control" name="password" id="password" value="" required>
+                  <label for="contrasena" class="form-label">Contraseña <span class="text-danger">*</span></label>
+                  <input type="password" class="form-control" name="contrasena" id="contrasena" required>
                 </div>
                 <div class="col-12">
                   <div class="form-check">

@@ -43,33 +43,28 @@ function reportObject(codigo) {
 
 
 function reportfinish() {
-    Swal.fire({
-        title: 'Esta a punto de dar por finalizado el reporte de sus bienes',
-        text: '¿Desea continuar?',
-        icon: 'info',
-        showCancelButton: true,
-        confirmButtonColor: '#139EC8',
-        cancelButtonColor: '#A8A8A8',
-        confirmButtonText: 'Aceptar',
-        cancelButtonText: 'Cancelar',
-        customClass: {
-            popup: 'custom-modal'
+    // Hacer una solicitud GET al servlet que genera el archivo Excel
+    fetch('GenerateReportExcelServlet', {
+        method: 'GET'
+    })
+    .then(response => {
+        if (response.ok) {
+            // Si la respuesta es exitosa, descarga el archivo Excel
+            response.blob().then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'reporte_bienes_usuario.xls';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+            });
+        } else {
+            // Manejar el caso en el que la respuesta no sea exitosa
+            console.error('Error al generar el archivo Excel');
         }
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire({
-                title: '¡Éxito!',
-                text: 'Se ha cargado de forma exitosa el reporte de sus bienes.',
-                icon: 'success',
-                confirmButtonColor: '#139EC8'
-            })
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-            Swal.fire({
-                title: 'Cancelado',
-                text: 'Se ha cancelado el reporte de sus bienes.',
-                icon: 'error',
-                confirmButtonColor: '#139EC8'
-            })
-        }
+    })
+    .catch(error => {
+        console.error('Error en la solicitud:', error);
     });
 }
