@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=utf-8" %>          
             <li class="nav-item">
               <a class="nav-link text-white" href="homea.jsp">Inicio</a>
             </li>

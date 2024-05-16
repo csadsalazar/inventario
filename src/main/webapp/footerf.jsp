@@ -1,10 +1,11 @@
+ <%@ page contentType="text/html; charset=utf-8" %>
  <footer>
     <div class="mt-5 pt-5 pb-5 footer">
       <div class="container">
-        <div class="row">
+        <div class="row" style="font-size: 0.8rem;">
           <div class="col-lg-1"></div>
-          <div class="col-lg-5 col-xs-12 about-company">
-            <img src="resources/img/Logo_Invima-Te-Acompana_Blanco 1.png" alt="" style="margin-block-end: 20px;">
+          <div class="col-lg-5 col-xs-12 text-xs">
+            <img src="resources/img/Logo_Invima-Te-Acompana_Blanco 1.png" alt="Logo_Invima-Te-Acompana_Blanco 1" style="margin-block-end: 20px;">
             <p class="text-white">Sede principal: Carrera 10 #64 - 28 Bogotá, Colombia</p>
             <p class="text-white">Teléfono conmutador: (+57)(601) 7422121 </p>
             <p class="text-white">Contáctenos PQRSD</p>
@@ -12,28 +13,55 @@
             <p class="text-white">Línea anticorrupción: (+57)(601) 7458593</p>
             <p class="text-white">Notificaciones Judiciales: notificaciones_judiciales@invima.gov.co</p>
             <p class="text-white">Transparencia Invima: soytransparente@invima.gov.co</p>
-            <p><a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a href="#"><i class="fa fa-linkedin-square"></i></a></p>
+            <p style="filter: invert(100%);"><img src="resources/img/icons/instagram.svg" class="mx-2"><img src="resources/img/icons/youtube.svg" class="mx-2"><img src="resources/img/icons/twitter.svg" class="mx-2"><img src="resources/img/icons/facebook.svg" class="mx-2"></p>
           </div>
-          <div class="col-lg-3 col-xs-12 links">
-            <h4 class="mt-lg-0 mt-sm-3">Enlaces de interes</h4>
+          <div class="col-lg-3 col-xs-12 links text-decoration-none fw-bold text-sm">
+            <h4 class="mt-lg-0 mt-sm-3 fs-3 mb-4">Enlaces de interes</h4>
               <ul class="m-0 p-0">
-                <li>- <a href="#">Enlaces instituto</a></li>
-                <li>- <a href="#">Qué hacemos</a></li>
-                <li>- <a href="#">Atención al ciudadano</a></li>
-                <li>- <a href="#">Tramites y servicios</a></li>
+                <li class="mb-3"> 
+                <img src="resources/img/icons/chevron-right.svg">
+                <a class="text-decoration-none" href="#">Enlaces instituto</a>   
+                </li>
+                <li class=" mb-3"> 
+                <img src="resources/img/icons/chevron-right.svg">
+                <a class="text-decoration-none" href="#">Qué hacemos</a>
+                </li>                
+                <li class=" mb-3"> 
+                <img src="resources/img/icons/chevron-right.svg">
+                <a class="text-decoration-none" href="#">Atención al ciudadano</a>
+                </li>                
+                <li class=" mb-3"> 
+                <img src="resources/img/icons/chevron-right.svg">
+                <a class="text-decoration-none" href="#">Tramites y servicios</a>
+                </li>
               </ul>
           </div>
-          <div class="col-lg-3 col-xs-12 links">
+          <div class="col-lg-3 col-xs-12 links text-decoration-none fw-bold text-sm">
               <ul class="m-0 p-0">
-                <li>> <a href="#">Normatividad</a></li>
-                <li>> <a href="#">Paticipa</a></li>
-                <li>><a href="#">Sala de prensa</a></li>
-                <li>> <a href="#">Sed faucibus</a></li>
-                <li>> <a href="#">Transparencia</a></li>
+                <li class=" mb-3"> 
+                <img src="resources/img/icons/chevron-right.svg">
+                <a class="text-decoration-none " href="#">Normatividad</a>
+                </li>
+                <li class=" mb-3"> 
+                <img src="resources/img/icons/chevron-right.svg">
+                <a class="text-decoration-none" href="#">Paticipa</a>
+                </li>                
+                <li class=" mb-3"> 
+                <img src="resources/img/icons/chevron-right.svg">
+                <a class="text-decoration-none" href="#">Sala de prensa</a>
+                </li>                
+                <li class=" mb-3"> 
+                <img src="resources/img/icons/chevron-right.svg">
+                <a class="text-decoration-none" href="#">Sed faucibus</a>
+                </li>
+                <li class=" mb-3"> 
+                <img src="resources/img/icons/chevron-right.svg">
+                <a class="text-decoration-none" href="#">Transparencia</a>
+                </li>
               </ul>
           </div>
         </div>
-        <div class="row mt-5">
+        <div class="row">
           <div class="col copyright">
             <p class=""></p>
             <nav class="d-flex justify-content-around align-items-center">

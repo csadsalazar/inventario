@@ -1,18 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page contentType="text/html; charset=utf-8" %>
 <%@ include file="headerf.jsp"%>
 <%@ page import="java.util.List" %>
- <div class="container">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="homef.jsp">Inicio</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Agregar Observación</li>
-      </ol>
+ <div class="container mt-3">
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="homea.jsp">Inicio</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Agregar observación</li>
+        </ol>
     </nav>
     </div>
      <main class="container">
       <div class="text-center">
       <h1>Inventario personalizado - INVIMA</h1>
-          <h2>Agregar Observación</h1>
+          <h2>Agregar observación</h1>
       </div>
     <form class="row g-3 needs-validation py-3" method="POST" action="AddObservation">
       <div class="col-md-4">

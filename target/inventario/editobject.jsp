@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="headera.jsp" %>
 <%@ include file="nav.jsp" %>
@@ -24,19 +24,19 @@ if (codigoParameter != null && !codigoParameter.isEmpty()) {
 // Obtener la información del bien utilizando el controlador ListarBienPorCodigo
 Object bien = ListObjectById.getObjectById(codigoBien);
 %>
-  <div class="container">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="homea.jsp">Home</a></li>
-        <li class="breadcrumb-item"><a href="managementobjects.jsp">Almacen</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Editar bien</li>
-      </ol>
+  <div class="container mt-3">
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="homea.jsp">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="managementobjects.jsp">Almacen</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Editar bien</li>
+        </ol>
     </nav>
     </div>
      <main class="container">
       <div class="text-center">
       <h1>Inventario personalizado - INVIMA</h1>
-          <h2>Agregar bien</h1>
+          <h2>Editar bien</h1>
       </div>
         <c:if test="${not empty error}">
             <p style="color: red;">${error}</p>

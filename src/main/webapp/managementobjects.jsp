@@ -4,12 +4,12 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="models.Object" %>
 <%@ page import="controllers.ListObjects" %>
-<div class="container">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="homea.jsp">Inicio</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Almacen</li>
-      </ol>
+<div class="container mt-3">
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="homea.jsp">Inicio</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Almacen</li>
+        </ol>
     </nav>
 </div>
 <main class="container">

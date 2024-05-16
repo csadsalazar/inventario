@@ -2,12 +2,12 @@
 <%@ include file="headerf.jsp" %>
 <%@ page import="java.util.List" %>
 <%@ page import="models.Object" %>
-<div class="container">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Inicio</li>
-      </ol>
-    </nav> 
+<div class="container mt-3">
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Inicio</li>
+        </ol>
+    </nav>
 </div>
 <main class="container">
     <div class="text-center">

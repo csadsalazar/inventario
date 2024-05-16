@@ -25,13 +25,12 @@
         </div>            
         <img src="resources/img/Logo_Invima-Te-Acompana_0 1.png" alt="Logo_Invima-Te-Acompana" height="35">
     </nav>
-    <nav class="navbar navbar-expand-lg navbar-light bg" id="options">
+    <nav class="navbar navbar-expand-lg navbar-light bg mb-5" id="options">
       <div class="container">
         <img src="resources/img/invima_blanco.png" alt="Logo_Invima-Te-Acompana" height="45" >
       </div>
     </nav>
 </header>
-<!-- Login 4 - Bootstrap Brain Component -->
 <section class="p-3 p-md-4 p-xl-5">
   <div class="container">
     <div class="card border-light-subtle shadow-sm">
@@ -41,7 +40,7 @@
             <div class="row">
               <div class="col-12">
                 <div class="mb-5">
-                  <img loading="lazy" src="./assets/img/logo-img-1.webp" alt="BootstrapBrain Logo">
+                  <img loading="lazy" src="resources/img/invima-logo.jpg"  class="mb-5" alt="invima-logo" width="90" height="50">
                   <p class="fw-normal">¡Bienvenido de nuevo!</p>
                   <h4 class="fw-bold">Inicia sesión</h4>
                 </div>
@@ -67,7 +66,7 @@
                 </div>
                 <div class="col-12">
                   <div class="d-grid">
-                    <button class="btn bsb-btn-xl btn-primary" type="submit">Log in now</button>
+                    <button class="btn bsb-btn-xl btn-primary" type="submit">Iniciar sesión</button>
                   </div>
                 </div>
               </div>
@@ -75,7 +74,7 @@
           </div>
         </div>
         <div class="col-12 col-md-6">
-          <img class="img-fluid rounded-start w-100 h-100 object-fit-cover" loading="lazy" src="./assets/img/logo-img-1.webp" alt="BootstrapBrain Logo">
+          <img class="img-fluid rounded-start w-100 h-100 object-fit-cover" loading="lazy" src="resources/img/img-login.png" alt="BootstrapBrain Logo">
         </div>
       </div>
     </div>
@@ -84,7 +83,7 @@
  <footer>
     <div class="mt-5 pt-5 pb-5 footer">
       <div class="container">
-        <div class="row" class="font-size: 0.8rem;">
+        <div class="row" style="font-size: 0.8rem;">
           <div class="col-lg-1"></div>
           <div class="col-lg-5 col-xs-12 text-xs">
             <img src="resources/img/Logo_Invima-Te-Acompana_Blanco 1.png" alt="Logo_Invima-Te-Acompana_Blanco 1" style="margin-block-end: 20px;">
@@ -100,50 +99,50 @@
           <div class="col-lg-3 col-xs-12 links text-decoration-none fw-bold text-sm">
             <h4 class="mt-lg-0 mt-sm-3 fs-3 mb-4">Enlaces de interes</h4>
               <ul class="m-0 p-0">
-                <li> 
-                <img class="mb-3" src="resources/img/icons/chevron-right.svg">
-                <a style="filter: invert(100%);" class="text-decoration-none mb-4" href="#">Enlaces instituto</a>   
+                <li class="mb-3"> 
+                <img src="resources/img/icons/chevron-right.svg">
+                <a class="text-decoration-none" href="#">Enlaces instituto</a>   
                 </li>
-                <li> 
-                <img class="mb-3" src="resources/img/icons/chevron-right.svg">
-                <a style="filter: invert(100%);" class="text-decoration-none mb-4" href="#">Qué hacemos</a>
+                <li class=" mb-3"> 
+                <img src="resources/img/icons/chevron-right.svg">
+                <a class="text-decoration-none" href="#">Qué hacemos</a>
                 </li>                
-                <li> 
-                <img class="mb-3" src="resources/img/icons/chevron-right.svg">
-                <a style="filter: invert(100%);" class="text-decoration-none mb-4" href="#">Atención al ciudadano</a>
+                <li class=" mb-3"> 
+                <img src="resources/img/icons/chevron-right.svg">
+                <a class="text-decoration-none" href="#">Atención al ciudadano</a>
                 </li>                
-                <li> 
-                <img class="mb-3" src="resources/img/icons/chevron-right.svg">
-                <a style="filter: invert(100%);" class="text-decoration-none mb-4" href="#">Tramites y servicios</a>
+                <li class=" mb-3"> 
+                <img src="resources/img/icons/chevron-right.svg">
+                <a class="text-decoration-none" href="#">Tramites y servicios</a>
                 </li>
               </ul>
           </div>
           <div class="col-lg-3 col-xs-12 links text-decoration-none fw-bold text-sm">
               <ul class="m-0 p-0">
-                <li> 
-                <img class="mb-3" src="resources/img/icons/chevron-right.svg">
-                <a style="filter: invert(100%);" class="text-decoration-none mb-4" href="#">Normatividad</a>
+                <li class=" mb-3"> 
+                <img src="resources/img/icons/chevron-right.svg">
+                <a class="text-decoration-none " href="#">Normatividad</a>
                 </li>
-                <li> 
-                <img class="mb-3" src="resources/img/icons/chevron-right.svg">
-                <a style="filter: invert(100%);" class="text-decoration-none mb-4" href="#">Paticipa</a>
+                <li class=" mb-3"> 
+                <img src="resources/img/icons/chevron-right.svg">
+                <a class="text-decoration-none" href="#">Paticipa</a>
                 </li>                
-                <li> 
-                <img class="mb-3" src="resources/img/icons/chevron-right.svg">
-                <a style="filter: invert(100%);" class="text-decoration-none mb-4" href="#">Sala de prensa</a>
+                <li class=" mb-3"> 
+                <img src="resources/img/icons/chevron-right.svg">
+                <a class="text-decoration-none" href="#">Sala de prensa</a>
                 </li>                
-                <li> 
-                <img class="mb-3" src="resources/img/icons/chevron-right.svg">
-                <a style="filter: invert(100%);" class="text-decoration-none mb-4" href="#">Sed faucibus</a>
+                <li class=" mb-3"> 
+                <img src="resources/img/icons/chevron-right.svg">
+                <a class="text-decoration-none" href="#">Sed faucibus</a>
                 </li>
-                <li> 
-                <img class="mb-3" src="resources/img/icons/chevron-right.svg">
-                <a style="filter: invert(100%);" class="text-decoration-none mb-4" href="#">Transparencia</a>
+                <li class=" mb-3"> 
+                <img src="resources/img/icons/chevron-right.svg">
+                <a class="text-decoration-none" href="#">Transparencia</a>
                 </li>
               </ul>
           </div>
         </div>
-        <div class="row mt-5">
+        <div class="row">
           <div class="col copyright">
             <p class=""></p>
             <nav class="d-flex justify-content-around align-items-center">

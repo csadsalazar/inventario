@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page contentType="text/html; charset=utf-8" %>
 <%@ include file="headerf.jsp" %>
 <%@ page import="models.Object" %>
 <%@ page import="controllers.ListObjectById" %>
@@ -8,12 +8,12 @@
     // Obtener la información del bien utilizando el controlador ListarBienPorCodigo
     Object bien = ListObjectById.getObjectById(codigoBien);
 %>
-  <div class="container">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="homef.jsp">Inicio</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Detalles del bien</li>
-      </ol>
+  <div class="container mt-3">
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="homef.jsp">Inicio</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Detalles del bien</li>
+        </ol>
     </nav>
     </div>
       <main class="container">

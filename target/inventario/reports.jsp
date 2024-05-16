@@ -1,13 +1,13 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ include file="headera.jsp" %>
 <%@ include file="nav.jsp" %>
-    <div class="container">
-        <nav aria-label="breadcrumb">
+    <div class="container mt-3">
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="homea.jsp">Inicio</a></li>
             <li class="breadcrumb-item active" aria-current="page">Reportes y alertas</li>
         </ol>
-        </nav>
+    </nav>
     </div>
     <main class="container">
     <div class="text-center">

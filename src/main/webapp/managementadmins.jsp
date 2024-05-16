@@ -1,15 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page contentType="text/html; charset=utf-8" %>
 <%@ include file="headera.jsp" %>
 <%@ include file="nav.jsp" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="models.Admin" %>
 <%@ page import="controllers.ListAdministrators" %>
-<div class="container">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="homea.jsp">Inicio</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Administradores</li>
-      </ol>
+<div class="container mt-3">
+      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="homea.jsp">Inicio</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Administradores</li>
+        </ol>
     </nav>
 </div>
 <main class="container">
