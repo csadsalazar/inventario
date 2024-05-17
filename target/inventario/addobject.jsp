@@ -73,4 +73,4 @@
       </div>
     </form>
   </main>
- <%@ include file="footera.jsp" %>
+ <%@ include file="footer.jsp" %>

@@ -32,10 +32,11 @@
         <tr>
             <th scope="col">Codigo</th>
             <th scope="col">Placa</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Funcionario</th>
-            <th scope="col">Dependencia</th>
-            <th scope="col">Fecha Creacion</th>
+            <th class="campo" scope="col">Nombre</th>
+            <th class="campo" scope="col">Funcionario</th>
+            <th class="campo" scope="col">Dependencia</th>
+            <th class="campo" scope="col">Estado</th>
+            <th class="campo" scope="col">Fecha Creacion</th>
             <th scope="col">Acciones</th>
         </tr>
         </thead>
@@ -47,10 +48,11 @@
         <tr>
             <td><%= bien.getCodigo() %></td>
             <td><%= bien.getPlaca() %></td>
-            <td><%= bien.getNombre() %></td>
-            <td><%= bien.getUsuario().getUsuario() %></td>
-            <td><%= bien.getUsuario().getDependencia() %></td>
-            <td><%= bien.getFecha() %></td>
+            <td class="campo"><%= bien.getNombre() %></td>
+            <td class="campo"><%= bien.getUsuario().getUsuario() %></td>
+            <td class="campo"><%= bien.getUsuario().getDependencia() %></td>
+            <td class="campo"><%= bien.getEstado() %></td>
+            <td class="campo"><%= bien.getFecha() %></td>
             
             <td>  
                 <div class="acciones">
@@ -72,4 +74,4 @@
         </tbody>
         </table> 
 </main>
-<%@ include file="footera.jsp" %>
+<%@ include file="footer.jsp" %>

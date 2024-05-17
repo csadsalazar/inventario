@@ -94,8 +94,7 @@ Object bien = ListObjectById.getObjectById(codigoBien);
       </div>
       <div class="col">
           <button class="btn btn-primary" value="Actualizar">Guardar</button>
-          <a class="btn btn-secondary" href="managementobjects.jsp">Cancelar</a>
       </div>
     </form>
   </main>
-<%@ include file="footera.jsp" %>
+<%@ include file="footer.jsp" %>

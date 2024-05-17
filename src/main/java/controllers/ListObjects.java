@@ -23,6 +23,7 @@ public class ListObjects {
                 bien.setCodigo(rs.getLong("PK_Codigo"));
                 bien.setPlaca(rs.getInt("placa"));
                 bien.setNombre(rs.getString("nombre"));
+                bien.setEstado(rs.getString("estado"));
                 bien.setFecha(rs.getDate("fecha"));
                 User usuario = new User();
                 usuario.setUsuario(rs.getString("usuario"));

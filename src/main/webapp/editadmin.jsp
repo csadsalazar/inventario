@@ -42,8 +42,7 @@
             </div>
             <div class="col-md-3">
             <button class="btn btn-primary">Guardar</button>
-            <button class="btn btn-secondary" type="submit">Cancelar</button>
             </div>
         </form>
 </main>
-<%@ include file="footera.jsp" %> 
+<%@ include file="footer.jsp" %> 

@@ -20,8 +20,8 @@
           <input type="text" class="form-control" name="asunto" id="asunto" required>
       </div>
       <div class="col-md-4">
-          <label for="information" class="form-label">Información</label>
-          <textarea class="form-control" name="information" id="information" rows="3"></textarea>
+          <label for="informacion" class="form-label">Información</label>
+          <textarea class="form-control" name="informacion" id="informacion" rows="3"></textarea>
       </div>
       <div>
       </div>
@@ -31,4 +31,4 @@
       </div>
     </form>
   </main>
-  <%@ include file="footerf.jsp"%>
+  <%@ include file="footer.jsp"%>

@@ -44,3 +44,10 @@
    color: linear-gradient(90deg, #139EC8 0%, #01599A 100%); 
    border-color: linear-gradient(90deg, #139EC8 0%, #01599A 100%);
   }
+
+/* Ocultar fila en dispositivos pequeños */
+@media (max-width: 535px) {
+    .campo {
+        display: none !important;
+    }
+}

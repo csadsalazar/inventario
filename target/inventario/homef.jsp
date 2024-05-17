@@ -25,7 +25,7 @@
                 <tr>
                     <th scope="col">Nombre</th>
                     <th scope="col">Placa</th>
-                    <th scope="col">Codigo</th>
+                    <th class="campo" scope="col">Codigo</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -41,7 +41,7 @@
                             <tr data-codigo="<%= unBien.getCodigo() %>">
                             <td><%= unBien.getNombre() %></td>
                             <td><%= unBien.getPlaca() %></td>
-                            <td><%= unBien.getCodigo() %></td>
+                            <td class="campo"><%= unBien.getCodigo() %></td>
                             <td>  
                                 <div class="acciones">
                                     <a id="cargarImagenes" data-codigo="<%= unBien.getCodigo() %>">
@@ -65,4 +65,4 @@
         </table> 
     </div>
 </main>
-<%@ include file="footerf.jsp" %>
+<%@ include file="footer.jsp" %>

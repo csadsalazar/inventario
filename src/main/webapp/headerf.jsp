@@ -37,7 +37,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
+          <ul class="navbar-nav ms-auto mt-2 text-center">
             <li class="nav-item">
               <a class="nav-link text-white" href="homef.jsp">Inicio</a>
             </li>

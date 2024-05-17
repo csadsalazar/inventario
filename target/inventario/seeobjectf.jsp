@@ -60,4 +60,4 @@
         </form>
     </form>
   </main>
-<%@ include file="footerf.jsp" %>
+<%@ include file="footer.jsp" %>

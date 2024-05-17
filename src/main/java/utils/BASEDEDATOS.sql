@@ -8,6 +8,7 @@
 												PK_idUsuario INT AUTO_INCREMENT PRIMARY KEY,
 												nombre VARCHAR(50),
 												cedula BIGINT,
+                                                -- correo VARCHAR(30),
 												usuario VARCHAR(15),
 												contrasena VARCHAR(20),
 												dependencia INT NOT NULL,
@@ -90,11 +91,12 @@
 											b.PK_Codigo,
 											b.placa,
 											b.nombre,
-											u.usuario,
-											d.nombreDependencia,
-											u.dependencia,
 											b.valor, 
-											b.fecha
+											b.fecha,
+											b.estado,
+											u.usuario,
+											u.dependencia,
+   											d.nombreDependencia								
 										FROM MA_Bienes b 
 										INNER JOIN MA_Dependencias d ON b.FK_Dependencia = d.PK_idDependencia
 										INNER JOIN MA_Usuarios u ON b.FK_Usuario = u.PK_idUsuario;
@@ -132,6 +134,16 @@
 										('IDANELA RIVERA CARREÑO', 'usuario2', 53101254, 'contrasena2', 2, 'Cargo2', 'Contrato2', 'INVIMA'),
 										('JUAN FERNANDO JUEZ', 'usuario3', 1023866725, 'contrasena3', 2, 'Cargo3', 'Contrato3', 'INVIMA'),
 										('KELLY JOHANA OSPINA VELASQUEZ', 'usuario4', 1014186790, 'contrasena4', 1, 'Cargo4', 'Contrato4', 'INVIMA');
+                                        
+									/*  
+                                   -- INSERCIONES 
+									INSERT INTO MA_Usuarios (nombre, usuario, cedula, correo, contrasena, dependencia, cargo, contrato, sede)
+									VALUES ('GLORIA CECILIA PEÑUELA SANCHEZ', 'gpeñuelas', 1032358047, 'gpeñuelas@invima.gov.co', 'contrasena1', 1, 'Cargo1', 'Contrato1', 'INVIMA'),
+										('IDANELA RIVERA CARREÑO', 'iriverac', 53101254, 'iriverac@invima.gov.co', 'contrasena2', 2, 'Cargo2', 'Contrato2', 'INVIMA'),
+										('JUAN FERNANDO JUEZ', 'jfernandoj', 1023866725, 'jfernandoj@invima.gov.co', 'contrasena3', 2, 'Cargo3', 'Contrato3', 'INVIMA'),
+										('KELLY JOHANA OSPINA VELASQUEZ', 'kospinav', 1014186790, 'kospinav@invima.gov.co', 'contrasena4', 1, 'Cargo4', 'Contrato4', 'INVIMA');
+									*/  
+     
 
 									INSERT INTO MA_Administradores (usuario, estado)
 									VALUES ('usuario1', 'Activo'),      
@@ -140,22 +152,22 @@
 											
 									INSERT INTO MA_Dependencias (centroDeCosto, nombreDependencia) VALUES
 									("600", 'DIRECCIÓN DE MEDICAMENTOS Y PRODUCTOS BIOLÓGICOS'),
-									("400", 'DIRECCIÓN DE ALIMENTOS Y BEBIDAS (INCLUYE LOS 6 GRUPOS)'),
-									("700", 'DIRECCIÓN DE OPERACIONES SANITARIAS (INCLUYE TODOS LOS GRUPOS UBICADOS EN EL PISO 10)'),
-									("500", 'DIRECCION DE DISPOSITIVOS MEDICOS Y OTRAS TECNOLOGIAS (INCLUYE LOS 4 GRUPOS)'),
-									("160", 'ATENCION AL CIUDADANO PISO (INCLUYE LOS 2 GRUPOS)'),
+									("400", 'DIRECCIÓN DE ALIMENTOS Y BEBIDAS'),
+									("700", 'DIRECCIÓN DE OPERACIONES SANITARIAS'),
+									("500", 'DIRECCION DE DISPOSITIVOS MEDICOS Y OTRAS TECNOLOGIAS'),
+									("160", 'ATENCION AL CIUDADANO PISO'),
 									("300", 'DIRECCIÓN DE COSMETICOS, ASEO, PLAGUICIDAS Y PRODUCTOS DE HIGIENE DOMESTICA'),
-									("170", 'OFICINA DE ASUNTOS INTERNACIONALES (INCLUYE LOS 2 GRUPOS)'),
-									("800", 'DIRECCIÓN DE RESPONSABILIDAD SANITARIA (INCLUYE LOS 6 GRUPOS)'),
+									("170", 'OFICINA DE ASUNTOS INTERNACIONALES'),
+									("800", 'DIRECCIÓN DE RESPONSABILIDAD SANITARIA'),
 									("100", 'DIRECCION GENERAL'),
 									("200", 'SECRETARIA GENERAL'),
 									("130", 'OFICINA DE CONTROL INTERNO'),
 									("203", 'GRUPO DE TESORERIA'),
 									("211", 'GRUPO DE SOPORTE TECNOLOGICO'),
-									("150", 'OFICINA DE TECNOLOGIAS DE LA INFORMACIÓN (INCLUYE LOS 2 GRUPOS)'),
-									("208", 'GRUPO DE GESTION ADMINISTRATIVA (INCLUYE CAFETERIAS, GUARDAS Y ZONAS COMUNES)'),
-									("120", 'OFICINA ASESORA JURÍDICA (INCLUYE LOS 5 GRUPOS)'),
-									("110", 'OFICINA ASESORA DE PLANEACION (INCLUYE LOS 2 GRUPOS Y EL ÁREA DE RIESGOS)'),
+									("150", 'OFICINA DE TECNOLOGIAS DE LA INFORMACIÓN'),
+									("208", 'GRUPO DE GESTION ADMINISTRATIVA'),
+									("120", 'OFICINA ASESORA JURÍDICA'),
+									("110", 'OFICINA ASESORA DE PLANEACION'),
 									("202", 'GRUPO DE GESTIÓN CONTRACTUAL'),
 									("201", 'GRUPO FINANCIERO Y PRESUPUESTAL'),
 									("161", 'GRUPO DE COMUNICACIONES'),

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-<footer>
+ <footer>
     <div class="mt-5 pt-5 pb-5 footer">
       <div class="container">
         <div class="row" style="font-size: 0.8rem;">
@@ -20,19 +20,19 @@
               <ul class="m-0 p-0">
                 <li class="mb-3"> 
                 <img src="resources/img/icons/chevron-right.svg">
-                <a class="text-decoration-none" href="#">Enlaces instituto</a>   
+                <a class="text-decoration-none fs-6" href="#">EL instituto</a>   
                 </li>
                 <li class=" mb-3"> 
                 <img src="resources/img/icons/chevron-right.svg">
-                <a class="text-decoration-none" href="#">Qué hacemos</a>
+                <a class="text-decoration-none fs-6" href="#">Qué hacemos</a>
                 </li>                
                 <li class=" mb-3"> 
                 <img src="resources/img/icons/chevron-right.svg">
-                <a class="text-decoration-none" href="#">Atención al ciudadano</a>
+                <a class="text-decoration-none fs-6" href="#">Atención al ciudadano</a>
                 </li>                
                 <li class=" mb-3"> 
                 <img src="resources/img/icons/chevron-right.svg">
-                <a class="text-decoration-none" href="#">Tramites y servicios</a>
+                <a class="text-decoration-none fs-6" href="#">Tramites y servicios</a>
                 </li>
               </ul>
           </div>
@@ -40,23 +40,19 @@
               <ul class="m-0 p-0">
                 <li class=" mb-3"> 
                 <img src="resources/img/icons/chevron-right.svg">
-                <a class="text-decoration-none " href="#">Normatividad</a>
+                <a class="text-decoration-none fs-6" href="#">Normatividad</a>
                 </li>
                 <li class=" mb-3"> 
                 <img src="resources/img/icons/chevron-right.svg">
-                <a class="text-decoration-none" href="#">Paticipa</a>
+                <a class="text-decoration-none fs-6" href="#">PaRticipa</a>
                 </li>                
                 <li class=" mb-3"> 
                 <img src="resources/img/icons/chevron-right.svg">
-                <a class="text-decoration-none" href="#">Sala de prensa</a>
+                <a class="text-decoration-none fs-6" href="#">Sala de prensa</a>
                 </li>                
                 <li class=" mb-3"> 
                 <img src="resources/img/icons/chevron-right.svg">
-                <a class="text-decoration-none" href="#">Sed faucibus</a>
-                </li>
-                <li class=" mb-3"> 
-                <img src="resources/img/icons/chevron-right.svg">
-                <a class="text-decoration-none" href="#">Transparencia</a>
+                <a class="text-decoration-none fs-6" href="#">Transparencia</a>
                 </li>
               </ul>
           </div>
@@ -76,3 +72,9 @@
       </div>
       </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="resources/js/administrador.js"></script>
+    <script src="resources/js/librerias.js"></script> 
+    <script src="resources/js/funcionario.js"></script> 
+    <script src="resources/js/imagen.js"></script> 
+  </body>
+</html>

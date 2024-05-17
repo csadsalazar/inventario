@@ -72,7 +72,7 @@ function loadDependencies() {
 
             // Agregar opción "No aplica"
             var optionNoAplica = document.createElement("option");
-            optionNoAplica.text = "No aplica";
+            optionNoAplica.text = "No aplica";   
             optionNoAplica.value = "no_aplica";
             usuarioSelect.add(optionNoAplica);
 
@@ -115,24 +115,7 @@ function loadDependencies() {
                         a.click();
                         window.URL.revokeObjectURL(url);
 
-                        // Una vez descargado el Excel, iniciar la descarga del PDF
-                        fetch('GenerateReportPDFServlet' + '?tipo=' + tipo + '&dependencia=' + dependencia + '&usuario=' + usuario)
-                            .then(response => {
-                                if (response.ok) {
-                                    response.blob().then(blob => {
-                                        var url = window.URL.createObjectURL(blob);
-                                        var a = document.createElement('a');
-                                        a.href = url;
-                                        a.download = 'reporte.pdf';
-                                        document.body.appendChild(a);
-                                        a.click();
-                                        window.URL.revokeObjectURL(url);
-                                    });
-                                } else {
-                                    console.error('Error al generar el reporte PDF');
-                                }
-                            })
-                            .catch(error => console.error('Error al generar el reporte PDF:', error));
+      
                     });
                 } else {
                     console.error('Error al generar el reporte Excel');
@@ -147,4 +130,4 @@ function loadDependencies() {
         loadUsers();
     };
 </script>
-<%@ include file="footera.jsp" %>
+<%@ include file="footer.jsp" %>

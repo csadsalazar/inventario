@@ -43,4 +43,4 @@
         </tbody>
         </table> 
 </main>
-<%@ include file="footera.jsp" %>
+<%@ include file="footer.jsp" %>

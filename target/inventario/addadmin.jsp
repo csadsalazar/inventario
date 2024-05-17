@@ -31,8 +31,7 @@
         </div>
         <div class="col-md-4">
         <button class="btn btn-primary">Enviar</button>
-        <a class="btn btn-secondary" type="submit" href="managementadmins.jsp">Cancelar</a>
         </div>
         </form>
     </main>
- <%@ include file="footera.jsp" %>
+ <%@ include file="footer.jsp" %>
