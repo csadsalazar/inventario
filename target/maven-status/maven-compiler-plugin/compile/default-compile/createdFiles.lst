@@ -28,6 +28,7 @@ controllers\GenerateReportPDFServlet.class
 controllers\ListAdministrators.class
 controllers\UploadServlet.class
 controllers\DeleteObject.class
+controllers\EnviarCorreoServlet.class
 models\Dependency.class
 controllers\LogoutServlet.class
 controllers\ReporteFinal.class
