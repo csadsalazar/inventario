@@ -33,7 +33,7 @@ public class DeleteObject extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
     }
 
-    private boolean deleteObject(String codigo) throws ClassNotFoundException {
+    boolean deleteObject(String codigo) throws ClassNotFoundException {
         Connection conn = null;
         PreparedStatement stmt = null;
         try {

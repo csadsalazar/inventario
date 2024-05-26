@@ -36,7 +36,7 @@
                 if (bienesUsuario != null) {
                     for (Object unBien : bienesUsuario) {
                         // Verificar si el estado del bien es no reportado
-                        if (unBien.getEstado().equals("No reportado")) {
+                        if (unBien.getEstado().equals("No reportado") || unBien.getEstado().equals("En espera") ) {
                 %>
                             <tr data-codigo="<%= unBien.getCodigo() %>">
                             <td><%= unBien.getNombre() %></td>

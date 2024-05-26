@@ -22,6 +22,7 @@ controllers\GraphicOfObjects.class
 controllers\ListUsers.class
 models\Admin.class
 controllers\EditAdmin.class
+controllers\EditObjects.class
 controllers\GenerateReportExcelServlet.class
 models\Observation.class
 controllers\GenerateReportPDFServlet.class
@@ -30,6 +31,7 @@ controllers\UploadServlet.class
 controllers\DeleteObject.class
 controllers\EnviarCorreoServlet.class
 models\Dependency.class
+controllers\DeleteObjectsServlet.class
 controllers\LogoutServlet.class
 controllers\ReporteFinal.class
 controllers\AddObservation.class

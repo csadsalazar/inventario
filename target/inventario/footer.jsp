@@ -44,7 +44,7 @@
                 </li>
                 <li class=" mb-3"> 
                 <img src="resources/img/icons/chevron-right.svg">
-                <a class="text-decoration-none fs-6" href="#">PaRticipa</a>
+                <a class="text-decoration-none fs-6" href="#">Participa</a>
                 </li>                
                 <li class=" mb-3"> 
                 <img src="resources/img/icons/chevron-right.svg">
