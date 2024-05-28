@@ -32,21 +32,23 @@ public class AddObservation extends HttpServlet {
             }
         }
 
-        String asunto = request.getParameter("asunto");
         String informacion = request.getParameter("informacion");
-
+        String codigoBien = request.getParameter("codigoBien");
+        String placaBien = request.getParameter("placaBien");
+        
         try {
             Connection conn = ConnectionBD.getConnection();
-            String sql = "INSERT INTO PA_BienesPorUsuario (FK_Usuario, FK_Bien, asunto, informacion, fechaObservacion) VALUES (?, null, ?, ?, ?)";
+            String sql = "INSERT INTO PA_BienesPorUsuario (FK_Usuario, FK_Bien, asunto, informacion, fechaObservacion) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setObject(1, idUsuario); // Utilizar setObject para permitir valores nulos
-            statement.setString(2, asunto);
-            statement.setString(3, informacion);
-            statement.setTimestamp(4, new Timestamp(System.currentTimeMillis())); // Fecha actual
+            statement.setString(2, codigoBien); // Usar el código del bien como FK_Bien
+            statement.setString(3, placaBien); // Utilizar la placa como asunto
+            statement.setString(4, informacion);
+            statement.setTimestamp(5, new Timestamp(System.currentTimeMillis())); // Fecha actual
             statement.executeUpdate();
             System.out.println("Se ha insertado con éxito la observación");
             response.sendRedirect("homef.jsp");
-
+        
         } catch (SQLException e) {
             e.printStackTrace();
             request.setAttribute("error", "Error al agregar la observación: " + e.getMessage());
@@ -54,5 +56,6 @@ public class AddObservation extends HttpServlet {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        
     }
 }

@@ -30,6 +30,12 @@ git commit -m "Actualizacion (fecha)"
 git push origin main
 
 
+
+
+
+
+
+
 *Si se daña una tabla en mysql*
 REPAIR TABLE mysql.nombretabla;
 
@@ -107,3 +113,69 @@ select * from eventos where cdgtiptramite = 39 and cdg_paso = 176 and fchfinal =
                                 }
                             })
     .catch(error => console.error('Error al generar el reporte PDF:', error));
+
+
+
+    import models.Observation;
+import models.User;
+import utils.ConnectionBD;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+public class ListObservations {
+    public static ArrayList<Observation> getObservations() throws ClassNotFoundException {
+        ArrayList<Observation> observaciones = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            conn = ConnectionBD.getConnection();
+            String query = "SELECT bu.*, u.dependencia " +
+                           "FROM gestion_inventario.pa_bienesporusuario bu " +
+                           "INNER JOIN gestion_inventario.ma_usuarios u ON bu.fk_usuario = u.pk_idusuario";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                Observation observacion = new Observation();
+                observacion.setAsunto(rs.getString("asunto"));
+                observacion.setInformacion(rs.getString("informacion"));
+                User usuario = new User();
+                usuario.setUsuario(rs.getString("fk_usuario")); // Ajusta el nombre de la columna según la tabla ma_usuarios
+                usuario.setDependencia(rs.getString("dependencia"));
+                observacion.setUsuario(usuario);
+                observaciones.add(observacion);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return observaciones;
+    }
+}

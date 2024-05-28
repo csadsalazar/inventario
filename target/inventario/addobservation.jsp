@@ -14,7 +14,7 @@
       <h1>Inventario personalizado - INVIMA</h1>
           <h2>Agregar observación</h1>
       </div>
-    <form class="row g-3 needs-validation py-3" method="POST" action="AddObservation">
+    <form class="row g-3 needs-validation py-3" method="POST" action="AddObservations">
       <div class="col-md-4">
           <label for="asunto" class="form-label">Asunto</label>
           <input type="text" class="form-control" name="asunto" id="asunto" required>
@@ -27,7 +27,6 @@
       </div>
       <div class="col">
           <button class="btn btn-primary">Enviar</button>
-          <a class="btn btn-secondary" href="homef.jsp">Cancelar</a>
       </div>
     </form>
   </main>

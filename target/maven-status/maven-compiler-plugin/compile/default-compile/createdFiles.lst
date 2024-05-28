@@ -31,6 +31,7 @@ controllers\UploadServlet.class
 controllers\DeleteObject.class
 controllers\EnviarCorreoServlet.class
 models\Dependency.class
+controllers\AddObservations.class
 controllers\DeleteObjectsServlet.class
 controllers\LogoutServlet.class
 controllers\ReporteFinal.class

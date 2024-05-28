@@ -46,6 +46,7 @@
           <textarea name="dependencia" id="dependencia" class="form-control" readonly><%= (bien != null && bien.getDependencia() != null) ? bien.getDependencia().getnombreDependencia() : "" %></textarea>
       </div>
         <form action="Observacion" method="POST"> <!-- Utiliza el servlet Observacion para procesar la observación -->
+            <input type="hidden" name="placaBien" value="<%= (bien != null) ? bien.getPlaca() : "" %>">
             <input type="hidden" name="codigoBien" value="<%= bien.getCodigo() %>"> <!-- Enviar el código del bien como parámetro oculto -->
             <input type="hidden" name="idUsuario" value="<%= (bien != null && bien.getUsuario() != null) ? bien.getUsuario().getPK_idUsuario() : "" %>"> <!-- Enviar el ID del usuario como parámetro oculto -->
             <div class="col-md-4">
