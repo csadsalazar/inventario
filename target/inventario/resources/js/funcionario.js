@@ -57,19 +57,25 @@ function reportfinish() {
         }
     }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire({
-                title: '¡Éxito!',
-                text: 'Se ha cargado de forma exitosa el reporte de sus bienes.',
-                icon: 'success',
-                confirmButtonColor: '#139EC8'
-            })
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-            Swal.fire({
-                title: 'Cancelado',
-                text: 'Se ha cancelado el reporte de sus bienes.',
-                icon: 'error',
-                confirmButtonColor: '#139EC8'
-            })
+            // Hacer una solicitud AJAX para verificar el estado de los bienes
+            $.ajax({
+                type: 'POST',
+                url: 'CheckBienesStatus',
+                success: function(response) {
+                    if (response === 'success') {
+                        // Si todos los bienes están en estado 'En espera' o 'Reportado', generar el reporte
+                        window.location.href = 'GenerateExcelReport';
+                    } else {
+                        // Si hay bienes en otros estados, mostrar un mensaje de error
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'No todos los bienes están listos para finalizar el reporte.',
+                            icon: 'error',
+                            confirmButtonColor: '#139EC8'
+                        });
+                    }
+                }
+            });
         }
     });
 }

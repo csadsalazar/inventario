@@ -1,8 +1,8 @@
 controllers\ExcelController.class
+controllers\GenerateExcelReport.class
 controllers\ListObjects.class
 models\User.class
 controllers\Login.class
-controllers\AddObservationF.class
 controllers\UserController.class
 controllers\AddObject.class
 controllers\DeleteAdmin.class
@@ -34,6 +34,7 @@ models\Dependency.class
 controllers\AddObservations.class
 controllers\DeleteObjectsServlet.class
 controllers\LogoutServlet.class
+controllers\CheckBienesStatus.class
 controllers\ReporteFinal.class
 controllers\AddObservation.class
 controllers\ListObservations.class

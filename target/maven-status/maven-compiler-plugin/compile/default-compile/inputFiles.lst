@@ -33,7 +33,8 @@ c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\GetDepen
 c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\GraphicOfObjects.java
 c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\Observation.java
 c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\ExcelController.java
-c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\AddObservationF.java
 c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\AddObservations.java
 c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\models\Observation.java
+c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\GenerateExcelReport.java
 c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\GenerateReportPDFServlet.java
+c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\CheckBienesStatus.java
