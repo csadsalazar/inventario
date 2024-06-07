@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-12">
                   <label for="contrasena" class="form-label">Contraseña <span class="text-danger">*</span></label>
-                  <input type="password" class="form-control" name="contrasena" id="contrasena" required>
+                  <input type="password" class="form-control" name="password" id="contrasena" required>
                 </div>
                 <div class="col-12">
                   <div class="form-check">

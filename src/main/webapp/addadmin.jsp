@@ -1,5 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" %>
-<%@ include file="headera.jsp" %>
+|<%@ include file="headera.jsp" %>
 <%@ include file="nav.jsp" %>
     <div class="container mt-3">
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
