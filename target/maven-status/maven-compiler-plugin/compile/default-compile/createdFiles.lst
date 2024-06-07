@@ -1,12 +1,14 @@
 controllers\ExcelController.class
 controllers\GenerateExcelReport.class
 controllers\ListObjects.class
+models\ObservationAdmin.class
 models\User.class
 controllers\Login.class
 controllers\UserController.class
 controllers\AddObject.class
 controllers\DeleteAdmin.class
 controllers\PDFController.class
+controllers\ObservationAdmin.class
 utils\ConnectionBD.class
 controllers\AddAdmin.class
 controllers\GetDependenciesServlet.class
@@ -36,5 +38,4 @@ controllers\DeleteObjectsServlet.class
 controllers\LogoutServlet.class
 controllers\CheckBienesStatus.class
 controllers\ReporteFinal.class
-controllers\AddObservation.class
 controllers\ListObservations.class

@@ -3,7 +3,6 @@ c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\ReportOb
 c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\DeleteAdmin.java
 c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\ListObjects.java
 c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\models\User.java
-c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\AddObservation.java
 c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\UploadServlet.java
 c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\AddAdmin.java
 c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\utils\ConnectionBD.java
@@ -21,7 +20,9 @@ c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\GetUsers
 c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\ListDependencies.java
 c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\DeleteObjectsServlet.java
 c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\EditAdmin.java
+c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\models\ObservationAdmin.java
 c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\ReporteFinal.java
+c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\ObservationAdmin.java
 c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\ListAdministrators.java
 c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\UserController.java
 c:\Users\csads\OneDrive\Documentos\inventario\src\main\java\controllers\EnviarCorreoServlet.java

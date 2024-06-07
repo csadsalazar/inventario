@@ -66,9 +66,22 @@
       </div>
       <div>
       </div>
-      <div class="col">
+      <form action="ObservationAdmin" method="POST"> <!-- Utiliza el servlet Observacion para procesar la observación -->
+            <input type="hidden" name="codigoBien" value="<%= bien.getCodigo() %>"> <!-- Enviar el código del bien como parámetro oculto -->
+            <input type="hidden" name="idadmin" value="<%= (bien != null && bien.getUsuario() != null) ? bien.getUsuario().getPK_idUsuario() : "" %>"> <!-- Enviar el ID del usuario como parámetro oculto -->
+            <div class="col-md-4">
+                <label  class="form-label" for="informacion">Observación:</label> <!-- Cambiar "information" a "informacion" -->
+                <textarea class="form-control" id="informacion" name="informacion" rows="5" cols="30" required></textarea>
+            </div>
+             <div>
+            </div>
+            <div class="col-md-4">
+            <button class="btn btn-primary">Enviar observación</button>
+            </div>
+        </form>
+        <div class="col">
           <a class="btn btn-primary" href="managementobjects.jsp">Aceptar</a>
-      </div>
+        </div>
     </form>
   </main>
 <%@ include file="footer.jsp" %>
