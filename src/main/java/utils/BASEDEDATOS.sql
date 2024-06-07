@@ -31,23 +31,24 @@
 												nombreDependencia VARCHAR(130) UNIQUE
 											);
 
-											-- Tabla de Bienes
-											CREATE TABLE IF NOT EXISTS MA_Bienes (
-												idBien INT AUTO_INCREMENT PRIMARY KEY,
-												PK_Codigo BIGINT UNIQUE,
-												nombre VARCHAR(50),
-												placa INT UNIQUE,
-												descripcion TEXT,
-												valor BIGINT,
-												FK_Usuario INT,
-												FK_Dependencia INT,
-												estado VARCHAR(12),
-												imagen1 VARCHAR(50),
-												imagen2 VARCHAR(50),
-												fecha DATE,
-												FOREIGN KEY (FK_Dependencia) REFERENCES MA_Dependencias(PK_idDependencia) ON UPDATE CASCADE,
-												FOREIGN KEY (FK_Usuario) REFERENCES MA_Usuarios(PK_idUsuario) ON DELETE CASCADE 
-											);
+												-- Tabla de Bienes
+												CREATE TABLE IF NOT EXISTS MA_Bienes (
+													idBien INT AUTO_INCREMENT PRIMARY KEY,
+													PK_Codigo BIGINT UNIQUE,
+													nombre VARCHAR(50),
+													placa INT UNIQUE,
+													descripcion TEXT,
+													valor BIGINT,
+													FK_Usuario INT,
+													FK_Dependencia INT,
+                                                    FK_ObAdmin INT,
+													estado VARCHAR(12),
+													imagen1 VARCHAR(50),
+													imagen2 VARCHAR(50),
+													fecha DATE,
+													FOREIGN KEY (FK_Dependencia) REFERENCES MA_Dependencias(PK_idDependencia) ON UPDATE CASCADE,
+													FOREIGN KEY (FK_Usuario) REFERENCES MA_Usuarios(PK_idUsuario) ON DELETE CASCADE 
+												);
 
 											-- Tabla de Bienes por Usuario
 											CREATE TABLE IF NOT EXISTS PA_BienesPorUsuario (
@@ -58,6 +59,17 @@
 												informacion TEXT,
 												fechaObservacion DATE NOT NULL,
 												FOREIGN KEY (FK_Usuario) REFERENCES MA_Usuarios(PK_idUsuario), 
+												FOREIGN KEY (FK_Bien) REFERENCES MA_Bienes(PK_Codigo) ON DELETE CASCADE
+											);
+                                            
+                                            			-- Tabla de Bienes por Admin
+											CREATE TABLE IF NOT EXISTS PA_ObservacionAdmin (
+												PK_idObAdmin INT AUTO_INCREMENT PRIMARY KEY,   
+												FK_Admin INT,
+                                                FK_Bien BIGINT,
+												informacion TEXT,
+												fechaObservacion DATE NOT NULL,
+												FOREIGN KEY (FK_Admin) REFERENCES MA_Administradores(PK_idAdministrador), 
 												FOREIGN KEY (FK_Bien) REFERENCES MA_Bienes(PK_Codigo) ON DELETE CASCADE
 											);
 
@@ -218,4 +230,5 @@
 									INSERT INTO PA_BienesPorUsuario (FK_Usuario, FK_Bien, asunto, informacion, fechaObservacion)
 									VALUES (1, 1, 'Asunto1', 'Información1', '2024-04-07'),
 										(2, 2, 'Asunto2', 'Información2', '2024-04-08'),
+										(3, 3, 'Asunto3', 'Información3', '2024-04-09');
 										(3, 3, 'Asunto3', 'Información3', '2024-04-09');
