@@ -23,7 +23,7 @@
         <img src="resources/img/Logo-potencia-de-la-vida 1.png" alt="Logo-potencia-de-la-vida" height="35">
         <div class="input-wrapper d-flex align-items-center">        
         </div>            
-        <img src="resources/img/Logo_Invima-Te-Acompana_0 1.png" alt="Logo_Invima-Te-Acompana" height="35">
+        <img src="resources/img/Invima-logo.jpg" alt="Logo_Invima-Te-Acompana" height="35">
     </nav>
     <nav class="navbar navbar-expand-lg navbar-light bg mb-5" id="options">
       <div class="container">
@@ -49,20 +49,17 @@
             <form action="Login" method="POST">
               <div class="row gy-3 gy-md-4 overflow-hidden">
                 <div class="col-12">
-                  <label for="usuario" class="form-label">Dirección de correo electronico <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" name="usuario" id="usuario" placeholder="name@example.com" required>
+                  <label for="username" class="form-label">Dirección de correo electronico <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="username" id="username" placeholder="name@example.com" required>
                 </div>
                 <div class="col-12">
-                  <label for="contrasena" class="form-label">Contraseña <span class="text-danger">*</span></label>
+                  <label for="password" class="form-label">Contraseña <span class="text-danger">*</span></label>
                   <input type="password" class="form-control" name="password" id="contrasena" required>
                 </div>
                 <div class="col-12">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
-                    <label class="form-check-label text-secondary" for="remember_me">
-                      Recuerdame
-                    </label>
-                  </div>
+                  <c:if test="${not empty error}">
+                      <p style="color: red;">${error}</p> 
+                  </c:if>
                 </div>
                 <div class="col-12">
                   <div class="d-grid">

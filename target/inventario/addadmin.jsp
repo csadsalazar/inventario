@@ -1,5 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" %>
-<%@ include file="headera.jsp" %>
+|<%@ include file="headera.jsp" %>
 <%@ include file="nav.jsp" %>
     <div class="container mt-3">
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -15,10 +14,13 @@
       <h1>Inventario personalizado - INVIMA</h1>
           <h2>Agregar administrador</h1>
       </div>
-        <form class="row g-3 needs-validation py-3" method="POST" action="AddAdmin">
+        <c:if test="${not empty error}">
+            <p style="color: red;" class="py-3">${error}</p> 
+        </c:if>
+        <form class="row g-3 needs-validation py-3" action="AddAdmin" method="POST">
             <div class="col-md-4">
-                <label for="usuario" class="form-label">Usuario</label>
-                <input type="text" class="form-control" name="usuario" id="usuario" required>
+                <label for="username" class="form-label">Usuario</label>
+                <input type="text" class="form-control" name="username" id="username" required>
             </div>
             <div class="col-md-4">
                 <label for="estado" class="form-label">Estado</label>
@@ -30,7 +32,7 @@
         <div>
         </div>
         <div class="col-md-4">
-        <button class="btn btn-primary">Enviar</button>
+        <button class="btn btn-primary" type="submit">Agregar</button>
         </div>
         </form>
     </main>

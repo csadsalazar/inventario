@@ -20,7 +20,7 @@
               <ul class="m-0 p-0">
                 <li class="mb-3"> 
                 <img src="resources/img/icons/chevron-right.svg">
-                <a class="text-decoration-none fs-6" href="#">EL instituto</a>   
+                <a class="text-decoration-none fs-6" href="#">El instituto</a>   
                 </li>
                 <li class=" mb-3"> 
                 <img src="resources/img/icons/chevron-right.svg">

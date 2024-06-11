@@ -5,11 +5,18 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import utils.ConnectionBD;
  
 @WebServlet("/Login")
 public class LoginServlet extends HttpServlet {
@@ -21,7 +28,7 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
  
         // Crea la conexión HTTP
-        URL url = new URL("http://localhost:8990/conexionldap/v1/verificarUsuario");
+        URL url = new URL("http://localhost:9560/conexionldap/v1/verificarUsuario");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type", "application/json; utf-8");
@@ -50,25 +57,35 @@ public class LoginServlet extends HttpServlet {
                 }
             }
         } catch (IOException e) {
-            // Captura la excepción y maneja el error
+            // Captura la excepción y maneja el error 
             responseCode = con.getResponseCode();
             request.setAttribute("errorMessage", "Usuario o contraseña incorrectos");
             request.getRequestDispatcher("index.jsp").forward(request, response);
             return;
         }
  
-        // Procesar la respuesta según sea necesario
-        String responseBody = responseStrBuilder.toString();
+            // Procesar la respuesta según sea necesario
+            try (Connection conn = ConnectionBD.getConnection()) {
+            // Verificar si el usuario es un administrador activo
+            String queryAdmins = "SELECT * FROM MA_Administradores WHERE usuario = ? AND estado = 'Activo'";
+            PreparedStatement pstmtAdmins = conn.prepareStatement(queryAdmins);
+            pstmtAdmins.setString(1, username);
+            ResultSet rsAdmins = pstmtAdmins.executeQuery();
  
-        if (responseCode == 200) { // Ajusta según la respuesta real
-            // Autenticación exitosa
-            request.getSession().setAttribute("username", username);
-            request.getRequestDispatcher("homea.jsp").forward(request, response); // Redirige a la página de bienvenida
-        } else {
-            // Autenticación fallida
-            request.setAttribute("errorMessage", "Usuario o contraseña incorrectos");
-            request.getRequestDispatcher("index.jsp").forward(request, response); // Redirige de vuelta al login con mensaje de error
+            if (responseCode == 200 && rsAdmins.next()) { 
+                // Autenticación exitosa
+                request.getSession().setAttribute("username", username);
+                request.getRequestDispatcher("homea.jsp").forward(request, response); 
+            } else if (responseCode == 200) {
+                request.getSession().setAttribute("username", username);
+                request.getRequestDispatcher("homef.jsp").forward(request, response); 
+            } else {
+                // Autenticación fallida
+                request.setAttribute("error", "Usuario o contraseña incorrectos.");
+                request.getRequestDispatcher("index.jsp").forward(request, response); // Redirige de vuelta al login con mensaje de error
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
         }
     }
 }
- 

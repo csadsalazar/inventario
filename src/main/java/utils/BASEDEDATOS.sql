@@ -158,7 +158,7 @@
      
 
 									INSERT INTO MA_Administradores (usuario, estado)
-									VALUES ('usuario1', 'Activo'),      
+									VALUES ('csalazart', 'Activo'),      
 										('usuario4', 'Inactivo');
 										
 											
