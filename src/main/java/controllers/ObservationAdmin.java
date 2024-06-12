@@ -29,7 +29,7 @@ public class ObservationAdmin extends HttpServlet {
         // Insertar la observación en la base de datos
         try {
             Connection conn = ConnectionBD.getConnection();
-            String sql = "INSERT INTO PA_BienesPorUsuario (FK_Admin, FK_Bien, informacion, fechaObservacion) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO PA_BienPorUsuario (FK_Admin, FK_Bien, informacion, fechaObservacion) VALUES (?,?,?,?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, idadmin);
             statement.setLong(2, codigoBien);

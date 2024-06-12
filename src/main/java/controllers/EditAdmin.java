@@ -20,7 +20,7 @@ public class EditAdmin extends HttpServlet {
         try {
             int idAdministrador = Integer.parseInt(request.getParameter("id"));
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM MA_Administradores WHERE PK_idAdministrador=?";
+            String sql = "SELECT * FROM MA_Administrador WHERE PK_idAdministrador=?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, idAdministrador);
             ResultSet resultSet = statement.executeQuery();
@@ -60,7 +60,7 @@ public class EditAdmin extends HttpServlet {
             String estado = request.getParameter("estado");
     
             conn = ConnectionBD.getConnection();
-            String sql = "UPDATE MA_Administradores SET estado=? WHERE PK_idAdministrador=?";
+            String sql = "UPDATE MA_Administrador SET estado=? WHERE PK_idAdministrador=?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, estado);
             statement.setInt(2, idAdministrador);

@@ -5,18 +5,17 @@ public class User {
     private String nombre;
     private String usuario;
     private long cedula;
-    private String contrasena;
-    private String dependencia;
-    private String cargo;
-    private String contrato;
-    private String sede;
+    private DocumentType name;
+    private Dependency name;
+    private Charge name;
+
 
     // Constructor vacío
     public User() {
     }
 
     // Constructor
-    public User(int PK_idUsuario, String nombre, String usuario, long cedula, String contrasena, String dependencia, String cargo, String contrato, String sede) {
+    public User(int PK_idUsuario, String nombre, String usuario, long cedula, DocumentType name, Dependency name, Charge cargo, String contrato, String sede) {
         this.PK_idUsuario = PK_idUsuario;
         this.nombre = nombre;
         this.usuario = usuario;

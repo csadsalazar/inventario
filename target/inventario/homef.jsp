@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="headerf.jsp" %>
 <%@ page import="java.util.List" %>
 <%@ page import="models.Object" %>
@@ -13,6 +14,15 @@
     <div class="text-center">
       <h1>Inventario personalizado - INVIMA</h1>
         <h2>Bines Totales</h1>
+        <div>
+            <%
+                HttpSession session = request.getSession();
+                String username = (String) session.getAttribute("username");
+            %>
+            <% if (username != null) { %>
+                Bienvenido, <%= username %><br>
+            <% } %>
+        </div>
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end py-3">
        <a class="btn btn-primary" type="button" href="addobservation.jsp">Agregar Observacion</a>

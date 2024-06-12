@@ -60,7 +60,7 @@ public class AddObject extends HttpServlet {
 
             // Establecer la conexión y realizar la inserción en la base de datos
             Connection conn = ConnectionBD.getConnection();
-            String sql = "INSERT INTO MA_Bienes (PK_Codigo, placa, nombre, descripcion, valor, FK_Usuario, FK_Dependencia, estado, fecha) VALUES (?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO MA_Bien (PK_Codigo, placa, nombre, descripcion, valor, FK_Usuario, FK_Dependencia, estado, fecha) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setLong(1, codigo);
             statement.setInt(2, placa);

@@ -38,7 +38,7 @@ public class GenerateReportPDFServlet extends HttpServlet {
     private List<Object> getObjectsByDependency(int dependenciaId, int usuarioId) throws ClassNotFoundException {
         try (Connection connection = ConnectionBD.getConnection()) {
             List<Object> bienes = new ArrayList<>();
-            String sql = "SELECT * FROM MA_Bienes WHERE FK_Dependencia = ? AND FK_Usuario = ?";
+            String sql = "SELECT * FROM MA_Bien WHERE FK_Dependencia = ? AND FK_Usuario = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setInt(1, dependenciaId);
                 statement.setInt(2, usuarioId);
@@ -70,7 +70,7 @@ public class GenerateReportPDFServlet extends HttpServlet {
     
     private User getUserById(int usuarioId) throws ClassNotFoundException {
         try (Connection connection = ConnectionBD.getConnection()) {
-            String sql = "SELECT * FROM MA_Usuarios WHERE PK_idUsuario = ?";
+            String sql = "SELECT * FROM MA_Usuario WHERE PK_idUsuario = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setInt(1, usuarioId);
                 try (ResultSet resultSet = statement.executeQuery()) {

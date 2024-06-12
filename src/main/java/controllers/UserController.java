@@ -11,7 +11,7 @@ public class UserController {
         Connection conn = null;
         try {
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM MA_Usuarios WHERE usuario=?";
+            String sql = "SELECT * FROM MA_Usuario WHERE usuario=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, usuario);
             ResultSet rs = ps.executeQuery();
@@ -32,7 +32,7 @@ public class UserController {
 
     public static int getUserId(String usuario) throws SQLException, ClassNotFoundException {
         Connection conn = ConnectionBD.getConnection();
-        String sql = "SELECT PK_idUsuario FROM MA_Usuarios WHERE usuario=?";
+        String sql = "SELECT PK_idUsuario FROM MA_Usuario WHERE usuario=?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, usuario);
         ResultSet rs = ps.executeQuery();

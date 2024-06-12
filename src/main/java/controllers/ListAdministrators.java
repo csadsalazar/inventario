@@ -14,7 +14,7 @@ public class ListAdministrators {
         Connection conn = null;
         try {
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM MA_Administradores";
+            String sql = "SELECT * FROM MA_Administrador";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

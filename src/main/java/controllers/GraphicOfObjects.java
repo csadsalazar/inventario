@@ -23,12 +23,12 @@ public class GraphicOfObjects extends HttpServlet {
 
         try {
             conn = ConnectionBD.getConnection();
-            String query = "SELECT MA_Dependencias.nombreDependencia, " +
-                    "COUNT(MA_Bienes.idBien) AS total_bienes, " +
-                    "SUM(CASE WHEN MA_Bienes.estado = 'Reportado' THEN 1 ELSE 0 END) AS reportados " +
-                    "FROM MA_Dependencias " +
-                    "LEFT JOIN MA_Bienes ON MA_Dependencias.PK_idDependencia = MA_Bienes.FK_Dependencia " +
-                    "GROUP BY MA_Dependencias.nombreDependencia";
+            String query = "SELECT MA_Dependencia.nombreDependencia, " +
+                    "COUNT(MA_Bien.idBien) AS total_bienes, " +
+                    "SUM(CASE WHEN MA_Bien.estado = 'Reportado' THEN 1 ELSE 0 END) AS reportados " +
+                    "FROM MA_Dependencia " +
+                    "LEFT JOIN MA_Bien ON MA_Dependencia.PK_idDependencia = MA_Bien.FK_Dependencia " +
+                    "GROUP BY MA_Dependencia.nombreDependencia";
             stmt = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             rs = stmt.executeQuery();
 

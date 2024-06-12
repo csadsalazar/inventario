@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@include file="headera.jsp"%>
 <%@include file="nav.jsp"%>
     <div class="container mt-3">
@@ -12,6 +13,15 @@
             <div class="text-center">
                 <h1>Inventario personalizado - INVIMA</h1>
                 <h2>Inicio</h1>
+                <div>
+                    <%
+                        HttpSession session = request.getSession();
+                        String username = (String) session.getAttribute("username");
+                    %>
+                    <% if (username != null) { %>
+                        Bienvenido, <%= username %><br>
+                    <% } %>
+                </div>
             </div>
             <section>
                 <h2 class="text-center" id="general-percentage-header">Porcentaje general: <span style="color: black;" id="general-percentage-value"></span>%</h2>

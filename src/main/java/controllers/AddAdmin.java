@@ -66,7 +66,7 @@ public class AddAdmin extends HttpServlet {
         try (Connection conn = ConnectionBD.getConnection()) {
             if (responseCode == 200) { 
                 // Autenticación exitosa
-                String sql = "INSERT INTO MA_Administradores (usuario, estado) VALUES (?,?)";
+                String sql = "INSERT INTO MA_Administrador (usuario, estado) VALUES (?,?)";
                 PreparedStatement statement = conn.prepareStatement(sql);
                 statement.setString(1, username);
                 statement.setString(2, estado);

@@ -13,7 +13,7 @@ public class ListAdministratorsById {
         Admin administrador = null;
         try {
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM MA_Administradores WHERE PK_idAdministrador=?";
+            String sql = "SELECT * FROM MA_Administrador WHERE PK_idAdministrador=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, codigo);
             ResultSet rs = ps.executeQuery();

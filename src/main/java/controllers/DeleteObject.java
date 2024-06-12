@@ -38,7 +38,7 @@ public class DeleteObject extends HttpServlet {
         PreparedStatement stmt = null;
         try {
             conn = ConnectionBD.getConnection(); // Utiliza tu método para obtener la conexión
-            String sql = "DELETE FROM MA_Bienes WHERE PK_Codigo = ?";
+            String sql = "DELETE FROM MA_Bien WHERE PK_Codigo = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, codigo);
             int filasAfectadas = stmt.executeUpdate();
@@ -63,7 +63,7 @@ public class DeleteObject extends HttpServlet {
         PreparedStatement stmt = null;
         try {
             conn = ConnectionBD.getConnection(); // Utiliza tu método para obtener la conexión
-            String sql = "DELETE FROM MA_Bienes";
+            String sql = "DELETE FROM MA_Bien";
             stmt = conn.prepareStatement(sql);
             int filasAfectadas = stmt.executeUpdate();
             System.out.println("Se han eliminado todos los bienes");

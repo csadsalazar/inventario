@@ -1,4 +1,5 @@
 package controllers;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,13 +10,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import utils.ConnectionBD;
  
 @WebServlet("/Login")
@@ -64,22 +63,30 @@ public class LoginServlet extends HttpServlet {
             return;
         }
  
-            // Procesar la respuesta según sea necesario
             try (Connection conn = ConnectionBD.getConnection()) {
             // Verificar si el usuario es un administrador activo
-            String queryAdmins = "SELECT * FROM MA_Administradores WHERE usuario = ? AND estado = 'Activo'";
+            String queryAdmins = "SELECT * FROM MA_Administrador WHERE usuario = ? AND estado = 'Activo'";
             PreparedStatement pstmtAdmins = conn.prepareStatement(queryAdmins);
             pstmtAdmins.setString(1, username);
             ResultSet rsAdmins = pstmtAdmins.executeQuery();
+
+            // Verificar si el usuario se encuentra registrado activo
+            String queryUsers = "SELECT * FROM MA_Usuario WHERE usuario = ?"; 
+            PreparedStatement pstmtUsers = conn.prepareStatement(queryUsers);
+            pstmtUsers.setString(1, username);
+            ResultSet rsUsers = pstmtUsers.executeQuery();
  
-            if (responseCode == 200 && rsAdmins.next()) { 
+            if (responseCode == 200) { 
                 // Autenticación exitosa
                 request.getSession().setAttribute("username", username);
+                request.getRequestDispatcher("register.jsp").forward(request, response); 
+            } else if (responseCode == 200 && rsAdmins.next()) {
+                request.getSession().setAttribute("username", username);
                 request.getRequestDispatcher("homea.jsp").forward(request, response); 
-            } else if (responseCode == 200) {
+            } else if (responseCode == 200 && rsUsers.next()) {
                 request.getSession().setAttribute("username", username);
                 request.getRequestDispatcher("homef.jsp").forward(request, response); 
-            } else {
+            }else {
                 // Autenticación fallida
                 request.setAttribute("error", "Usuario o contraseña incorrectos.");
                 request.getRequestDispatcher("index.jsp").forward(request, response); // Redirige de vuelta al login con mensaje de error

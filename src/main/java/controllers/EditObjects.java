@@ -28,7 +28,7 @@ public class EditObjects extends HttpServlet {
             try {
                 conn = ConnectionBD.getConnection();
                 // Preparar la consulta SQL para actualizar los objetos seleccionados
-                String sql = "UPDATE MA_Bienes SET nombre=?, descripcion=?, valor=?, estado=? WHERE PK_Codigo=?";
+                String sql = "UPDATE MA_Bien SET nombre=?, descripcion=?, valor=?, estado=? WHERE PK_Codigo=?";
                 stmt = conn.prepareStatement(sql);
 
                 // Iterar sobre los objetos seleccionados y ejecutar la actualización para cada uno
