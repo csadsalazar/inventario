@@ -1,7 +1,7 @@
 package models;
 
 public class DocumentType {
-    private int idChargeType;
+    private int PK_idChargeType;
     private String name;
 
 
@@ -10,18 +10,18 @@ public class DocumentType {
     }
 
     // Constructor
-    public DocumentType(int idChargeType, String name) {
-        this.idChargeType = idChargeType;
+    public DocumentType(int PK_idChargeType, String name) {
+        this.PK_idChargeType = PK_idChargeType;
         this.name = name;
     }
 
     // Getters y setters
     public int getidChargeType() {
-        return idChargeType;
+        return PK_idChargeType;
     }
 
-    public void setidChargeType(int idChargeType) {
-        this.idChargeType = idChargeType;
+    public void setidChargeType(int PK_idChargeType) {
+        this.PK_idChargeType = PK_idChargeType;
     }
 
     public String getName() {

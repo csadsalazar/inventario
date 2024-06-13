@@ -4,7 +4,7 @@
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="homea.jsp">Inicio</a></li>
-            <li class="breadcrumb-item"><a href="managementobjects.jsp">Administradores</a></li>
+            <li class="breadcrumb-item"><a href="managementadmins.jsp">Administradores</a></li>
             <li class="breadcrumb-item active" aria-current="page">Cargar almacen</li>
         </ol>
     </nav>

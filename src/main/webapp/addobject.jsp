@@ -44,11 +44,11 @@
               ArrayList<Dependency> dependencias = ListDependencies.getDependencies();
               for (Dependency dependencia : dependencias) {
               %>
-              <option value="<%= dependencia.getPK_idDependencia() %>"><%= dependencia.getnombreDependencia() %></option>
+              <option value="<%= dependencia.getPK_idDependency() %>"><%= dependencia.getDependencyName() %></option>
               <%  
               }
             %>
-          </select>
+          </select> 
       </div>
       <div class="col-md-4">
           <label for="valor" class="form-label">Valor</label>

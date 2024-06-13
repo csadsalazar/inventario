@@ -15,7 +15,7 @@ public class CheckBienesStatus extends HttpServlet {
         boolean todosListos = true;
 
         for (Object bien : bienesUsuario) {
-            if (!bien.getEstado().equals("En espera") && !bien.getEstado().equals("Reportado")) {
+            if (!bien.getState().equals("En espera") && !bien.getState().equals("Reportado")) {
                 todosListos = false;
                 break;
             }

@@ -15,8 +15,8 @@
                 <h2>Inicio</h1>
                 <div>
                     <%
-                        HttpSession session = request.getSession();
-                        String username = (String) session.getAttribute("username");
+                        HttpSession session1 = request.getSession();
+                        String username = (String) session1.getAttribute("username");
                     %>
                     <% if (username != null) { %>
                         Bienvenido, <%= username %><br>

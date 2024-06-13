@@ -3,73 +3,73 @@ package models;
 import java.util.Date;
 
 public class Observation {
-    private int idBienPorUsuario;
-    private User usuario;
-    private Object bien;
-    private String asunto;
-    private String informacion;
-    private Date fechaObservacion; 
+    private int idobjectperuser;
+    private User user;
+    private Object object;
+    private String affair;
+    private String information;
+    private Date observationdate; 
 
     // Constructor vacío
     public Observation() {
     }
 
     // Constructor
-    public Observation(int idBienPorUsuario, User usuario, Object bien, String asunto, String informacion, Date fechaObservacion) {
-        this.idBienPorUsuario = idBienPorUsuario;
-        this.usuario = usuario;
-        this.bien = bien;
-        this.asunto = asunto;
-        this.informacion = informacion;
-        this.fechaObservacion = fechaObservacion;
+    public Observation(int idobjectperuser, User user, Object object, String affair, String information, Date observationdate) {
+        this.idobjectperuser = idobjectperuser;
+        this.user = user;
+        this.object = object;
+        this.affair = affair;
+        this.information = information;
+        this.observationdate = observationdate;
     }
 
     // Getters y setters
-    public int getIdBienPorUsuario() {
-        return idBienPorUsuario;
+    public int getIdObjectPerUser() {
+        return idobjectperuser;
     }
 
-    public void setIdBienPorUsuario(int idBienPorUsuario) {
-        this.idBienPorUsuario = idBienPorUsuario;
+    public void setIdObjectPerUser(int idobjectperuser) {
+        this.idobjectperuser = idobjectperuser;
     }
 
-    public User getUsuario() {
-        return usuario;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsuario(User usuario) {
-        this.usuario = usuario;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Object getBien() {
-        return bien;
+    public Object getObject() {
+        return object;
     }
 
-    public void setBien(Object bien) {
-        this.bien = bien;
+    public void setObject(Object object) {
+        this.object = object;
     }
 
-    public String getAsunto() {
-        return asunto;
+    public String getAffair() {
+        return affair;
     }
 
-    public void setAsunto(String asunto) {
-        this.asunto = asunto;
+    public void setAffair(String affair) {
+        this.affair = affair;
     }
 
-    public String getInformacion() {
-        return informacion;
+    public String getInformation() {
+        return information;
     }
 
-    public void setInformacion(String informacion) {
-        this.informacion = informacion;
+    public void setInformation(String information) {
+        this.information = information;
     }
 
-    public Date getFechaObservacion() {
-        return fechaObservacion;
+    public Date getObservationDate() {
+        return observationdate;
     }
 
-    public void setFechaObservacion(Date fechaObservacion) {
-        this.fechaObservacion = fechaObservacion;
+    public void setObservationDate(Date observationdate) {
+        this.observationdate = observationdate;
     }
 }

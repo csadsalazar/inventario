@@ -19,12 +19,11 @@ public class ListDependencies {
             ResultSet rs = cs.executeQuery(); 
             while (rs.next()) {
                 Dependency dependencia = new Dependency();
-                dependencia.setPK_idDependencia(rs.getInt("PK_idDependencia"));
-                dependencia.setCentroDeCosto(rs.getString("centroDeCosto"));
-                dependencia.setnombreDependencia(rs.getString("nombreDependencia"));
-                // Agregar el objeto Dependencia a la lista
+                dependencia.setPK_idDependency(rs.getInt("PK_idDependencia"));
+                dependencia.setCostCenter(rs.getString("centroDeCosto"));
+                dependencia.setDependencyName(rs.getString("nombreDependencia"));
                 dependencias.add(dependencia);
-            }
+            } 
             rs.close();
             cs.close();
         } catch (SQLException e) {
@@ -52,11 +51,11 @@ public class ListDependencies {
             ResultSet rs = cs.executeQuery();
             if (rs.next()) {
                 dependencia = new Dependency();
-                dependencia.setPK_idDependencia(rs.getInt("PK_idDependencia"));
-                dependencia.setCentroDeCosto(rs.getString("centroDeCosto"));
-                dependencia.setnombreDependencia(rs.getString("nombreDependencia"));
+                dependencia.setPK_idDependency(rs.getInt("PK_idDependencia"));
+                dependencia.setCostCenter(rs.getString("centroDeCosto"));
+                dependencia.setDependencyName(rs.getString("nombreDependencia"));
             }
-            rs.close();
+            rs.close(); 
             cs.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -71,5 +70,4 @@ public class ListDependencies {
         }
         return dependencia;
     }
-    
 }

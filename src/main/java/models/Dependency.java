@@ -1,43 +1,43 @@
 package models;
 
 public class Dependency {
-    private int PK_idDependencia;
-    private String centroDeCosto;
-    private String nombreDependencia;
+    private int PK_idDependency;
+    private String costcenter;
+    private String dependencyname;
 
     // Constructor vacio
     public Dependency() {
     }
 
     // Constructor 
-    public Dependency(int PK_idDependencia, String nombreDependencia, String centroDeCosto) {
-        this.PK_idDependencia = PK_idDependencia;
-        this.nombreDependencia = nombreDependencia;
-        this.centroDeCosto = centroDeCosto;
+    public Dependency(int PK_idDependency, String dependencyname, String costcenter) {
+        this.PK_idDependency = PK_idDependency;
+        this.dependencyname = dependencyname;
+        this.costcenter = costcenter;
     }
 
     // Getters y Setters
-    public int getPK_idDependencia() {
-        return PK_idDependencia;
+    public int getPK_idDependency() {
+        return PK_idDependency;
     }
 
-    public void setPK_idDependencia(int PK_idDependencia) {
-        this.PK_idDependencia = PK_idDependencia;
+    public void setPK_idDependency(int PK_idDependency) {
+        this.PK_idDependency = PK_idDependency;
     }
 
-    public String getnombreDependencia() {
-        return nombreDependencia;
+    public String getDependencyName() {
+        return dependencyname;
     }
 
-    public void setnombreDependencia(String nombreDependencia) {
-        this.nombreDependencia = nombreDependencia;
+    public void setDependencyName(String dependencyname) {
+        this.dependencyname = dependencyname;
     }
 
-    public String getCentroDeCosto() {
-        return centroDeCosto;
+    public String getCostCenter() {
+        return costcenter;
     }
 
-    public void setCentroDeCosto(String centroDeCosto) {
-        this.centroDeCosto = centroDeCosto;
+    public void setCostCenter(String costcenter) {
+        this.costcenter = costcenter;
     }
 }

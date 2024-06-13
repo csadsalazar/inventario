@@ -3,18 +3,18 @@ package models;
 public class Admin {
 
     private int PK_idAdministrador;
-    private String usuario;
-    private String estado;
+    private String user;
+    private String state;
  
     // Constructor vacío
     public Admin() {
     }
 
     // Constructor
-    public Admin(int PK_idAdministrador, String usuario, String estado) {
+    public Admin(int PK_idAdministrador, String user, String state) {
         this.PK_idAdministrador = PK_idAdministrador;
-        this.usuario = usuario;
-        this.estado = estado;
+        this.user = user;
+        this.state = state;
     }
 
     public int getPK_idAdministrador() {
@@ -25,20 +25,19 @@ public class Admin {
         this.PK_idAdministrador = PK_idAdministrador;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getUser() {
+        return user;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setUser(String user) {
+        this.user = user;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getState() {
+        return state;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setState(String state) {
+        this.state = state;
     }
-
 }

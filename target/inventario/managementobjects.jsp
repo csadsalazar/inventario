@@ -49,20 +49,20 @@
                 for (Object bien : bienes) {
                 %>
                 <tr>
-                    <td><input type="checkbox" name="selectedObjects" value="<%= bien.getCodigo() %>"></td>
-                    <td><%= bien.getCodigo() %></td>
-                    <td><%= bien.getPlaca() %></td>
-                    <td class="campo"><%= bien.getNombre() %></td>
-                    <td class="campo"><%= bien.getUsuario().getUsuario() %></td>
-                    <td class="campo"><%= bien.getUsuario().getDependencia() %></td>
-                    <td class="campo"><%= bien.getEstado() %></td>
-                    <td class="campo"><%= bien.getFecha() %></td>
+                    <td><input type="checkbox" name="selectedObjects" value="<%= bien.getCode() %>"></td>
+                    <td><%= bien.getCode() %></td>
+                    <td><%= bien.getPlate() %></td> 
+                    <td class="campo"><%= bien.getName() %></td>
+                    <td class="campo"><%= bien.getUser().getUser() %></td>
+                    <td class="campo"><%= bien.getUser().getDependency() %></td>
+                    <td class="campo"><%= bien.getState() %></td>
+                    <td class="campo"><%= bien.getDate() %></td>
                     <td>
                         <div class="acciones">
-                            <a href="seeobjecta.jsp?codigo=<%= bien.getCodigo() %>">
+                            <a href="seeobjecta.jsp?codigo=<%= bien.getCode() %>">
                                 <img src="resources/img/icons/airplay.svg" alt="airplay">
                             </a>&nbsp;&nbsp;&nbsp;
-                            <a href="editobject.jsp?codigo=<%= bien.getCodigo() %>">
+                            <a href="editobject.jsp?codigo=<%= bien.getCode() %>">
                                 <img src="resources/img/icons/edit.svg" alt="edit">
                             </a>&nbsp;&nbsp;&nbsp;
                         </div>

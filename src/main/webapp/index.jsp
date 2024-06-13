@@ -39,8 +39,8 @@
           <div class="card-body p-3 p-md-4 p-xl-5">
             <div class="row">
               <div class="col-12">
-                <div class="mb-5">
-                  <img loading="lazy" src="resources/img/invima-logo.jpg"  class="mb-5" alt="invima-logo" width="90" height="50">
+                <div class="mb-3">
+                  <img loading="lazy" src="resources/img/Invima-logo.jpg" class="mb-5" alt="invima-logo" width="90" height="50">
                   <p class="fw-normal">¡Bienvenido de nuevo!</p>
                   <h4 class="fw-bold">Inicia sesión</h4>
                 </div>
@@ -50,11 +50,11 @@
               <div class="row gy-3 gy-md-4 overflow-hidden">
                 <div class="col-12">
                   <label for="username" class="form-label">Dirección de correo electronico <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" name="username" id="username" placeholder="name@example.com" required>
+                  <input type="text" class="form-control" name="username" id="username" placeholder="Usuario" required>
                 </div>
                 <div class="col-12">
                   <label for="password" class="form-label">Contraseña <span class="text-danger">*</span></label>
-                  <input type="password" class="form-control" name="password" id="contrasena" required>
+                  <input type="password" class="form-control" name="password" id="contrasena" placeholder="Contraseña" required>
                 </div>
                 <div class="col-12">
                   <c:if test="${not empty error}">

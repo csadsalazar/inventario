@@ -1,4 +1,12 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="models.Dependency" %>
+<%@ page import="models.Charge" %>
+<%@ page import="models.DocumentType" %>
+<%@ page import="controllers.ListDependencies" %>
+<%@ page import="controllers.ListDocumentType" %>
+<%@ page import="controllers.ListCharge" %>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -37,7 +45,7 @@
 </header>
 <section class="p-3 p-md-4 p-xl-5">
   <div class="container">
-    <div class="card border-light-subtle shadow-sm">
+    <div class="card border-light-subtle shadow-sm"> 
       <div class="row g-0">
         <div class="col-12 col-md-6">
           <div class="card-body p-3 p-md-4 p-xl-5">
@@ -52,23 +60,54 @@
             </div>
             <form action="AddUser" method="POST">
               <div class="row gy-3 gy-md-4 overflow-hidden">
-                <div class="col-12">
-                  <label for="username" class="form-label">Dependencia<span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" name="username" id="username" placeholder="name@example.com" required>
+              <div class="col-12">
+                  <label for="nombre" class="form-label">Nombre completo <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="nombre" id="nombre" required>
                 </div>
                 <div class="col-12">
-                  <label for="password" class="form-label">Cargo <span class="text-danger">*</span></label>
-                  <input type="password" class="form-control" name="password" id="contrasena" required>
+                  <label for="dependencia" class="form-label">Dependencia</label>
+                    <select class="form-select" name="dependencia" id="dependencia" required>
+                      <%
+                        ArrayList<Dependency> dependencias = ListDependencies.getDependencies();
+                        for (Dependency dependencia : dependencias) {
+                        %>
+                        <option value="<%= dependencia.getPK_idDependency() %>"><%= dependencia.getDependencyName() %></option>
+                        <%  
+                        }
+                      %>
+                    </select>
                 </div>
                 <div class="col-12">
-                  <label for="password" class="form-label">Tipo de documento <span class="text-danger">*</span></label>
-                  <input type="password" class="form-control" name="password" id="contrasena" required>
+                  <label for="cargo" class="form-label">Cargo</label>
+                    <select class="form-select" name="cargo" id="cargo" required>
+                      <%
+                        ArrayList<Charge> charges = ListCharge.getCharges();
+                        for (Charge charge : charges) {
+                        %>
+                        <option value="<%= charge.getidChargeType() %>"><%= charge.getName() %></option>
+                        <%  
+                        }
+                      %>
+                    </select>
                 </div>
                 <div class="col-12">
-                  <label for="password" class="form-label">Cédula <span class="text-danger">*</span></label>
-                  <input type="password" class="form-control" name="password" id="contrasena" required>
+                  <label for="tipodocumento" class="form-label">Tipo de documento</label>
+                    <select class="form-select" name="tipodocumento" id="tipodocumento" required>
+                      <%
+                        ArrayList<DocumentType> documents = ListDocumentType.getDocumentType();
+                        for (DocumentType document : documents) {
+                        %>
+                        <option value="<%= document.getidChargeType() %>"><%= document.getName() %></option>
+                        <%  
+                        }
+                      %> 
+                </select>
                 </div>
-                <input type="hiden" name="username" id="username" value="<%= username %>">
+                <div class="col-12">
+                  <label for="cedula" class="form-label">Cédula <span class="text-danger">*</span></label>
+                  <input type="number" class="form-control" name="cedula" id="cedula" required>
+                </div>
+                <input type="hideen" name="username" id="username" value="<%= username %>">
                 <div class="col-12">
                   <div class="d-grid">
                     <button class="btn bsb-btn-xl btn-primary" type="submit">Finalizar registro</button>

@@ -20,8 +20,8 @@ public class ListAdministratorsById {
             if (rs.next()) {
                 administrador = new Admin();
                 administrador.setPK_idAdministrador(rs.getInt("PK_idAdministrador"));
-                administrador.setUsuario(rs.getString("usuario"));
-                administrador.setEstado(rs.getString("estado"));
+                administrador.setUser(rs.getString("usuario"));
+                administrador.setState(rs.getString("estado"));
             }
             rs.close();
             ps.close();

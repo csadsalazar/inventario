@@ -1,13 +1,13 @@
 package models;
 
 public class User {
-    private int PK_idUsuario;
-    private String nombre;
-    private String usuario;
-    private long cedula;
-    private DocumentType name;
-    private Dependency name;
-    private Charge name;
+    private int PK_idUser;
+    private String name;
+    private String user;
+    private long identification;
+    private DocumentType PK_idChargeType;
+    private Dependency PK_idDependencia;
+    private Charge PK_idCharge;
 
 
     // Constructor vacío
@@ -15,87 +15,69 @@ public class User {
     }
 
     // Constructor
-    public User(int PK_idUsuario, String nombre, String usuario, long cedula, DocumentType name, Dependency name, Charge cargo, String contrato, String sede) {
-        this.PK_idUsuario = PK_idUsuario;
-        this.nombre = nombre;
-        this.usuario = usuario;
-        this.cedula = cedula;
-        this.contrasena = contrasena;
-        this.dependencia = dependencia;
-        this.cargo = cargo;
-        this.contrato = contrato;
-        this.sede = sede;
+    public User(int PK_idUser, String name, String user, long identification, DocumentType PK_idChargeType , Dependency PK_idDependencia, Charge PK_idCharge) {
+        this.PK_idUser = PK_idUser;
+        this.name = name;
+        this.user = user;
+        this.identification = identification;
+        this.PK_idChargeType = PK_idChargeType;
+        this.PK_idDependencia = PK_idDependencia;
+        this.PK_idCharge = PK_idCharge;
     }
 
-    public int getPK_idUsuario() {
-        return PK_idUsuario;
+    public int getPK_idUser() {
+        return PK_idUser;
     }
 
-    public void setPK_idUsuario(int PK_idUsuario) {
-        this.PK_idUsuario = PK_idUsuario;
+    public void setPK_idUser(int PK_idUser) {
+        this.PK_idUser = PK_idUser;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getUser() {
+        return user;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setUser(String user) {
+        this.user = user;
     }
 
-    public long getCedula() {
-        return cedula;
+    public long getIdentification() {
+        return identification;
     }
 
-    public void setCedula(long cedula) {
-        this.cedula = cedula;
+    public void setIdentification(long identification) {
+        this.identification = identification;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public DocumentType getDocumentType() {
+        return PK_idChargeType;
+    } 
+
+    public void setDocumentType(DocumentType PK_idChargeType) {
+        this.PK_idChargeType = PK_idChargeType;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public Dependency getDependency() {
+        return PK_idDependencia;
+    } 
+
+    public void setDependency(Dependency PK_idDependencia) {
+        this.PK_idDependencia = PK_idDependencia;
     }
 
-    public String getDependencia() {
-        return dependencia;
-    }
+    public Charge getCharge() {
+        return PK_idCharge;
+    } 
 
-    public void setDependencia(String dependencia) {
-        this.dependencia = dependencia;
-    }
-
-    public String getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
-
-    public String getContrato() {
-        return contrato;
-    }
-
-    public void setContrato(String contrato) {
-        this.contrato = contrato;
-    }
-
-    public String getSede() {
-        return sede;
-    }
-
-    public void setSede(String sede) {
-        this.sede = sede;
+    public void setCharge(Charge PK_idCharge) {
+        this.PK_idCharge = PK_idCharge;
     }
 }

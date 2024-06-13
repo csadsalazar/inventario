@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Dependency;
 import models.Observation;
 import models.User;
 import utils.ConnectionBD;
@@ -20,13 +21,15 @@ public class ListObservations {
             ResultSet rs = cs.executeQuery();
             while (rs.next()) {
                 Observation observacion = new Observation();
-                observacion.setAsunto(rs.getString("asunto"));
-                observacion.setInformacion(rs.getString("informacion"));
+                observacion.setAffair(rs.getString("asunto"));
+                observacion.setInformation(rs.getString("informacion"));
                 User usuario = new User();
-                usuario.setUsuario(rs.getString("usuario"));
-                usuario.setDependencia(rs.getString("dependencia"));
-                observacion.setUsuario(usuario);
-                observaciones.add(observacion);
+                usuario.setUser(rs.getString("usuario"));
+                Dependency dependencia = new Dependency();
+                dependencia.setDependencyName(rs.getString("dependencia")); 
+                usuario.setDependency(dependencia);
+                observacion.setUser(usuario);
+
             }            
             rs.close();
             cs.close();

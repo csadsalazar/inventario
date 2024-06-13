@@ -20,8 +20,8 @@ public class ListAdministrators {
             while (rs.next()) {
                 Admin admin = new Admin();
                 admin.setPK_idAdministrador(rs.getInt("PK_idAdministrador"));
-                admin.setUsuario(rs.getString("usuario"));
-                admin.setEstado(rs.getString("estado"));
+                admin.setUser(rs.getString("usuario"));
+                admin.setState(rs.getString("estado"));
                 administradores.add(admin);
             }
             rs.close();

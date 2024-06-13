@@ -24,7 +24,6 @@ public class GetDependenciesServlet extends HttpServlet {
             out.println(jsonDependencias);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-            // Manejar el error
         }
     }
 }

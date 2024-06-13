@@ -1,7 +1,7 @@
 package models;
 
 public class Charge {
-    private int idCharge;
+    private int PK_idCharge;
     private String name;
 
 
@@ -10,26 +10,25 @@ public class Charge {
     }
 
     // Constructor
-    public Charge(int idCharge, String name) {
-        this.idCharge = idCharge;
+    public Charge(int PK_idCharge, String name) {
+        this.PK_idCharge = PK_idCharge;
         this.name = name;
     }
 
     // Getters y setters
     public int getidChargeType() {
-        return idCharge;
+        return PK_idCharge;
     }
 
-    public void setidChargeType(int idCharge) {
-        this.idCharge = idCharge;
+    public void setidChargeType(int PK_idCharge) {
+        this.PK_idCharge = PK_idCharge;
     }
 
-    public String getNombre() {
+    public String getName() {
         return name;
     }
 
-    public void setNombre(String name) {
+    public void setName(String name) {
         this.name = name;
     }
-
 }

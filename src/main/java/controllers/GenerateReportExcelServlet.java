@@ -45,18 +45,18 @@ public class GenerateReportExcelServlet extends HttpServlet {
                 try (ResultSet resultSet = statement.executeQuery()) {
                     while (resultSet.next()) {
                         Object bien = new Object();
-                        bien.setCodigo(resultSet.getLong("PK_Codigo"));
-                        bien.setNombre(resultSet.getString("nombre"));
-                        bien.setPlaca(resultSet.getInt("placa"));
+                        bien.setCode(resultSet.getLong("PK_Codigo"));
+                        bien.setName(resultSet.getString("nombre"));
+                        bien.setPlate(resultSet.getInt("placa"));
                         User usuario = new User();
-                        usuario.setPK_idUsuario(resultSet.getInt("FK_Usuario"));
-                        usuario = getUserById(usuario.getPK_idUsuario());
-                        bien.setUsuario(usuario);
-                        bien.setDescripcion(resultSet.getString("descripcion"));
-                        bien.setValor(resultSet.getLong("valor"));
-                        bien.setEstado(resultSet.getString("estado"));
+                        usuario.setPK_idUser(resultSet.getInt("FK_Usuario"));
+                        usuario = getUserById(usuario.getPK_idUser());
+                        bien.setUser(usuario);
+                        bien.setDescription(resultSet.getString("descripcion"));
+                        bien.setValue(resultSet.getLong("valor"));
+                        bien.setState(resultSet.getString("estado"));
                         Dependency dependencia = ListDependencies.getDependencyById(resultSet.getInt("FK_Dependencia"));
-                        bien.setDependencia(dependencia);
+                        bien.setDependency(dependencia);
                         bienes.add(bien);
                     }
                 }
@@ -76,8 +76,8 @@ public class GenerateReportExcelServlet extends HttpServlet {
                 try (ResultSet resultSet = statement.executeQuery()) {
                     if (resultSet.next()) {
                         User usuario = new User();
-                        usuario.setPK_idUsuario(resultSet.getInt("PK_idUsuario"));
-                        usuario.setUsuario(resultSet.getString("usuario"));
+                        usuario.setPK_idUser(resultSet.getInt("PK_idUsuario"));
+                        usuario.setUser(resultSet.getString("usuario"));
                         return usuario;
                     }
                 }

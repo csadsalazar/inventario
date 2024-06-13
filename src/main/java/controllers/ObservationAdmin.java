@@ -39,7 +39,7 @@ public class ObservationAdmin extends HttpServlet {
 
             System.out.println("Se ha agregado la observacion del usuario" +idadmin + "y" +codigoBien);
             conn.close();
-            
+             
             if (rowsAffected > 0) {
                 // Redirigir de vuelta a la página de detalles del bien si la inserción fue exitosa
                 response.sendRedirect("seeobjecta.jsp?codigo=" + codigoBien);

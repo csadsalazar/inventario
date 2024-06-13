@@ -44,32 +44,32 @@ Object bien = ListObjectById.getObjectById(codigoBien);
     <form class="row g-3 py-3" method="POST" action="EditObject">
       <div class="col-md-4">
           <label for="codigo" class="form-label">Codigo</label>
-          <input class="form-control" type="text" id="codigo" name="codigo" readonly value="<%= (bien != null) ? bien.getCodigo() : "" %>">
+          <input class="form-control" type="text" id="codigo" name="codigo" readonly value="<%= (bien != null) ? bien.getCode() : "" %>">
       </div>
       <div class="col-md-4">
           <label for="placa" class="form-label">Placa</label>
-          <input type="number" class="form-control" name="placa" id="placa" readonly value="<%= (bien != null) ? bien.getPlaca() : "" %>">
+          <input type="number" class="form-control" name="placa" id="placa" readonly value="<%= (bien != null) ? bien.getPlate() : "" %>">
       </div>
       <div class="col-md-4">
           <label for="fecha" class="form-label">Fecha de creación</label>
-          <input type="date" class="form-control" name="fecha" id="fecha" readonly value="<%= (bien != null) ? bien.getFecha() : "" %>">
+          <input type="date" class="form-control" name="fecha" id="fecha" readonly value="<%= (bien != null) ? bien.getDate() : "" %>">
       </div>
       <div class="col-md-4">
           <label for="usuario" class="form-label">Responsable</label>
-          <input type="text" name="usuario" class="form-control" placeholder="Responsable" required value="<%= (bien != null && bien.getUsuario() != null) ? bien.getUsuario().getUsuario() : "" %>">            
+          <input type="text" name="usuario" class="form-control" placeholder="Responsable" required value="<%= (bien != null && bien.getUser() != null) ? bien.getUser().getUser() : "" %>">            
       </div>
       </div>
       <div class="col-md-4">
           <label for="nombre" class="form-label">Nombre</label>
-          <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" required value="<%= (bien != null) ? bien.getNombre() : "" %>">
+          <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" required value="<%= (bien != null) ? bien.getName() : "" %>">
       </div>
       <div class="col-md-4">
           <label for="dependencia" class="form-label">Ubicacion</label>
             <select class="form-control" id="dependencia" name="dependencia">
                 <% if (dependencias != null && !dependencias.isEmpty()) { %>
                 <% for (Dependency dep : dependencias) { %>
-                <option value="<%= dep.getPK_idDependencia() %>" <%= (bien != null && dep.getnombreDependencia().equals(bien.getDependencia().getnombreDependencia())) ? "selected" : "" %> >
-                <%= dep.getnombreDependencia() %>
+                <option value="<%= dep.getPK_idDependency() %>" <%= (bien != null && dep.getDependencyName().equals(bien.getDependency().getDependencyName())) ? "selected" : "" %> >
+                <%= dep.getDependencyName() %>
                 </option>
                 <% } %>
                 <% } %> 
@@ -77,18 +77,19 @@ Object bien = ListObjectById.getObjectById(codigoBien);
       </div>
       <div class="col-md-4">
           <label for="valor" class="form-label">Valor</label>
-          <input class="form-control" type="text" name="valor" placeholder="Valor" required value="<%= (bien != null) ? bien.getValor() : "" %>">
+          <input class="form-control" type="text" name="valor" placeholder="Valor" required value="<%= (bien != null) ? bien.getValue() : "" %>">
       </div>      
       <div class="col-md-4">
           <label for="estado" class="form-label">Estado</label>
             <select class="form-control" id="estado" name="estado">
-                <option value="No reportado" <%= (bien != null && bien.getEstado().equals("No reportado")) ? "selected" : "" %>>No reportado</option>
-                <option value="Reportado" <%= (bien != null && bien.getEstado().equals("Reportado")) ? "selected" : "" %>>Reportado</option>
+                <option value="No reportado" <%= (bien != null && bien.getState().equals("No reportado")) ? "selected" : "" %>>No reportado</option>
+                <option value="En espera" <%= (bien != null && bien.getState().equals("En espera")) ? "selected" : "" %>>En espera</option>
+                <option value="Reportado" <%= (bien != null && bien.getState().equals("Reportado")) ? "selected" : "" %>>Reportado</option>
             </select>
       </div>
        <div class="col-md-4">
           <label for="descripcion" class="form-label">Descripción</label>
-          <textarea name="descripcion" class="form-control" rows="3" placeholder="Descripcion" required><%= (bien != null) ? bien.getDescripcion() : "" %></textarea>
+          <textarea name="descripcion" class="form-control" rows="3" placeholder="Descripcion" required><%= (bien != null) ? bien.getDescription() : "" %></textarea>
       </div>
       <div>
       </div>

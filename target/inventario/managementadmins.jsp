@@ -34,8 +34,8 @@
             <% ArrayList<Admin> administradores = ListAdministrators.getAdministrators();
                    for (Admin admin : administradores) { %>
         <tr>
-            <td><%= admin.getUsuario() %></td>
-            <td><%= admin.getEstado() %></td>
+            <td><%= admin.getUser() %></td>
+            <td><%= admin.getState() %></td>
             <td>  
               <div class="acciones">
                 <a href="editadmin.jsp?codigo=<%= admin.getPK_idAdministrador() %>">

@@ -11,12 +11,12 @@
 
 											CREATE TABLE IF NOT EXISTS PA_TipoDocumento(
                                             PK_idTipoDocumento INT AUTO_INCREMENT PRIMARY KEY,
-                                            nombre VARCHAR(50)
+                                            nombre VARCHAR(15) UNIQUE
                                             );
                                             
 											CREATE TABLE IF NOT EXISTS PA_Cargo(
                                             PK_idCargo INT AUTO_INCREMENT PRIMARY KEY,
-                                            nombre VARCHAR(20)
+                                            nombre VARCHAR(25) UNIQUE
                                             );
 
 											-- Tabla de Usuarios
@@ -41,13 +41,7 @@
 												estado VARCHAR(8)
 											);
 
-											CREATE TABLE IF NOT EXISTS MA_Dependencia (
-												PK_idDependencia INT AUTO_INCREMENT PRIMARY KEY ,
-												centroDeCosto varchar (5),
-												nombreDependencia VARCHAR(130) UNIQUE
-											);
-
-												-- Tabla de Bienes
+											-- Tabla de Bienes
 												CREATE TABLE IF NOT EXISTS MA_Bien (
 													idBien INT AUTO_INCREMENT PRIMARY KEY,
 													PK_Codigo BIGINT UNIQUE,
@@ -78,7 +72,7 @@
 												FOREIGN KEY (FK_Bien) REFERENCES MA_Bien(PK_Codigo) ON DELETE CASCADE
 											);
                                             
-                                            			-- Tabla de Bienes por Admin
+											-- Tabla de Bienes por Admin
 											CREATE TABLE IF NOT EXISTS PA_ObservacionAdmin (
 												PK_idObAdmin INT AUTO_INCREMENT PRIMARY KEY,   
 												FK_Admin INT,
@@ -123,9 +117,8 @@
 											b.fecha,
 											b.estado,
 											u.usuario,
-											u.dependencia,
    											d.nombreDependencia								
-										FROM MA_Bienes b 
+										FROM MA_Bien b 
 										INNER JOIN MA_Dependencia d ON b.FK_Dependencia = d.PK_idDependencia
 										INNER JOIN MA_Usuario u ON b.FK_Usuario = u.PK_idUsuario;
 
@@ -155,21 +148,11 @@
 										FROM PA_BienPorUsuario bu 
 										INNER JOIN MA_Usuario u ON bu.FK_Usuario = u.PK_idUsuario;
 									END //
-
-							-- Tabla de Usuarios
-											CREATE TABLE IF NOT EXISTS MA_Usuario (
-												PK_idUsuario INT AUTO_INCREMENT PRIMARY KEY,
-												nombre VARCHAR(50),
-												cedula BIGINT NOT NULL,
-												usuario VARCHAR(20) NOT NULL,
-												FOREIGN KEY (FK_Cargo) REFERENCES PA_Cargo(PK_idCargo) ON UPDATE CASCADE,
-												FOREIGN KEY (FK_Dependencia) REFERENCES MA_Dependencia(PK_idDependencia) ON UPDATE CASCADE,
-												FOREIGN KEY (FK_TipoCargo) REFERENCES PA_TipoCargo(PK_idTipoCargo) ON UPDATE CASCADE
-											);
-									-- INSERCIONES
                                     
-                                    INSERT INTO PA_Cargo (nombre)
-                                    VALUES ('Jefe de oficina'),
+                                    
+									-- INSERCIONES
+                                    INSERT INTO PA_Cargo (nombre) VALUES 
+                                    ('Jefe de oficina'),
                                     ('Coordinador'),
                                     ('Asesores'),
                                     ('Profesional especializado'),
@@ -178,12 +161,10 @@
                                     ('Tecnico asistencial'),
                                     ('Tecnico administrativo'),
                                     ('Secretario'),
-                                    ('Auxiliar administrativo'),
-                                    (''),
+                                    ('Auxiliar administrativo');
                                     
-                                    
-                                    INSERT INTO PA_TipoCargo (nombre)
-                                    VALUES ('RC'),
+                                    INSERT INTO PA_TipoDocumento (nombre) VALUES 
+                                    ('RC'),
                                     ('TI'),
                                     ('CC'),
                                     ('TE'),
@@ -193,18 +174,8 @@
                                     ('PEP'),
                                     ('DIE'),
                                     ('NUIP'),
-                                    ('FOREIGN_NIT')
+                                    ('FOREIGN_NIT');
                                     
-									INSERT INTO MA_Usuario (nombre, cedula, usuario FK_Cargo, FK_Dependencia, FK_TipoCargo)
-									VALUES ('CESAR DAVID SALAZAR TORRES', 1012916688, 'csalazart', 1, 1, 1),
-										('IDANELA RIVERA CARREÑO', 'usuario2', 53101254, 'contrasena2', 2, 'Cargo2', 'Contrato2', 'INVIMA'),
-										('JUAN FERNANDO JUEZ', 'usuario3', 1023866725, 'contrasena3', 2, 'Cargo3', 'Contrato3', 'INVIMA'),
-										('KELLY JOHANA OSPINA VELASQUEZ', 'usuario4', 1014186790, 'contrasena4', 1, 'Cargo4', 'Contrato4', 'INVIMA');
-                                             
-
-									INSERT INTO MA_Administrador (usuario, estado)
-									VALUES ('csalazart', 'Activo')										
-											
 									INSERT INTO MA_Dependencia (centroDeCosto, nombreDependencia) VALUES
 									("600", 'DIRECCIÓN DE MEDICAMENTOS Y PRODUCTOS BIOLÓGICOS'),
 									("400", 'DIRECCIÓN DE ALIMENTOS Y BEBIDAS'),
@@ -265,13 +236,19 @@
 									("711", 'GRUPO DE TRABAJO TERRITORIAL EJE CAFETERO - ARMENIA'),
 									("707", 'GRUPO DE TRABAJO TERRITORIAL COSTA CARIBE 2 - MONTERIA');
 									
-									INSERT INTO MA_Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, imagen1, imagen2, fecha)
-									VALUES (1, 'NombreBien1', '1000', 'Descripción1', 1000, 1, 1, 'No reportado', 'Imagen1', 'Imagen1.1', '2024-04-07'),
-										(2, 'NombreBien2', '2000', 'Descripción2', 2000, 2, 2, 'Reportado', 'Imagen2', 'Imagen2.1', '2024-04-07'),
-										(3, 'NombreBien3', '3000', 'Descripción3', 3000, 3, 3, 'Reportado', 'Imagen3', 'Imagen3.1', '2024-04-07');
+									INSERT INTO MA_Usuario (nombre, cedula, usuario, FK_Cargo, FK_Dependencia, FK_TipoDocumento) VALUES 
+                                    ('CESAR DAVID SALAZAR TORRES', 1012916688, 'csalazart', 1, 1, 1),
+                                    ('AIKO MARYOM CAMACHO RAMIREZ', 1012916689, 'acamachor', 1, 1, 1);
+											
+									INSERT INTO MA_Administrador (usuario, estado) VALUES 
+                                    ('csalazart', 'Activo');									
+											
+									INSERT INTO MA_Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, imagen1, imagen2, fecha) VALUES
+                                    (1, 'NombreBien1', '1000', 'Descripción1', 1000, 1, 1, 'No reportado', 'Imagen1', 'Imagen1.1', '2024-04-07'),
+									(2, 'NombreBien2', '2000', 'Descripción2', 2000, 2, 2, 'Reportado', 'Imagen2', 'Imagen2.1', '2024-04-07'),
+									(3, 'NombreBien3', '3000', 'Descripción3', 3000, 1, 3, 'Reportado', 'Imagen3', 'Imagen3.1', '2024-04-07');
 
-									INSERT INTO PA_BienPorUsuario (FK_Usuario, FK_Bien, asunto, informacion, fechaObservacion)
-									VALUES (1, 1, 'Asunto1', 'Información1', '2024-04-07'),
-										(2, 2, 'Asunto2', 'Información2', '2024-04-08'),
-										(3, 3, 'Asunto3', 'Información3', '2024-04-09');
-										(3, 3, 'Asunto3', 'Información3', '2024-04-09');
+									INSERT INTO PA_BienPorUsuario (FK_Usuario, FK_Bien, asunto, informacion, fechaObservacion) VALUES 
+                                    (1, 1, 'Asunto1', 'Información1', '2024-04-07'),
+									(2, 2, 'Asunto2', 'Información2', '2024-04-08'),
+									(1, 3, 'Asunto3', 'Información3', '2024-04-09');

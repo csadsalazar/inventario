@@ -3,19 +3,19 @@ package models;
 import java.util.Date;
 
 public class Object {
-    private int idBien;
-    private long codigo;
-    private String nombre;
-    private int placa;
-    private String descripcion;
-    private long valor;
-    private User usuario;
-    private Dependency PK_idDependencia;
-    private String estado;
-    private String imagen1;
-    private String imagen2;
-    private Observation informacion;
-    private Date fecha;
+    private int PK_idObject;
+    private long code;
+    private String name;
+    private int plate;
+    private String description;
+    private long value;
+    private User user;
+    private Dependency PK_idDependency;
+    private String state;
+    private String image1;
+    private String image2;
+    private Observation information;
+    private Date date;
 
 
     // Constructor vacío
@@ -23,124 +23,124 @@ public class Object {
     }
 
     // Constructor
-    public Object(int idBien, long codigo, String nombre, int placa, String descripcion, long valor, User usuario, Dependency PK_idDependencia, String estado, String imagen1, String imagen2, Observation informacion, Date fecha) {
-        this.idBien = idBien;
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.placa = placa;
-        this.descripcion = descripcion;
-        this.valor = valor;
-        this.usuario = usuario;
-        this.PK_idDependencia = PK_idDependencia;
-        this.estado = estado;
-        this.imagen1 = imagen1;
-        this.imagen2 = imagen2;
-        this.informacion = informacion;
-        this.fecha = fecha;
+    public Object(int PK_idObject, long code, String name, int plate, String description, long value, User user, Dependency PK_idDependency, String state, String image1, String image2, Observation information, Date date) {
+        this.PK_idObject = PK_idObject;
+        this.code = code;
+        this.name = name;
+        this.plate = plate;
+        this.description = description;
+        this.value = value;
+        this.user = user;
+        this.PK_idDependency = PK_idDependency;
+        this.state = state;
+        this.image1 = image1;
+        this.image2 = image2;
+        this.information = information;
+        this.date = date;
     }
 
     // Getters y setters
     public int getidBien() {
-        return idBien;
+        return PK_idObject;
     }
 
-    public void setidBien(int idBien) {
-        this.idBien = idBien;
+    public void setidObject(int PK_idObject) {
+        this.PK_idObject = PK_idObject;
     }
 
-    public long getCodigo() {
-        return codigo;
+    public long getCode() {
+        return code;
     }
 
-    public void setCodigo(long codigo) {
-        this.codigo = codigo;
+    public void setCode(long code) {
+        this.code = code;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getPlaca() {
-        return placa;
+    public int getPlate() {
+        return plate;
     }
 
-    public void setPlaca(int placa) {
-        this.placa = placa;
+    public void setPlate(int plate) {
+        this.plate = plate;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public long getValor() {
-        return valor;
+    public long getValue() {
+        return value;
     }
 
-    public void setValor(long valor) {
-        this.valor = valor;
+    public void setValue(long value) {
+        this.value = value;
     }
 
-    public User getUsuario() {
-        return usuario;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsuario(User usuario) {
-        this.usuario = usuario;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Dependency getDependencia() {
-        return PK_idDependencia;
+    public Dependency getDependency() {
+        return PK_idDependency;
     } 
 
-    public void setDependencia(Dependency PK_idDependencia) {
-        this.PK_idDependencia = PK_idDependencia;
+    public void setDependency(Dependency PK_idDependency) {
+        this.PK_idDependency = PK_idDependency;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getState() {
+        return state;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setState(String state) {
+        this.state = state;
     }
 
-    public String getImagen1() {
-        return imagen1;
+    public String getImage1() {
+        return image1;
     }
 
-    public void setImagen1(String imagen1) {
-        this.imagen1 = imagen1;
+    public void setImage1(String image1) {
+        this.image1 = image1;
     }
 
-    public String getImagen2() {
-        return imagen2;
+    public String getImage2() {
+        return image2;
     }
 
-    public void setImagen2(String imagen2) {
-        this.imagen2 = imagen2;
+    public void setImage2(String image2) {
+        this.image2 = image2;
     }
 
-    public Observation getObservacion() {
-        return informacion;
+    public Observation getObservation() {
+        return information;
     }
 
-    public void setObservacion(Observation informacion) {
-        this.informacion = informacion;
+    public void setObservation(Observation information) {
+        this.information = information;
     }
 
-    public Date getFecha(){
-        return fecha;
+    public Date getDate(){
+        return date;
     }
 
-    public void setFecha(Date fecha){
-        this.fecha = fecha;
+    public void setDate(Date date){
+        this.date = date;
     }
 }

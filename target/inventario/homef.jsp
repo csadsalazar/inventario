@@ -16,8 +16,8 @@
         <h2>Bines Totales</h1>
         <div>
             <%
-                HttpSession session = request.getSession();
-                String username = (String) session.getAttribute("username");
+                HttpSession session1 = request.getSession();
+                String username = (String) session1.getAttribute("username");
             %>
             <% if (username != null) { %>
                 Bienvenido, <%= username %><br>
@@ -33,9 +33,10 @@
         <table class="w-100 table table-head">
             <thead>
                 <tr>
-                    <th scope="col">Nombre</th>
+                    <th class="campo" scope="col">Nombre</th>
                     <th scope="col">Placa</th>
                     <th class="campo" scope="col">Codigo</th>
+                    <th scope="col">Estado</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -46,21 +47,22 @@
                 if (bienesUsuario != null) {
                     for (Object unBien : bienesUsuario) {
                         // Verificar si el estado del bien es no reportado
-                        if (unBien.getEstado().equals("No reportado") || unBien.getEstado().equals("En espera")) {
+                        if (unBien.getState().equals("No reportado") || unBien.getState().equals("En espera")) {
                 %>
-                            <tr data-codigo="<%= unBien.getCodigo() %>">
-                            <td><%= unBien.getNombre() %></td>
-                            <td><%= unBien.getPlaca() %></td>
-                            <td class="campo"><%= unBien.getCodigo() %></td>
+                            <tr data-codigo="<%= unBien.getCode() %>">
+                            <td class="campo"><%= unBien.getName() %></td>
+                            <td><%= unBien.getPlate() %></td>
+                            <td class="campo"><%= unBien.getCode() %></td>
+                            <td><%= unBien.getState() %></td>
                             <td>  
                                 <div class="acciones">
-                                    <a id="cargarImagenes" data-codigo="<%= unBien.getCodigo() %>">
+                                    <a id="cargarImagenes" data-codigo="<%= unBien.getCode() %>">
                                         <img src="resources/img/icons/camera.svg" alt="camera">
                                     </a>&nbsp;
-                                    <a href="seeobjectf.jsp?codigo=<%= unBien.getCodigo() %>" data-codigo="<%= unBien.getCodigo() %>">
+                                    <a href="seeobjectf.jsp?codigo=<%= unBien.getCode() %>" data-codigo="<%= unBien.getCode() %>">
                                         <img src="resources/img/icons/airplay.svg" alt="airplay">
                                     </a>&nbsp;
-                                    <a onclick="reportar('<%= unBien.getCodigo() %>')" data-codigo="<%= unBien.getCodigo() %>">
+                                    <a onclick="reportar('<%= unBien.getCode() %>')" data-codigo="<%= unBien.getCode() %>">
                                         <img src="resources/img/icons/check-circle.svg" alt="check-circle">
                                     </a>
                                 </div>   

@@ -20,18 +20,17 @@ public class ListObjects {
             ResultSet rs = cs.executeQuery();
             while (rs.next()) {
                 Object bien = new Object();
-                bien.setCodigo(rs.getLong("PK_Codigo"));
-                bien.setPlaca(rs.getInt("placa"));
-                bien.setNombre(rs.getString("nombre"));
-                bien.setEstado(rs.getString("estado"));
-                bien.setFecha(rs.getDate("fecha"));
+                bien.setCode(rs.getLong("PK_Codigo"));
+                bien.setPlate(rs.getInt("placa"));
+                bien.setName(rs.getString("nombre"));
+                bien.setState(rs.getString("estado"));
+                bien.setDate(rs.getDate("fecha"));
                 User usuario = new User();
-                usuario.setUsuario(rs.getString("usuario"));
-                usuario.setDependencia(rs.getString("dependencia"));
-                bien.setUsuario(usuario);
-                //bien.setValor(rs.getLong("valor"));
+                usuario.setUser(rs.getString("usuario"));
+                //usuario.setDependency(rs.getString("dependencia"));
+                bien.setUser(usuario);
                 bienes.add(bien);
-            }
+            } 
             rs.close();
             cs.close();
         } catch (SQLException e) {

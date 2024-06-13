@@ -32,10 +32,10 @@
                 for (Observation observacion : observaciones) {
             %>
             <tr>
-            <td><%= observacion.getUsuario().getUsuario() %></td>
-            <td><%= observacion.getUsuario().getDependencia() %></td>
-            <td><%= observacion.getAsunto() %></td>
-            <td><%= observacion.getInformacion() %></td>
+            <td><%= observacion.getUser().getUser() %></td>
+            <td><%= observacion.getUser().getDependency() %></td>
+            <td><%= observacion.getAffair() %></td>
+            <td><%= observacion.getInformation() %></td>
             </tr>
             <%   
               }

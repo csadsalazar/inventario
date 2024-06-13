@@ -39,10 +39,10 @@ public class EditObject extends HttpServlet {
 
             // Crear un objeto bien y establecer sus propiedades
             Object bien = new Object();
-            bien.setCodigo(codigoBien);
-            bien.setNombre(nombre);
-            bien.setDescripcion(descripcion);
-            bien.setValor(valor);
+            bien.setCode(codigoBien);
+            bien.setName(nombre);
+            bien.setDescription(descripcion);
+            bien.setValue(valor);
             // Obtener la dependencia asociada al bien
             Dependency dependencia = ListDependencies.getDependencyById(idDependencia);
             request.setAttribute("dependenciaBien", dependencia);

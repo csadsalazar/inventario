@@ -19,8 +19,8 @@ public class ListUsers {
             ResultSet rs = cs.executeQuery();
             while (rs.next()) {
                 User usuario = new User();
-                usuario.setPK_idUsuario(rs.getInt("PK_idUsuario"));
-                usuario.setUsuario(rs.getString("usuario"));
+                usuario.setPK_idUser(rs.getInt("PK_idUsuario"));
+                usuario.setUser(rs.getString("usuario"));
                 usuarios.add(usuario);
             }
             rs.close();
@@ -50,8 +50,8 @@ public class ListUsers {
             ResultSet rs = cs.executeQuery();
             if (rs.next()) {
                 usuario = new User();
-                usuario.setPK_idUsuario(rs.getInt("PK_idUsuario"));
-                usuario.setUsuario(rs.getString("usuario"));
+                usuario.setPK_idUser(rs.getInt("PK_idUsuario"));
+                usuario.setUser(rs.getString("usuario"));
             }
             rs.close();
             cs.close();

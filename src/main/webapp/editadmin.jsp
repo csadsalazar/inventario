@@ -34,8 +34,8 @@
             <div class="col-md-4">
             <label for="estado" class="form-label">Estado</label>
             <select class="form-select" id="estado" name="estado">
-                <option value="Inactivo" <%= admin.getEstado().equals("Inactivo") ? "selected" : "" %>>Inactivo</option>
-                <option value="Activo" <%= admin.getEstado().equals("Activo") ? "selected" : "" %>>Activo</option>
+                <option value="Inactivo" <%= admin.getState().equals("Inactivo") ? "selected" : "" %>>Inactivo</option>
+                <option value="Activo" <%= admin.getState().equals("Activo") ? "selected" : "" %>>Activo</option>
             </select>
             </div>
             <div>
