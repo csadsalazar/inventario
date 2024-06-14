@@ -23,17 +23,17 @@ public class AddUser extends HttpServlet {
             conn = ConnectionBD.getConnection();
             List<Dependency> dependencias = ListDependencies.getDependencies();
             request.setAttribute("dependencia", dependencias);
-            request.getRequestDispatcher("register.jsp").forward(request, response);
+            request.getRequestDispatcher("adduser.jsp").forward(request, response);
 
             conn = ConnectionBD.getConnection();
             List<Charge> charges = ListCharge.getCharges();
             request.setAttribute("cargo", charges);
-            request.getRequestDispatcher("register.jsp").forward(request, response);
+            request.getRequestDispatcher("adduser.jsp").forward(request, response);
 
             conn = ConnectionBD.getConnection();
             List<DocumentType> documents = ListDocumentType.getDocumentType();
             request.setAttribute("tipodocumento", documents);
-            request.getRequestDispatcher("register.jsp").forward(request, response);
+            request.getRequestDispatcher("adduser.jsp").forward(request, response);
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -54,7 +54,7 @@ public class AddUser extends HttpServlet {
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    String nombre = request.getParameter("nombre");  
+    String nombre = request.getParameter("nombre").toUpperCase();
     String username = request.getParameter("username");
     Long cedula = Long.parseLong(request.getParameter("cedula"));
     int dependenciaId = Integer.parseInt(request.getParameter("dependencia")); // Obtener el ID de la dependencia
@@ -62,41 +62,35 @@ public class AddUser extends HttpServlet {
     int tipodocumentoId = Integer.parseInt(request.getParameter("tipodocumento")); // Obtener el ID del tipo de documento
 
 
-    // Verificar si el usuario existe antes de agregar el bien
-    if (UserController.userExists(username)) {
-        try {
-            // Establecer la conexión y realizar la inserción en la base de datos
-            Connection conn = ConnectionBD.getConnection();
-            String sql = "INSERT INTO MA_Usuario (nombre, cedula, usuario, FK_Dependencia, FK_Cargo, FK_TipoDocumento) VALUES (?,?,?,?,?,?)";
-            PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, nombre);
-            statement.setLong(2, cedula);
-            statement.setString(3, username);  
-            statement.setInt(4, dependenciaId);      
-            statement.setInt(5, cargoId);  
-            statement.setInt(6, tipodocumentoId);
-            statement.executeUpdate();
-            response.setContentType("text/plain");
-            response.setCharacterEncoding("UTF-8");
-            System.out.println("Se ha insertado con éxito el usuario"); 
-            request.getRequestDispatcher("homea.jsp").forward(request, response);
-
-            } catch (NumberFormatException e) {
-                // Manejar la excepción de formato incorrecto de número
-                e.printStackTrace();
-                request.setAttribute("error", "Formato del numero incorrecto");
-                request.getRequestDispatcher("addobject.jsp").forward(request, response);
-            } catch (SQLException e) {
-                e.printStackTrace();
-                request.setAttribute("error", "Error al agregar el usuario");
-                request.getRequestDispatcher("register.jsp").forward(request, response);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        } else {
-            // Manejar el caso donde el usuario no existe
-            request.setAttribute("error", "El usuario proporcionado no existe");
-            request.getRequestDispatcher("register.jsp").forward(request, response);
-        }
+    try {
+        // Establecer la conexión y realizar la inserción en la base de datos
+        Connection conn = ConnectionBD.getConnection();
+        String sql = "INSERT INTO MA_Usuario (nombre, cedula, usuario, FK_Dependencia, FK_Cargo, FK_TipoDocumento) VALUES (?,?,?,?,?,?)";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, nombre.toUpperCase()); // Convertir el nombre a mayúsculas
+        statement.setLong(2, cedula);
+        statement.setString(3, username);  
+        statement.setInt(4, dependenciaId);      
+        statement.setInt(5, cargoId);  
+        statement.setInt(6, tipodocumentoId);
+        statement.executeUpdate();
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("UTF-8");
+        System.out.println("Se ha insertado con éxito el usuario"); 
+        request.getRequestDispatcher("homef.jsp").forward(request, response);
+    
+    } catch (NumberFormatException e) {
+        // Manejar la excepción de formato incorrecto de número
+        e.printStackTrace();
+        request.setAttribute("error", "Formato del numero incorrecto");
+        request.getRequestDispatcher("adduser.jsp").forward(request, response);
+    
+    } catch (SQLException e) {
+        e.printStackTrace();
+        request.setAttribute("error", "Error al agregar el usuario");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+    } catch (ClassNotFoundException e) {
+        e.printStackTrace();    
+    }
     }
 }

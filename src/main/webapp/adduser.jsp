@@ -51,11 +51,9 @@
           <div class="card-body p-3 p-md-4 p-xl-5">
             <div class="row">
               <div class="col-12">
-                <div class="mb-5">
                   <img loading="lazy" src="resources/img/invima-logo.jpg"  class="mb-5" alt="invima-logo" width="90" height="50">
                   <h4 class="fw-bold">Ingresa tus datos</h4>
                   <p class="fw-normal">Por favor, ingresa tus datos reales.</p>
-                </div>
               </div>
             </div>
             <form action="AddUser" method="POST">
@@ -107,7 +105,7 @@
                   <label for="cedula" class="form-label">Cédula <span class="text-danger">*</span></label>
                   <input type="number" class="form-control" name="cedula" id="cedula" required>
                 </div>
-                <input type="hideen" name="username" id="username" value="<%= username %>">
+                <input type="hidden" name="username" id="username" value="<%= username %>">
                 <div class="col-12">
                   <div class="d-grid">
                     <button class="btn bsb-btn-xl btn-primary" type="submit">Finalizar registro</button>

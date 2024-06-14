@@ -14,7 +14,7 @@ public class ListCharge {
         Connection conn = null;
         try {
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM PA_TipoDocumento";   
+            String sql = "SELECT * FROM PA_Cargo";   
             PreparedStatement cs = conn.prepareStatement(sql);   
             ResultSet rs = cs.executeQuery();  
             while (rs.next()) {
