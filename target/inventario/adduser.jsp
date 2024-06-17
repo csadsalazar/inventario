@@ -105,7 +105,7 @@
                   <label for="cedula" class="form-label">Cédula <span class="text-danger">*</span></label>
                   <input type="number" class="form-control" name="cedula" id="cedula" required>
                 </div>
-                <input type="hideen" name="username" id="username" value="<%= username %>">
+                <input type="hidden" name="username" id="username" value="<%= username %>">
                 <div class="col-12">
                   <div class="d-grid">
                     <button class="btn bsb-btn-xl btn-primary" type="submit">Finalizar registro</button>

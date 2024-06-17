@@ -11,17 +11,16 @@
     </div>
     <main class="container">
             <div class="text-center">
+                <%
+                    HttpSession session1 = request.getSession();
+                    String username = (String) session1.getAttribute("username");
+                %>
                 <h1>Inventario personalizado - INVIMA</h1>
-                <h2>Inicio</h1>
-                <div>
-                    <%
-                        HttpSession session1 = request.getSession();
-                        String username = (String) session1.getAttribute("username");
-                    %>
+                <h2>             
                     <% if (username != null) { %>
-                        Bienvenido, <%= username %><br>
+                        Bienvenid@, <%= username %><br>
                     <% } %>
-                </div>
+                </h2>
             </div>
             <section>
                 <h2 class="text-center" id="general-percentage-header">Porcentaje general: <span style="color: black;" id="general-percentage-value"></span>%</h2>

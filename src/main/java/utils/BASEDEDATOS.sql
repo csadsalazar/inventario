@@ -237,7 +237,7 @@
 									("707", 'GRUPO DE TRABAJO TERRITORIAL COSTA CARIBE 2 - MONTERIA');
 									
 									INSERT INTO MA_Usuario (nombre, cedula, usuario, FK_Cargo, FK_Dependencia, FK_TipoDocumento) VALUES 
-                                    ('CESAR DAVID SALAZAR TORRES', 1012916688, 'csalazart', 1, 1, 1),
+                                    ('CESAR DAVID SALAZAR TORRES', 1012916688, 'csalazart', 1, 10, 1),
                                     ('AIKO MARYOM CAMACHO RAMIREZ', 1012916689, 'acamachor', 1, 1, 1);
 											
 									INSERT INTO MA_Administrador (usuario, estado) VALUES 

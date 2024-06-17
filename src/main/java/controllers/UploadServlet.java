@@ -28,10 +28,8 @@ import utils.ConnectionBD;
 public class UploadServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Part filePart = request.getPart("file"); // Nombre del input file en el formulario HTML
-
         try (InputStream fileContent = filePart.getInputStream()) {
             if (filePart.getContentType().equals("application/vnd.ms-excel")
                     || filePart.getContentType().equals("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
@@ -39,7 +37,6 @@ public class UploadServlet extends HttpServlet {
             } else if (filePart.getContentType().equals("text/csv")) {
                 processCSV(fileContent); // Procesar archivo CSV
             }
-
             response.sendRedirect("managementobjects.jsp"); // Redirigir a página de éxito
         } catch (Exception e) {
             e.printStackTrace();
@@ -142,7 +139,6 @@ public class UploadServlet extends HttpServlet {
                     pstmt.setInt(6, usuarioId);
                     pstmt.setInt(7, dependenciaId);
                     pstmt.setTimestamp(8, new Timestamp(System.currentTimeMillis())); // Fecha actual
-
                     pstmt.executeUpdate();
                 }
             }

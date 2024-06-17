@@ -12,17 +12,16 @@
 </div>
 <main class="container">
     <div class="text-center">
-      <h1>Inventario personalizado - INVIMA</h1>
-        <h2>Bines Totales</h1>
-        <div>
-            <%
-                HttpSession session1 = request.getSession();
-                String username = (String) session1.getAttribute("username");
-            %>
+        <%
+            HttpSession session1 = request.getSession();
+            String username = (String) session1.getAttribute("username");
+        %>
+        <h1>Inventario personalizado - INVIMA</h1>
+        <h2>  
             <% if (username != null) { %>
                 Bienvenido, <%= username %><br>
             <% } %>
-        </div>
+        </h2>
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end py-3">
        <a class="btn btn-primary" type="button" href="addobservation.jsp">Agregar Observacion</a>

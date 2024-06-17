@@ -85,38 +85,34 @@
                 <h5 class="modal-title" id="editarObjetosModalLabel">Editar Objetos</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-         <form id="editarObjetosForm">
+    <div class="modal-body">
+    <form id="editarObjetosForm" action="EditObjects">
     <input type="hidden" id="objetosSeleccionados">
     
     <!-- Campos para editar -->
     <div class="mb-3">
-        <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="nombre" name="nombre">
+        <label for="funcionario" class="form-label">Funcionario</label>
+        <input type="text" class="form-control" id="funcionario" name="funcionario" required>
     </div>
     <div class="mb-3">
         <label for="descripcion" class="form-label">Descripción</label>
-        <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
+        <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>
     </div>
-    <div class="mb-3">
-        <label for="valor" class="form-label">Valor</label>
-        <input type="number" class="form-control" id="valor" name="valor">
-    </div>
-    <div class="mb-3">
+    <div class="col-md-4">
         <label for="estado" class="form-label">Estado</label>
-        <select class="form-select" id="estado" name="estado">
-            <option value="Activo">Activo</option>
-            <option value="Espera">Espera</option>
-            <option value="Inactivo">Inactivo</option>
-        </select>
+        <select class="form-select" name="estado" id="estado" >
+            <option value="Reportado">Reportado</option>
+            <option value="En espera">En espera</option>
+            <option value="No reportado">No reportado</option> 
+        </select> 
     </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" onclick="guardarEdicion()">Guardar</button>
-            </div>
-</form>
-            </div>
-        </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+    <button type="button" class="btn btn-primary" onclick="guardarEdicion()">Guardar</button>
+    </div>
+    </form>
+    </div>
+    </div>
     </div>
 </div>
 </main>
