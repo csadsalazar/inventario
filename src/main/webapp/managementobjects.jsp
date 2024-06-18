@@ -4,6 +4,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="models.Object" %>
 <%@ page import="controllers.ListObjects" %>
+<%@ page import="models.Dependency" %>
+<%@ page import="controllers.ListDependencies" %>
 <div class="container mt-3">
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -85,34 +87,48 @@
                 <h5 class="modal-title" id="editarObjetosModalLabel">Editar Objetos</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-    <div class="modal-body">
-    <form id="editarObjetosForm" action="EditObjects">
-    <input type="hidden" id="objetosSeleccionados">
-    
-    <!-- Campos para editar -->
-    <div class="mb-3">
-        <label for="funcionario" class="form-label">Funcionario</label>
-        <input type="text" class="form-control" id="funcionario" name="funcionario" required>
-    </div>
-    <div class="mb-3">
-        <label for="descripcion" class="form-label">Descripción</label>
-        <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>
-    </div>
-    <div class="col-md-4">
-        <label for="estado" class="form-label">Estado</label>
-        <select class="form-select" name="estado" id="estado" >
-            <option value="Reportado">Reportado</option>
-            <option value="En espera">En espera</option>
-            <option value="No reportado">No reportado</option> 
-        </select> 
-    </div>
-    <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-    <button type="button" class="btn btn-primary" onclick="guardarEdicion()">Guardar</button>
-    </div>
-    </form>
-    </div>
-    </div>
+            <div class="modal-body">
+                <form id="editarObjetosForm">
+                    <!-- Campo oculto para almacenar los objetos seleccionados -->
+                    <input type="hidden" id="selectedObjects" name="selectedObjects">
+
+                    <!-- Campos para editar -->
+                    <div class="mb-3">
+                        <label for="usuario" class="form-label">Funcionario</label>
+                        <input type="text" class="form-control" id="usuario" name="usuario" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>
+                    </div>
+                    <div class="col-md-4">
+                    <label for="dependencia" class="form-label">Ubicacion</label>
+                    <select class="form-select" name="dependencia" id="dependencia" required>
+                        <%
+                        ArrayList<Dependency> dependencias = ListDependencies.getDependencies();
+                        for (Dependency dependencia : dependencias) {
+                        %>
+                        <option value="<%= dependencia.getPK_idDependency() %>"><%= dependencia.getDependencyName() %></option>
+                        <%  
+                        }
+                        %>
+                    </select> 
+                    </div>
+                    <div class="col-md-4">
+                        <label for="estado" class="form-label">Estado</label>
+                        <select class="form-select" id="estado" name="estado" required>
+                            <option value="Reportado">Reportado</option>
+                            <option value="En espera">En espera</option>
+                            <option value="No reportado">No reportado</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" onclick="guardarEdicion()">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 </main>
@@ -127,7 +143,8 @@ function editarObjetos() {
         }
     }
     if (objetosSeleccionados.length > 0) {
-        document.getElementById("objetosSeleccionados").value = JSON.stringify(objetosSeleccionados);
+        // Almacenar los objetos seleccionados en el campo oculto del formulario
+        document.getElementById("selectedObjects").value = JSON.stringify(objetosSeleccionados);
         var modal = new bootstrap.Modal(document.getElementById('editarObjetosModal'));
         modal.show();
     } else {
@@ -138,33 +155,23 @@ function editarObjetos() {
 function guardarEdicion() {
     var form = document.getElementById("editarObjetosForm");
     var formData = new FormData(form);
-    var objetosSeleccionados = JSON.parse(document.getElementById("objetosSeleccionados").value);
-    
-    // Agrega los objetos seleccionados al formulario
-    for (var i = 0; i < objetosSeleccionados.length; i++) {
-        var input = document.createElement("input");
-        input.type = "hidden";
-        input.name = "selectedObjects";
-        input.value = objetosSeleccionados[i];
-        form.appendChild(input);
-    }
 
     // Enviar los datos al servlet utilizando AJAX
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "EditObjects", true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            // Aquí puedes manejar la respuesta del servidor si es necesario
+            // Manejar la respuesta del servidor si es necesario
             alert("Los objetos se han editado correctamente.");
             // Recargar la página o realizar alguna otra acción después de la edición
             window.location.reload();
         }
     };
     xhr.send(formData);
-    
+
     var modal = new bootstrap.Modal(document.getElementById('editarObjetosModal'));
     modal.hide();
 }
-
 </script>
+
 <%@ include file="footer.jsp" %>

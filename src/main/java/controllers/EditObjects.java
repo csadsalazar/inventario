@@ -5,37 +5,69 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Dependency;
+
 @WebServlet("/EditObjects")
 public class EditObjects extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Connection conn = null; 
+        try {
+            conn = ConnectionBD.getConnection();
+            List<Dependency> dependencias = ListDependencies.getDependencies();
+            request.setAttribute("dependencia", dependencias);
+            request.getRequestDispatcher("addobject.jsp").forward(request, response);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            // Manejar el error, por ejemplo, redirigiendo a una página de error
+            request.setAttribute("error", "Error al obtener las dependencias: " + e.getMessage());
+            request.getRequestDispatcher("managementobjects.jsp").forward(request, response);
+        } finally {
+            // Cerrar la conexión en el bloque finally para asegurarse de que se cierre correctamente
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    } 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Obtener los parámetros del formulario de edición
-        String[] objetosSeleccionados = request.getParameterValues("objetosSeleccionados");
-        String nombre = request.getParameter("nombre");
+
+        String usuario = request.getParameter("usuario");
+        int dependenciaId = Integer.parseInt(request.getParameter("dependencia")); // Obtener el ID de la dependencia
         String descripcion = request.getParameter("descripcion");
-        long valor = Long.parseLong(request.getParameter("valor"));
         String estado = request.getParameter("estado");
+
+        // Obtener los códigos de los bienes seleccionados
+        String[] objetosSeleccionados = request.getParameterValues("selectedObjects");
 
         if (objetosSeleccionados != null && objetosSeleccionados.length > 0) {
             Connection conn = null;
             PreparedStatement stmt = null;
+            if (UserController.userExists(usuario)) { 
             try {
+              
+                int idUsuario = UserController.getUserId(usuario);
                 conn = ConnectionBD.getConnection();
                 // Preparar la consulta SQL para actualizar los objetos seleccionados
-                String sql = "UPDATE MA_Bien SET nombre=?, descripcion=?, valor=?, estado=? WHERE PK_Codigo=?";
+                String sql = "UPDATE MA_Bien SET FK_Usuario=?, FK_Dependencia=?, descripcion=?, estado=? WHERE PK_Codigo=?";
                 stmt = conn.prepareStatement(sql);
 
                 // Iterar sobre los objetos seleccionados y ejecutar la actualización para cada uno
                 for (String codigo : objetosSeleccionados) {
-                    stmt.setString(1, nombre);
-                    stmt.setString(2, descripcion);
-                    stmt.setLong(3, valor);
+                    stmt.setInt(1, idUsuario);
+                    stmt.setInt(2, dependenciaId);
+                    stmt.setString(3, descripcion);
                     stmt.setString(4, estado);
                     stmt.setLong(5, Long.parseLong(codigo));
                     stmt.addBatch(); // Agregar la consulta al lote de ejecución
@@ -79,4 +111,4 @@ public class EditObjects extends HttpServlet {
         }
     }
 }
-
+}

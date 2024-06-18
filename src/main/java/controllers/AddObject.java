@@ -53,7 +53,7 @@ public class AddObject extends HttpServlet {
     String estado = request.getParameter("estado");
 
     // Verificar si el usuario existe antes de agregar el bien
-    if (UserController.userExists(usuario)) {
+    if (UserController.userExists(usuario)) { 
         try {
             // Obtener el ID del usuario
             int idUsuario = UserController.getUserId(usuario);
