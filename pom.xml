@@ -88,6 +88,16 @@
             <artifactId>sendgrid-java</artifactId>
             <version>4.10.2</version>
         </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
+        <groupId>com.azure</groupId>
+            <artifactId>azure-storage-file-share</artifactId>
+            <version>12.11.1</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

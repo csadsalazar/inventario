@@ -36,7 +36,7 @@ function eliminarObjeto(codigo) {
 
 function eliminarSeleccionados() {
     Swal.fire({
-        title: '¿Está seguro de que desea eliminar el o los bienes?',
+        title: '¿Está seguro de que desea eliminar los bienes seleccionados.?',
         text: 'Esta acción no se puede deshacer',
         icon: 'warning',
         showCancelButton: true,
@@ -142,4 +142,44 @@ function deleteAdmin(codigo) {
         }
     };
     xhr.send("codigo=" + codigo);
+}
+
+function editarObjetos() {
+    var checkboxes = document.getElementsByName('selectedObjects');
+    var objetosSeleccionados = [];
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            objetosSeleccionados.push(checkboxes[i].value);
+        }
+    }
+    if (objetosSeleccionados.length > 0) {
+        // Almacenar los objetos seleccionados en el campo oculto del formulario
+        document.getElementById("selectedObjects").value = JSON.stringify(objetosSeleccionados);
+        var modal = new bootstrap.Modal(document.getElementById('editarObjetosModal'));
+        modal.show();
+    } else {
+        alert("Por favor seleccione al menos un objeto para editar.");
+    }
+}
+
+function guardarEdicion() {
+    var form = document.getElementById("editarObjetosForm");
+    var formData = new FormData(form);
+
+    // Enviar los datos al servlet utilizando AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "UpdateObjectsServlet", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // Manejar la respuesta del servidor si es necesario
+            alert("Los objetos se han editado correctamente.");
+            // Recargar la página o realizar alguna otra acción después de la edición
+            window.location.reload();
+        }
+    }; 
+    xhr.send(formData);
+
+    var modal = new bootstrap.Modal(document.getElementById('editarObjetosModal'));
+    modal.hide();
 }

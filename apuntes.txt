@@ -16,9 +16,6 @@ video encviar correos con html
 https://www.youtube.com/watch?v=iSobU_DjNN4
 
 
-*conexion file server
-*Numero de ticket - CHG-284994-2-100
-
 Agregar a git
 si se necesita borrar algo: 
 rm -f loquesedeseaborrar
@@ -29,20 +26,9 @@ git add .
 git commit -m "Actualizacion (fecha)"
 git push origin main
 
-
-
-
-
-
-
-
 *Si se daña una tabla en mysql*
 REPAIR TABLE mysql.nombretabla;
 
-*Ver ip de los equipos*
-ipconfig
-Ver mas informacion
-ipconfig/all
 
 //REGISTROS
 select * from documentos where cdgpraradicacion = 20221160120
@@ -94,6 +80,15 @@ select * from funcionarios order by nmbfuncionario
 select * from eventos where cdgtiptramite = 39 and cdg_paso = 2
 select * from eventos where cdgtiptramite = 39 and cdg_paso = 176 and fchfinal = '2024/04/29'
 
+Actualizar y ver responsable de un tramite
+select * from responsables_tramite where cdgpraradicacion =  20241105153
+update responsables_tramite set cdgabogado = 1581 where cdgpraradicacion = 20241105153 
+
 Registro sanitario > Ver documentos (ver fecha esperada) 
 Radicacion > Reimprimir sitkers
 Radicacion > Finalizar comunicacion (forma de agregar automaticamente respuesta auto 12-51)
+
+En despliegue TT tecnmico y TL abogados
+para radicar auto en comision revisora 9:25 (nota) se deja en el paso de reparto 
+Contraseña PST
+Invima2024*
