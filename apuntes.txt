@@ -68,9 +68,6 @@ update tramites set estado = 'En Curso', observacion  = 'Venezuela' where cdgpra
 --  actualizar estado 
 update documentos set estadodoc = 'PENDIENTE POR ENTREGAR' where cdgdocumento = 16398182
 
--- actualizar un estado
-select * from tramites where cdgpraradicacion = 20241117066
-UPDATE tramites set estado = 'Finalizado' where cdgpraradicacion = 20241117066
 
 -- ver funcionario  y ordernar todos los funcionarios
 select * from funcionarios where cdgfuncionario = 3353
@@ -87,6 +84,34 @@ update responsables_tramite set cdgabogado = 1581 where cdgpraradicacion = 20241
 Registro sanitario > Ver documentos (ver fecha esperada) 
 Radicacion > Reimprimir sitkers
 Radicacion > Finalizar comunicacion (forma de agregar automaticamente respuesta auto 12-51)
+
+auto debe quedar en pendiente por nmotificar y el orficio pendiente por entregar 
+
+Actualizar y ver responsable de un tramite
+select * from funcionarios where cdgfuncionario = 3253
+select * from funcionarios order by nmbfuncionario 
+
+Certificados certimail
+
+-- Finalizado, En curso, Suspendido, AnuladoPorRadicacion
+select * from tramites where cdgpraradicacion = 20221061332
+UPDATE tramites set estado = 'En curso' where cdgpraradicacion = 20221061332
+
+
+select * from responsables_tramite where cdgpraradicacion =  20241105153
+update responsables_tramite set cdgabogado = 1581 where cdgpraradicacion = 20241105153 
+
+select * from radicacion_tramite where cdgpraradicacion = 20241047473
+update radicacion_tramite set email_interesado = 'antoniomalaver@quibi.com.co' where cdgpraradicacion = 20241047473
+
+select * from documentos where cdgpraradicacion = 20241047473
+
+-- Para autos
+update documentos set estadodoc = 'PENDIENTE POR NOTIFICAR' where cdgdocumento = 16574000
+
+-- Para resolucion oficios, autorizaciones, cetificaciones
+update documentos set estadodoc = 'PENDIENTE POR ENTREGAR' where cdgdocumento = 16582519
+
 
 En despliegue TT tecnmico y TL abogados
 para radicar auto en comision revisora 9:25 (nota) se deja en el paso de reparto 
