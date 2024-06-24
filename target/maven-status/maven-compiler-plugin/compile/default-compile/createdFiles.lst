@@ -41,6 +41,7 @@ controllers\DeleteObjectsServlet.class
 controllers\LogoutServlet.class
 controllers\CheckBienesStatus.class
 controllers\ReporteFinal.class
+controllers\AddFile.class
 controllers\AddObservation.class
 controllers\ListObservations.class
 controllers\UpdateObjectsServlet.class

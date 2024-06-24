@@ -69,7 +69,7 @@ public class Login extends HttpServlet {
  
             try (Connection conn = ConnectionBD.getConnection()) {
             // Verificar si el usuario es un administrador activo
-            String queryAdmins = "SELECT * FROM MA_Administrador WHERE usuario = ? AND estado = 'Activo'";
+            String queryAdmins = "SELECT * FROM MA_Usuario WHERE usuario = ? AND FK_Perfil = 1";
             PreparedStatement pstmtAdmins = conn.prepareStatement(queryAdmins);
             pstmtAdmins.setString(1, username);
             ResultSet rsAdmins = pstmtAdmins.executeQuery();
