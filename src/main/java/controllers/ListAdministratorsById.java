@@ -1,6 +1,7 @@
 package controllers;
 
-import models.Admin;
+import models.Profile;
+import models.User;
 import utils.ConnectionBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,20 +9,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ListAdministratorsById {
-    public static Admin getAdministratorsById(int codigo) {
+    public static User getAdministratorsById(int codigo) {
         Connection conn = null;
-        Admin administrador = null;
+        User administrador = null;
         try {
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM MA_Administrador WHERE PK_idAdministrador=?";
+            String sql = "SELECT * FROM MA_Usuario WHERE PK_idUsuario=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, codigo);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                administrador = new Admin();
-                administrador.setPK_idAdministrador(rs.getInt("PK_idAdministrador"));
+                administrador = new User();
+                administrador.setPK_idUser(rs.getInt("PK_idUsuario"));
                 administrador.setUser(rs.getString("usuario"));
-                administrador.setState(rs.getString("estado"));
+                Profile profile = new Profile();
+                profile.setPK_idProfile();
+                Profile profile = new Profile();
+
+                administrador.setProfile(rs.getString("estado"));
             }
             rs.close();
             ps.close();

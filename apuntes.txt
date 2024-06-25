@@ -117,3 +117,19 @@ En despliegue TT tecnmico y TL abogados
 para radicar auto en comision revisora 9:25 (nota) se deja en el paso de reparto 
 Contraseña PST
 Invima2024*
+
+carlososcarmaria2022carlosmaria21091825
+LDAP PARA APLICATIVO CONTROL DE INVENTARIO PERSONALIZADO
+BUZON:   CIP@invima.gov.co
+P:                 prC@v#ZZJB&t7m*
+CADENA: CN=Control Inventario Personalizado,OU=Cuentas Institucionales,OU=Bogota,DC=invima,DC=loc
+Puerto: 389
+contraseña control inventario personalizado: M5D_Em9C28QFKCE2
+
+
+FIRMA DE TODOS LOS documentos
+Pendiewnte por firmar, 
+En preparacion (Documento estudiando o realizando)
+PENDIENTE POR ENTREGAR
+PENDIENTE POR NOTIFICAR
+ANULADO

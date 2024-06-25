@@ -15,7 +15,7 @@ import models.Dependency;
 import models.Charge;
 import models.DocumentType;
 
-@WebServlet("/AddUser")
+@WebServlet("/AddUser") 
 public class AddUser extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection conn = null; 
@@ -65,7 +65,7 @@ public class AddUser extends HttpServlet {
     try {
         // Establecer la conexión y realizar la inserción en la base de datos
         Connection conn = ConnectionBD.getConnection();
-        String sql = "INSERT INTO MA_Usuario (nombre, cedula, usuario, FK_Dependencia, FK_Cargo, FK_TipoDocumento) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO MA_Usuario (nombre, cedula, usuario, FK_Dependencia, FK_Cargo, FK_TipoDocumento, FK_Perfil) VALUES (?,?,?,?,?,?,2)";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, nombre.toUpperCase()); // Convertir el nombre a mayúsculas
         statement.setLong(2, cedula);

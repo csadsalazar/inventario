@@ -28,9 +28,6 @@
             </select>
         </div>
         <br>
-        <div class="col-md-4">
-            <button class="btn btn-primary">Enviar observación</button>
-        </div>
         <div class="col-md-3">
             <button class="btn btn-primary" type="button" onclick="generateReport()">Acciones</button>
         </div>

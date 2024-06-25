@@ -16,18 +16,18 @@ public class AddAdmin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
 
+    String perfil = request.getParameter("perfil");
     String usuario = request.getParameter("username");
-    String estado = request.getParameter("estado");
-    if (UserController.userExists(usuario)){
+    if (UserController.userExists(usuario)){ 
         try {
             // Establecer la conexión y realizar la inserción en la base de datos
             Connection conn = ConnectionBD.getConnection();
-            String sql = "INSERT INTO MA_Administrador (usuario, estado) VALUES (?,?)";
+            String sql = "UPDATE MA_Usuario SET FK_Perfil=? WHERE usuario=?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, usuario);
-            statement.setString(2, estado);
+            statement.setString(1, perfil);
+            statement.setString(2, usuario);
             statement.executeUpdate();
-            response.setContentType("text/plain");
+            response.setContentType("text/plain"); 
             response.setCharacterEncoding("UTF-8");
             System.out.println("Se ha insertado con éxito");
             request.getRequestDispatcher("managementadmins.jsp").forward(request, response);

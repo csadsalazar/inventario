@@ -8,6 +8,7 @@ public class User {
     private DocumentType PK_idChargeType;
     private Dependency PK_idDependencia;
     private Charge PK_idCharge;
+    private Profile PK_idProfile;
 
 
     // Constructor vacío
@@ -15,7 +16,7 @@ public class User {
     }
 
     // Constructor
-    public User(int PK_idUser, String name, String user, long identification, DocumentType PK_idChargeType , Dependency PK_idDependencia, Charge PK_idCharge) {
+    public User(int PK_idUser, String name, String user, long identification, DocumentType PK_idChargeType , Dependency PK_idDependencia, Charge PK_idCharge, Profile PK_idProfile) {
         this.PK_idUser = PK_idUser;
         this.name = name;
         this.user = user;
@@ -23,6 +24,7 @@ public class User {
         this.PK_idChargeType = PK_idChargeType;
         this.PK_idDependencia = PK_idDependencia;
         this.PK_idCharge = PK_idCharge;
+        this.PK_idProfile = PK_idProfile;
     }
 
     public int getPK_idUser() {
@@ -79,5 +81,13 @@ public class User {
 
     public void setCharge(Charge PK_idCharge) {
         this.PK_idCharge = PK_idCharge;
+    }
+
+    public Profile getProfile() {
+        return PK_idProfile;
+    } 
+
+    public void setProfile(Profile PK_idProfile) {
+        this.PK_idProfile = PK_idProfile;
     }
 }

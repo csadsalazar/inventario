@@ -23,10 +23,9 @@
                 <input type="text" class="form-control" name="username" id="username" required>
             </div>
             <div class="col-md-4">
-                <label for="estado" class="form-label">Estado</label>
-                <select class="form-select" id="estado" name="estado">
-                    <option value="Inactivo">Inactivo</option>
-                    <option value="Activo">Activo</option>
+                <label for="perfil" class="form-label">Perfil</label>
+                <select class="form-select" id="perfil" name="perfil">
+                    <option value="1">Administrador</option>
                 </select>
             </div>
         <div>

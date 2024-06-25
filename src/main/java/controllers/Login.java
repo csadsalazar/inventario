@@ -60,8 +60,8 @@ public class Login extends HttpServlet {
                 }
             }
         } catch (IOException e) {
+            
             // Captura la excepción y maneja el error 
-            responseCode = con.getResponseCode();
             request.setAttribute("errorMessage", "Usuario o contraseña incorrectos");
             request.getRequestDispatcher("index.jsp").forward(request, response);
             return;
@@ -75,7 +75,7 @@ public class Login extends HttpServlet {
             ResultSet rsAdmins = pstmtAdmins.executeQuery();
 
             // Verificar si el usuario se encuentra registrado activo
-            String queryUsers = "SELECT * FROM MA_Usuario WHERE usuario = ?"; 
+            String queryUsers = "SELECT * FROM MA_Usuario WHERE usuario = ? AND FK_Perfil = 2"; 
             PreparedStatement pstmtUsers = conn.prepareStatement(queryUsers);
             pstmtUsers.setString(1, username);
             ResultSet rsUsers = pstmtUsers.executeQuery();

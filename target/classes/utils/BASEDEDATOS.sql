@@ -98,7 +98,7 @@
                                             
 											CREATE TABLE IF NOT EXISTS MA_Perfil (
 											PK_idPerfil INT AUTO_INCREMENT PRIMARY KEY,
-											nombrePerfil VARCHAR(15),
+											nombrePerfil VARCHAR(25),
                                             descripcionPerfil VARCHAR(30)
 											);
                                             

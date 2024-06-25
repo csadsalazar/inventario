@@ -1,6 +1,6 @@
 package controllers;
 
-import models.Admin;
+import models.User;
 import utils.ConnectionBD;
 import java.io.IOException;
 import java.sql.Connection;
@@ -20,15 +20,15 @@ public class EditAdmin extends HttpServlet {
         try {
             int idAdministrador = Integer.parseInt(request.getParameter("id"));
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM MA_Administrador WHERE PK_idAdministrador=?";
+            String sql = "SELECT * FROM MA_Usuarios WHERE PK_idUsuario=?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, idAdministrador);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                int codigoAdministrador = resultSet.getInt("PK_idAdministrador");
+                int codigoAdministrador = resultSet.getInt("PK_idUsuario");
                 String usuario = resultSet.getString("usuario");
                 String estado = resultSet.getString("estado");
-                Admin administrador = new Admin(codigoAdministrador, usuario, estado);
+                User administrador = new User(codigoAdministrador, usuario, estado, codigoAdministrador, null, null, null, null);
                 request.setAttribute("administrador", administrador);
                 request.getRequestDispatcher("editadmin.jsp").forward(request, response);
             } else {

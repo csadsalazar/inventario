@@ -31,12 +31,10 @@ c:\Users\csalazart\Documents\inventario\src\main\java\controllers\ListAdministra
 c:\Users\csalazart\Documents\inventario\src\main\java\controllers\ListObjects.java
 c:\Users\csalazart\Documents\inventario\src\main\java\models\Admin.java
 c:\Users\csalazart\Documents\inventario\src\main\java\controllers\GenerateExcelReport.java
-c:\Users\csalazart\Documents\inventario\src\main\java\controllers\AddFile.java
 c:\Users\csalazart\Documents\inventario\src\main\java\models\Object.java
 c:\Users\csalazart\Documents\inventario\src\main\java\controllers\Login.java
 c:\Users\csalazart\Documents\inventario\src\main\java\controllers\EnviarCorreoServlet.java
 c:\Users\csalazart\Documents\inventario\src\main\java\controllers\DeleteObjectsServlet.java
-c:\Users\csalazart\Documents\inventario\src\main\java\controllers\AuthenticationFilter.java
 c:\Users\csalazart\Documents\inventario\src\main\java\controllers\GraphicOfObjects.java
 c:\Users\csalazart\Documents\inventario\src\main\java\controllers\GetDependenciesServlet.java
 c:\Users\csalazart\Documents\inventario\src\main\java\controllers\ReporteFinal.java
