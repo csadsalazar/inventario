@@ -98,7 +98,11 @@
                                             
 											CREATE TABLE IF NOT EXISTS MA_Perfil (
 											PK_idPerfil INT AUTO_INCREMENT PRIMARY KEY,
+<<<<<<< HEAD
 											nombrePerfil VARCHAR(25),
+=======
+											nombrePerfil VARCHAR(15),
+>>>>>>> 4dca191fcd0ab9f340f9e5009ff8338063259500
                                             descripcionPerfil VARCHAR(30)
 											);
                                             
@@ -233,4 +237,8 @@
 											bu.informacion 
 										FROM PA_BienPorUsuario bu 
 										INNER JOIN MA_Usuario u ON bu.FK_Usuario = u.PK_idUsuario;
+<<<<<<< HEAD
 									END //
+=======
+									END //
+>>>>>>> 4dca191fcd0ab9f340f9e5009ff8338063259500
