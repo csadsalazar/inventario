@@ -23,14 +23,14 @@ public class DeleteAdmin extends HttpServlet {
         }
         response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");
-    }
+    } 
  
     private boolean deleteAdmin(String codigo) throws ClassNotFoundException {
         Connection conn = null;
-        PreparedStatement stmt = null;
+        PreparedStatement stmt = null; 
         try {
-            conn = ConnectionBD.getConnection(); // Utiliza tu método para obtener la conexión
-            String sql = "DELETE FROM MA_Administrador WHERE PK_idAdministrador = ?";
+            conn = ConnectionBD.getConnection(); // Utiliza tu método para obtener la conexión 
+            String sql = "UPDATE MA_Usuario SET FK_Perfil=2 WHERE PK_idUsuario = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, codigo);
             int filasAfectadas = stmt.executeUpdate();

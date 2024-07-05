@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Dependency;
 import models.Object;
 import models.User;
 import utils.ConnectionBD;
@@ -8,7 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException; 
 import java.util.ArrayList;
-
+ 
 public class ListObjects {
     public static ArrayList<Object> getObjects() throws ClassNotFoundException {
         ArrayList<Object> bienes = new ArrayList<>();
@@ -25,16 +26,18 @@ public class ListObjects {
                 bien.setName(rs.getString("nombre"));
                 bien.setState(rs.getString("estado"));
                 bien.setDate(rs.getDate("fecha"));
-                User usuario = new User();
-                usuario.setUser(rs.getString("usuario"));
-                //usuario.setDependency(rs.getString("dependencia"));
-                bien.setUser(usuario);
+                User user = new User();
+                user.setName(rs.getString("usuario"));
+                bien.setUser(user); 
+                Dependency dependencia = new Dependency();
+                dependencia.setDependencyName(rs.getString("nombredependencia"));
+                bien.setDependency(dependencia);
                 bienes.add(bien);
-            } 
-            rs.close();
+            }  
+            rs.close();  
             cs.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(); 
         } finally {
             if (conn != null) {
                 try {
@@ -46,4 +49,4 @@ public class ListObjects {
         }
         return bienes;
     }    
-}
+} 

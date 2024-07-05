@@ -18,17 +18,17 @@ public class EditAdmin extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection conn = null;
         try {
-            int idAdministrador = Integer.parseInt(request.getParameter("id"));
+            int idAdministrador = Integer.parseInt(request.getParameter("codigo"));
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM MA_Usuarios WHERE PK_idUsuario=?";
+            String sql = "SELECT * FROM MA_Usuario WHERE PK_idUsuario=?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, idAdministrador);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 int codigoAdministrador = resultSet.getInt("PK_idUsuario");
                 String usuario = resultSet.getString("usuario");
-                String estado = resultSet.getString("estado");
-                User administrador = new User(codigoAdministrador, usuario, estado, codigoAdministrador, null, null, null, null);
+                String perfil = resultSet.getString("perfil");
+                User administrador = new User(codigoAdministrador, usuario, perfil, codigoAdministrador, null, null, null, null);
                 request.setAttribute("administrador", administrador);
                 request.getRequestDispatcher("editadmin.jsp").forward(request, response);
             } else {
@@ -57,15 +57,15 @@ public class EditAdmin extends HttpServlet {
         Connection conn = null;
         try {
             int idAdministrador = Integer.parseInt(request.getParameter("codigo"));
-            String estado = request.getParameter("estado");
+            int perfil = Integer.parseInt(request.getParameter("perfil"));
     
             conn = ConnectionBD.getConnection();
-            String sql = "UPDATE MA_Administrador SET estado=? WHERE PK_idAdministrador=?";
+            String sql = "UPDATE MA_Usuario SET FK_Perfil=? WHERE PK_idUsuario=?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, estado);
-            statement.setInt(2, idAdministrador);
+            statement.setInt(1, perfil);
+            statement.setInt(2, idAdministrador); 
     
-            int filasActualizadas = statement.executeUpdate();
+            int filasActualizadas = statement.executeUpdate(); 
             if (filasActualizadas > 0) {
                 // La actualización fue exitosa, redireccionar a alguna página de éxito
                 response.sendRedirect("managementadmins.jsp");

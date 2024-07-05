@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ListAdministratorsById {
-    public static User getAdministratorsById(int codigo) {
+    public static User getAdministratorsById(int codigo) { 
         Connection conn = null;
         User administrador = null;
         try {
@@ -23,10 +23,8 @@ public class ListAdministratorsById {
                 administrador.setPK_idUser(rs.getInt("PK_idUsuario"));
                 administrador.setUser(rs.getString("usuario"));
                 Profile profile = new Profile();
-                profile.setPK_idProfile();
-                Profile profile = new Profile();
-
-                administrador.setProfile(rs.getString("estado"));
+                profile.setPK_idProfile(rs.getInt("FK_Perfil"));
+                administrador.setProfile(profile);
             }
             rs.close();
             ps.close();

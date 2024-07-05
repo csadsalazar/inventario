@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import com.azure.core.http.HttpResponse;
+
 import utils.ConnectionBD;
  
 @WebServlet("/Login")
@@ -29,6 +31,7 @@ public class Login extends HttpServlet {
         // Obtén los datos del formulario
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+
  
         // Crea la conexión HTTP
         URL url = new URL("http://localhost:9767/conexionldap/v1/verificarUsuario");

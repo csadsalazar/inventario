@@ -3,8 +3,8 @@ package controllers;
 import models.Profile;
 import models.User;
 import utils.ConnectionBD;
+import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,22 +12,22 @@ import java.util.ArrayList;
 public class ListAdministrators {
     public static ArrayList<User> getAdministrators() {
         ArrayList<User> users = new ArrayList<>();
-        Connection conn = null;
+        Connection conn = null; 
         try {
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT FROM MA_Usuario";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            String sql = "{CALL ListarAdministradores}";
+            CallableStatement cs = (CallableStatement) conn.prepareCall(sql);
+            ResultSet rs = cs.executeQuery();
             while (rs.next()) {
                 User user = new User();
+                user.setPK_idUser(rs.getInt("PK_idUsuario"));
                 user.setUser(rs.getString("usuario"));
                 Profile profile = new Profile();
-                profile.setPK_idProfile(rs.getInt("PK_Perfil"));
+                profile.setprofileName(rs.getString("nombrePerfil"));
                 user.setProfile(profile);
                 users.add(user); 
             }
             rs.close();
-            ps.close();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
