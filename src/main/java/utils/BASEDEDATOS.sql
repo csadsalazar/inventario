@@ -112,7 +112,7 @@
 											nombre VARCHAR(50),
 											cedula BIGINT NOT NULL,
 											usuario VARCHAR(20) NOT NULL,
-                                            correo VARCHAR (30), 
+                                            correo VARCHAR (40), 
 											FK_Cargo INT,
 											FK_Dependencia INT,
 											FK_TipoDocumento INT,
@@ -220,6 +220,9 @@
 											b.valor, 
 											b.fecha,
 											b.estado,
+                                            b.fechaAdmin,
+                                            b.observacionAdmin,
+                                            b.FK_UsuarioAdmin,
 											u.usuario,
    											d.nombredependencia								
 										FROM MA_Bien b 

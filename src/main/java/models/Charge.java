@@ -4,24 +4,20 @@ public class Charge {
     private int PK_idCharge;
     private String name;
 
-
-    // Constructor vacío
     public Charge() {
     }
 
-    // Constructor
-    public Charge(int PK_idCharge, String name) {
-        this.PK_idCharge = PK_idCharge;
+    public Charge(int pK_idCharge, String name) {
+        PK_idCharge = pK_idCharge;
         this.name = name;
     }
 
-    // Getters y setters
-    public int getidChargeType() {
+    public int getPK_idCharge() {
         return PK_idCharge;
     }
 
-    public void setidChargeType(int PK_idCharge) {
-        this.PK_idCharge = PK_idCharge;
+    public void setPK_idCharge(int pK_idCharge) {
+        PK_idCharge = pK_idCharge;
     }
 
     public String getName() {
@@ -30,5 +26,12 @@ public class Charge {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Charge [PK_idCharge=" + PK_idCharge + ", name=" + name + ", getPK_idCharge()=" + getPK_idCharge()
+                + ", getName()=" + getName() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+                + ", toString()=" + super.toString() + "]";
     }
 }

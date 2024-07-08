@@ -24,11 +24,11 @@ public class ExcelController {
 
         int rowNum = 1;
         for (Object bien : listaBienes) {
-            sheet.addCell(new jxl.write.Number(0, rowNum, bien.getCode()));
+            sheet.addCell(new jxl.write.Number(0, rowNum, bien.getCode())); 
             sheet.addCell(new jxl.write.Number(1, rowNum, bien.getPlate()));
             sheet.addCell(new Label(2, rowNum, bien.getName()));
             sheet.addCell(new Label(3, rowNum, bien.getUser().getUser()));
-            sheet.addCell(new Label(4, rowNum, bien.getDependency().getDependencyName()));
+            sheet.addCell(new Label(4, rowNum, bien.getPK_idDependency().getDependencyname()));
             sheet.addCell(new Label(5, rowNum, bien.getState()));
             sheet.addCell(new jxl.write.Number(6, rowNum, bien.getValue()));
             rowNum++;

@@ -24,7 +24,7 @@ public class ListAdministratorsById {
                 administrador.setUser(rs.getString("usuario"));
                 Profile profile = new Profile();
                 profile.setPK_idProfile(rs.getInt("FK_Perfil"));
-                administrador.setProfile(profile);
+                administrador.setPK_idProfile(profile);
             }
             rs.close();
             ps.close();

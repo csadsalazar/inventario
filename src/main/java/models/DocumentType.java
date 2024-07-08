@@ -4,24 +4,20 @@ public class DocumentType {
     private int PK_idChargeType;
     private String name;
 
-
-    // Constructor vacío
     public DocumentType() {
     }
 
-    // Constructor
-    public DocumentType(int PK_idChargeType, String name) {
-        this.PK_idChargeType = PK_idChargeType;
+    public DocumentType(int pK_idChargeType, String name) {
+        PK_idChargeType = pK_idChargeType;
         this.name = name;
     }
 
-    // Getters y setters
-    public int getidChargeType() {
+    public int getPK_idChargeType() {
         return PK_idChargeType;
     }
 
-    public void setidChargeType(int PK_idChargeType) {
-        this.PK_idChargeType = PK_idChargeType;
+    public void setPK_idChargeType(int pK_idChargeType) {
+        PK_idChargeType = pK_idChargeType;
     }
 
     public String getName() {
@@ -32,4 +28,10 @@ public class DocumentType {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "DocumentType [PK_idChargeType=" + PK_idChargeType + ", name=" + name + ", getPK_idChargeType()="
+                + getPK_idChargeType() + ", getName()=" + getName() + ", getClass()=" + getClass() + ", hashCode()="
+                + hashCode() + ", toString()=" + super.toString() + "]";
+    } 
 }

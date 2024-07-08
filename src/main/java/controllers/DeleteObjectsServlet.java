@@ -22,7 +22,6 @@ public class DeleteObjectsServlet extends HttpServlet {
                 }
             }
         }
-        // Redirige de vuelta a la página después de eliminar los objetos
         response.sendRedirect("managementobjects.jsp");
     }
 }

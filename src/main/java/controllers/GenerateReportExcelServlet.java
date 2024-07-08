@@ -56,7 +56,7 @@ public class GenerateReportExcelServlet extends HttpServlet {
                         bien.setValue(resultSet.getLong("valor"));
                         bien.setState(resultSet.getString("estado"));
                         Dependency dependencia = ListDependencies.getDependencyById(resultSet.getInt("FK_Dependencia"));
-                        bien.setDependency(dependencia);
+                        bien.setPK_idDependency(dependencia);
                         bienes.add(bien);
                     }
                 }

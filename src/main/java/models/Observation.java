@@ -4,49 +4,38 @@ import java.util.Date;
 
 public class Observation {
     private int idobjectperuser;
+    private Date observationdate; 
+    private String affair, information;
     private User user;
     private Object object;
-    private String affair;
-    private String information;
-    private Date observationdate; 
 
-    // Constructor vacío
     public Observation() {
     }
 
-    // Constructor
-    public Observation(int idobjectperuser, User user, Object object, String affair, String information, Date observationdate) {
+    public Observation(int idobjectperuser, Date observationdate, String affair, String information, User user,
+            Object object) {
         this.idobjectperuser = idobjectperuser;
-        this.user = user;
-        this.object = object;
+        this.observationdate = observationdate;
         this.affair = affair;
         this.information = information;
-        this.observationdate = observationdate;
+        this.user = user;
+        this.object = object;
     }
 
-    // Getters y setters
-    public int getIdObjectPerUser() {
+    public int getIdobjectperuser() {
         return idobjectperuser;
     }
 
-    public void setIdObjectPerUser(int idobjectperuser) {
+    public void setIdobjectperuser(int idobjectperuser) {
         this.idobjectperuser = idobjectperuser;
     }
 
-    public User getUser() {
-        return user;
+    public Date getObservationdate() {
+        return observationdate;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Object getObject() {
-        return object;
-    }
-
-    public void setObject(Object object) {
-        this.object = object;
+    public void setObservationdate(Date observationdate) {
+        this.observationdate = observationdate;
     }
 
     public String getAffair() {
@@ -65,11 +54,29 @@ public class Observation {
         this.information = information;
     }
 
-    public Date getObservationDate() {
-        return observationdate;
+    public User getUser() {
+        return user;
     }
 
-    public void setObservationDate(Date observationdate) {
-        this.observationdate = observationdate;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Object getObject() {
+        return object;
+    }
+
+    public void setObject(Object object) {
+        this.object = object;
+    }
+
+    @Override
+    public String toString() {
+        return "Observation [idobjectperuser=" + idobjectperuser + ", observationdate=" + observationdate + ", affair="
+                + affair + ", information=" + information + ", user=" + user + ", object=" + object
+                + ", getIdobjectperuser()=" + getIdobjectperuser() + ", getObservationdate()=" + getObservationdate()
+                + ", getAffair()=" + getAffair() + ", getInformation()=" + getInformation() + ", getUser()=" + getUser()
+                + ", getObject()=" + getObject() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+                + ", toString()=" + super.toString() + "]";
     }
 }

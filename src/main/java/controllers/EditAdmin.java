@@ -28,7 +28,7 @@ public class EditAdmin extends HttpServlet {
                 int codigoAdministrador = resultSet.getInt("PK_idUsuario");
                 String usuario = resultSet.getString("usuario");
                 String perfil = resultSet.getString("perfil");
-                User administrador = new User(codigoAdministrador, usuario, perfil, codigoAdministrador, null, null, null, null);
+                User administrador = new User(codigoAdministrador, codigoAdministrador, perfil, usuario, null, null, null, null);
                 request.setAttribute("administrador", administrador);
                 request.getRequestDispatcher("editadmin.jsp").forward(request, response);
             } else {

@@ -20,6 +20,9 @@ Agregar a git
 si se necesita borrar algo: 
 rm -f loquesedeseaborrar
 
+Resetear directorio de commits 
+git reset --hard
+
 Flujo normal
 git status
 git add .

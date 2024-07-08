@@ -3,65 +3,45 @@ package models;
 import java.util.Date;
 
 public class Object {
-    private int PK_idObject;
-    private long code;
-    private String name;
-    private int plate;
-    private String description;
-    private long value;
-    private User user;
+    private int PK_idObject, plate;
+    private long code, value;
+    private Date date, dateadmin;
+    private String name, description, state, image1, image2, image3, observation;
+    private User user, admin;
     private Dependency PK_idDependency;
-    private String state;
-    private String image1;
-    private String image2;
     private Observation information;
-    private Date date;
-
-
-    // Constructor vacío
+    
     public Object() {
     }
 
-    // Constructor
-    public Object(int PK_idObject, long code, String name, int plate, String description, long value, User user, Dependency PK_idDependency, String state, String image1, String image2, Observation information, Date date) {
-        this.PK_idObject = PK_idObject;
-        this.code = code;
-        this.name = name;
+    public Object(int pK_idObject, int plate, long code, long value, Date date, Date dateadmin, String name,
+            String description, String state, String image1, String image2, String image3, String observation,
+            User user, User admin, Dependency pK_idDependency, Observation information) {
+        this.PK_idObject = pK_idObject;
         this.plate = plate;
-        this.description = description;
+        this.code = code;
         this.value = value;
-        this.user = user;
-        this.PK_idDependency = PK_idDependency;
+        this.date = date;
+        this.dateadmin = dateadmin;
+        this.name = name;
+        this.description = description;
         this.state = state;
         this.image1 = image1;
         this.image2 = image2;
+        this.image3 = image3;
+        this.observation = observation;
+        this.user = user;
+        this.admin = admin;
+        this.PK_idDependency = pK_idDependency;
         this.information = information;
-        this.date = date;
     }
 
-    // Getters y setters
-    public int getidBien() {
+    public int getPK_idObject() {
         return PK_idObject;
     }
 
-    public void setidObject(int PK_idObject) {
-        this.PK_idObject = PK_idObject;
-    }
-
-    public long getCode() {
-        return code;
-    }
-
-    public void setCode(long code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setPK_idObject(int pK_idObject) {
+        this.PK_idObject = pK_idObject;
     }
 
     public int getPlate() {
@@ -72,12 +52,12 @@ public class Object {
         this.plate = plate;
     }
 
-    public String getDescription() {
-        return description;
+    public long getCode() {
+        return code;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCode(long code) {
+        this.code = code;
     }
 
     public long getValue() {
@@ -88,20 +68,36 @@ public class Object {
         this.value = value;
     }
 
-    public User getUser() {
-        return user;
+    public Date getDate() {
+        return date;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public Dependency getDependency() {
-        return PK_idDependency;
-    } 
+    public Date getDateadmin() {
+        return dateadmin;
+    }
 
-    public void setDependency(Dependency PK_idDependency) {
-        this.PK_idDependency = PK_idDependency;
+    public void setDateadmin(Date dateadmin) {
+        this.dateadmin = dateadmin;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getState() {
@@ -128,19 +124,67 @@ public class Object {
         this.image2 = image2;
     }
 
-    public Observation getObservation() {
+    public String getImage3() {
+        return image3;
+    }
+
+    public void setImage3(String image3) {
+        this.image3 = image3;
+    }
+
+    public String getObservation() {
+        return observation;
+    }
+
+    public void setObservation(String observation) {
+        this.observation = observation;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(User admin) {
+        this.admin = admin;
+    }
+
+    public Dependency getPK_idDependency() {
+        return PK_idDependency;
+    }
+
+    public void setPK_idDependency(Dependency pK_idDependency) {
+        this.PK_idDependency = pK_idDependency;
+    }
+
+    public Observation getInformation() {
         return information;
     }
 
-    public void setObservation(Observation information) {
+    public void setInformation(Observation information) {
         this.information = information;
     }
 
-    public Date getDate(){
-        return date;
-    }
-
-    public void setDate(Date date){
-        this.date = date;
-    }
+    @Override
+    public String toString() {
+        return "Object [PK_idObject=" + PK_idObject + ", plate=" + plate + ", code=" + code + ", value=" + value
+                + ", date=" + date + ", dateadmin=" + dateadmin + ", name=" + name + ", description=" + description
+                + ", state=" + state + ", image1=" + image1 + ", image2=" + image2 + ", image3=" + image3
+                + ", observation=" + observation + ", user=" + user + ", admin=" + admin + ", PK_idDependency="
+                + PK_idDependency + ", information=" + information + ", getPK_idObject()=" + getPK_idObject()
+                + ", getPlate()=" + getPlate() + ", getCode()=" + getCode() + ", getValue()=" + getValue()
+                + ", getDate()=" + getDate() + ", getDateadmin()=" + getDateadmin() + ", getName()=" + getName()
+                + ", getDescription()=" + getDescription() + ", getClass()=" + getClass() + ", getState()=" + getState()
+                + ", getImage1()=" + getImage1() + ", getImage2()=" + getImage2() + ", getImage3()=" + getImage3()
+                + ", getObservation()=" + getObservation() + ", getUser()=" + getUser() + ", getAdmin()=" + getAdmin()
+                + ", getPK_idDependency()=" + getPK_idDependency() + ", getInformation()=" + getInformation()
+                + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+    }  
 }

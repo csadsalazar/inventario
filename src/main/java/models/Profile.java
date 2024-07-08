@@ -3,16 +3,13 @@ package models;
 public class Profile {
 
     private int PK_idProfile;
-    private String profileName;
-    private String profileDescription;
- 
-    // Constructor vacío
+    private String profileName, profileDescription;
+
     public Profile() {
     }
 
-    // Constructor
-    public Profile(int PK_idProfile, String profileName, String profileDescription) {
-        this.PK_idProfile = PK_idProfile;
+    public Profile(int pK_idProfile, String profileName, String profileDescription) {
+        PK_idProfile = pK_idProfile;
         this.profileName = profileName;
         this.profileDescription = profileDescription;
     }
@@ -21,23 +18,31 @@ public class Profile {
         return PK_idProfile;
     }
 
-    public void setPK_idProfile(int PK_idProfile) {
-        this.PK_idProfile = PK_idProfile;
+    public void setPK_idProfile(int pK_idProfile) {
+        PK_idProfile = pK_idProfile;
     }
 
-    public String getprofileName() {
+    public String getProfileName() {
         return profileName;
     }
 
-    public void setprofileName(String profileName) {
+    public void setProfileName(String profileName) {
         this.profileName = profileName;
     }
 
-    public String getprofileDescription() {
+    public String getProfileDescription() {
         return profileDescription;
     }
 
-    public void setprofileDescription(String profileDescription) {
+    public void setProfileDescription(String profileDescription) {
         this.profileDescription = profileDescription;
+    }
+
+    @Override
+    public String toString() {
+        return "Profile [PK_idProfile=" + PK_idProfile + ", profileName=" + profileName + ", profileDescription="
+                + profileDescription + ", getPK_idProfile()=" + getPK_idProfile() + ", getProfileName()="
+                + getProfileName() + ", getProfileDescription()=" + getProfileDescription() + ", getClass()="
+                + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
     }
 }

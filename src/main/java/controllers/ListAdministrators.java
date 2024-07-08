@@ -23,8 +23,8 @@ public class ListAdministrators {
                 user.setPK_idUser(rs.getInt("PK_idUsuario"));
                 user.setUser(rs.getString("usuario"));
                 Profile profile = new Profile();
-                profile.setprofileName(rs.getString("nombrePerfil"));
-                user.setProfile(profile);
+                profile.setProfileName(rs.getString("nombrePerfil"));
+                user.setPK_idProfile(profile);
                 users.add(user); 
             }
             rs.close();

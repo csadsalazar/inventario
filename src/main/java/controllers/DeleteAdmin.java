@@ -39,7 +39,7 @@ public class DeleteAdmin extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
-        } finally {
+        } finally { 
             // Cierra la conexión y el statement
             try {
                 if (stmt != null) stmt.close();
@@ -48,5 +48,5 @@ public class DeleteAdmin extends HttpServlet {
                 e.printStackTrace();
             }
         }
-    }
+    } 
 }

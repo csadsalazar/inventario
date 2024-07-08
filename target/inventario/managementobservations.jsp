@@ -3,6 +3,8 @@
 <%@ include file="nav.jsp" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="models.Observation" %>
+<%@ page import="models.User" %>
+<%@ page import="models.Dependency" %>
 <%@ page import="controllers.ListObservations" %>
     <div class="container mt-3">
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -33,7 +35,7 @@
             %>
             <tr>
             <td><%= observacion.getUser().getUser() %></td>
-            <td><%= observacion.getUser().getDependency() %></td>
+            <td><%= observacion.getUser().getDependency().getDependencyName() %></td>
             <td><%= observacion.getAffair() %></td>
             <td><%= observacion.getInformation() %></td>
             </tr>

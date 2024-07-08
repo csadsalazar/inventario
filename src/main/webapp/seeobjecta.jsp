@@ -58,19 +58,21 @@
       </div>
       <div class="col-md-4">
           <label for="descripcion" class="form-label">Descripción</label>
-          <textarea name="descripcion" id="descripcion" class="form-control" readonly><%= (bien != null) ? bien.getDescription() : "" %></textarea>
+          <textarea name="descripcion" id="descripcion" class="form-control"readonly rows="1"><%= (bien != null) ? bien.getDescription() : "" %></textarea>
       </div>
       <div class="col-md-4">
           <label for="dependencia" class="form-label">Dependencia</label>
-          <textarea name="dependencia" id="dependencia" class="form-control" readonly><%= (bien != null && bien.getDependency() != null) ? bien.getDependency().getDependencyName() : "" %></textarea>
+          <textarea name="dependencia" id="dependencia" class="form-control" readonly rows="1"><%= (bien != null && bien.getDependency() != null) ? bien.getDependency().getDependencyName() : "" %></textarea>
+      </div>
+      <div class="col-md-4">
+          <label for="dependencia" class="form-label">Observación</label>
+          <textarea name="dependencia" id="dependencia" class="form-control" readonly rows="1"<%= (bien != null) ? bien.setObservation() : "" %></textarea>
       </div>
       <div>
       </div>
-      
-       
         <div class="col">
           <a class="btn btn-primary" href="managementobjects.jsp">Aceptar</a>
         </div>
     </form>
-  </main>
+  </main>  
 <%@ include file="footer.jsp" %>

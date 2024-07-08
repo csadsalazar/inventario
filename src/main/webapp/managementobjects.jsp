@@ -30,11 +30,11 @@
         </div>
     </div>
     <br>
-    <form id="deleteForm" action="DeleteObjectsServlet" method="post">
+    <form id="deleteForm" action="DeleteObjectsServlet" method="POST">
         <div class="table-responsive">
             <table class="table" id="table">
                 <thead>
-                    <tr>
+                    <tr> 
                         <th scope="col"><input type="checkbox" id="selectAllCheckbox" onclick="selectAllCheckboxes()"></th>
                         <th scope="col">Codigo</th>
                         <th scope="col">Placa</th>

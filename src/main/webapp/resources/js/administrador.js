@@ -1,6 +1,6 @@
-function confirmarEliminacion(codigo) {
+function eliminarSeleccionados() {
     Swal.fire({
-        title: '¿Está seguro de que desea eliminar este bien?',
+        title: '¿Está seguro de que desea eliminar los bienes seleccionados?',
         text: 'Esta acción no se puede deshacer',
         icon: 'warning',
         showCancelButton: true,
@@ -13,59 +13,39 @@ function confirmarEliminacion(codigo) {
         }
     }).then((result) => {
         if (result.isConfirmed) {
-            eliminarObjeto(codigo);
+            document.getElementById("deleteForm").submit();
+            // No mostrar el mensaje de éxito aquí, sino en el callback del submit del formulario
         }
     });
 }
 
-function eliminarObjeto(codigo) {
+// Agrega este listener para capturar la respuesta del servidor después de enviar el formulario
+document.getElementById("deleteForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevenir el envío del formulario por defecto
+    var form = this;
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "DeleteObject", true);
+    xhr.open("POST", form.action, true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             Swal.fire({
                 title: '¡Éxito!',
-                text: 'Se ha eliminado el bien correctamente',
+                text: 'Se ha eliminado correctamente',
                 icon: 'success',
                 confirmButtonColor: '#139EC8'
-            })}
-    };
-    xhr.send("codigo=" + codigo);
-}
-
-function eliminarSeleccionados() {
-    Swal.fire({
-        title: '¿Está seguro de que desea eliminar los bienes seleccionados.?',
-        text: 'Esta acción no se puede deshacer',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#139EC8',
-        cancelButtonColor: '#A8A8A8',
-        confirmButtonText: 'Aceptar',
-        cancelButtonText: 'Cancelar',
-        customClass: {
-            popup: 'custom-modal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload();
+                }
+            });
         }
-    }).then((result) => {
-        if (result.isConfirmed) {    
-        Swal.fire({
-            title: '¡Éxito!',
-            text: 'Se ha eliminado correctamente',
-            icon: 'success',
-            confirmButtonColor: '#139EC8'
-        }).then((result) => {
-            document.getElementById("deleteForm").submit();
-            window.location.href = "managementobjects.jsp";
-            window.location.load();
-        });
-    }
-    });
-}
+    };
+    xhr.send(new FormData(form));
+});
 
 function selectAllCheckboxes() {
 var checkboxes = document.getElementsByName('selectedObjects');
-var selectAllCheckbox = document.getElementById('selectAllCheckbox');
+var selectAllCheckbox = document.getElementById('selectAllCheckbox'); 
 
 for (var i = 0; i < checkboxes.length; i++) {
     checkboxes[i].checked = selectAllCheckbox.checked;
