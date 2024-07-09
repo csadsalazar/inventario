@@ -68,8 +68,8 @@ Object bien = ListObjectById.getObjectById(codigoBien);
             <select class="form-control" id="dependencia" name="dependencia">
                 <% if (dependencias != null && !dependencias.isEmpty()) { %>
                 <% for (Dependency dep : dependencias) { %>
-                <option value="<%= dep.getPK_idDependency() %>" <%= (bien != null && dep.getDependencyName().equals(bien.getDependency().getDependencyName())) ? "selected" : "" %> >
-                <%= dep.getDependencyName() %>
+                <option value="<%= dep.getPK_idDependency() %>" <%= (bien != null && dep.getDependencyname().equals(bien.getPK_idDependency().getDependencyname())) ? "selected" : "" %> >
+                <%= dep.getDependencyname() %>
                 </option>
                 <% } %>
                 <% } %> 

@@ -35,8 +35,8 @@
             <div class="col-md-4"> 
             <label for="perfil" class="form-label">Perfil</label>
             <select class="form-select" id="perfil" name="perfil">
-                <option value="1" <%= admin.getProfile().equals("1") ? "selected" : "" %>>Administrador</option>
-                <option value="2" <%= admin.getProfile().equals("2") ? "selected" : "" %>>Usuario</option>
+                <option value="1" <%= admin.getPK_idProfile().equals("1") ? "selected" : "" %>>Administrador</option>
+                <option value="2" <%= admin.getPK_idProfile().equals("2") ? "selected" : "" %>>Usuario</option>
             </select>
             </div>
             <div>

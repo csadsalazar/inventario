@@ -18,10 +18,10 @@ public class ListDependencies {
             PreparedStatement cs = conn.prepareStatement(sql);   
             ResultSet rs = cs.executeQuery(); 
             while (rs.next()) {
-                Dependency dependencia = new Dependency();
+                Dependency dependencia = new Dependency(); 
                 dependencia.setPK_idDependency(rs.getInt("PK_idDependencia"));
-                dependencia.setCostCenter(rs.getString("centroDeCosto"));
-                dependencia.setDependencyName(rs.getString("nombreDependencia"));
+                dependencia.setCostcenter(rs.getString("centroDeCosto"));
+                dependencia.setDependencyname(rs.getString("nombreDependencia"));
                 dependencias.add(dependencia);
             } 
             rs.close();
@@ -52,8 +52,8 @@ public class ListDependencies {
             if (rs.next()) {
                 dependencia = new Dependency();
                 dependencia.setPK_idDependency(rs.getInt("PK_idDependencia"));
-                dependencia.setCostCenter(rs.getString("centroDeCosto"));
-                dependencia.setDependencyName(rs.getString("nombreDependencia"));
+                dependencia.setCostcenter(rs.getString("centroDeCosto"));
+                dependencia.setDependencyname(rs.getString("nombreDependencia"));
             }
             rs.close(); 
             cs.close();

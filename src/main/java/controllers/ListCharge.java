@@ -19,7 +19,7 @@ public class ListCharge {
             ResultSet rs = cs.executeQuery();  
             while (rs.next()) {
                 Charge charge = new Charge();
-                charge.setidChargeType(rs.getInt("PK_idCargo"));
+                charge.setPK_idCharge(rs.getInt("PK_idCargo"));
                 charge.setName(rs.getString("nombre"));
                 charges.add(charge);
             } 
@@ -50,7 +50,7 @@ public class ListCharge {
             ResultSet rs = cs.executeQuery();
             if (rs.next()) {
                 charge = new Charge();
-                charge.setidChargeType(rs.getInt("PK_idCargo"));
+                charge.setPK_idCharge(rs.getInt("PK_idCargo"));
                 charge.setName(rs.getString("nombre"));
             }
             rs.close(); 

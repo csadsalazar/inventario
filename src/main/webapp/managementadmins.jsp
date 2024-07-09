@@ -12,7 +12,7 @@
             <li class="breadcrumb-item active" aria-current="page">Administradores</li>
         </ol>
     </nav>
-</div>
+</div>  
 <main class="container">
     <div class="text-center">
       <h1>Inventario personalizado - INVIMA</h1>
@@ -36,9 +36,9 @@
                    for (User admin : administradores) { %>
         <tr>
             <td><%= admin.getUser() %></td>
-            <td><%= admin.getProfile().getprofileName() %></td>
+            <td><%= admin.getPK_idProfile().getProfileName() %></td>
             <td>  
-              <div class="acciones">
+              <div class="acciones"> 
                 <a href="editadmin.jsp?codigo=<%= admin.getPK_idUser() %>">
                 <img src="resources/img/icons/edit.svg" alt="edit">
                 </a>

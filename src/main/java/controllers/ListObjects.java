@@ -26,12 +26,13 @@ public class ListObjects {
                 bien.setName(rs.getString("nombre"));
                 bien.setState(rs.getString("estado"));
                 bien.setDate(rs.getDate("fecha"));
+                bien.setObservation(rs.getString("observacionAdmin"));
                 User user = new User();
                 user.setName(rs.getString("usuario"));
                 bien.setUser(user); 
                 Dependency dependencia = new Dependency();
-                dependencia.setDependencyName(rs.getString("nombredependencia"));
-                bien.setDependency(dependencia);
+                dependencia.setDependencyname(rs.getString("nombredependencia"));
+                bien.setPK_idDependency(dependencia);
                 bienes.add(bien);
             }  
             rs.close();  

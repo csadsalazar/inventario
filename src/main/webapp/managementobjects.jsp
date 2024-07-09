@@ -58,7 +58,7 @@
                         <td><%= bien.getPlate() %></td> 
                         <td class="campo"><%= bien.getName() %></td>
                         <td class="campo"><%= bien.getUser().getName() %></td>
-                        <td class="campo"><%= bien.getDependency().getDependencyName() %></td>
+                        <td class="campo"><%= bien.getPK_idDependency().getDependencyname() %></td>
                         <td class="campo"><%= bien.getState() %></td>
                         <td class="campo"><%= bien.getDate() %></td>
                         <td class="campo"><%= bien.getDate() %></td>
@@ -112,7 +112,7 @@
                         ArrayList<Dependency> dependencias = ListDependencies.getDependencies();
                         for (Dependency dependencia : dependencias) {
                         %>
-                        <option value="<%= dependencia.getPK_idDependency() %>"><%= dependencia.getDependencyName() %></option>
+                        <option value="<%= dependencia.getPK_idDependency() %>"><%= dependencia.getDependencyname() %></option>
                         <%  
                         }
                         %>

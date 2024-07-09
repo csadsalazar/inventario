@@ -19,7 +19,7 @@ public class ListDocumentType {
             ResultSet rs = cs.executeQuery(); 
             while (rs.next()) {
                 DocumentType document = new DocumentType();
-                document.setidChargeType(rs.getInt("PK_idTipoDocumento"));
+                document.setPK_idChargeType(rs.getInt("PK_idTipoDocumento"));
                 document.setName(rs.getString("nombre"));
                 documents.add(document);
             } 
@@ -50,7 +50,7 @@ public class ListDocumentType {
             ResultSet rs = cs.executeQuery();
             if (rs.next()) {
                 document = new DocumentType();
-                document.setidChargeType(rs.getInt("PK_idTipoDocumento"));
+                document.setPK_idChargeType(rs.getInt("PK_idTipoDocumento"));
                 document.setName(rs.getString("nombre"));
             }
             rs.close(); 

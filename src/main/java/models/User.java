@@ -18,10 +18,10 @@ public class User {
         this.identification = identification;
         this.name = name;
         this.user = user;
-        PK_idChargeType = pK_idChargeType;
-        PK_idDependencia = pK_idDependencia;
-        PK_idCharge = pK_idCharge;
-        PK_idProfile = pK_idProfile;
+        this.PK_idChargeType = pK_idChargeType;
+        this.PK_idDependencia = pK_idDependencia;
+        this.PK_idCharge = pK_idCharge;
+        this.PK_idProfile = pK_idProfile;
     }
 
     public int getPK_idUser() {
@@ -29,7 +29,7 @@ public class User {
     }
 
     public void setPK_idUser(int pK_idUser) {
-        PK_idUser = pK_idUser;
+        this.PK_idUser = pK_idUser;
     }
 
     public long getIdentification() {
@@ -61,7 +61,7 @@ public class User {
     }
 
     public void setPK_idChargeType(DocumentType pK_idChargeType) {
-        PK_idChargeType = pK_idChargeType;
+        this.PK_idChargeType = pK_idChargeType;
     }
 
     public Dependency getPK_idDependencia() {
@@ -69,7 +69,7 @@ public class User {
     }
 
     public void setPK_idDependencia(Dependency pK_idDependencia) {
-        PK_idDependencia = pK_idDependencia;
+        this.PK_idDependencia = pK_idDependencia;
     }
 
     public Charge getPK_idCharge() {
@@ -77,7 +77,7 @@ public class User {
     }
 
     public void setPK_idCharge(Charge pK_idCharge) {
-        PK_idCharge = pK_idCharge;
+        this.PK_idCharge = pK_idCharge;
     }
 
     public Profile getPK_idProfile() {
@@ -85,7 +85,7 @@ public class User {
     }
 
     public void setPK_idProfile(Profile pK_idProfile) {
-        PK_idProfile = pK_idProfile;
+        this.PK_idProfile = pK_idProfile;
     }
 
     @Override

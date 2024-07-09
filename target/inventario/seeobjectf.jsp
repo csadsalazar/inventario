@@ -46,9 +46,9 @@
           <textarea name="descripcion" id="descripcion" class="form-control" readonly><%= (bien != null) ? bien.getDescription() : "" %></textarea>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4"> 
           <label for="dependencia" class="form-label">Dependencia</label>
-          <textarea name="dependencia" id="dependencia" class="form-control" col="1" readonly><%= (bien != null && bien.getDependency() != null) ? bien.getDependency().getDependencyName() : "" %></textarea>
+          <textarea name="dependencia" id="dependencia" class="form-control" readonly rows="1"><%= (bien != null && bien.getPK_idDependency() != null) ? bien.getPK_idDependency().getDependencyname() : "" %></textarea>
       </div>
         <form action="Observacion" method="POST"> <!-- Utiliza el servlet Observacion para procesar la observación -->
             <input type="hidden" name="placaBien" value="<%= (bien != null) ? bien.getPlate() : "" %>">

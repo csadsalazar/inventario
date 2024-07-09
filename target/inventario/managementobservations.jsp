@@ -35,10 +35,10 @@
             %>
             <tr>
             <td><%= observacion.getUser().getUser() %></td>
-            <td><%= observacion.getUser().getDependency().getDependencyName() %></td>
+            <td><%= observacion.getUser().getPK_idDependencia().getDependencyname() %></td>
             <td><%= observacion.getAffair() %></td>
             <td><%= observacion.getInformation() %></td>
-            </tr>
+            </tr> 
             <%   
               }
             %>

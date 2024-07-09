@@ -27,8 +27,8 @@ public class ListObservations {
                 usuario.setUser(rs.getString("usuario"));
                 observacion.setUser(usuario); 
                 Dependency dependencia = new Dependency();
-                dependencia.setDependencyName(rs.getString("nombreDependencia")); 
-                usuario.setDependency(dependencia);
+                dependencia.setDependencyname(rs.getString("nombreDependencia")); 
+                usuario.setPK_idDependencia(dependencia);
                 observaciones.add(observacion);
 
             }            

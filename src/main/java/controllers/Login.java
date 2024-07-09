@@ -109,20 +109,25 @@ public class Login extends HttpServlet {
                 while (rsBienes.next()) {
                 // Crear objetos Bien y agregarlos a la lista
                 Object bien = new Object(
-                    rsBienes.getInt("idBien"),
-                    rsBienes.getLong("PK_Codigo"),
-                    rsBienes.getString("nombre"),
-                    rsBienes.getInt("placa"),
-                    rsBienes.getString("descripcion"),
-                    rsBienes.getLong("valor"),
-                    null, // Debes obtener el usuario asociado a este bien si es necesario
-                    null, // Debes obtener la dependencia asociada a este bien si es necesario
-                    rsBienes.getString("estado"),
-                    rsBienes.getString("imagen1"),
-                    rsBienes.getString("imagen2"),
-                    null, // Debes obtener la observación asociada a este bien si es necesario
-                    rsBienes.getDate("fecha")
+                rsBienes.getInt("idBien"),
+                rsBienes.getInt("placa"), // Suponiendo que placa es un entero
+                rsBienes.getLong("PK_Codigo"),
+                rsBienes.getLong("valor"),
+                rsBienes.getDate("fecha"),
+                null, // dateadmin, podría ser null si no lo obtienes de rsBienes
+                rsBienes.getString("nombre"),
+                rsBienes.getString("descripcion"),
+                rsBienes.getString("estado"),
+                rsBienes.getString("imagen1"),
+                rsBienes.getString("imagen2"),
+                rsBienes.getString("imagen3"),
+                rsBienes.getString("observacionAdmin"),
+                null, // user, debes obtenerlo si es necesario
+                null, // admin, debes obtenerlo si es necesario
+                null, // PK_idDependency, debes obtenerlo si es necesario
+                null // information, debes obtenerlo si es necesario
                 );
+
                 bienesUsuario.add(bien);
                 }
                 // Guardar la lista de bienes del usuario en la sesión

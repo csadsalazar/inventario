@@ -8,7 +8,7 @@ public class Dependency {
     }
 
     public Dependency(int pK_idDependency, String costcenter, String dependencyname) {
-        PK_idDependency = pK_idDependency;
+        this.PK_idDependency = pK_idDependency;
         this.costcenter = costcenter;
         this.dependencyname = dependencyname;
     }
@@ -18,7 +18,7 @@ public class Dependency {
     }
 
     public void setPK_idDependency(int pK_idDependency) {
-        PK_idDependency = pK_idDependency;
+        this.PK_idDependency = pK_idDependency;
     }
 
     public String getCostcenter() {
@@ -37,7 +37,7 @@ public class Dependency {
         this.dependencyname = dependencyname;
     }
 
-    @Override
+    @Override 
     public String toString() {
         return "Dependency [PK_idDependency=" + PK_idDependency + ", costcenter=" + costcenter + ", dependencyname="
                 + dependencyname + ", getPK_idDependency()=" + getPK_idDependency() + ", getCostcenter()="

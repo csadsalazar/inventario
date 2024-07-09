@@ -62,11 +62,11 @@
       </div>
       <div class="col-md-4">
           <label for="dependencia" class="form-label">Dependencia</label>
-          <textarea name="dependencia" id="dependencia" class="form-control" readonly rows="1"><%= (bien != null && bien.getDependency() != null) ? bien.getDependency().getDependencyName() : "" %></textarea>
+          <textarea name="dependencia" id="dependencia" class="form-control" readonly rows="1"><%= (bien != null && bien.getPK_idDependency() != null) ? bien.getPK_idDependency().getDependencyname() : "" %></textarea>
       </div>
       <div class="col-md-4">
-          <label for="dependencia" class="form-label">Observación</label>
-          <textarea name="dependencia" id="dependencia" class="form-control" readonly rows="1"<%= (bien != null) ? bien.setObservation() : "" %></textarea>
+          <label for="observacion" class="form-label">Observación</label>
+          <textarea name="observacion" id="observacion" class="form-control"readonly rows="1"><%= (bien != null) ? bien.getObservation() : "" %></textarea>
       </div>
       <div>
       </div>

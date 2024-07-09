@@ -29,10 +29,11 @@ public class ListObjectById {
                 bien.setPlate(rs.getInt("placa"));
                 bien.setName(rs.getString("nombre"));
                 bien.setDescription(rs.getString("descripcion"));
+                bien.setObservation(rs.getString("observacionAdmin"));
                 bien.setDate(rs.getDate("fecha"));
                 Dependency dependencia = new Dependency();
-                dependencia.setDependencyName(rs.getString("nombreDependencia"));
-                bien.setDependency(dependencia);
+                dependencia.setDependencyname(rs.getString("nombreDependencia"));
+                bien.setPK_idDependency(dependencia);
                 User usuario = new User();
                 usuario.setPK_idUser(rs.getInt("idUsuario"));
                 usuario.setUser(rs.getString("usuario"));

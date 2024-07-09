@@ -112,7 +112,7 @@
 											nombre VARCHAR(50),
 											cedula BIGINT NOT NULL,
 											usuario VARCHAR(20) NOT NULL,
-                                            correo VARCHAR (40), 
+                                            correo VARCHAR (40),
 											FK_Cargo INT,
 											FK_Dependencia INT,
 											FK_TipoDocumento INT,
@@ -183,6 +183,7 @@
 												IN valor INT,
 												IN FK_Usuario INT,
 												IN FK_Dependencia INT,
+                                                -- IN FK_UsuarioAdmin INT,
 												IN estado VARCHAR(12),
 												IN imagen1 VARCHAR(50),
 												IN imagen2 VARCHAR(50),
@@ -223,6 +224,7 @@
                                             b.fechaAdmin,
                                             b.observacionAdmin,
                                             b.FK_UsuarioAdmin,
+                                            b.observacionAdmin,
 											u.usuario,
    											d.nombredependencia								
 										FROM MA_Bien b 

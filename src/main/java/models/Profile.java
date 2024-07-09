@@ -9,7 +9,7 @@ public class Profile {
     }
 
     public Profile(int pK_idProfile, String profileName, String profileDescription) {
-        PK_idProfile = pK_idProfile;
+        this.PK_idProfile = pK_idProfile;
         this.profileName = profileName;
         this.profileDescription = profileDescription;
     }
@@ -19,7 +19,7 @@ public class Profile {
     }
 
     public void setPK_idProfile(int pK_idProfile) {
-        PK_idProfile = pK_idProfile;
+        this.PK_idProfile = pK_idProfile;
     }
 
     public String getProfileName() {
