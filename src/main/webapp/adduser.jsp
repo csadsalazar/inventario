@@ -46,7 +46,7 @@
 <section class="p-3 p-md-4 p-xl-5">
   <div class="container">
     <div class="card border-light-subtle shadow-sm"> 
-      <div class="row g-0">
+      <div class="row g-0"> 
         <div class="col-12 col-md-6">
           <div class="card-body p-3 p-md-4 p-xl-5">
             <div class="row">
@@ -69,7 +69,7 @@
                         ArrayList<Dependency> dependencias = ListDependencies.getDependencies();
                         for (Dependency dependencia : dependencias) {
                         %>
-                        <option value="<%= dependencia.getPK_idDependency() %>"><%= dependencia.getDependencyName() %></option>
+                        <option value="<%= dependencia.getPK_idDependency() %>"><%= dependencia.getDependencyname() %></option>
                         <%  
                         }
                       %>

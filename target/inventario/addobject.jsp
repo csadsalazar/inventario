@@ -59,6 +59,10 @@
           <textarea class="form-control" name="descripcion" id="descripcion" rows="1"></textarea>
       </div>
       <div class="col-md-4">
+          <label for="observacion" class="form-label">Observación Administrador</label>
+          <textarea class="form-control" name="observacion" id="observacion" rows="1"></textarea>
+      </div>
+      <div class="col-md-4">
           <label for="estado" class="form-label">Estado</label>
           <select class="form-select" id="estado" name="estado">
             <option value="No reportado">No reportado</option>
@@ -74,4 +78,15 @@
       </div>
     </form>
   </main>
+
+  <script>
+// Función para ajustar el valor del campo de observación antes de enviar el formulario
+function validarObservacion() {
+    var observacionInput = document.getElementById('observacion');
+    if (observacionInput.value.trim() === '') {
+        observacionInput.value = 'Sin observación';
+    }
+}
+</script>
+
  <%@ include file="footer.jsp" %>

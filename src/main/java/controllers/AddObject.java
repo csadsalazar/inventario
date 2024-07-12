@@ -51,6 +51,7 @@ public class AddObject extends HttpServlet {
     String usuario = request.getParameter("usuario");
     int dependenciaId = Integer.parseInt(request.getParameter("dependencia")); // Obtener el ID de la dependencia
     String estado = request.getParameter("estado");
+    String observacion = request.getParameter("observacion");
 
     // Verificar si el usuario existe antes de agregar el bien
     if (UserController.userExists(usuario)) { 
@@ -60,7 +61,7 @@ public class AddObject extends HttpServlet {
 
             // Establecer la conexión y realizar la inserción en la base de datos
             Connection conn = ConnectionBD.getConnection();
-            String sql = "INSERT INTO MA_Bien (PK_Codigo, placa, nombre, descripcion, valor, FK_Usuario, FK_Dependencia, estado, fecha) VALUES (?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO MA_Bien (PK_Codigo, placa, nombre, descripcion, valor, FK_Usuario, FK_Dependencia, estado, observacionAdmin, fecha) VALUES (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setLong(1, codigo);
             statement.setInt(2, placa);
@@ -69,8 +70,9 @@ public class AddObject extends HttpServlet {
             statement.setLong(5, valor);
             statement.setInt(6, idUsuario);
             statement.setInt(7, dependenciaId);
-            statement.setString(8, estado);
-            statement.setTimestamp(9, new Timestamp(System.currentTimeMillis())); // Fecha actual
+            statement.setString(8, estado); 
+            statement.setString(9, observacion);
+            statement.setTimestamp(10, new Timestamp(System.currentTimeMillis())); // Fecha actual
             statement.executeUpdate();
             response.setContentType("text/plain");
             response.setCharacterEncoding("UTF-8");

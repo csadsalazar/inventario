@@ -69,7 +69,7 @@
                         ArrayList<Dependency> dependencias = ListDependencies.getDependencies();
                         for (Dependency dependencia : dependencias) {
                         %>
-                        <option value="<%= dependencia.getPK_idDependency() %>"><%= dependencia.getDependencyName() %></option>
+                        <option value="<%= dependencia.getPK_idDependency() %>"><%= dependencia.getDependencyname() %></option>
                         <%  
                         }
                       %>

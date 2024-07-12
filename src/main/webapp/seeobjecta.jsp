@@ -68,6 +68,19 @@
           <label for="observacion" class="form-label">Observación</label>
           <textarea name="observacion" id="observacion" class="form-control"readonly rows="1"><%= (bien != null) ? bien.getObservation() : "" %></textarea>
       </div>
+
+      <div class="col-md-4">
+        <label for="observacion" class="form-label">Observación</label>
+        <textarea name="observacion" id="observacion" class="form-control" readonly rows="1">
+            <% 
+            if (bien != null && bien.getObservation() != null && !bien.getObservation().isEmpty()) {
+                out.print(bien.getObservation());
+            } else {
+                out.print("Sin observación");
+            }
+            %>
+        </textarea>
+      </div>
       <div>
       </div>
         <div class="col">
