@@ -3,14 +3,12 @@ package controllers;
 import utils.ConnectionBD;
 import models.Dependency;
 import models.Object;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,6 +39,7 @@ public class EditObject extends HttpServlet {
                 String descripcion = resultSet.getString("descripcion");
                 long valor = resultSet.getLong("valor");
                 int idDependencia = resultSet.getInt("FK_Dependencia");
+                String observacion = resultSet.getString("observacionAdmin");
 
                 // Crear un objeto bien y establecer sus propiedades
                 Object bien = new Object();
@@ -48,6 +47,7 @@ public class EditObject extends HttpServlet {
                 bien.setName(nombre);
                 bien.setDescription(descripcion);
                 bien.setValue(valor);
+                bien.setObservation(observacion);
 
                 // Obtener la dependencia asociada al bien
                 Dependency dependencia = ListDependencies.getDependencyById(idDependencia);
@@ -99,6 +99,8 @@ public class EditObject extends HttpServlet {
         String usuario = request.getParameter("usuario");
         int dependenciaId = Integer.parseInt(request.getParameter("dependencia"));
         String estado = request.getParameter("estado");
+        String observacion = request.getParameter("observacion");
+
 
         // Verificar si el usuario existe antes de actualizar el bien
         if (UserController.userExists(usuario)) {
@@ -108,7 +110,7 @@ public class EditObject extends HttpServlet {
 
                 // Establecer la conexión y realizar la actualización en la base de datos
                 Connection conn = ConnectionBD.getConnection();
-                String sql = "UPDATE MA_Bien SET FK_Usuario=?, nombre=?, descripcion=?, valor=?, FK_Dependencia=?, estado=? WHERE PK_Codigo=?";
+                String sql = "UPDATE MA_Bien SET FK_Usuario=?, nombre=?, descripcion=?, valor=?, FK_Dependencia=?, estado=?, observacionAdmin=? WHERE PK_Codigo=?";
                 PreparedStatement statement = conn.prepareStatement(sql);
                 statement.setInt(1, idUsuario);
                 statement.setString(2, nombre);
@@ -116,10 +118,10 @@ public class EditObject extends HttpServlet {
                 statement.setLong(4, valor);
                 statement.setInt(5, dependenciaId);
                 statement.setString(6, estado);
-                statement.setLong(7, codigo);
+                statement.setString(7, observacion);
+                statement.setLong(8, codigo);
                 statement.executeUpdate();
                 System.out.println("Se ha actualizado con éxito");
-
                 // Redirigir después de la actualización
                 response.sendRedirect("managementobjects.jsp");
 
@@ -139,63 +141,6 @@ public class EditObject extends HttpServlet {
             // Manejar el caso donde el usuario no existe
             request.setAttribute("error", "El usuario proporcionado no existe");
             request.getRequestDispatcher("editobject.jsp").forward(request, response);
-        }
-    }
-
-    public boolean editObject(String usuario, int dependenciaId, String descripcion, String estado,
-            String[] objetosSeleccionados) throws ClassNotFoundException {
-        Connection conn = null;
-        PreparedStatement stmt = null;
-
-        try {
-            int idUsuario = UserController.getUserId(usuario);
-            conn = ConnectionBD.getConnection();
-            String sql = "UPDATE MA_Bien SET FK_Usuario=?, FK_Dependencia=?, descripcion=?, estado=? WHERE PK_Codigo=?";
-            stmt = conn.prepareStatement(sql);
-
-            // Iterar sobre los objetos seleccionados y ejecutar la actualización para cada uno
-            for (String codigo : objetosSeleccionados) {
-                stmt.setInt(1, idUsuario);
-                stmt.setInt(2, dependenciaId);
-                stmt.setString(3, descripcion);
-                stmt.setString(4, estado);
-                stmt.setLong(5, Long.parseLong(codigo));
-                stmt.addBatch(); // Agregar la consulta al lote de ejecución
-            }
-
-            // Ejecutar el lote de consultas de actualización
-            int[] resultados = stmt.executeBatch();
-
-            // Verificar si la actualización se realizó correctamente para todos los objetos seleccionados
-            for (int resultado : resultados) {
-                if (resultado == PreparedStatement.EXECUTE_FAILED) {
-                    // Manejar el caso de fallo en la actualización
-                    return false;
-                }
-            }
-
-            // Si se ejecutaron todas las actualizaciones correctamente
-            return true;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        } finally {
-            // Cerrar la conexión y el statement en el bloque finally para asegurarse de que se cierre correctamente
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 }

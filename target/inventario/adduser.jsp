@@ -46,7 +46,7 @@
 <section class="p-3 p-md-4 p-xl-5">
   <div class="container">
     <div class="card border-light-subtle shadow-sm"> 
-      <div class="row g-0">
+      <div class="row g-0"> 
         <div class="col-12 col-md-6">
           <div class="card-body p-3 p-md-4 p-xl-5">
             <div class="row">
@@ -82,7 +82,7 @@
                         ArrayList<Charge> charges = ListCharge.getCharges();
                         for (Charge charge : charges) {
                         %>
-                        <option value="<%= charge.getidChargeType() %>"><%= charge.getName() %></option>
+                        <option value="<%= charge.getPK_idCharge() %>"><%= charge.getName() %></option>
                         <%  
                         }
                       %>
@@ -94,8 +94,8 @@
                       <%
                         ArrayList<DocumentType> documents = ListDocumentType.getDocumentType();
                         for (DocumentType document : documents) {
-                        %>
-                        <option value="<%= document.getidChargeType() %>"><%= document.getName() %></option>
+                        %> 
+                        <option value="<%= document.getPK_idChargeType() %>"><%= document.getName() %></option>
                         <%  
                         }
                       %> 

@@ -124,7 +124,7 @@
 											);
                                             
 											INSERT INTO MA_Usuario (nombre, cedula, usuario, FK_Cargo, FK_Dependencia, FK_TipoDocumento, FK_Perfil) VALUES 
-											('CESAR DAVID SALAZAR TORRES', 1012916688, 'csalazart', 1, 10, 1, 1),
+											('BRAYAN ESTIVEN ALFONSO PALOMA', 1012916689, 'balfonsop', 1, 10, 1, 2),
 											('AIKO MARYOM CAMACHO RAMIREZ', 1012916689, 'acamachor', 1, 1, 1, 2);
                                         
 											-- Tabla de Bienes
@@ -256,3 +256,4 @@
 										INNER JOIN MA_Usuario U ON BU.FK_Usuario = U.PK_idUsuario
 										INNER JOIN MA_Dependencia D ON U.FK_Dependencia = D.PK_idDependencia;
                                     END //
+                                    

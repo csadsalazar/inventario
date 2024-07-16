@@ -82,7 +82,7 @@
                         ArrayList<Charge> charges = ListCharge.getCharges();
                         for (Charge charge : charges) {
                         %>
-                        <option value="<%= charge.getidChargeType() %>"><%= charge.getName() %></option>
+                        <option value="<%= charge.getPK_idCharge() %>"><%= charge.getName() %></option>
                         <%  
                         }
                       %>
@@ -94,8 +94,8 @@
                       <%
                         ArrayList<DocumentType> documents = ListDocumentType.getDocumentType();
                         for (DocumentType document : documents) {
-                        %>
-                        <option value="<%= document.getidChargeType() %>"><%= document.getName() %></option>
+                        %> 
+                        <option value="<%= document.getPK_idChargeType() %>"><%= document.getName() %></option>
                         <%  
                         }
                       %> 

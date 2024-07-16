@@ -86,10 +86,14 @@ Object bien = ListObjectById.getObjectById(codigoBien);
                 <option value="En espera" <%= (bien != null && bien.getState().equals("En espera")) ? "selected" : "" %>>En espera</option>
                 <option value="Reportado" <%= (bien != null && bien.getState().equals("Reportado")) ? "selected" : "" %>>Reportado</option>
             </select>
-      </div>
+      </div> 
        <div class="col-md-4">
           <label for="descripcion" class="form-label">Descripción</label>
-          <textarea name="descripcion" class="form-control" rows="3" placeholder="Descripcion" required><%= (bien != null) ? bien.getDescription() : "" %></textarea>
+          <textarea name="descripcion" class="form-control" rows="1" required><%= (bien != null) ? bien.getDescription() : "" %></textarea>
+      </div>
+      <div class="col-md-4">
+          <label for="observacion" class="form-label">Observación</label>
+          <textarea name="observacion" class="form-control" rows="1" required><%= (bien != null) ? bien.getObservation() : "" %></textarea>
       </div>
       <div>
       </div>

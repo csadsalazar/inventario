@@ -19,7 +19,6 @@ c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\GetDependenciesServlet.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\ListUsers.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\ListCharge.java
-c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\UpdateObjectsServlet.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\DeleteObject.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\Login.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\DeleteObjectsServlet.java
@@ -32,6 +31,7 @@ c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\GraphicOfObjects.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\models\DocumentType.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\models\Object.java
+c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\EditMasive.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\models\Dependency.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\GenerateReportExcelServlet.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\ListObjects.java

@@ -59,16 +59,11 @@
       <div class="col-md-4">
           <label for="descripcion" class="form-label">Descripción</label>
           <textarea name="descripcion" id="descripcion" class="form-control"readonly rows="1"><%= (bien != null) ? bien.getDescription() : "" %></textarea>
-      </div>
+      </div> 
       <div class="col-md-4">
           <label for="dependencia" class="form-label">Dependencia</label>
           <textarea name="dependencia" id="dependencia" class="form-control" readonly rows="1"><%= (bien != null && bien.getPK_idDependency() != null) ? bien.getPK_idDependency().getDependencyname() : "" %></textarea>
       </div>
-      <div class="col-md-4">
-          <label for="observacion" class="form-label">Observación</label>
-          <textarea name="observacion" id="observacion" class="form-control"readonly rows="1"><%= (bien != null) ? bien.getObservation() : "" %></textarea>
-      </div>
-
       <div class="col-md-4">
         <label for="observacion" class="form-label">Observación</label>
         <textarea name="observacion" id="observacion" class="form-control" readonly rows="1">

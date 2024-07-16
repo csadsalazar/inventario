@@ -17,7 +17,7 @@ public class Charge {
     }
 
     public void setPK_idCharge(int pK_idCharge) {
-        PK_idCharge = pK_idCharge;
+        PK_idCharge = pK_idCharge; 
     }
 
     public String getName() {
