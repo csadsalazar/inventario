@@ -2,89 +2,70 @@
 <%@ include file="headera.jsp" %>
 <%@ include file="nav.jsp" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.List" %>
-<%@ page import="models.Object" %> 
+<%@ page import="models.Object" %>
+<%@ page import="controllers.ListObjects" %>
 <%@ page import="models.Dependency" %>
 <%@ page import="controllers.ListDependencies" %>
-<%@ page import="controllers.ListObjectById" %>
-
-<%
-String[] selectedIds = request.getParameter("selectedIds").split(",");
-List<Object> objetosSeleccionados = new ArrayList<>();
-
-if (selectedIds.length > 0) {
-    for (String id : selectedIds) {
-        try {
-            long codigoBien = Long.parseLong(id.trim());
-            Object bien = ListObjectById.getObjectById(codigoBien);
-            objetosSeleccionados.add(bien);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-    }
-}
-%>
-
 <div class="container mt-3">
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="homea.jsp">Inicio</a></li>
-            <li class="breadcrumb-item"><a href="managementobjects.jsp">Almacén</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Editar seleccionados</li>
+            <li class="breadcrumb-item active" aria-current="page">Edición Masiva</li>
         </ol>
     </nav>
 </div>
- 
-<main class="container">
-    <div class="text-center">  
-        <h1>Inventario personalizado - INVIMA</h1>
-        <h2>Editar objetos seleccionados</h2>
-    </div>
-
-    <div class="row">
-        <div class="col">
-            <form id="editarObjetosForm" method="POST" action="EditMasive">
-                <% for (int i = 0; i < objetosSeleccionados.size(); i++) {
-                        Object bien = objetosSeleccionados.get(i);
-                    %>
-                    <input type="hidden" name="selectedIds" value="<%= bien.getCode() %>">
-                    <div class="mb-3">
-                        <label for="usuario_<%= i %>" class="form-label">Funcionario</label>
-                        <input type="text" class="form-control" id="usuario_<%= i %>" name="usuario_<%= i %>">
-                    </div>
-                    <div class="mb-3">
-                        <label for="descripcion_<%= i %>" class="form-label">Descripción</label>
-                        <textarea class="form-control" id="descripcion_<%= i %>" name="descripcion_<%= i %>"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="observacion_<%= i %>" class="form-label">Observación</label>
-                        <textarea class="form-control" id="observacion_<%= i %>" name="observacion_<%= i %>"></textarea>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="dependencia_<%= i %>" class="form-label">Ubicación</label>
-                        <select class="form-select" name="dependencia_<%= i %>" id="dependencia_<%= i %>">
-                            <% ArrayList<Dependency> dependencias = ListDependencies.getDependencies();
-                            for (Dependency dependencia : dependencias) { %>
-                                <option value="<%= dependencia.getPK_idDependency() %>"><%= dependencia.getDependencyname() %></option>
-                            <% } %>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="estado_<%= i %>" class="form-label">Estado</label>
-                        <select class="form-select" id="estado_<%= i %>" name="estado_<%= i %>">
-                            <option value="Reportado">Reportado</option>
-                            <option value="En espera">En espera</option>
-                            <option value="No reportado">No reportado</option>
-                        </select>
-                    </div>
-                <% } %>
-
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                    <button type="button" class="btn btn-primary" onclick="window.history.back();">Cancelar</button>
+<main class="container"> 
+    <h1 class="text-center">Edición Masiva de Registros</h1>
+    
+    <%-- Aquí se mostrará la información de los registros seleccionados --%>
+    <% ArrayList<Object> bienes = ListObjects.getObjects(); %>
+    <% for (Object bien : bienes) { %>
+        <%-- Verificar si este objeto está en los IDs seleccionados --%>
+        <% boolean isSelected = isSelected(request, bien.getCode()); %>
+        <% if (isSelected) { %>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Código: <%= bien.getCode() %></h5>
+                    <p class="card-text">Nombre: <%= bien.getName() %></p>
+                    <p class="card-text">Placa: <%= bien.getPlate() %></p>
+                    <p class="card-text">Funcionario: <%= bien.getUser().getName() %></p>
+                    <p class="card-text">Dependencia: <%= bien.getPK_idDependency().getDependencyname() %></p>
+                    <p class="card-text">Estado Actual: <%= bien.getState() %></p>
+                    
+                    <%-- Formulario para editar campos específicos del objeto --%>
+                    <form action="EditMasive" method="POST">
+                        <input type="hidden" name="codigo" value="<%= bien.getCode() %>">
+                        <div class="mb-3">
+                            <label for="descripcion_<%= bien.getCode() %>" class="form-label">Descripción</label>
+                            <input type="text" class="form-control" id="descripcion_<%= bien.getCode() %>" name="descripcion_<%= bien.getCode() %>" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="usuario_<%= bien.getCode() %>" class="form-label">Usuario</label>
+                            <input type="text" class="form-control" id="usuario_<%= bien.getCode() %>" name="usuario_<%= bien.getCode() %>" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="dependencia_<%= bien.getCode() %>" class="form-label">Dependencia</label>
+                            <select class="form-select" id="dependencia_<%= bien.getCode() %>" name="dependencia_<%= bien.getCode() %>">
+                                <% ArrayList<Dependency> dependencies = ListDependencies.getDependencies(); %>
+                                <% for (Dependency dependency : dependencies) { %>
+                                    <option value="<%= dependency.getPK_idDependency() %>"><%= dependency.getDependencyname() %></option>
+                                <% } %>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="estado_<%= bien.getCode() %>" class="form-label">Estado</label>
+                            <input type="text" class="form-control" id="estado_<%= bien.getCode() %>" name="estado_<%= bien.getCode() %>" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="observacion_<%= bien.getCode() %>" class="form-label">Observación</label>
+                            <textarea class="form-control" id="observacion_<%= bien.getCode() %>" name="observacion_<%= bien.getCode() %>"></textarea>
+                        </div>
+                        <input type="hidden" name="original_estado_<%= bien.getCode() %>" value="<%= bien.getState() %>">
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                    </form>
                 </div>
-            </form>
-        </div>
-    </div>
+            </div>
+        <% } %>
+    <% } %>
 </main>
 <%@ include file="footer.jsp" %>

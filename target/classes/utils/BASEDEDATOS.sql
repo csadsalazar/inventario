@@ -223,13 +223,13 @@
 											b.estado,
                                             b.fechaAdmin,
                                             b.observacionAdmin,
-                                            b.FK_UsuarioAdmin,
-                                            b.observacionAdmin,
+											a.usuario,
 											u.usuario,
    											d.nombredependencia								
 										FROM MA_Bien b 
 										INNER JOIN MA_Dependencia d ON b.FK_Dependencia = d.PK_idDependencia
-										INNER JOIN MA_Usuario u ON b.FK_Usuario = u.PK_idUsuario;
+										INNER JOIN MA_Usuario u ON b.FK_Usuario = u.PK_idUsuario
+                                        INNER JOIN Ma_Usuario a ON b.FK_UsuarioAdmin = u.PK_idUsuario;
 									END //
 
                                     DELIMITER //

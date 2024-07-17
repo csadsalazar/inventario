@@ -3,72 +3,81 @@ package controllers;
 import utils.ConnectionBD;
 import models.Dependency;
 import models.Object;
+import models.User;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/EditObject")
+@WebServlet("/EditMasive")
 public class EditMasive extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        long codigo = Long.parseLong(request.getParameter("selectedIds"));
-        System.out.println(codigo);
-        String nombre = request.getParameter("nombre");
-        String descripcion = request.getParameter("descripcion");
-        long valor = Long.parseLong(request.getParameter("valor"));
-        String usuario = request.getParameter("usuario");
-        int dependenciaId = Integer.parseInt(request.getParameter("dependencia"));
-        String estado = request.getParameter("estado");
-        String observacion = request.getParameter("observacion");
 
-        // Verificar si el usuario existe antes de actualizar el bien
-        if (UserController.userExists(usuario)) { 
-            try {
-                // Obtener el ID del usuario
-                int idUsuario = UserController.getUserId(usuario);
-                // Establecer la conexión y realizar la actualización en la base de datos
-                Connection conn = ConnectionBD.getConnection();
-                String sql = "UPDATE MA_Bien SET FK_Usuario=?, nombre=?, descripcion=?, valor=?, FK_Dependencia=?, estado=?, observacionAdmin=? WHERE PK_Codigo=?";
-                PreparedStatement statement = conn.prepareStatement(sql);
-                statement.setInt(1, idUsuario);
-                statement.setString(2, nombre);
-                statement.setString(3, descripcion);
-                statement.setLong(4, valor);
-                statement.setInt(5, dependenciaId);
-                statement.setString(6, estado);
-                statement.setString(7, observacion);
-                statement.setLong(8, codigo);
-                statement.executeUpdate();
-                System.out.println("Se ha actualizado con éxito");
-                // Redirigir después de la actualización
-                response.sendRedirect("managementobjects.jsp");
+        // Obtener los IDs de los bienes seleccionados del formulario
+        String[] selectedIds = request.getParameter("selectedIds").split(",");
 
-            } catch (NumberFormatException e) {
-                // Manejar la excepción de formato incorrecto de número
-                e.printStackTrace();
-                System.out.println(codigo);
-                System.out.println(usuario);
-                request.setAttribute("error", "Formato de código incorrecto");
-                request.getRequestDispatcher("editobject.jsp").forward(request, response);
-            } catch (SQLException e) {
-                e.printStackTrace();
-                request.setAttribute("error", "Error al actualizar el bien: " + e.getMessage());
-                request.getRequestDispatcher("editobject.jsp").forward(request, response);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+        try {
+            // Establecer la conexión a la base de datos
+            Connection conn = ConnectionBD.getConnection();
+
+            // Preparar la consulta para obtener y actualizar cada bien seleccionado
+            String sql = "SELECT * FROM MA_Bien WHERE PK_Codigo=?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            for (String id : selectedIds) {
+                long codigo = Long.parseLong(id);
+                statement.setLong(1, codigo);
+                ResultSet resultSet = statement.executeQuery();
+
+                if (resultSet.next()) {  
+                    // Obtener los datos del bien de la consulta
+                    Object bien = new Object();
+                    bien.setCode(resultSet.getLong("PK_Codigo"));
+                    bien.setDescription(request.getParameter("descripcion")); // Actualizar la descripción
+                    bien.setObservation(request.getParameter("observacion")); // Actualizar la observación
+                    bien.setState(resultSet.getString("estado"));
+
+                    User user = new User();
+                    user.setPK_idUser(resultSet.getInt("FK_Usuario"));
+                    bien.setUser(user); 
+
+                    Dependency dependency = new Dependency();
+                    dependency.setPK_idDependency(resultSet.getInt("FK_Dependencia"));
+                    bien.setPK_idDependency(dependency);
+
+                    // Realizar la actualización en la base de datos
+                    sql = "UPDATE MA_Bien SET descripcion=?, observacionAdmin=? WHERE PK_Codigo=?";
+                    PreparedStatement updateStatement = conn.prepareStatement(sql);
+                    updateStatement.setString(1, bien.getDescription());
+                    updateStatement.setString(2, bien.getObservation());
+                    updateStatement.setLong(3, bien.getCode());
+                    updateStatement.executeUpdate();
+                }
             }
-        } else {
-            // Manejar el caso donde el usuario no existe
-            request.setAttribute("error", "El usuario proporcionado no existe");
-            request.getRequestDispatcher("editobject.jsp").forward(request, response);
+            // Cerrar la conexión
+            conn.close();
+            // Redirigir después de la actualización
+            response.sendRedirect("managementobjects.jsp");
+
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            // Manejar errores de formato de número
+            request.setAttribute("error", "Formato de código incorrecto");
+            request.getRequestDispatcher("managementobjects.jsp").forward(request, response);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            // Manejar otros errores de SQL o conexión
+            request.setAttribute("error", "Error al actualizar los bienes: " + e.getMessage());
+            request.getRequestDispatcher("managementobjects.jsp").forward(request, response);
         }
     }
-}  
+}

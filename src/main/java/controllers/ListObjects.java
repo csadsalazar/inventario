@@ -29,6 +29,7 @@ public class ListObjects {
                 bien.setObservation(rs.getString("observacionAdmin"));
                 User user = new User();
                 user.setName(rs.getString("usuario"));
+                bien.setAdmin(user);
                 bien.setUser(user); 
                 Dependency dependencia = new Dependency();
                 dependencia.setDependencyname(rs.getString("nombredependencia"));
