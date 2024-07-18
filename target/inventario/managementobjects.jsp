@@ -14,23 +14,24 @@
         </ol>
     </nav>
 </div>
-<main class="container"> 
+<main class="container">   
     <div class="text-center">
         <h1>Inventario personalizado - INVIMA</h1>
         <h2>Almacén</h2>
-    </div>
+    </div> 
     <div class="d-grid gap-2 d-md-flex justify-content-md-between">
         <div>
-            <button class="btn btn-primary" type="button" onclick="eliminarSeleccionados()">Eliminar seleccionados</button>
-            <button class="btn btn-primary" type="button" onclick="deleteAllObjects()">Vaciar almacen</button>
+            <a class="btn btn-primary" type="button" href="managementobjectsinactive.jsp">Ver bienes inactivos</a>
+            <button class="btn btn-primary" type="button" onclick="inactiveSelected()">Inactivar seleccionados</button>
         </div>
         <div>
             <a class="btn btn-primary" type="button" href="addobject.jsp">Agregar</a>
             <a class="btn btn-primary" type="button" href="uploadfile.jsp">Subir almacen</a>
         </div>
-    </div> 
+    </div>  
     <br>
-    <form id="editForm" action="EditMasive" method="POST">
+    <form id="inactiveForm" action="InactiveCondition" method="POST">
+    <input type="hidden" id="selectedIds" name="selectedIds" />
         <div class="table-responsive">
             <table class="table" id="table">
                 <thead>
@@ -42,6 +43,7 @@
                         <th class="campo" scope="col">Funcionario</th>
                         <th class="campo" scope="col">Dependencia</th>
                         <th class="campo" scope="col">Estado</th>
+                        <th class="campo" scope="col">Condicion</th>
                         <th class="campo" scope="col">Fecha Creacion</th>
                         <th class="campo" scope="col">Admin Modf</th>
                         <th scope="col">Acciones</th>
@@ -58,8 +60,9 @@
                         <td class="campo"><%= bien.getUser().getName() %></td>
                         <td class="campo"><%= bien.getPK_idDependency().getDependencyname() %></td>
                         <td class="campo"><%= bien.getState() %></td>
+                        <td class="campo"><%= bien.getCondition() %></td>
                         <td class="campo"><%= bien.getDate() %></td>
-                        <td class="campo"><%= bien.getDate() %></td>
+                        <td class="campo"><%= bien.getAdmin().getName() %></td>
                         <td>
                             <div class="acciones">
                                 <a href="seeobjecta.jsp?codigo=<%= bien.getCode() %>">
@@ -74,36 +77,47 @@
                     <% } %>
                 </tbody> 
             </table>
-                <input type="hidden" id="selectedIds" name="selectedIds" />
         </div>
-        <div class="col">
-            <button class="btn btn-primary" type="button" onclick="editarSeleccionados()">Editar seleccionados</button>
-        </div>
+        <input type="hidden" id="selectedIds" name="selectedIds" />
     </form>
-</main>
-
 <script>
-
-function editarSeleccionados() {
-    var checkboxes = document.getElementsByName('selectedIds');
+function inactiveSelected() {
+    var form = document.getElementById("inactiveForm");
+    var checkboxes = document.getElementsByName("selectedIds");
     var selectedIds = [];
-
-    for (var i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].checked) {
-            selectedIds.push(checkboxes[i].value);
+    
+    for (var checkbox of checkboxes) {
+        if (checkbox.checked) {
+            selectedIds.push(checkbox.value);
         }
     }
+    
+    if (selectedIds.length === 0) {
+        // Mostrar alerta con SweetAlert
+        Swal.fire({
+                title: '¡Espere!',
+                text: 'Por favor seleccione al menos un registro',
+                icon: 'warning',
+                confirmButtonColor: '#139EC8'
+        });
+        return; // Evitar enviar el formulario si no hay registros seleccionados
+    } 
+    
+    // Asignar los IDs seleccionados al campo oculto
+    document.getElementById("selectedIds").value = selectedIds.join(",");
+    
+    // Enviar el formulario
+    form.submit();
+}
 
-    // Asignar los IDs seleccionados al campo oculto del formulario principal
-    var selectedIdsField = document.getElementById('selectedIds');
-    if (selectedIdsField) {
-        selectedIdsField.value = selectedIds.join(',');
-    } else {
-        console.error('No se encontró el elemento con id "selectedIds"');
+function selectAllCheckboxes() {
+    var checkboxes = document.getElementsByName("selectedIds");
+    var selectAllCheckbox = document.getElementById("selectAllCheckbox");
+    
+    for (var checkbox of checkboxes) {
+        checkbox.checked = selectAllCheckbox.checked;
     }
-
-    // Enviar el formulario principal
-    document.getElementById('editForm').submit();
 }
 </script>
+</main>
 <%@ include file="footer.jsp" %>

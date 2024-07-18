@@ -6,7 +6,7 @@ public class Object {
     private int PK_idObject, plate;
     private long code, value;
     private Date date, dateadmin;
-    private String name, description, state, image1, image2, image3, observation;
+    private String name, description, state, condition, image1, image2, image3, observation;
     private User user, admin;
     private Dependency PK_idDependency;
     private Observation information;
@@ -15,8 +15,8 @@ public class Object {
     }
 
     public Object(int pK_idObject, int plate, long code, long value, Date date, Date dateadmin, String name,
-            String description, String state, String image1, String image2, String image3, String observation,
-            User user, User admin, Dependency pK_idDependency, Observation information) {
+            String description, String state, String condition, String image1, String image2, String image3,
+            String observation, User user, User admin, Dependency pK_idDependency, Observation information) {
         this.PK_idObject = pK_idObject;
         this.plate = plate;
         this.code = code;
@@ -26,6 +26,7 @@ public class Object {
         this.name = name;
         this.description = description;
         this.state = state;
+        this.condition = condition;
         this.image1 = image1;
         this.image2 = image2;
         this.image3 = image3;
@@ -108,6 +109,14 @@ public class Object {
         this.state = state;
     }
 
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
     public String getImage1() {
         return image1;
     }
@@ -170,21 +179,5 @@ public class Object {
 
     public void setInformation(Observation information) {
         this.information = information;
-    }
-
-    @Override
-    public String toString() {
-        return "Object [PK_idObject=" + PK_idObject + ", plate=" + plate + ", code=" + code + ", value=" + value
-                + ", date=" + date + ", dateadmin=" + dateadmin + ", name=" + name + ", description=" + description
-                + ", state=" + state + ", image1=" + image1 + ", image2=" + image2 + ", image3=" + image3
-                + ", observation=" + observation + ", user=" + user + ", admin=" + admin + ", PK_idDependency="
-                + PK_idDependency + ", information=" + information + ", getPK_idObject()=" + getPK_idObject()
-                + ", getPlate()=" + getPlate() + ", getCode()=" + getCode() + ", getValue()=" + getValue()
-                + ", getDate()=" + getDate() + ", getDateadmin()=" + getDateadmin() + ", getName()=" + getName()
-                + ", getDescription()=" + getDescription() + ", getClass()=" + getClass() + ", getState()=" + getState()
-                + ", getImage1()=" + getImage1() + ", getImage2()=" + getImage2() + ", getImage3()=" + getImage3()
-                + ", getObservation()=" + getObservation() + ", getUser()=" + getUser() + ", getAdmin()=" + getAdmin()
-                + ", getPK_idDependency()=" + getPK_idDependency() + ", getInformation()=" + getInformation()
-                + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
-    }  
+    } 
 }

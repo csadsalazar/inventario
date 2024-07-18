@@ -9,14 +9,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException; 
 import java.util.ArrayList;
- 
+  
 public class ListObjects {
     public static ArrayList<Object> getObjects() throws ClassNotFoundException {
         ArrayList<Object> bienes = new ArrayList<>();
         Connection conn = null;
         try {
             conn = ConnectionBD.getConnection();
-            String query = "{CALL ListarBienes}";
+            String query = "{CALL ListarBienesActivos}";
             CallableStatement cs = (CallableStatement) conn.prepareCall(query);
             ResultSet rs = cs.executeQuery();
             while (rs.next()) {
@@ -25,12 +25,15 @@ public class ListObjects {
                 bien.setPlate(rs.getInt("placa"));
                 bien.setName(rs.getString("nombre"));
                 bien.setState(rs.getString("estado"));
+                bien.setCondition(rs.getString("condicion"));
                 bien.setDate(rs.getDate("fecha"));
                 bien.setObservation(rs.getString("observacionAdmin"));
-                User user = new User();
+                User user = new User(); 
                 user.setName(rs.getString("usuario"));
-                bien.setAdmin(user);
                 bien.setUser(user); 
+                User admin = new User();
+                admin.setName(rs.getString("usuario_admin"));
+                bien.setAdmin(admin);
                 Dependency dependencia = new Dependency();
                 dependencia.setDependencyname(rs.getString("nombredependencia"));
                 bien.setPK_idDependency(dependencia);
@@ -39,7 +42,7 @@ public class ListObjects {
             rs.close();  
             cs.close();
         } catch (SQLException e) {
-            e.printStackTrace(); 
+            e.printStackTrace();  
         } finally {
             if (conn != null) {
                 try {

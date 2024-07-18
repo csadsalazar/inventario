@@ -19,13 +19,11 @@ c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\GetDependenciesServlet.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\ListUsers.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\ListCharge.java
-c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\DeleteObject.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\Login.java
-c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\DeleteObjectsServlet.java
+c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\ListObjectsInactive.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\GetUsersServlet.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\ObservationAdmin.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\AddUser.java
-c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\EnviarCorreoServlet.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\FileUploadServlet.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\UserController.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\GraphicOfObjects.java
@@ -37,7 +35,9 @@ c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\ListObjects.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\Observation.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\ReportObject.java
+c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\InactiveCondition.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\LogoutServlet.java
+c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\ActiveCondition.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\controllers\CheckBienesStatus.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\models\Charge.java
 c:\Users\csalazart\OneDrive - Instituto Nacional de Vigilancia de Medicamentos y Alimentos\Escritorio\OTI\inventario\src\main\java\models\Observation.java

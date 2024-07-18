@@ -136,6 +136,7 @@
 											descripcion TEXT,
 											valor BIGINT,
 											estado VARCHAR(12),
+                                            condicion VARCHAR (10),
 											imagen1 VARCHAR(255),
 											imagen2 VARCHAR(255),
 											imagen3 VARCHAR(255),
@@ -211,26 +212,33 @@
                                     
                                     -- PROCEDIMIENTOS PARA LISTAR
                                     
-                                    DELIMITER //
-                                    CREATE PROCEDURE ListarBienes()
+									DELIMITER //
+
+									CREATE PROCEDURE ListarBienes()
 									BEGIN
-										SELECT b.idBien,
+										SELECT 
+											b.idBien,
 											b.PK_Codigo,
 											b.placa,
 											b.nombre,
-											b.valor, 
+											b.valor,
 											b.fecha,
 											b.estado,
-                                            b.fechaAdmin,
-                                            b.observacionAdmin,
-											a.usuario,
+											b.fechaAdmin,
+											b.observacionAdmin,
+                                            b.condicion,
 											u.usuario,
-   											d.nombredependencia								
+											a.usuario AS usuario_admin,
+											d.nombredependencia
 										FROM MA_Bien b 
 										INNER JOIN MA_Dependencia d ON b.FK_Dependencia = d.PK_idDependencia
 										INNER JOIN MA_Usuario u ON b.FK_Usuario = u.PK_idUsuario
-                                        INNER JOIN Ma_Usuario a ON b.FK_UsuarioAdmin = u.PK_idUsuario;
+										LEFT JOIN MA_Usuario a ON b.FK_UsuarioAdmin = a.PK_idUsuario; -- Cambié INNER JOIN a LEFT JOIN para el administrador, ya que podría ser nulo
+
 									END //
+
+									DELIMITER ;
+
 
                                     DELIMITER //
                                     CREATE PROCEDURE ListarAdministradores()
@@ -255,5 +263,5 @@
 										PA_BienPorUsuario BU
 										INNER JOIN MA_Usuario U ON BU.FK_Usuario = U.PK_idUsuario
 										INNER JOIN MA_Dependencia D ON U.FK_Dependencia = D.PK_idDependencia;
-                                    END //
-                                    
+                                    END //    
+                                    DELIMITER ;

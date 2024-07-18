@@ -113,10 +113,11 @@ public class Login extends HttpServlet {
                 rsBienes.getLong("PK_Codigo"),
                 rsBienes.getLong("valor"),
                 rsBienes.getDate("fecha"),
-                null, // dateadmin, podría ser null si no lo obtienes de rsBienes
+                rsBienes.getDate("fechaAdmin"),
                 rsBienes.getString("nombre"),
                 rsBienes.getString("descripcion"),
                 rsBienes.getString("estado"),
+                rsBienes.getString("condicion"),
                 rsBienes.getString("imagen1"),
                 rsBienes.getString("imagen2"),
                 rsBienes.getString("imagen3"),
@@ -126,7 +127,6 @@ public class Login extends HttpServlet {
                 null, // PK_idDependency, debes obtenerlo si es necesario
                 null // information, debes obtenerlo si es necesario
                 );
-
                 bienesUsuario.add(bien);
                 }
                 // Guardar la lista de bienes del usuario en la sesión

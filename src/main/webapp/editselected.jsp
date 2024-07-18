@@ -4,16 +4,16 @@
 <%@ include file="nav.jsp" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="models.Object" %>
+<%@ page import="controllers.ListObjects" %>
 <%@ page import="models.Dependency" %>
 <%@ page import="controllers.ListDependencies" %>
-<%@ page import="controllers.ListObjects" %>
 
 <div class="container mt-3">
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="homea.jsp">Inicio</a></li>
             <li class="breadcrumb-item"><a href="managementobjects.jsp">Almacén</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Editar masivamente</li>
+            <li class="breadcrumb-item active" aria-current="page">Editar bienes seleccionados</li>
         </ol>
     </nav>
 </div>
@@ -28,32 +28,39 @@
         <p style="color: red;">${error}</p>
     </c:if>
 
-    <form class="row g-3 py-3" method="POST" action="EditMasive">
-        <div class="col-md-4">
-            <label for="descripcion" class="form-label">Descripción</label>
-            <textarea name="descripcion" class="form-control" rows="1" required></textarea>
+    <form class="row g-3 py-3" method="POST" action="UpdateState">
+        <div class="table-responsive">
+            <table class="table" id="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Estado Actual</th>
+                        <th scope="col">Nuevo Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="bien" items="${bienes}">
+                        <tr>
+                            <td>${bien.code}</td>
+                            <td>${bien.name}</td>
+                            <td>${bien.state}</td>
+                            <td>
+                                <select name="newState_${bien.code}">
+                                    <option value="activo">Activo</option>
+                                    <option value="inactivo">Inactivo</option>
+                                    <!-- Agrega más opciones según tus necesidades -->
+                                </select>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
         </div>
-        <div class="col-md-4">
-            <label for="observacion" class="form-label">Observación</label>
-            <textarea name="observacion" class="form-control" rows="1" required></textarea>
-        </div>
-        <div class="col-md-4">
-            <label for="usuario" class="form-label">Responsable</label>
-            <input type="text" name="usuario" class="form-control" placeholder="Responsable" required>
-        </div>
-        <div class="col-md-4">
-            <label for="dependencia" class="form-label">Dependencia</label>
-            <select class="form-control" id="dependencia" name="dependencia">
-                <% ArrayList<Dependency> dependencias = ListDependencies.getDependencies();
-                   for (Dependency dep : dependencias) { %>
-                <option value="<%= dep.getPK_idDependency() %>"><%= dep.getDependencyname() %></option>
-                <% } %>
-            </select>
-        </div>
+
         <div class="col">
-            <button class="btn btn-primary" type="submit">Guardar cambios</button>
+            <button class="btn btn-primary" type="submit">Guardar Cambios</button>
         </div>
-        <input type="hidden" id="selectedIds" name="selectedIds" />
     </form>
 </main>
 
