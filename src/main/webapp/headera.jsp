@@ -18,6 +18,16 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   </head>
   <body>
+  <%
+    HttpSession session1 = request.getSession();
+    String username = (String) session1.getAttribute("username");
+
+    // Redirige a index.jsp si el nombre de usuario es null
+    if (username == null) {
+        response.sendRedirect("index.jsp");
+        return; // Importante para evitar que el resto del código JSP se ejecute
+    }
+%>
     <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
       <div class="container">

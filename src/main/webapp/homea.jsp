@@ -7,20 +7,12 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item active" aria-current="page">Inicio</li>
         </ol>
-    </nav>
+    </nav> 
     </div>
     <main class="container">
             <div class="text-center">
-                <%
-                    HttpSession session1 = request.getSession();
-                    String username = (String) session1.getAttribute("username");
-                %>
                 <h1>Inventario personalizado - INVIMA</h1>
-                <h2>             
-                    <% if (username != null) { %>
-                        Bienvenid@, <%= username %><br>
-                    <% } %>
-                </h2>
+                <h2>Bienvenido, <%= username %><br></h2>
             </div>
             <section>
                 <h2 class="text-center" id="general-percentage-header">Porcentaje general: <span style="color: black;" id="general-percentage-value"></span>%</h2>
@@ -28,7 +20,6 @@
             </section>
         </div>
     </main>
-  
 <script>
     fetch('GraphicOfObjects')
    .then(response => response.json())

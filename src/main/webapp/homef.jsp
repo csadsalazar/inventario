@@ -11,18 +11,15 @@
     </nav>
 </div>
 <main class="container">
-    <div class="text-center">
-        <%
-            HttpSession session1 = request.getSession();
-            String username = (String) session1.getAttribute("username");
-        %>
-        <h1>Inventario personalizado - INVIMA</h1>
-        <h2>  
-            <% if (username != null) { %>
-                Bienvenido, <%= username %><br>
-            <% } %>
-        </h2>
-    </div>
+        <div class="text-center">
+            <h1>Inventario personalizado - INVIMA</h1>
+            <h2>Bienvenido, <%= username %><br></h2>
+        </div>
+        <section>
+            <h2 class="text-center" id="general-percentage-header">Porcentaje general: <span style="color: black;" id="general-percentage-value"></span>%</h2>
+            <canvas id="myChart" width="400" height="50"></canvas>
+        </section>
+        </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end py-3">
        <a class="btn btn-primary" type="button" href="addobservation.jsp">Agregar Observacion</a>
        <a onclick="reportfinish()" class="btn btn-primary" type="button">Finalizar Reporte</a>

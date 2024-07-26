@@ -129,7 +129,7 @@ public class UploadServlet extends HttpServlet {
                 }
 
                 // Insertar datos en la base de datos
-                String sql = "INSERT INTO MA_Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, fecha) VALUES (?, ?, ?, ?, ?, ?, ?, 'No reportado', ?)";
+                String sql = "INSERT INTO MA_Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, fecha, condicion) VALUES (?, ?, ?, ?, ?, ?, ?, 'No reportado', ?, 'Activo')";
                 try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                     pstmt.setLong(1, codigo);
                     pstmt.setString(2, nombre);
@@ -202,7 +202,6 @@ public class UploadServlet extends HttpServlet {
                     pstmt.setInt(6, usuarioId);
                     pstmt.setInt(7, dependenciaId);
                     pstmt.setTimestamp(8, new Timestamp(System.currentTimeMillis())); // Fecha actual
-
                     pstmt.executeUpdate();
                 }
             }
