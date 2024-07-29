@@ -43,6 +43,7 @@
                         <th class="campo" scope="col">Estado</th>
                         <th class="campo" scope="col">Condicion</th>
                         <th class="campo" scope="col">Fecha Creacion</th>
+                        <th class="campo" scope="col">Ult Modif</th>
                         <th class="campo" scope="col">Admin Modf</th> 
                         <th scope="col">Acciones</th>
                     </tr>
@@ -60,6 +61,7 @@
                         <td class="campo"><%= bien.getState() %></td>
                         <td class="campo"><%= bien.getCondition() %></td>
                         <td class="campo"><%= bien.getDate() %></td>
+                        <td class="campo"><%= bien.getDateadmin() %></td>
                         <td class="campo"><%= bien.getAdmin().getName() %></td>
                         <td>
                             <div class="acciones">

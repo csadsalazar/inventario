@@ -30,7 +30,7 @@ public class ListObjectById {
                 bien.setName(rs.getString("nombre"));
                 bien.setDescription(rs.getString("descripcion"));
                 bien.setObservation(rs.getString("observacionAdmin"));
-                bien.setDate(rs.getDate("fecha"));
+                bien.setDate(rs.getTimestamp("fecha"));
                 Dependency dependencia = new Dependency();
                 dependencia.setDependencyname(rs.getString("nombreDependencia"));
                 bien.setPK_idDependency(dependencia);

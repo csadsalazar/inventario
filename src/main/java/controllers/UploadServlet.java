@@ -8,10 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -19,8 +16,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
+
 import utils.ConnectionBD;
 
 @WebServlet("/UploadServlet")
@@ -129,7 +133,7 @@ public class UploadServlet extends HttpServlet {
                 }
 
                 // Insertar datos en la base de datos
-                String sql = "INSERT INTO MA_Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, fecha, condicion) VALUES (?, ?, ?, ?, ?, ?, ?, 'No reportado', ?, 'Activo')";
+                String sql = "INSERT INTO MA_Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, fecha, fechaAdmin, condicion) VALUES (?,?,?,?,?,?,?,'No reportado',?,?,'Activo')";
                 try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                     pstmt.setLong(1, codigo);
                     pstmt.setString(2, nombre);
@@ -139,6 +143,7 @@ public class UploadServlet extends HttpServlet {
                     pstmt.setInt(6, usuarioId);
                     pstmt.setInt(7, dependenciaId);
                     pstmt.setTimestamp(8, new Timestamp(System.currentTimeMillis())); // Fecha actual
+                    pstmt.setTimestamp(9, new Timestamp(System.currentTimeMillis())); // Fecha actual
                     pstmt.executeUpdate();
                 }
             }
@@ -192,7 +197,7 @@ public class UploadServlet extends HttpServlet {
                 }
 
                 // Insertar datos en la base de datos
-                String sql = "INSERT INTO MA_Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, fecha) VALUES (?, ?, ?, ?, ?, ?, ?, 'No reportado', ?)";
+                String sql = "INSERT INTO MA_Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, fecha, fechaAdmin, condicion) VALUES (?,?,?,?,?,?,?,'No reportado',?,?,'Activo')";
                 try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                     pstmt.setLong(1, codigo);
                     pstmt.setString(2, nombre);
@@ -202,6 +207,7 @@ public class UploadServlet extends HttpServlet {
                     pstmt.setInt(6, usuarioId);
                     pstmt.setInt(7, dependenciaId);
                     pstmt.setTimestamp(8, new Timestamp(System.currentTimeMillis())); // Fecha actual
+                    pstmt.setTimestamp(9, new Timestamp(System.currentTimeMillis())); // Fecha actual
                     pstmt.executeUpdate();
                 }
             }

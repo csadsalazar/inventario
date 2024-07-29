@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -110,7 +111,7 @@ public class EditObject extends HttpServlet {
 
                 // Establecer la conexión y realizar la actualización en la base de datos
                 Connection conn = ConnectionBD.getConnection();
-                String sql = "UPDATE MA_Bien SET FK_Usuario=?, nombre=?, descripcion=?, valor=?, FK_Dependencia=?, estado=?, observacionAdmin=? WHERE PK_Codigo=?";
+                String sql = "UPDATE MA_Bien SET FK_Usuario=?, nombre=?, descripcion=?, valor=?, FK_Dependencia=?, estado=?, observacionAdmin=?, fechaAdmin=? WHERE PK_Codigo=?";
                 PreparedStatement statement = conn.prepareStatement(sql);
                 statement.setInt(1, idUsuario);
                 statement.setString(2, nombre);
@@ -119,7 +120,8 @@ public class EditObject extends HttpServlet {
                 statement.setInt(5, dependenciaId);
                 statement.setString(6, estado);
                 statement.setString(7, observacion);
-                statement.setLong(8, codigo);
+                statement.setTimestamp(8, new Timestamp(System.currentTimeMillis())); // Fecha actual
+                statement.setLong(9, codigo);
                 statement.executeUpdate();
                 System.out.println("Se ha actualizado con éxito");
                 // Redirigir después de la actualización

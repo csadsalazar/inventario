@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,11 +24,12 @@ public class InactiveCondition extends HttpServlet {
             long id = Long.parseLong(idStr);
             // Ejemplo de actualización (adaptar según tu esquema y necesidades)
             try {
-                Connection conn = ConnectionBD.getConnection();
-                String sql = "UPDATE MA_Bien SET condicion=? WHERE PK_Codigo=?";
+                Connection conn = ConnectionBD.getConnection();  
+                String sql = "UPDATE MA_Bien SET condicion=?, fechaAdmin=? WHERE PK_Codigo=?";
                 PreparedStatement statement = conn.prepareStatement(sql);
                 statement.setString(1, "Inactivo");
-                statement.setLong(2, id);
+                statement.setTimestamp(2, new Timestamp(System.currentTimeMillis())); // Fecha actual
+                statement.setLong(3, id);
                 statement.executeUpdate();
                 System.out.println("se ha actualizado el o los bienes con id:" + id);
                 conn.close(); // Cerrar conexión después de cada operación

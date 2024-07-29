@@ -140,8 +140,8 @@
 											imagen1 VARCHAR(255),
 											imagen2 VARCHAR(255),
 											imagen3 VARCHAR(255),
-											fecha DATE,
-											fechaAdmin DATE,
+											fecha DATETIME,
+											fechaAdmin DATETIME,
 											observacionAdmin TEXT,
 											FK_Usuario INT,
 											FK_Dependencia INT,
@@ -162,7 +162,7 @@
 											FK_Bien BIGINT,
 											asunto VARCHAR(100),
 											informacion TEXT,
-											fechaObservacion DATE NOT NULL,
+											fechaObservacion DATETIME,
 											FOREIGN KEY (FK_Usuario) REFERENCES MA_Usuario(PK_idUsuario), 
 											FOREIGN KEY (FK_Bien) REFERENCES MA_Bien(PK_Codigo) ON DELETE CASCADE
 											);
@@ -188,12 +188,13 @@
 												IN estado VARCHAR(12),
 												IN imagen1 VARCHAR(50),
 												IN imagen2 VARCHAR(50),
-												IN fecha DATE
+												IN fecha DATETIME,
+                                                IN fechaAdmin DATETIME
 												
 											)
 											BEGIN
-												INSERT INTO MA_Bien (PK_Codigo, nombre, cedula, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, imagen1, imagen2, fecha)
-												VALUES (codigo, nombre, cedula, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, imagen1, imagen2, fecha);
+												INSERT INTO MA_Bien (PK_Codigo, nombre, cedula, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, imagen1, imagen2, fecha, fechaAdmin)
+												VALUES (codigo, nombre, cedula, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, imagen1, imagen2, fecha, fechaAdmin);
 											END //
 
 									DELIMITER //
@@ -202,7 +203,7 @@
 										IN bien INT,
 										IN asunto VARCHAR(100),
 										IN informacion TEXT, 
-										IN fechaObservacion DATE
+										IN fechaObservacion DATETIME
 									)
 									BEGIN
 										INSERT INTO PA_BienPorUsuario (FK_Usuario, FK_Bien, asunto, informacion, fechaObservacion)
@@ -223,8 +224,8 @@
 											b.nombre,
 											b.valor,
 											b.fecha,
+                                            b.fechaAdmin,
 											b.estado,
-											b.fechaAdmin,
 											b.observacionAdmin,
                                             b.condicion,
 											u.usuario,
@@ -249,8 +250,8 @@
 											b.nombre,
 											b.valor,
 											b.fecha,
-											b.estado,
 											b.fechaAdmin,
+											b.estado,
 											b.observacionAdmin,
                                             b.condicion,
 											u.usuario,
@@ -291,3 +292,6 @@
 										INNER JOIN MA_Dependencia D ON U.FK_Dependencia = D.PK_idDependencia;
                                     END //    
                                     DELIMITER ;
+                                    
+                                    
+                                    UPDATE MA_Usuario set FK_Perfil = 1 WHERE PK_idUsuario=3

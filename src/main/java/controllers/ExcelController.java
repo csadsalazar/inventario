@@ -16,7 +16,7 @@ public class ExcelController {
         WritableWorkbook workbook = Workbook.createWorkbook(response.getOutputStream());
         WritableSheet sheet = workbook.createSheet("Bienes", 0);
 
-        String[] headers = {"Código", "Placa", "Nombre", "Usuario", "Dependencia", "Estado","Valor"};
+        String[] headers = {"Código", "Placa", "Nombre", "Usuario", "Dependencia", "Estado","Valor", "Observacion"};
         for (int i = 0; i < headers.length; i++) {
             Label label = new Label(i, 0, headers[i]);
             sheet.addCell(label);
@@ -31,6 +31,7 @@ public class ExcelController {
             sheet.addCell(new Label(4, rowNum, bien.getPK_idDependency().getDependencyname()));
             sheet.addCell(new Label(5, rowNum, bien.getState()));
             sheet.addCell(new jxl.write.Number(6, rowNum, bien.getValue()));
+            sheet.addCell(new Label(7, rowNum, bien.getObservation()));
             rowNum++;
         }
         response.setContentType("application/vnd.ms-excel");

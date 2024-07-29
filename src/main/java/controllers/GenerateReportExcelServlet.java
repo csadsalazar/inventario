@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import jxl.write.WriteException; // Agregar esta importación
+import jxl.write.WriteException;
 import models.Object;
 import models.User;
 import models.Dependency;
@@ -55,6 +55,7 @@ public class GenerateReportExcelServlet extends HttpServlet {
                         bien.setDescription(resultSet.getString("descripcion"));
                         bien.setValue(resultSet.getLong("valor"));
                         bien.setState(resultSet.getString("estado"));
+                        bien.setObservation(resultSet.getString("observacionAdmin"));
                         Dependency dependencia = ListDependencies.getDependencyById(resultSet.getInt("FK_Dependencia"));
                         bien.setPK_idDependency(dependencia);
                         bienes.add(bien);

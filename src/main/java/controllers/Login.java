@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import utils.ConnectionBD;
  
 @WebServlet("/Login")
@@ -109,11 +108,11 @@ public class Login extends HttpServlet {
                 // Crear objetos Bien y agregarlos a la lista
                 Object bien = new Object(
                 rsBienes.getInt("idBien"),
-                rsBienes.getInt("placa"), // Suponiendo que placa es un entero
+                rsBienes.getInt("placa"),
                 rsBienes.getLong("PK_Codigo"),
                 rsBienes.getLong("valor"),
-                rsBienes.getDate("fecha"),
-                rsBienes.getDate("fechaAdmin"),
+                rsBienes.getTimestamp("fecha"),
+                rsBienes.getTimestamp("fechaAdmin"),
                 rsBienes.getString("nombre"),
                 rsBienes.getString("descripcion"),
                 rsBienes.getString("estado"),

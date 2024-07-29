@@ -9,7 +9,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException; 
 import java.util.ArrayList;
-  
+import com.google.protobuf.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ListObjectsInactive {
     public static ArrayList<Object> getObjects() throws ClassNotFoundException {
         ArrayList<Object> bienes = new ArrayList<>();
@@ -26,7 +29,8 @@ public class ListObjectsInactive {
                 bien.setName(rs.getString("nombre"));
                 bien.setState(rs.getString("estado"));
                 bien.setCondition(rs.getString("condicion"));
-                bien.setDate(rs.getDate("fecha"));
+                bien.setDate(rs.getTimestamp("fecha"));
+                bien.setDateadmin(rs.getTimestamp("fechaAdmin"));
                 bien.setObservation(rs.getString("observacionAdmin"));
                 User user = new User(); 
                 user.setName(rs.getString("usuario"));

@@ -1,11 +1,10 @@
 package models;
-
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class Object {
     private int PK_idObject, plate;
     private long code, value;
-    private Date date, dateadmin;
+    private Timestamp date, dateadmin;
     private String name, description, state, condition, image1, image2, image3, observation;
     private User user, admin;
     private Dependency PK_idDependency;
@@ -14,7 +13,7 @@ public class Object {
     public Object() {
     }
 
-    public Object(int pK_idObject, int plate, long code, long value, Date date, Date dateadmin, String name,
+    public Object(int pK_idObject, int plate, long code, long value, Timestamp date, Timestamp dateadmin, String name,
             String description, String state, String condition, String image1, String image2, String image3,
             String observation, User user, User admin, Dependency pK_idDependency, Observation information) {
         this.PK_idObject = pK_idObject;
@@ -69,19 +68,19 @@ public class Object {
         this.value = value;
     }
 
-    public Date getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 
-    public Date getDateadmin() {
+    public Timestamp getDateadmin() {
         return dateadmin;
     }
 
-    public void setDateadmin(Date dateadmin) {
+    public void setDateadmin(Timestamp dateadmin) {
         this.dateadmin = dateadmin;
     }
 
