@@ -22,6 +22,7 @@
     <div class="d-grid gap-2 d-md-flex justify-content-md-between">
         <div>
             <a class="btn btn-primary" type="button" href="managementobjectsinactive.jsp">Ver bienes inactivos</a>
+            <a class="btn btn-primary" type="button" onclick="editSelected()">Editar seleccionados</a>
             <button class="btn btn-primary" type="button" onclick="inactiveSelected()">Inactivar seleccionados</button>
         </div>
         <div>
@@ -112,14 +113,31 @@ function inactiveSelected() {
     form.submit();
 }
 
-function selectAllCheckboxes() {
+function editSelected() {
     var checkboxes = document.getElementsByName("selectedIds");
-    var selectAllCheckbox = document.getElementById("selectAllCheckbox");
+    var selectedIds = [];
     
     for (var checkbox of checkboxes) {
-        checkbox.checked = selectAllCheckbox.checked;
+        if (checkbox.checked) {
+            selectedIds.push(checkbox.value);
+        }
     }
+    
+    if (selectedIds.length === 0) {
+        // Mostrar alerta con SweetAlert
+        Swal.fire({
+            title: '¡Espere!',
+            text: 'Por favor seleccione al menos un registro',
+            icon: 'warning',
+            confirmButtonColor: '#139EC8'
+        });
+        return; // Evitar redirigir si no hay registros seleccionados
+    }
+    
+    // Redirigir a la nueva página con los IDs seleccionados como parámetro en la URL
+    window.location.href = "editselected.jsp?ids=" + encodeURIComponent(selectedIds.join(","));
 }
+
 </script>
 </main>
 <%@ include file="footer.jsp" %>

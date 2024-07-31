@@ -16,7 +16,6 @@ public class GetUsersServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-
         try {
             // Obtener la lista de todos los usuarios
             ArrayList<User> usuarios = ListUsers.getUsers();

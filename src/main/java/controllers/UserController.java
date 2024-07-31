@@ -42,4 +42,20 @@ public class UserController {
             return -1; // Si no se encuentra el usuario, devolver un valor negativo
         }
     }
+
+
+    // Método para obtener el ID del usuario usando el username
+    public static int getUserIdByUsername(String username) throws SQLException, ClassNotFoundException {
+        Connection conn = ConnectionBD.getConnection();
+        String sql = "SELECT PK_idUsuario FROM MA_Usuario WHERE usuario = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, username);
+        ResultSet resultSet = statement.executeQuery();
+     
+        if (resultSet.next()) {
+            return resultSet.getInt("PK_idUsuario");
+        } else {
+            throw new SQLException("Usuario no encontrado");
+        }
+    }
 }

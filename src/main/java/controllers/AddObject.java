@@ -12,10 +12,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import models.Dependency;
 
 @WebServlet("/AddObject")
-public class AddObject extends HttpServlet {
+public class AddObject extends HttpServlet { 
+  
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection conn = null; 
         try {
@@ -39,10 +41,29 @@ public class AddObject extends HttpServlet {
             }
         }
     }
-    
+   
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
 
+    // Obtener el username desde la sesión
+    HttpSession session = request.getSession();
+    String username = (String) session.getAttribute("username");
+ 
+    // Verificar si el username está presente en la sesión
+    if (username == null) {
+        // Manejar el caso donde el username no está en la sesión (por ejemplo, redirigir a la página de inicio de sesión)
+        request.setAttribute("error", "La sesión ha expirado. Por favor, inicia sesión nuevamente.");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+        return;
+    }
+ 
+    // Obtener el ID del usuario usando el username
+    int idUsuarioAdmin = 0;
+    try {
+        idUsuarioAdmin = UserController.getUserIdByUsername(username);
+    } catch (ClassNotFoundException | SQLException e) {
+        e.printStackTrace();
+    }
     long codigo = Long.parseLong(request.getParameter("codigo"));
     int placa = Integer.parseInt(request.getParameter("placa"));
     String nombre = request.getParameter("nombre");
@@ -56,12 +77,13 @@ public class AddObject extends HttpServlet {
     // Verificar si el usuario existe antes de agregar el bien
     if (UserController.userExists(usuario)) { 
         try {
+          
             // Obtener el ID del usuario
             int idUsuario = UserController.getUserId(usuario);
 
             // Establecer la conexión y realizar la inserción en la base de datos
             Connection conn = ConnectionBD.getConnection();
-            String sql = "INSERT INTO MA_Bien (PK_Codigo, placa, nombre, descripcion, valor, FK_Usuario, FK_Dependencia, estado, observacionAdmin, fecha, fechaAdmin) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO MA_Bien (PK_Codigo, placa, nombre, descripcion, valor, FK_Usuario, FK_UsuarioAdmin, FK_Dependencia, estado, observacionAdmin, fecha, fechaAdmin, condicion) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,'Activo')";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setLong(1, codigo);
             statement.setInt(2, placa);
@@ -69,11 +91,12 @@ public class AddObject extends HttpServlet {
             statement.setString(4, descripcion);
             statement.setLong(5, valor);
             statement.setInt(6, idUsuario);
-            statement.setInt(7, dependenciaId);
-            statement.setString(8, estado); 
-            statement.setString(9, observacion);
-            statement.setTimestamp(10, new Timestamp(System.currentTimeMillis())); // Fecha actual
+            statement.setInt(7, idUsuarioAdmin);
+            statement.setInt(8, dependenciaId); 
+            statement.setString(9, estado); 
+            statement.setString(10, observacion);
             statement.setTimestamp(11, new Timestamp(System.currentTimeMillis())); // Fecha actual
+            statement.setTimestamp(12, new Timestamp(System.currentTimeMillis())); // Fecha actual
             statement.executeUpdate();
             response.setContentType("text/plain");
             response.setCharacterEncoding("UTF-8");

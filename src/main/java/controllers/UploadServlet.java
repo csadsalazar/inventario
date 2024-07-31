@@ -8,23 +8,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
-
 import utils.ConnectionBD;
 
 @WebServlet("/UploadServlet")
@@ -37,9 +34,9 @@ public class UploadServlet extends HttpServlet {
         try (InputStream fileContent = filePart.getInputStream()) {
             if (filePart.getContentType().equals("application/vnd.ms-excel")
                     || filePart.getContentType().equals("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
-                processExcel(fileContent); // Procesar archivo Excel
+                processExcel(fileContent, request, response); // Procesar archivo Excel
             } else if (filePart.getContentType().equals("text/csv")) {
-                processCSV(fileContent); // Procesar archivo CSV
+                processCSV(fileContent, request, response); // Procesar archivo CSV
             }
             response.sendRedirect("managementobjects.jsp"); // Redirigir a página de éxito
         } catch (Exception e) {
@@ -48,7 +45,7 @@ public class UploadServlet extends HttpServlet {
         }
     }
 
-    private void processExcel(InputStream fileContent) throws IOException, SQLException, ClassNotFoundException {
+    private void processExcel(InputStream fileContent, HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         try (Connection conn = ConnectionBD.getConnection();
              HSSFWorkbook workbook = new HSSFWorkbook(fileContent)) {
             Sheet sheet = workbook.getSheetAt(0);
@@ -119,6 +116,26 @@ public class UploadServlet extends HttpServlet {
                 // Obtener IDs de usuario y dependencia
                 int usuarioId = getUserId(conn, nombreUsuario); // Obtener ID del usuario
                 int dependenciaId = getDependenciaId(conn, nombreDependencia); // Obtener ID de la dependencia
+                
+                // Obtener el username desde la sesión
+                HttpSession session = request.getSession();
+                String username = (String) session.getAttribute("username");
+            
+                // Verificar si el username está presente en la sesión
+                if (username == null) {
+                    // Manejar el caso donde el username no está en la sesión (por ejemplo, redirigir a la página de inicio de sesión)
+                    request.setAttribute("error", "La sesión ha expirado. Por favor, inicia sesión nuevamente.");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                    return;
+                }
+            
+                // Obtener el ID del usuario usando el username
+                int idUsuarioAdmin = 0;
+                try {
+                    idUsuarioAdmin = UserController.getUserIdByUsername(username);
+                } catch (ClassNotFoundException | SQLException e) {
+                    e.printStackTrace();
+                }
 
                 // Verificar si el centro de costo corresponde a la dependencia
                 if (!centroDeCostoCorresponde(conn, dependenciaId, centroDeCosto)) {
@@ -133,7 +150,7 @@ public class UploadServlet extends HttpServlet {
                 }
 
                 // Insertar datos en la base de datos
-                String sql = "INSERT INTO MA_Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, fecha, fechaAdmin, condicion) VALUES (?,?,?,?,?,?,?,'No reportado',?,?,'Activo')";
+                String sql = "INSERT INTO MA_Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_UsuarioAdmin, FK_Dependencia, estado, fecha, fechaAdmin, condicion) VALUES (?,?,?,?,?,?,?,?,'No reportado',?,?,'Activo')";
                 try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                     pstmt.setLong(1, codigo);
                     pstmt.setString(2, nombre);
@@ -141,16 +158,17 @@ public class UploadServlet extends HttpServlet {
                     pstmt.setString(4, descripcion);
                     pstmt.setLong(5, valor);
                     pstmt.setInt(6, usuarioId);
-                    pstmt.setInt(7, dependenciaId);
-                    pstmt.setTimestamp(8, new Timestamp(System.currentTimeMillis())); // Fecha actual
+                    pstmt.setInt(7, idUsuarioAdmin);
+                    pstmt.setInt(8, dependenciaId);
                     pstmt.setTimestamp(9, new Timestamp(System.currentTimeMillis())); // Fecha actual
+                    pstmt.setTimestamp(10, new Timestamp(System.currentTimeMillis())); // Fecha actual
                     pstmt.executeUpdate();
                 }
             }
         }
     }
 
-    private void processCSV(InputStream fileContent) throws IOException, SQLException, ClassNotFoundException, CsvException {
+    private void processCSV(InputStream fileContent, HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, CsvException, ServletException {
         try (Connection conn = ConnectionBD.getConnection();
                 CSVReader reader = new CSVReader(new InputStreamReader(fileContent))) {
             reader.skip(1); // Saltar la primera fila (encabezados)
@@ -196,8 +214,28 @@ public class UploadServlet extends HttpServlet {
                     continue;
                 }
 
+                // Obtener el username desde la sesión
+                HttpSession session = request.getSession();
+                String username = (String) session.getAttribute("username");
+            
+                // Verificar si el username está presente en la sesión
+                if (username == null) {
+                    // Manejar el caso donde el username no está en la sesión (por ejemplo, redirigir a la página de inicio de sesión)
+                    request.setAttribute("error", "La sesión ha expirado. Por favor, inicia sesión nuevamente.");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                    return;
+                }
+            
+                // Obtener el ID del usuario usando el username
+                int idUsuarioAdmin = 0;
+                try {
+                    idUsuarioAdmin = UserController.getUserIdByUsername(username);
+                } catch (ClassNotFoundException | SQLException e) {
+                    e.printStackTrace();
+                }
+
                 // Insertar datos en la base de datos
-                String sql = "INSERT INTO MA_Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, fecha, fechaAdmin, condicion) VALUES (?,?,?,?,?,?,?,'No reportado',?,?,'Activo')";
+                String sql = "INSERT INTO MA_Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_UsuarioAdmin, FK_Dependencia, estado, fecha, fechaAdmin, condicion) VALUES (?,?,?,?,?,?,?,?,'No reportado',?,?,'Activo')";
                 try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                     pstmt.setLong(1, codigo);
                     pstmt.setString(2, nombre);
@@ -205,9 +243,10 @@ public class UploadServlet extends HttpServlet {
                     pstmt.setString(4, descripcion);
                     pstmt.setLong(5, valor);
                     pstmt.setInt(6, usuarioId);
-                    pstmt.setInt(7, dependenciaId);
-                    pstmt.setTimestamp(8, new Timestamp(System.currentTimeMillis())); // Fecha actual
+                    pstmt.setInt(7, idUsuarioAdmin);
+                    pstmt.setInt(8, dependenciaId);
                     pstmt.setTimestamp(9, new Timestamp(System.currentTimeMillis())); // Fecha actual
+                    pstmt.setTimestamp(10, new Timestamp(System.currentTimeMillis())); // Fecha actual
                     pstmt.executeUpdate();
                 }
             }

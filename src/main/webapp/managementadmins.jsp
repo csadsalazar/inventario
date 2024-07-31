@@ -39,9 +39,6 @@
             <td><%= admin.getPK_idProfile().getProfileName() %></td>
             <td>  
               <div class="acciones"> 
-                <a href="editadmin.jsp?codigo=<%= admin.getPK_idUser() %>">
-                <img src="resources/img/icons/edit.svg" alt="edit">
-                </a>
                 <a onclick="eliminar('<%= admin.getPK_idUser() %>')">
                 <img src="resources/img/icons/trash.svg" alt="trash" >
                 </a>

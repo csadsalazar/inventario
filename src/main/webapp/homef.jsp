@@ -15,11 +15,6 @@
             <h1>Inventario personalizado - INVIMA</h1>
             <h2>Bienvenido, <%= username %><br></h2>
         </div>
-        <section>
-            <h2 class="text-center" id="general-percentage-header">Porcentaje general: <span style="color: black;" id="general-percentage-value"></span>%</h2>
-            <canvas id="myChart" width="400" height="50"></canvas>
-        </section>
-        </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end py-3">
        <a class="btn btn-primary" type="button" href="addobservation.jsp">Agregar Observacion</a>
        <a onclick="reportfinish()" class="btn btn-primary" type="button">Finalizar Reporte</a>
@@ -37,13 +32,13 @@
                 </tr>
             </thead>
             <tbody>
-                <% 
+                <%  
                 List<Object> bienesUsuario = (List<Object>) request.getSession().getAttribute("bienesUsuario");
-                // Iterar sobre los bienes del usuario y mostrar solo los no reportados en una fila de la tabla
+                // Iterar sobre los bienes del usuario y mostrar solo los no reportados, en espera y activos en una fila de la tabla
                 if (bienesUsuario != null) {
                     for (Object unBien : bienesUsuario) {
                         // Verificar si el estado del bien es no reportado
-                        if (unBien.getState().equals("No reportado") || unBien.getState().equals("En espera")) {
+                        if (unBien.getState().equals("No reportado") && unBien.getCondition().equals("Activo") || unBien.getState().equals("En espera") && unBien.getCondition().equals("Activo")) {
                 %>
                             <tr data-codigo="<%= unBien.getCode() %>">
                             <td class="campo"><%= unBien.getName() %></td>

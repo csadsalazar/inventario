@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/EditObject")
 public class EditObject extends HttpServlet {
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Connection conn = null;

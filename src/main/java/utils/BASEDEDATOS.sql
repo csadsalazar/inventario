@@ -112,7 +112,8 @@
 											nombre VARCHAR(50),
 											cedula BIGINT NOT NULL,
 											usuario VARCHAR(20) NOT NULL,
-                                            correo VARCHAR (40),
+                                            correo VARCHAR(40),
+                                            estadoAdmin VARCHAR(8),
 											FK_Cargo INT,
 											FK_Dependencia INT,
 											FK_TipoDocumento INT,
@@ -294,4 +295,8 @@
                                     DELIMITER ;
                                     
                                     
-                                    UPDATE MA_Usuario set FK_Perfil = 1 WHERE PK_idUsuario=3
+                                    UPDATE MA_Usuario set FK_Perfil = 1 WHERE PK_idUsuario=3;
+                                    
+									UPDATE MA_Bien set condicion = 'Activo' WHERE idBien=5
+
+                                    

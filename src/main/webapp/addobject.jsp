@@ -13,7 +13,7 @@
         </ol>
     </nav>
     </div>
-     <main class="container">
+     <main class="container"> 
       <div class="text-center">
       <h1>Inventario personalizado - INVIMA</h1>
           <h2>Agregar bien</h1>
@@ -38,17 +38,17 @@
           <input type="text" class="form-control" name="nombre" id="nombre" required>
       </div>
       <div class="col-md-4">
-          <label for="dependencia" class="form-label">Ubicacion</label>
-          <select class="form-select" name="dependencia" id="dependencia" required>
+        <label for="dependencia" class="form-label">Dependencia</label>
+        <select class="form-select" name="dependencia" id="dependencia" >
             <%
-              ArrayList<Dependency> dependencias = ListDependencies.getDependencies();
-              for (Dependency dependencia : dependencias) {
-              %>
-              <option value="<%= dependencia.getPK_idDependency() %>"><%= dependencia.getDependencyname() %></option>
-              <%  
-              }
+            ArrayList<Dependency> dependencias = ListDependencies.getDependencies();
+            for (Dependency dependencia : dependencias) {
             %>
-          </select> 
+            <option value="<%= dependencia.getPK_idDependency() %>"><%= dependencia.getDependencyname() %></option>
+            <%  
+            }
+            %>
+        </select>
       </div>
       <div class="col-md-4">
           <label for="valor" class="form-label">Valor</label>
