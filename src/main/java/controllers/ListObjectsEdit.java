@@ -1,18 +1,61 @@
 package controllers;
 
-import utils.ConnectionBD;
+import utils.ConnectionBD; 
+import models.Dependency;
 import models.Object;
 import models.User;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class ListObjectsEdit {
 
-    public static List<Object> getObjects(String[] ids) throws SQLException, ClassNotFoundException {
+        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Connection conn = null; 
+        try {
+            conn = ConnectionBD.getConnection();
+            List<Dependency> dependencias = ListDependencies.getDependencies();
+            request.setAttribute("dependencia", dependencias);
+            request.getRequestDispatcher("addobject.jsp").forward(request, response);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            // Manejar el error, por ejemplo, redirigiendo a una página de error
+            request.setAttribute("error", "Error al obtener las dependencias: " + e.getMessage());
+            request.getRequestDispatcher("managementobjects.jsp").forward(request, response);
+        } finally {
+            // Cerrar la conexión en el bloque finally para asegurarse de que se cierre correctamente
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static List<Object> getObjects(String[] ids, HttpServletRequest request) throws SQLException, ClassNotFoundException {
+
+        // Obtener el username desde la sesión
+        HttpSession session = request.getSession();
+        String username = (String) session.getAttribute("username");
+ 
+        // Obtener el ID del usuario usando el username
+        int idUsuarioAdmin = 0;
+        try {
+            idUsuarioAdmin = UserController.getUserIdByUsername(username);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+
         List<Object> objectList = new ArrayList<>();
         Connection conn = ConnectionBD.getConnection();
         StringBuilder query = new StringBuilder("SELECT * FROM MA_Bien WHERE PK_Codigo IN (");
@@ -47,6 +90,9 @@ public class ListObjectsEdit {
             User user = new User();
             user.setPK_idUser(rs.getInt("FK_Usuario"));
             obj.setUser(user);
+            Dependency dependency = new Dependency();
+            dependency.setPK_idDependency(rs.getInt("PK_idDependency"));
+            obj.setPK_idDependency(dependency);
             objectList.add(obj);
         }
         rs.close();

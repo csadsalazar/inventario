@@ -6,17 +6,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
+import java.sql.SQLException; 
 
 @WebServlet("/UpdateObjects")
 public class UpdateObjects extends HttpServlet {
 
-    @Override
+    @Override 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         String idsParam = request.getParameter("ids");
         String name = request.getParameter("name");
         String description = request.getParameter("description");
+        String usuario = request.getParameter("");
 
         if (idsParam != null && !idsParam.isEmpty()) {
             String[] ids = idsParam.split(",");
