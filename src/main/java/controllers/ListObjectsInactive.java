@@ -9,9 +9,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException; 
 import java.util.ArrayList;
-import com.google.protobuf.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class ListObjectsInactive {
     public static ArrayList<Object> getObjects() throws ClassNotFoundException {

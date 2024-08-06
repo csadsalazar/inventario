@@ -13,7 +13,7 @@
     </nav>
     </div>
      <main class="container">
-      <div class="text-center">
+      <div class="text-center"> 
       <h1>Inventario personalizado - INVIMA</h1>
           <h2>Editar administrador</h1>
     </div>

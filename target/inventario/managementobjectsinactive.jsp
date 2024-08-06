@@ -109,9 +109,9 @@ function activeSelected() {
 }
 
 function selectAllCheckboxes() {
-    var checkboxes = document.getElementsByName("selectedIds");
     var selectAllCheckbox = document.getElementById("selectAllCheckbox");
-    
+    var checkboxes = document.querySelectorAll("#table tbody input[name='selectedIds']");
+
     for (var checkbox of checkboxes) {
         checkbox.checked = selectAllCheckbox.checked;
     }

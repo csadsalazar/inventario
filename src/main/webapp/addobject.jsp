@@ -57,7 +57,7 @@
       <div class="col-md-4">
           <label for="descripcion" class="form-label">Descripción</label>
           <textarea class="form-control" name="descripcion" id="descripcion" rows="1"></textarea>
-      </div>
+      </div> 
       <div class="col-md-4">
           <label for="observacion" class="form-label">Observación Administrador</label>
           <textarea class="form-control" name="observacion" id="observacion" rows="1"></textarea>

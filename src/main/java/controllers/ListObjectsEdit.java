@@ -1,14 +1,11 @@
 package controllers;
 
-import utils.ConnectionBD; 
-import models.Dependency;
-import models.Object;
-import models.User;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -16,7 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class ListObjectsEdit {
+import models.Dependency;
+import models.Object;
+import models.User;
+import utils.ConnectionBD;
+
+public class ListObjectsEdit { 
 
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection conn = null; 
@@ -42,20 +44,7 @@ public class ListObjectsEdit {
         }
     }
 
-    public static List<Object> getObjects(String[] ids, HttpServletRequest request) throws SQLException, ClassNotFoundException {
-
-        // Obtener el username desde la sesión
-        HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
- 
-        // Obtener el ID del usuario usando el username
-        int idUsuarioAdmin = 0;
-        try {
-            idUsuarioAdmin = UserController.getUserIdByUsername(username);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-
+    public static List<Object> getObjects(String[] ids) throws SQLException, ClassNotFoundException {
         List<Object> objectList = new ArrayList<>();
         Connection conn = ConnectionBD.getConnection();
         StringBuilder query = new StringBuilder("SELECT * FROM MA_Bien WHERE PK_Codigo IN (");
@@ -70,7 +59,7 @@ public class ListObjectsEdit {
         query.append(")");
 
         PreparedStatement stmt = conn.prepareStatement(query.toString());
-
+ 
         // Establecer los parámetros en el PreparedStatement
         for (int i = 0; i < ids.length; i++) {
             stmt.setLong(i + 1, Long.parseLong(ids[i]));
@@ -84,15 +73,14 @@ public class ListObjectsEdit {
             obj.setDescription(rs.getString("descripcion"));
             obj.setValue(rs.getLong("valor"));
             obj.setObservation(rs.getString("observacionAdmin"));
-            User admin = new User();
-            admin.setPK_idUser(rs.getInt("FK_UsuarioAdmin"));
-            obj.setAdmin(admin);  
-            User user = new User();
-            user.setPK_idUser(rs.getInt("FK_Usuario"));
+            obj.setState(rs.getString("estado"));
+            obj.setCondition(rs.getString("condicion"));
+            User user = ListUsers.getUsersById(rs.getInt("FK_Usuario"));
             obj.setUser(user);
-            Dependency dependency = new Dependency();
-            dependency.setPK_idDependency(rs.getInt("PK_idDependency"));
-            obj.setPK_idDependency(dependency);
+            User admin = ListUsers.getUsersById(rs.getInt("FK_UsuarioAdmin"));
+            obj.setAdmin(admin);
+            Dependency dependencia = ListDependencies.getDependencyById(rs.getInt("FK_Dependencia"));
+            obj.setPK_idDependency(dependencia);
             objectList.add(obj);
         }
         rs.close();
@@ -101,21 +89,43 @@ public class ListObjectsEdit {
         return objectList;
     }
 
-    public static void updateObjects(String[] ids, String name, String description) throws SQLException, ClassNotFoundException {
+    public static void updateObjects(String[] ids, String name, String description, String observation, String state, String dependency, String user, String condition, String admin) throws SQLException, ClassNotFoundException {
         Connection conn = ConnectionBD.getConnection();
         StringBuilder query = new StringBuilder("UPDATE MA_Bien SET ");
-
+        
         // Construir la consulta SQL para los campos a actualizar
         boolean hasName = (name != null && !name.trim().isEmpty());
         boolean hasDescription = (description != null && !description.trim().isEmpty());
-
+        boolean hasObservation = (observation != null && !observation.trim().isEmpty());
+        boolean hasState = (state != null && !state.trim().isEmpty() && !state.equals(""));
+        boolean hasCondition = (condition != null && !condition.trim().isEmpty() && !condition.equals(""));
+        boolean hasDependency = (dependency != null && !dependency.trim().isEmpty() && !dependency.equals(""));
+        boolean hasUser = (user != null && !user.trim().isEmpty());
+        boolean hasAdmin = (admin != null && !admin.trim().isEmpty());
+    
+        // Solo agregamos los campos a la consulta si tienen valores válidos
         if (hasName) query.append("nombre = ?, ");
         if (hasDescription) query.append("descripcion = ?, ");
+        if (hasObservation) query.append("observacionAdmin = ?, ");
+        if (hasState) query.append("estado = ?, ");
+        if (hasCondition) query.append("condicion = ?, ");
+        if (hasDependency) query.append("FK_Dependencia = ?, ");
+        if (hasUser) query.append("FK_Usuario = ?, ");
+        if (hasAdmin) query.append("FK_UsuarioAdmin = ?, ");
+
+        query.append("fechaAdmin = ?, ");
 
         // Eliminar la última coma y espacio
-        query.setLength(query.length() - 2);
+        if (query.length() > 0) {
+            query.setLength(query.length() - 2);
+        } else {
+            // Si no hay campos para actualizar, no hay nada que hacer
+            conn.close();
+            return;
+        }
+        
         query.append(" WHERE PK_Codigo IN (");
-
+        
         // Construir la lista de parámetros
         for (int i = 0; i < ids.length; i++) {
             query.append("?");
@@ -124,18 +134,44 @@ public class ListObjectsEdit {
             }
         }
         query.append(")");
+        
         PreparedStatement stmt = conn.prepareStatement(query.toString());
-
+        
         // Establecer los parámetros en el PreparedStatement
         int index = 1;
         if (hasName) stmt.setString(index++, name);
         if (hasDescription) stmt.setString(index++, description);
+        if (hasObservation) stmt.setString(index++, observation);
+        if (hasState) stmt.setString(index++, state);
+        if (hasCondition) stmt.setString(index++, condition);
+        if (hasDependency) stmt.setString(index++, dependency);
+        if (hasUser) {
+            // Aquí obtienes el ID del usuario usando el nombre de usuario
+            int userId = UserController.getUserIdByUsername(user);
+            stmt.setInt(index++, userId);
+        }    
+        // Obtener el ID del usuario usando el username
+        int idUsuarioAdmin = 0;
+        try {
+            idUsuarioAdmin = UserController.getUserIdByUsername(username);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }        
 
+        if (hasAdmin) {
+            // Aquí obtienes el ID del usuario usando el nombre de usuario
+            int adminId = UserController.getUserIdByUsername(admin);
+            stmt.setInt(index++, adminId);
+        }
+        stmt.setTimestamp(index++, new Timestamp(System.currentTimeMillis()));
+        // Establecer los parámetros para los IDs de los objetos
         for (int i = 0; i < ids.length; i++) {
             stmt.setLong(index++, Long.parseLong(ids[i]));
         }
+        
         stmt.executeUpdate();
         stmt.close();
         conn.close();
     }
+    
 }

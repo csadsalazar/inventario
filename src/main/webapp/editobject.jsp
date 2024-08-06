@@ -92,7 +92,7 @@ Object bien = ListObjectById.getObjectById(codigoBien);
           <textarea name="descripcion" class="form-control" rows="1" required><%= (bien != null) ? bien.getDescription() : "" %></textarea>
       </div>
       <div class="col-md-4">
-        <label for="observacion" class="form-label">Observación</label>
+        <label for="observacion" class="form-label">Observación administrador</label>
         <textarea name="observacion" class="form-control" rows="1"><% 
             if (bien != null && bien.getObservation() != null && !bien.getObservation().isEmpty()) {
                 out.print(bien.getObservation());

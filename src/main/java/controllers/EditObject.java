@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/EditObject")
 public class EditObject extends HttpServlet {
@@ -92,6 +93,27 @@ public class EditObject extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+
+        // Obtener el username desde la sesión
+        HttpSession session = request.getSession();
+        String username = (String) session.getAttribute("username");
+    
+        // Verificar si el username está presente en la sesión
+        if (username == null) {
+            // Manejar el caso donde el username no está en la sesión (por ejemplo, redirigir a la página de inicio de sesión)
+            request.setAttribute("error", "La sesión ha expirado. Por favor, inicia sesión nuevamente.");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+            return;
+        }
+    
+        // Obtener el ID del usuario usando el username
+        int idUsuarioAdmin = 0;
+        try {
+            idUsuarioAdmin = UserController.getUserIdByUsername(username);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }        
+
         long codigo = Long.parseLong(request.getParameter("codigo"));
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
@@ -110,7 +132,7 @@ public class EditObject extends HttpServlet {
 
                 // Establecer la conexión y realizar la actualización en la base de datos
                 Connection conn = ConnectionBD.getConnection();
-                String sql = "UPDATE MA_Bien SET FK_Usuario=?, nombre=?, descripcion=?, valor=?, FK_Dependencia=?, estado=?, observacionAdmin=?, fechaAdmin=? WHERE PK_Codigo=?";
+                String sql = "UPDATE MA_Bien SET FK_Usuario=?, nombre=?, descripcion=?, valor=?, FK_Dependencia=?, estado=?, observacionAdmin=?, FK_UsuarioAdmin=?, fechaAdmin=? WHERE PK_Codigo=?";
                 PreparedStatement statement = conn.prepareStatement(sql);
                 statement.setInt(1, idUsuario);
                 statement.setString(2, nombre);
@@ -119,8 +141,9 @@ public class EditObject extends HttpServlet {
                 statement.setInt(5, dependenciaId);
                 statement.setString(6, estado);
                 statement.setString(7, observacion);
-                statement.setTimestamp(8, new Timestamp(System.currentTimeMillis())); // Fecha actual
-                statement.setLong(9, codigo);
+                statement.setInt(8, idUsuarioAdmin);
+                statement.setTimestamp(9, new Timestamp(System.currentTimeMillis())); // Fecha actual
+                statement.setLong(10, codigo);
                 statement.executeUpdate();
                 System.out.println("Se ha actualizado con éxito");
                 // Redirigir después de la actualización

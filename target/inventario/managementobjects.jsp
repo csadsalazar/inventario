@@ -138,6 +138,14 @@ function editSelected() {
     window.location.href = "editselected.jsp?ids=" + encodeURIComponent(selectedIds.join(","));
 }
 
+function selectAllCheckboxes() {
+    var selectAllCheckbox = document.getElementById("selectAllCheckbox");
+    var checkboxes = document.querySelectorAll("#table tbody input[name='selectedIds']");
+
+    for (var checkbox of checkboxes) {
+        checkbox.checked = selectAllCheckbox.checked;
+    }
+}
 </script>
 </main>
 <%@ include file="footer.jsp" %>

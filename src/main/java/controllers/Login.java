@@ -32,7 +32,7 @@ public class Login extends HttpServlet {
 
  
         // Crea la conexión HTTP
-        URL url = new URL("http://localhost:9767/conexionldap/v1/verificarUsuario");
+        URL url = new URL("http://localhost:9709/conexionldap/v1/verificarUsuario");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type", "application/json; utf-8");

@@ -50,7 +50,7 @@ public class AddObject extends HttpServlet {
     String username = (String) session.getAttribute("username");
  
     // Verificar si el username está presente en la sesión
-    if (username == null) {
+    if (username == null) { 
         // Manejar el caso donde el username no está en la sesión (por ejemplo, redirigir a la página de inicio de sesión)
         request.setAttribute("error", "La sesión ha expirado. Por favor, inicia sesión nuevamente.");
         request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -79,7 +79,7 @@ public class AddObject extends HttpServlet {
         try {
           
             // Obtener el ID del usuario
-            int idUsuario = UserController.getUserId(usuario);
+            int idUsuario = UserController.getUserId(usuario); 
 
             // Establecer la conexión y realizar la inserción en la base de datos
             Connection conn = ConnectionBD.getConnection();

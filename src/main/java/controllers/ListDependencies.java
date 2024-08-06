@@ -43,7 +43,7 @@ public class ListDependencies {
     public static Dependency getDependencyById(int id) throws ClassNotFoundException {
         Dependency dependencia = null;
         Connection conn = null;
-        try {
+        try { 
             conn = ConnectionBD.getConnection();
             String sql = "SELECT * FROM MA_Dependencia WHERE PK_idDependencia = ?";   
             PreparedStatement cs = conn.prepareStatement(sql);   
