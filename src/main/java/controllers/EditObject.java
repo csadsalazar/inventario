@@ -113,7 +113,7 @@ public class EditObject extends HttpServlet {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }        
-
+        
         long codigo = Long.parseLong(request.getParameter("codigo"));
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");

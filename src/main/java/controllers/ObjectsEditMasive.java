@@ -12,20 +12,45 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import models.Dependency;
 import models.Object;
 import models.User;
 import utils.ConnectionBD;
 
-public class ListObjectsEdit { 
+public class ObjectsEditMasive { 
 
-        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection conn = null; 
         try {
             conn = ConnectionBD.getConnection();
             List<Dependency> dependencias = ListDependencies.getDependencies();
             request.setAttribute("dependencia", dependencias);
+            
+            // Obtener el username desde la sesión
+            HttpSession session = request.getSession();
+            String username = (String) session.getAttribute("username");
+        
+            // Verificar si el username está presente en la sesión
+            if (username == null) {
+                // Manejar el caso donde el username no está en la sesión (por ejemplo, redirigir a la página de inicio de sesión)
+                request.setAttribute("error", "La sesión ha expirado. Por favor, inicia sesión nuevamente.");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                return;
+            }
+        
+            // Obtener el ID del usuario usando el username
+            int idUsuarioAdmin = 0;
+            try {
+                idUsuarioAdmin = UserController.getUserIdByUsername(username);
+            } catch (ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+                // Manejar el error de manera apropiada
+                request.setAttribute("error", "Error al obtener el ID del usuario: " + e.getMessage());
+                request.getRequestDispatcher("managementobjects.jsp").forward(request, response);
+                return;
+            }
+            
+            request.setAttribute("userIdAdmin", idUsuarioAdmin);
             request.getRequestDispatcher("addobject.jsp").forward(request, response);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -89,7 +114,7 @@ public class ListObjectsEdit {
         return objectList;
     }
 
-    public static void updateObjects(String[] ids, String name, String description, String observation, String state, String dependency, String user, String condition, String admin) throws SQLException, ClassNotFoundException {
+    public static void updateObjects(HttpServletRequest request, String[] ids, String name, String description, String observation, String state, String dependency, String user, String condition, String admin) throws SQLException, ClassNotFoundException {
         Connection conn = ConnectionBD.getConnection();
         StringBuilder query = new StringBuilder("UPDATE MA_Bien SET ");
         
@@ -149,18 +174,10 @@ public class ListObjectsEdit {
             // Aquí obtienes el ID del usuario usando el nombre de usuario
             int userId = UserController.getUserIdByUsername(user);
             stmt.setInt(index++, userId);
-        }    
-        // Obtener el ID del usuario usando el username
-        int idUsuarioAdmin = 0;
-        try {
-            idUsuarioAdmin = UserController.getUserIdByUsername(username);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }        
-
+        }  
         if (hasAdmin) {
-            // Aquí obtienes el ID del usuario usando el nombre de usuario
-            int adminId = UserController.getUserIdByUsername(admin);
+            // Obtener el ID del administrador desde el parámetro
+            int adminId = Integer.parseInt(admin);
             stmt.setInt(index++, adminId);
         }
         stmt.setTimestamp(index++, new Timestamp(System.currentTimeMillis()));
@@ -173,5 +190,4 @@ public class ListObjectsEdit {
         stmt.close();
         conn.close();
     }
-    
 }

@@ -3,7 +3,7 @@
 <%@ include file="nav.jsp" %>
 <%@ page import="java.util.List" %>
 <%@ page import="models.Object" %>
-<%@ page import="controllers.ListObjectsEdit" %>
+<%@ page import="controllers.ObjectsEditMasive" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="models.Dependency" %>
@@ -44,7 +44,7 @@
         <h1>Inventario personalizado - INVIMA</h1>
         <h2>Editar bienes</h2>   
       </div>
-<form action="UpdateObjects" method="POST" class="row g-3 py-3">
+<form action="UpdateMasiveObjects" method="POST" class="row g-3 py-3">
     <input type="hidden" name="ids" value="<%= idsParam %>" />
 
     <% 

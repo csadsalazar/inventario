@@ -17,9 +17,8 @@ public class AddObservation extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String idUsuarioParam = request.getParameter("idUsuario");
         Integer idUsuario = null; // Inicializar como nulo
-        Integer idBien = null; // Inicializar como nulo
-
-        
+        //Integer idBien = null; // Inicializar como nulo
+   
         // Verificar si el parámetro no es nulo
         if (idUsuarioParam != null && !idUsuarioParam.isEmpty()) {
             try {

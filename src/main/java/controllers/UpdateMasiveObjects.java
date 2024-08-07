@@ -5,11 +5,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException; 
 import java.sql.SQLException;  
 
-@WebServlet("/UpdateObjects")
-public class UpdateObjects extends HttpServlet {
+@WebServlet("/UpdateMasiveObjects")
+public class UpdateMasiveObjects extends HttpServlet {
 
     @Override   
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
@@ -19,15 +20,35 @@ public class UpdateObjects extends HttpServlet {
         String description = request.getParameter("description");
         String observation = request.getParameter("observation");
         String state = request.getParameter("state");
-        String dependendy = request.getParameter("dependency");
+        String dependency = request.getParameter("dependency");
         String user = request.getParameter("user");
         String condition = request.getParameter("condition");
-        String admin = (String) request.getAttribute("username");
+        
+        // Obtener el username desde la sesión para el administrador
+        HttpSession session = request.getSession();
+        String username = (String) session.getAttribute("username");
+        
+        if (username == null) {
+            request.setAttribute("error", "La sesión ha expirado. Por favor, inicia sesión nuevamente.");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+            return;
+        }
+        
+        // Obtener el ID del administrador desde el username
+        int adminId = 0;
+        try {
+            adminId = UserController.getUserIdByUsername(username);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("error", "Error al obtener el ID del administrador: " + e.getMessage());
+            request.getRequestDispatcher("editselected.jsp").forward(request, response);
+            return;
+        }
 
         if (idsParam != null && !idsParam.isEmpty()) { 
             String[] ids = idsParam.split(",");
             try {
-                ListObjectsEdit.updateObjects(ids, name, description, observation, state, dependendy, user, condition, admin);
+                ObjectsEditMasive.updateObjects(request, ids, name, description, observation, state, dependency, user, condition, String.valueOf(adminId));
                 response.sendRedirect("managementobjects.jsp"); // Redirigir a una página de éxito
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();

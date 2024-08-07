@@ -17,7 +17,10 @@
         </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end py-3">
        <a class="btn btn-primary" type="button" href="addobservation.jsp">Agregar Observacion</a>
-       <a onclick="reportfinish()" class="btn btn-primary" type="button">Finalizar Reporte</a>
+        <form action="GenerateReportExcelServlet" method="get" id="generateReportForm">
+            <input type="hidden" name="action" value="generateReport">
+            <button class="btn btn-primary" type="submit">Finalizar Reporte</button>
+        </form>
     </div>
     <br>
     <div class="table-responsive">
