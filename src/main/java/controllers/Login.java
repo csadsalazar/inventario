@@ -117,9 +117,9 @@ public class Login extends HttpServlet {
                 rsBienes.getString("descripcion"),
                 rsBienes.getString("estado"),
                 rsBienes.getString("condicion"),
-                rsBienes.getString("imagen1"),
-                rsBienes.getString("imagen2"),
-                rsBienes.getString("imagen3"),
+                rsBienes.getString("imagenone"),
+                rsBienes.getString("imagentwo"),
+                rsBienes.getString("imagenthree"),
                 rsBienes.getString("observacionAdmin"),
                 null, // user, debes obtenerlo si es necesario
                 null, // admin, debes obtenerlo si es necesario
