@@ -27,55 +27,25 @@ function reportObject(codigo) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            Swal.fire({
-                title: '¡Éxito!',
-                text: 'Se ha reportado el bien correctamente',
-                icon: 'success',
-                confirmButtonColor: '#139EC8'
-            }).then(() => {
-                // Después de reportar el bien, deshabilitar los enlaces correspondientes
-                disableLinks(codigo);
-            });
+            if (xhr.responseText === "success") {
+                Swal.fire({
+                    title: '¡Éxito!',
+                    text: 'Se ha reportado el bien correctamente',
+                    icon: 'success',
+                    confirmButtonColor: '#139EC8'
+                }).then(() => {
+                    // Redirigir a la página de inicio para actualizar la lista de bienes
+                    window.location.href = "Inicio"; // O el nombre de tu servlet que carga la página de inicio
+                });
+            } else {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'No se pudo reportar el bien',
+                    icon: 'error',
+                    confirmButtonColor: '#139EC8'
+                });
+            }
         }
     };
-    xhr.send("codigo=" + codigo);
-}
-
-
-function reportfinish() {
-    Swal.fire({
-        title: 'Esta a punto de dar por finalizado el reporte de sus bienes',
-        text: '¿Desea continuar?',
-        icon: 'info',
-        showCancelButton: true,
-        confirmButtonColor: '#139EC8',
-        cancelButtonColor: '#A8A8A8',
-        confirmButtonText: 'Aceptar',
-        cancelButtonText: 'Cancelar',
-        customClass: {
-            popup: 'custom-modal'
-        }
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // Hacer una solicitud AJAX para verificar el estado de los bienes
-            $.ajax({
-                type: 'POST',
-                url: 'CheckBienesStatus',
-                success: function(response) {
-                    if (response === 'success') {
-                        // Si todos los bienes están en estado 'En espera' o 'Reportado', generar el reporte
-                        window.location.href = 'GenerateExcelReport';
-                    } else {
-                        // Si hay bienes en otros estados, mostrar un mensaje de error
-                        Swal.fire({
-                            title: 'Error',
-                            text: 'No todos los bienes están listos para finalizar el reporte.',
-                            icon: 'error',
-                            confirmButtonColor: '#139EC8'
-                        });
-                    }
-                }
-            });
-        }
-    });
+    xhr.send("codigo=" + encodeURIComponent(codigo));
 }

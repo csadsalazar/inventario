@@ -75,6 +75,5 @@
     <script src="resources/js/administrador.js"></script>
     <script src="resources/js/librerias.js"></script> 
     <script src="resources/js/funcionario.js"></script> 
-    <script src="resources/js/imagen.js"></script> 
   </body>
 </html>

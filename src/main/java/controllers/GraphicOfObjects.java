@@ -25,7 +25,7 @@ public class GraphicOfObjects extends HttpServlet {
             conn = ConnectionBD.getConnection();
             String query = "SELECT MA_Dependencia.nombreDependencia, " +
                     "COUNT(MA_Bien.idBien) AS total_bienes, " +
-                    "SUM(CASE WHEN MA_Bien.estado = 'Reportado' AND MA.Bien.condicion = 'Activo' THEN 1 ELSE 0 END) AS reportados " +
+                    "SUM(CASE WHEN MA_Bien.estado = 'Reportado' AND MA_Bien.condicion = 'Activo' THEN 1 ELSE 0 END) AS reportados " +
                     "FROM MA_Dependencia " +
                     "LEFT JOIN MA_Bien ON MA_Dependencia.PK_idDependencia = MA_Bien.FK_Dependencia " +
                     "GROUP BY MA_Dependencia.nombreDependencia";

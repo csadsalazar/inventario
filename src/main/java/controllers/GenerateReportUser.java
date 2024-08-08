@@ -1,5 +1,4 @@
 package controllers;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +18,7 @@ import models.User;
 import models.Dependency;
 import utils.ConnectionBD;
 
-@WebServlet("/GenerateReportExcelServlet")
+@WebServlet("/GenerateReportUser")
 public class GenerateReportUser extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -63,7 +62,7 @@ public class GenerateReportUser extends HttpServlet {
     private List<Object> getObjectsByUser(int usuarioId) throws ClassNotFoundException {
         try (Connection connection = ConnectionBD.getConnection()) {
             List<Object> bienes = new ArrayList<>();
-            String sql = "SELECT * FROM MA_Bien WHERE FK_Usuario = ?";
+            String sql = "SELECT * FROM MA_Bien WHERE condicion = 'Activo' AND  FK_Usuario = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setInt(1, usuarioId);
                 try (ResultSet resultSet = statement.executeQuery()) {

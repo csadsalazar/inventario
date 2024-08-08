@@ -7,7 +7,7 @@
 											PK_idDependencia INT AUTO_INCREMENT PRIMARY KEY ,
 											centroDeCosto varchar (5),
 											nombreDependencia VARCHAR(130) UNIQUE
-											);
+											);	
                                             
                                             INSERT INTO MA_Dependencia (centroDeCosto, nombreDependencia) VALUES
 											("600", 'DIRECCIÓN DE MEDICAMENTOS Y PRODUCTOS BIOLÓGICOS'),
@@ -294,9 +294,13 @@
                                     END //    
                                     DELIMITER ;
                                     
+									INSERT INTO MA_Usuario (nombre, cedula, usuario, FK_Cargo, FK_Dependencia, FK_TipoDocumento, FK_Perfil) VALUES 
+									('CESAR SALAZAR', 1012916689, 'csalazart', 1, 10, 1, 2);
+									UPDATE MA_Usuario set FK_Perfil = 1 WHERE PK_idUsuario=3;
+                                    UPDATE MA_Usuario set FK_Perfil = 2 WHERE PK_idUsuario=3;
                                     
-                                    UPDATE MA_Usuario set FK_Perfil = 1 WHERE PK_idUsuario=3;
-                                    
-									UPDATE MA_Bien set condicion = 'Activo' WHERE idBien=5
+									UPDATE MA_Bien set condicion = 'Activo' WHERE PK_Codigo=5;
+									UPDATE MA_Bien set FK_UsuarioAdmin = 1 WHERE PK_Codigo=1
+
 
                                     

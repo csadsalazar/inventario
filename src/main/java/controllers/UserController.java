@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import utils.ConnectionBD;
 
 public class UserController {
@@ -58,4 +59,23 @@ public class UserController {
             throw new SQLException("Usuario no encontrado");
         }
     }
-}
+
+        // Método para obtener el ID del usuario usando el username
+        public static int getUserIdByUsernameLogin(String username) throws SQLException, ClassNotFoundException {
+            int userId = -1;
+            String query = "SELECT PK_idUsuario FROM MA_Usuario WHERE usuario = ?";
+    
+            try (Connection conn = ConnectionBD.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(query)) {
+    
+                pstmt.setString(1, username);
+                ResultSet rs = pstmt.executeQuery();
+    
+                if (rs.next()) {
+                    userId = rs.getInt("PK_idUsuario");
+                }
+            }
+    
+            return userId;
+        }
+    }

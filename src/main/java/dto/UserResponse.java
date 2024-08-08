@@ -51,4 +51,13 @@ public class UserResponse {
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
+
+    @Override
+    public String toString() {
+        return "UserResponse [correo=" + correo + ", nombreCompleto=" + nombreCompleto + ", grupos=" + grupos
+                + ", nombreUsuario=" + nombreUsuario + "]";
+    }
+
+
+    
 }

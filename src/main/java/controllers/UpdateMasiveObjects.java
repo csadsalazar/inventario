@@ -18,7 +18,7 @@ public class UpdateMasiveObjects extends HttpServlet {
         String idsParam = request.getParameter("ids");
         String name = request.getParameter("name");
         String description = request.getParameter("description");
-        String observation = request.getParameter("observation");
+        String observation = request.getParameter("observation"); 
         String state = request.getParameter("state");
         String dependency = request.getParameter("dependency");
         String user = request.getParameter("user");
@@ -38,6 +38,8 @@ public class UpdateMasiveObjects extends HttpServlet {
         int adminId = 0;
         try {
             adminId = UserController.getUserIdByUsername(username);
+            System.out.println(adminId);
+
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             request.setAttribute("error", "Error al obtener el ID del administrador: " + e.getMessage());

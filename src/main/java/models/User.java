@@ -3,7 +3,7 @@ package models;
 public class User {
     private int PK_idUser;
     private long identification;
-    private String name, user;
+    private String name, user, email;
     private DocumentType PK_idChargeType;
     private Dependency PK_idDependencia;
     private Charge PK_idCharge;
@@ -12,12 +12,13 @@ public class User {
     public User() {
     }
 
-    public User(int pK_idUser, long identification, String name, String user, DocumentType pK_idChargeType,
+    public User(int pK_idUser, long identification, String name, String user, String email, DocumentType pK_idChargeType,
             Dependency pK_idDependencia, Charge pK_idCharge, Profile pK_idProfile) {
-        PK_idUser = pK_idUser;
+        this.PK_idUser = pK_idUser;
         this.identification = identification;
         this.name = name;
         this.user = user;
+        this.email = email;
         this.PK_idChargeType = pK_idChargeType;
         this.PK_idDependencia = pK_idDependencia;
         this.PK_idCharge = pK_idCharge;
@@ -54,6 +55,14 @@ public class User {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public DocumentType getPK_idChargeType() {
@@ -94,7 +103,7 @@ public class User {
                 + user + ", PK_idChargeType=" + PK_idChargeType + ", PK_idDependencia=" + PK_idDependencia
                 + ", PK_idCharge=" + PK_idCharge + ", PK_idProfile=" + PK_idProfile + ", getPK_idUser()="
                 + getPK_idUser() + ", getIdentification()=" + getIdentification() + ", getName()=" + getName()
-                + ", getUser()=" + getUser() + ", getPK_idChargeType()=" + getPK_idChargeType()
+                + ", getUser()=" + getUser() + ", getEmail()=" + getEmail() + ", getPK_idChargeType()=" + getPK_idChargeType()
                 + ", getPK_idDependencia()=" + getPK_idDependencia() + ", getPK_idCharge()=" + getPK_idCharge()
                 + ", getPK_idProfile()=" + getPK_idProfile() + ", getClass()=" + getClass() + ", hashCode()="
                 + hashCode() + ", toString()=" + super.toString() + "]";

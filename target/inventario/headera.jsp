@@ -25,7 +25,7 @@
         response.sendRedirect("index.jsp");
         return; // Importante para evitar que el resto del código JSP se ejecute
     }
-%>
+  %>
     <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
       <div class="container">

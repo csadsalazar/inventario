@@ -138,9 +138,9 @@
 											valor BIGINT,
 											estado VARCHAR(12),
                                             condicion VARCHAR (10),
-											imagen1 VARCHAR(255),
-											imagen2 VARCHAR(255),
-											imagen3 VARCHAR(255),
+											imagenuno VARCHAR(255),
+											imagendos VARCHAR(255),
+											imagentres VARCHAR(255),
 											fecha DATETIME,
 											fechaAdmin DATETIME,
 											observacionAdmin TEXT,
@@ -151,7 +151,7 @@
 											FOREIGN KEY (FK_UsuarioAdmin) REFERENCES MA_Usuario(PK_idUsuario) ON UPDATE CASCADE 
 											);
                                             
-											INSERT INTO MA_Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, condicion, FK_UsuarioAdmin, imagen1, imagen2, fecha) VALUES
+											INSERT INTO MA_Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, condicion, FK_UsuarioAdmin, imagenuno, imagendos, fecha) VALUES
 											(1, 'NombreBien1', '1000', 'Descripción1', 1000, 1, 8, 'No reportado','Activo','1', 'Imagen1', 'Imagen1.1', '2024-04-07'),
 											(2, 'NombreBien1', '2000', 'Descripción1', 1000, 2, 34, 'No reportado','Inactivo','1', 'Imagen1', 'Imagen1.1', '2024-04-07'),
 											(3, 'NombreBien1', '3000', 'Descripción1', 1000, 2, 10, 'No reportado','Inactivo','1', 'Imagen1', 'Imagen1.1', '2024-04-07');
@@ -187,15 +187,15 @@
 												IN FK_Dependencia INT,
                                                 -- IN FK_UsuarioAdmin INT,
 												IN estado VARCHAR(12),
-												IN imagen1 VARCHAR(50),
-												IN imagen2 VARCHAR(50),
+												IN imagenuno VARCHAR(255),
+												IN imagendos VARCHAR(255),
 												IN fecha DATETIME,
                                                 IN fechaAdmin DATETIME
 												
 											)
 											BEGIN
-												INSERT INTO MA_Bien (PK_Codigo, nombre, cedula, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, imagen1, imagen2, fecha, fechaAdmin)
-												VALUES (codigo, nombre, cedula, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, imagen1, imagen2, fecha, fechaAdmin);
+												INSERT INTO MA_Bien (PK_Codigo, nombre, cedula, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, imagenuno, imagendos, fecha, fechaAdmin)
+												VALUES (codigo, nombre, cedula, placa, descripcion, valor, FK_Usuario, FK_Dependencia, estado, imagenuno, imagendos, fecha, fechaAdmin);
 											END //
 
 									DELIMITER //

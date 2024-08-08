@@ -14,7 +14,7 @@
             <li class="breadcrumb-item"><a href="homef.jsp">Inicio</a></li>
             <li class="breadcrumb-item active" aria-current="page">Detalles del bien</li>
         </ol>
-    </nav>
+    </nav> 
     </div>
       <main class="container">
       <div class="text-center">
@@ -43,12 +43,21 @@
       </div>  
       <div class="col-md-4">
           <label for="descripcion" class="form-label">Descripción</label>
-          <textarea name="descripcion" id="descripcion" class="form-control" readonly><%= (bien != null) ? bien.getDescription() : "" %></textarea>
+          <textarea name="descripcion" id="descripcion" class="form-control" readonly rows="1"><%= (bien != null) ? bien.getDescription() : "" %></textarea>
       </div>
-
       <div class="col-md-4"> 
           <label for="dependencia" class="form-label">Dependencia</label>
           <textarea name="dependencia" id="dependencia" class="form-control" readonly rows="1"><%= (bien != null && bien.getPK_idDependency() != null) ? bien.getPK_idDependency().getDependencyname() : "" %></textarea>
+      </div>
+      <div class="col-md-4">
+          <label for="observacion" class="form-label">Observación de almacen</label>
+          <textarea name="observacion" id="observacion" class="form-control" readonly rows="1"><% 
+            if (bien != null && bien.getObservation() != null && !bien.getObservation().isEmpty()) {
+                out.print(bien.getObservation());
+            } else {
+                out.print("Sin observación");
+            }
+        %></textarea>
       </div>
         <form action="Observacion" method="POST"> <!-- Utiliza el servlet Observacion para procesar la observación -->
             <input type="hidden" name="placaBien" value="<%= (bien != null) ? bien.getPlate() : "" %>">
@@ -56,12 +65,13 @@
             <input type="hidden" name="idUsuario" value="<%= (bien != null && bien.getUser() != null) ? bien.getUser().getPK_idUser() : "" %>"> <!-- Enviar el ID del usuario como parámetro oculto -->
             <div class="col-md-4">
                 <label  class="form-label" for="informacion">Observación:</label> <!-- Cambiar "information" a "informacion" -->
-                <textarea class="form-control" id="informacion" name="informacion" rows="5" cols="30" required></textarea>
+                <textarea class="form-control" id="informacion" name="informacion" rows="5" cols="30"></textarea>
             </div>
              <div>
             </div>
             <div class="col-md-4">
             <button class="btn btn-primary">Enviar observación</button>
+            <button class="btn btn-primary">Volver</button>
             </div>
         </form>
     </form>

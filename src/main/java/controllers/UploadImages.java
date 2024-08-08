@@ -1,59 +1,96 @@
 package controllers;
-
-import java.io.IOException;
+import com.azure.storage.blob.BlobClient;
+import com.azure.storage.blob.BlobContainerClient;
+import com.azure.storage.blob.BlobServiceClient;
+import com.azure.storage.blob.BlobServiceClientBuilder;
+import utils.ConnectionBD;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import utils.ConnectionBD;
+import javax.servlet.http.Part;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-  
-@WebServlet("/UploadImages")
-public class UploadImages extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String image1 = request.getParameter("image1");
-String image2 = request.getParameter("image2");
-String image3 = request.getParameter("image3");
-String codigo = request.getParameter("codigo");
 
-        boolean update = false;
-        try {
-            update= uploadImages(codigo);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        response.setContentType("text/plain");
-        response.setCharacterEncoding("UTF-8");
-    } 
- 
-    private boolean uploadImages(String codigo) throws ClassNotFoundException {
-        Connection conn = null;
-        PreparedStatement stmt = null; 
-        try {
-            conn = ConnectionBD.getConnection(); // Utiliza tu método para obtener la conexión 
-            String sql = "UPDATE MA_Bien SET Imagen1=?, Imagen2=?, Imagen3=? WHERE PK_Codigo= ?";
-            stmt = conn.prepareStatement(sql);
-            stmt.setString(1, codigo);
-            sstmt.setString(2, codigo);
-            stmt.setString(3, codigo);
-            stmt.setString(4, codigo);
-            int filasAfectadas = stmt.executeUpdate();
-            System.out.println("Se han cargado las imágenes correspondientes.);
-            return filasAfectadas > 0;
+@WebServlet("/UploadImages")
+@MultipartConfig
+public class UploadImages extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    private static final String STORAGE_BASE_URL = "https://storagepermlabesinvima.blob.core.windows.net/";
+    private static final String CONTAINER_NAME = "inventariopersonalizado";
+    private static final String SAS_TOKEN = "sv=2022-11-02&ss=bfqt&srt=sco&sp=rwlacupitfx&se=2024-08-01T05:19:46Z&st=2024-07-23T21:19:46Z&spr=https,http&sig=dDoLlaK9ZTApLRo%2BtJYrbD4ekt5Ba%2FkvxylCYYK6Jno%3D";
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int idBien = Integer.parseInt(request.getParameter("idBien"));
+
+        // Procesar los archivos subidos
+        String imagenUnoUrl = handleFileUpload(request, "imagenuno");
+        String imagenDosUrl = handleFileUpload(request, "imagendos");
+        String imagenTresUrl = handleFileUpload(request, "imagentres");
+
+        // Actualizar la base de datos
+        try (Connection conn = ConnectionBD.getConnection()) {
+            String updateQuery = "UPDATE MA_Bien SET imagenuno = ?, imagendos = ?, imagentres = ? WHERE PK_Codigo = ?";
+            PreparedStatement pstmt = conn.prepareStatement(updateQuery);
+            pstmt.setString(1, imagenUnoUrl);
+            pstmt.setString(2, imagenDosUrl);
+            pstmt.setString(3, imagenTresUrl);
+            pstmt.setInt(4, idBien);
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
-        } finally { 
-            // Cierra la conexión y el statement
-            try {
-                if (stmt != null) stmt.close();
-                if (conn != null) conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            request.setAttribute("error", "Error al actualizar los datos en la base de datos.");
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+            return;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            request.setAttribute("error", "Error de clase no encontrada.");
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+            return;
+        }
+
+        response.sendRedirect("success.jsp");
+    }
+
+    private String handleFileUpload(HttpServletRequest request, String fieldName) throws IOException, ServletException {
+        Part filePart = request.getPart(fieldName);
+        if (filePart != null && filePart.getSize() > 0) {
+            String fileName = extractFileName(filePart);
+            String encodedFileName = URLEncoder.encode(fileName, StandardCharsets.UTF_8.toString());
+
+            // Subir el archivo a Azure Blob Storage
+            BlobServiceClient blobServiceClient = new BlobServiceClientBuilder()
+                    .endpoint(STORAGE_BASE_URL)
+                    .sasToken(SAS_TOKEN)
+                    .buildClient();
+            BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(CONTAINER_NAME);
+            BlobClient blobClient = containerClient.getBlobClient(encodedFileName);
+
+            try (InputStream inputStream = filePart.getInputStream()) {
+                blobClient.upload(inputStream, filePart.getSize(), true);
+            }
+
+            // Generar la URL pública con SAS token
+            return blobClient.getBlobUrl() + "?" + SAS_TOKEN;
+        }
+        return null;
+    }
+
+    private String extractFileName(Part part) {
+        String contentDisp = part.getHeader("content-disposition");
+        String[] items = contentDisp.split(";");
+        for (String s : items) {
+            if (s.trim().startsWith("filename")) {
+                return s.substring(s.indexOf("=") + 2, s.length() - 1).replace("\"", "");
             }
         }
-    } 
+        return "";
+    }
 }

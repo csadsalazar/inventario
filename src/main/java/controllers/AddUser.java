@@ -1,5 +1,4 @@
 package controllers;
-
 import utils.ConnectionBD;
 import java.io.IOException;
 import java.sql.Connection;
@@ -54,8 +53,9 @@ public class AddUser extends HttpServlet {
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    String nombre = request.getParameter("nombre").toUpperCase();
-    String username = request.getParameter("username");
+    String nombre = request.getParameter("nombreUsuarioCompleto").toUpperCase();
+    String username = request.getParameter("nombreUsuario");
+    String correo = request.getParameter("correoUsuario");
     Long cedula = Long.parseLong(request.getParameter("cedula"));
     int dependenciaId = Integer.parseInt(request.getParameter("dependencia")); // Obtener el ID de la dependencia
     int cargoId = Integer.parseInt(request.getParameter("cargo")); // Obtener el ID del cargo
@@ -65,14 +65,15 @@ public class AddUser extends HttpServlet {
     try {
         // Establecer la conexión y realizar la inserción en la base de datos
         Connection conn = ConnectionBD.getConnection();
-        String sql = "INSERT INTO MA_Usuario (nombre, cedula, usuario, FK_Dependencia, FK_Cargo, FK_TipoDocumento, FK_Perfil) VALUES (?,?,?,?,?,?,2)";
+        String sql = "INSERT INTO MA_Usuario (nombre, cedula, usuario, correo, FK_Dependencia, FK_Cargo, FK_TipoDocumento, FK_Perfil) VALUES (?,?,?,?,?,?,?,2)";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, nombre.toUpperCase()); // Convertir el nombre a mayúsculas
         statement.setLong(2, cedula);
-        statement.setString(3, username);  
-        statement.setInt(4, dependenciaId);      
-        statement.setInt(5, cargoId);  
-        statement.setInt(6, tipodocumentoId);
+        statement.setString(3, username); 
+        statement.setString(4, correo); 
+        statement.setInt(5, dependenciaId);      
+        statement.setInt(6, cargoId);  
+        statement.setInt(7, tipodocumentoId);
         statement.executeUpdate();
         response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");

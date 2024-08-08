@@ -21,6 +21,13 @@ public class ReportObject extends HttpServlet {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
+        // Envía la respuesta al cliente
+        if (reportado) {
+            response.getWriter().write("success");
+        } else {
+            response.getWriter().write("error");
+        }
     }
 
     private boolean reportObject(String codigo) throws ClassNotFoundException {
@@ -32,13 +39,11 @@ public class ReportObject extends HttpServlet {
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, codigo);
             int filasAfectadas = stmt.executeUpdate();
-            System.out.println("Se ha puesto en espera el bien con código: " + codigo);
             return filasAfectadas > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         } finally {
-            // Cierra la conexión y el statement
             try {
                 if (stmt != null) stmt.close();
                 if (conn != null) conn.close();

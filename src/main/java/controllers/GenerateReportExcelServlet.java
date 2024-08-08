@@ -39,7 +39,7 @@ public class GenerateReportExcelServlet extends HttpServlet {
     private List<Object> getObjectsByDependency(int dependenciaId, int usuarioId) throws ClassNotFoundException {
         try (Connection connection = ConnectionBD.getConnection()) {
             List<Object> bienes = new ArrayList<>();
-            String sql = "SELECT * FROM MA_Bien WHERE FK_Dependencia = ?";
+            String sql = "SELECT * FROM MA_Bien WHERE condicion = 'Activo' AND FK_Dependencia = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setInt(1, dependenciaId);
                 try (ResultSet resultSet = statement.executeQuery()) {

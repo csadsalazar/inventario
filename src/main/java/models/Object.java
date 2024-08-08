@@ -136,7 +136,7 @@ public class Object {
         return imageThree;
     }
 
-    public void setImageThree(String imageThree) 
+    public void setImageThree(String imageThree) { 
         this.imageThree = imageThree;
     }
 

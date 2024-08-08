@@ -17,7 +17,7 @@
         // Convertir los IDs a una lista de Long 
         String[] ids = idsParam.split(","); 
         try { 
-            objects = ListObjectsEdit.getObjects(ids); // Llamada para obtener los objetos
+            objects = ObjectsEditMasive.getObjects(ids); // Llamada para obtener los objetos
         } catch (SQLException e) {
             e.printStackTrace();
             request.setAttribute("error", "Error al obtener los datos de los objetos.");
