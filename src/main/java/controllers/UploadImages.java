@@ -11,10 +11,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
   
-@WebServlet("/DeleteAdmin")
+@WebServlet("/UploadImages")
 public class UploadImages extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String codigo = request.getParameter("codigo");
+        String image1 = request.getParameter("image1");
+String image2 = request.getParameter("image2");
+String image3 = request.getParameter("image3");
+String codigo = request.getParameter("codigo");
+
         boolean eliminado = false;
         try {
             eliminado = deleteAdmin(codigo);
@@ -25,7 +29,7 @@ public class UploadImages extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
     } 
  
-    private boolean deleteAdmin(String codigo) throws ClassNotFoundException {
+    private boolean uploadImages(String codigo) throws ClassNotFoundException {
         Connection conn = null;
         PreparedStatement stmt = null; 
         try {
@@ -33,9 +37,9 @@ public class UploadImages extends HttpServlet {
             String sql = "UPDATE MA_Bien SET Imagen1=?, Imagen2=?, Imagen3=? WHERE PK_Codigo= ?";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, codigo);
-            sstmt.setString(1, codigo);
-            stmt.setString(1, codigo);
-            stmt.setString(1, codigo);
+            sstmt.setString(2, codigo);
+            stmt.setString(3, codigo);
+            stmt.setString(4, codigo);
             int filasAfectadas = stmt.executeUpdate();
             System.out.println("Se ha eliminado el admin con código: " + codigo);
             return filasAfectadas > 0;
