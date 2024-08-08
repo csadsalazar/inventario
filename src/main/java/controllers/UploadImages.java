@@ -19,9 +19,9 @@ String image2 = request.getParameter("image2");
 String image3 = request.getParameter("image3");
 String codigo = request.getParameter("codigo");
 
-        boolean eliminado = false;
+        boolean update = false;
         try {
-            eliminado = deleteAdmin(codigo);
+            update= uploadImages(codigo);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -41,7 +41,7 @@ String codigo = request.getParameter("codigo");
             stmt.setString(3, codigo);
             stmt.setString(4, codigo);
             int filasAfectadas = stmt.executeUpdate();
-            System.out.println("Se ha eliminado el admin con código: " + codigo);
+            System.out.println("Se han cargado las imágenes correspondientes.);
             return filasAfectadas > 0;
         } catch (SQLException e) {
             e.printStackTrace();
