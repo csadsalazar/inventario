@@ -30,8 +30,11 @@ public class UploadImages extends HttpServlet {
         PreparedStatement stmt = null; 
         try {
             conn = ConnectionBD.getConnection(); // Utiliza tu método para obtener la conexión 
-            String sql = "UPDATE MA_Bien SET Imagen1=?, Imagen2=?, Imagen3=? WHERE PK_idBien= ?";
+            String sql = "UPDATE MA_Bien SET Imagen1=?, Imagen2=?, Imagen3=? WHERE PK_Codigo= ?";
             stmt = conn.prepareStatement(sql);
+            stmt.setString(1, codigo);
+            sstmt.setString(1, codigo);
+            stmt.setString(1, codigo);
             stmt.setString(1, codigo);
             int filasAfectadas = stmt.executeUpdate();
             System.out.println("Se ha eliminado el admin con código: " + codigo);
