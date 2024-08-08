@@ -5,7 +5,7 @@ public class Object {
     private int PK_idObject, plate;
     private long code, value;
     private Timestamp date, dateadmin;
-    private String name, description, state, condition, image1, image2, image3, observation;
+    private String name, description, state, condition, imageOne, imageTwo, imageThree, observation;
     private User user, admin;
     private Dependency PK_idDependency;
     private Observation information;
@@ -14,7 +14,7 @@ public class Object {
     }
 
     public Object(int pK_idObject, int plate, long code, long value, Timestamp date, Timestamp dateadmin, String name,
-            String description, String state, String condition, String image1, String image2, String image3,
+            String description, String state, String condition, String imageOne, String imageTwo, String imageThree,
             String observation, User user, User admin, Dependency pK_idDependency, Observation information) {
         this.PK_idObject = pK_idObject;
         this.plate = plate;
@@ -26,9 +26,9 @@ public class Object {
         this.description = description;
         this.state = state;
         this.condition = condition;
-        this.image1 = image1;
-        this.image2 = image2;
-        this.image3 = image3;
+        this.imageOne = imageOne;
+        this.imageTwo = imageTwo;
+        this.imageThree = imageThree;
         this.observation = observation;
         this.user = user;
         this.admin = admin;
@@ -116,28 +116,28 @@ public class Object {
         this.condition = condition;
     }
 
-    public String getImage1() {
-        return image1;
+    public String getImageOne() {
+        return imageOne;
     }
 
-    public void setImage1(String image1) {
-        this.image1 = image1;
+    public void setImageOne(String imageOne) {
+        this.imageOne = imageOne;
     }
 
-    public String getImage2() {
-        return image2;
+    public String getImageTwo() {
+        return imageTwo;
     }
 
-    public void setImage2(String image2) {
-        this.image2 = image2;
+    public void setImageTwo(String imageTwo) {
+        this.imageTwo = imageTwo;
     }
 
-    public String getImage3() {
-        return image3;
+    public String getImageThree() {
+        return imageThree;
     }
 
-    public void setImage3(String image3) {
-        this.image3 = image3;
+    public void setImageThree(String imageThree) 
+        this.imageThree = imageThree;
     }
 
     public String getObservation() {
