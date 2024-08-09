@@ -1,5 +1,4 @@
 package controllers;
-
 import utils.ConnectionBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,6 +30,9 @@ public class ListObjectById {
                 bien.setDescription(rs.getString("descripcion"));
                 bien.setObservation(rs.getString("observacionAdmin"));
                 bien.setDate(rs.getTimestamp("fecha"));
+                bien.setImageOne(rs.getString("imagenuno"));
+                bien.setImageTwo(rs.getString("imagendos"));
+                bien.setImageThree(rs.getString("imagentres"));
                 Dependency dependencia = new Dependency();
                 dependencia.setDependencyname(rs.getString("nombreDependencia"));
                 bien.setPK_idDependency(dependencia);

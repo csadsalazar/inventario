@@ -74,8 +74,27 @@
             }
         %></textarea>
       </div>
-      <div>
-      </div>
+        <div>
+            <div>
+                <label for="imagenuno" class="form-label">Imagen 1</label>
+                <c:if test="${not empty bien.imageOne}">
+                    <img src="<%= (bien != null) ? bien.getImageOne() : "" %>" alt="No se adjunta evidencia" class="img-fluid rounded mx-auto d-block">
+                </c:if>
+            </div>
+            <div>
+                <label for="imagendos" class="form-label">Imagen 2</label>
+                <c:if test="${not empty bien.imageTwo}">
+                    <img src="<%= (bien != null) ? bien.getImageTwo() : "" %>" alt="No se adjunta evidencia" class="img-fluid rounded mx-auto d-block">
+                </c:if>
+            </div>
+            <div>
+                <label for="imagentres" class="form-label">Imagen 3</label>
+                <c:if test="${not empty bien.imageThree}">
+                    <img src="<%= (bien != null) ? bien.getImageThree() : "" %>" alt="No se adjunta evidencia" class="img-fluid rounded mx-auto d-block">
+                    <img  class="">
+                </c:if>
+            </div>      
+        </div>
         <div class="col">
           <a class="btn btn-primary" href="managementobjects.jsp">Aceptar</a>
         </div>

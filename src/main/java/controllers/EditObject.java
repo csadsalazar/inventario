@@ -1,5 +1,4 @@
 package controllers;
-
 import utils.ConnectionBD;
 import models.Dependency;
 import models.Object;
@@ -41,6 +40,10 @@ public class EditObject extends HttpServlet {
                 long valor = resultSet.getLong("valor");
                 int idDependencia = resultSet.getInt("FK_Dependencia");
                 String observacion = resultSet.getString("observacionAdmin");
+                String imagenuno = resultSet.getString("imagenuno");
+                String imagendos = resultSet.getString("imagendos");
+                String imagentres = resultSet.getString("imagentres");
+ 
 
                 // Crear un objeto bien y establecer sus propiedades
                 Object bien = new Object();
@@ -49,6 +52,9 @@ public class EditObject extends HttpServlet {
                 bien.setDescription(descripcion);
                 bien.setValue(valor);
                 bien.setObservation(observacion);
+                bien.setImageOne(imagenuno);
+                bien.setImageTwo(imagendos);
+                bien.setImageThree(imagentres);
 
                 // Obtener la dependencia asociada al bien
                 Dependency dependencia = ListDependencies.getDependencyById(idDependencia);

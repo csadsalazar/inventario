@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="headera.jsp" %>
 <%@ include file="nav.jsp" %>
 <%@ page import="java.util.ArrayList" %>
@@ -101,6 +100,20 @@ Object bien = ListObjectById.getObjectById(codigoBien);
             }
         %></textarea>
       </div>
+        <div>
+            <div>
+                <label for="imagenuno" class="form-label">Imagen 1</label>
+                    <img src="<%= (bien != null) ? bien.getImageOne() : "" %>" alt="No se adjunta evidencia" class="img-fluid rounded mx-auto d-block">
+            </div>
+            <div>
+                <label for="imagendos" class="form-label">Imagen 2</label>
+                    <img src="<%= (bien != null) ? bien.getImageTwo() : "" %>" alt="No se adjunta evidencia" class="img-fluid rounded mx-auto d-block">
+            </div>
+            <div>
+                <label for="imagentres" class="form-label">Imagen 3</label>
+                    <img src="<%= (bien != null) ? bien.getImageThree() : "" %>" alt="No se adjunta evidencia" class="img-fluid rounded mx-auto d-block">
+            </div>      
+        </div>
       <div> 
       </div>
       <div class="col">

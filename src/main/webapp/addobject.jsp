@@ -18,7 +18,7 @@
       <h1>Inventario personalizado - INVIMA</h1>
           <h2>Agregar bien</h1>
       </div>
-    <form class="row g-3 needs-validation py-3" method="POST" action="AddObject">
+    <form class="row g-3 needs-validation py-3" method="POST" action="AddObject" enctype="multipart/form-data">
       <div class="col-md-4">
           <label for="usuario" class="form-label">Funcionario</label>
           <input type="text" class="form-control" name="usuario" id="usuario" required>
@@ -70,6 +70,18 @@
             <option value="Reportado">Reportado</option>
           </select>
       </div>
+      <div class="col-md-4">
+           <input type="file" class="form-control" id="imagenuno" name="imagenuno">
+           <label class="input-group-text" for="imagenuno">Placa</label>
+      </div>
+      <div class="col-md-4">
+           <input type="file" class="form-control" id="imagendos" name="imagendos">
+           <label class="input-group-text" for="imagendos">Objeto</label>
+      </div>
+      <div class="col-md-4">
+           <input type="file" class="form-control" id="imagentres" name="imagentres">
+           <label class="input-group-text" for="imagentres">Serial</label>
+       </div>
       <div class="col-md-agre">
       </div>
       <div class="col">
