@@ -1,5 +1,4 @@
 package controllers;
-import utils.ConnectionBD;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLEncoder;
@@ -11,7 +10,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet; 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +21,7 @@ import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobServiceClient;
 import com.azure.storage.blob.BlobServiceClientBuilder;
 import models.Dependency;
+import utils.ConnectionBD;
  
 @WebServlet("/AddObject")
 @MultipartConfig
@@ -56,91 +56,105 @@ public class AddObject extends HttpServlet {
     }
    
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+            throws ServletException, IOException {
 
-    // Obtener el username desde la sesión
-    HttpSession session = request.getSession();
-    String username = (String) session.getAttribute("username");
+        // Obtener el username desde la sesión
+        HttpSession session = request.getSession();
+        String username = (String) session.getAttribute("username");
 
- 
-    // Verificar si el username está presente en la sesión
-    if (username == null) { 
-        // Manejar el caso donde el username no está en la sesión (por ejemplo, redirigir a la página de inicio de sesión)
-        request.setAttribute("error", "La sesión ha expirado. Por favor, inicia sesión nuevamente.");
-        request.getRequestDispatcher("index.jsp").forward(request, response);
-        return;
-    }
- 
-    // Obtener el ID del usuario usando el username
-    int idUsuarioAdmin = 0;
-    try {
-        idUsuarioAdmin = UserController.getUserIdByUsername(username);
-    } catch (ClassNotFoundException | SQLException e) {
-        e.printStackTrace();
-    }
-    long codigo = Long.parseLong(request.getParameter("codigo"));
-    int placa = Integer.parseInt(request.getParameter("placa"));
-    String nombre = request.getParameter("nombre");
-    String descripcion = request.getParameter("descripcion");
-    long valor = Long.parseLong(request.getParameter("valor"));
-    String usuario = request.getParameter("usuario");
-    int dependenciaId = Integer.parseInt(request.getParameter("dependencia")); // Obtener el ID de la dependencia
-    String estado = request.getParameter("estado");
-    String observacion = request.getParameter("observacion");
-    // Procesar los archivos subidos
-    String imagenUnoUrl = handleFileUpload(request, "imagenuno");
-    String imagenDosUrl = handleFileUpload(request, "imagendos");
-    String imagenTresUrl = handleFileUpload(request, "imagentres");
+        // Verificar si el username está presente en la sesión
+        if (username == null) {
+            // Manejar el caso donde el username no está en la sesión (por ejemplo, redirigir a la página de inicio de sesión)
+            request.setAttribute("error", "La sesión ha expirado. Por favor, inicia sesión nuevamente.");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+            return;
+        }
 
-    // Verificar si el usuario existe antes de agregar el bien
-    if (UserController.userExists(usuario)) { 
+        // Obtener el ID del usuario usando el username
+        int idUsuarioAdmin = 0;
         try {
-          
-            // Obtener el ID del usuario
-            int idUsuario = UserController.getUserId(usuario); 
+            idUsuarioAdmin = UserController.getUserIdByUsername(username);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
 
-            // Establecer la conexión y realizar la inserción en la base de datos
-            Connection conn = ConnectionBD.getConnection();
-            String sql = "INSERT INTO MA_Bien (PK_Codigo, placa, nombre, descripcion, valor, FK_Usuario, FK_UsuarioAdmin, FK_Dependencia, estado, observacionAdmin, imagenuno, imagendos, imagentres, fecha, fechaAdmin, condicion) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'Activo')";
-            PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setLong(1, codigo);
-            statement.setInt(2, placa);
-            statement.setString(3, nombre);
-            statement.setString(4, descripcion);
-            statement.setLong(5, valor);
-            statement.setInt(6, idUsuario);
-            statement.setInt(7, idUsuarioAdmin);
-            statement.setInt(8, dependenciaId); 
-            statement.setString(9, estado); 
-            statement.setString(10, observacion);
-            statement.setString(11, imagenUnoUrl );
-            statement.setString(12, imagenDosUrl );
-            statement.setString(13, imagenTresUrl );
-            statement.setTimestamp(14, new Timestamp(System.currentTimeMillis())); // Fecha actual
-            statement.setTimestamp(15, new Timestamp(System.currentTimeMillis())); // Fecha actual
-            statement.executeUpdate();
-            response.setContentType("text/plain");
-            response.setCharacterEncoding("UTF-8");
-            System.out.println("Se ha insertado con éxito"); 
-            request.getRequestDispatcher("managementobjects.jsp").forward(request, response);
+        long codigo = Long.parseLong(request.getParameter("codigo"));
+        String nombre = request.getParameter("nombre");
+        String descripcion = request.getParameter("descripcion");
+        long valor = Long.parseLong(request.getParameter("valor"));
+        String usuario = request.getParameter("usuario");
+        int dependenciaId = Integer.parseInt(request.getParameter("dependencia"));
+        String estado = request.getParameter("estado");
+        String observacion = request.getParameter("observacion");
+
+        // Leer imágenes existentes
+        String imagenuno = request.getParameter("imagenuno");
+        String imagendos = request.getParameter("imagendos");
+        String imagentres = request.getParameter("imagentres");
+
+        // Procesar archivos de imagen
+        String nuevaImagenUno = handleFileUpload(request, "imagenuno");
+        String nuevaImagenDos = handleFileUpload(request, "imagendos");
+        String nuevaImagenTres = handleFileUpload(request, "imagentres");
+
+        // Si no se subió una nueva imagen, mantener la existente
+        if (nuevaImagenUno != null && !nuevaImagenUno.isEmpty()) {
+            imagenuno = nuevaImagenUno;
+        }
+        if (nuevaImagenDos != null && !nuevaImagenDos.isEmpty()) {
+            imagendos = nuevaImagenDos;
+        }
+        if (nuevaImagenTres != null && !nuevaImagenTres.isEmpty()) {
+            imagentres = nuevaImagenTres;
+        }
+
+        // Verificar si el usuario existe antes de actualizar el bien
+        if (UserController.userExists(usuario)) {
+            try {
+                // Obtener el ID del usuario
+                int idUsuario = UserController.getUserId(usuario);
+
+                // Establecer la conexión y realizar la actualización en la base de datos
+                Connection conn = ConnectionBD.getConnection();
+                String sql = "UPDATE MA_Bien SET FK_Usuario=?, nombre=?, descripcion=?, valor=?, FK_Dependencia=?, estado=?, observacionAdmin=?, FK_UsuarioAdmin=?, imagenuno=?, imagendos=?, imagentres=?, fechaAdmin=? WHERE PK_Codigo=?";
+                PreparedStatement statement = conn.prepareStatement(sql);
+                statement.setInt(1, idUsuario);
+                statement.setString(2, nombre);
+                statement.setString(3, descripcion);
+                statement.setLong(4, valor);
+                statement.setInt(5, dependenciaId);
+                statement.setString(6, estado);
+                statement.setString(7, observacion);
+                statement.setInt(8, idUsuarioAdmin);
+                statement.setString(9, imagenuno);
+                statement.setString(10, imagendos);
+                statement.setString(11, imagentres);
+                statement.setTimestamp(12, new Timestamp(System.currentTimeMillis())); // Fecha actual
+                statement.setLong(13, codigo);
+                statement.executeUpdate();
+                System.out.println("Se ha actualizado con éxito");
+                // Redirigir después de la actualización
+                response.sendRedirect("managementobjects.jsp");
 
             } catch (NumberFormatException e) {
                 // Manejar la excepción de formato incorrecto de número
                 e.printStackTrace();
-                request.getRequestDispatcher("addobject.jsp").forward(request, response);
+                request.setAttribute("error", "Formato de código incorrecto");
+                request.getRequestDispatcher("editobject.jsp").forward(request, response);
             } catch (SQLException e) {
                 e.printStackTrace();
-                request.setAttribute("error", "Error al agregar el bien: " + e.getMessage());
-                request.getRequestDispatcher("addobject.jsp").forward(request, response);
+                request.setAttribute("error", "Error al actualizar el bien: " + e.getMessage());
+                request.getRequestDispatcher("editobject.jsp").forward(request, response);
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         } else {
             // Manejar el caso donde el usuario no existe
             request.setAttribute("error", "El usuario proporcionado no existe");
-            request.getRequestDispatcher("addobject.jsp").forward(request, response);
+            request.getRequestDispatcher("editobject.jsp").forward(request, response);
         }
     }
+
 
     String handleFileUpload(HttpServletRequest request, String fieldName) throws IOException, ServletException {
     Part filePart = request.getPart(fieldName);

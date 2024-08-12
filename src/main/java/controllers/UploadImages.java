@@ -6,7 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import javax.servlet.ServletException;
+import javax.servlet.ServletException; 
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +20,7 @@ import com.azure.storage.blob.BlobServiceClientBuilder;
 import utils.ConnectionBD;
 
 @WebServlet("/UploadImages")
-@MultipartConfig
+@MultipartConfig 
 public class UploadImages extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final String STORAGE_BASE_URL = "https://storagepermlabesinvima.blob.core.windows.net/";
@@ -30,20 +30,38 @@ public class UploadImages extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idBien = Integer.parseInt(request.getParameter("idBien"));
 
-        // Procesar los archivos subidos
-        String imagenUnoUrl = handleFileUpload(request, "imagenuno");
-        String imagenDosUrl = handleFileUpload(request, "imagendos");
-        String imagenTresUrl = handleFileUpload(request, "imagentres");
+        // Leer imágenes existentes
+        String imagenuno = request.getParameter("imagenuno_existing");
+        String imagendos = request.getParameter("imagendos_existing");
+        String imagentres = request.getParameter("imagentres_existing");
 
+        // Procesar archivos de imagen y actualizar solo si se proporcionan nuevas imágenes
+        String nuevaImagenUno = handleFileUpload(request, "imagenuno");
+        String nuevaImagenDos = handleFileUpload(request, "imagendos");
+        String nuevaImagenTres = handleFileUpload(request, "imagentres");
+
+        // Si se proporcionan nuevas imágenes, actualizar las variables de imagen correspondientes
+        if (nuevaImagenUno != null) {
+            imagenuno = nuevaImagenUno;
+        }
+        if (nuevaImagenDos != null) {
+            imagendos = nuevaImagenDos;
+        }
+        if (nuevaImagenTres != null) {
+            imagentres = nuevaImagenTres; 
+        }
+ 
         // Actualizar la base de datos
         try (Connection conn = ConnectionBD.getConnection()) {
             String updateQuery = "UPDATE MA_Bien SET imagenuno = ?, imagendos = ?, imagentres = ? WHERE PK_Codigo = ?";
             PreparedStatement pstmt = conn.prepareStatement(updateQuery);
-            pstmt.setString(1, imagenUnoUrl);
-            pstmt.setString(2, imagenDosUrl);
-            pstmt.setString(3, imagenTresUrl);
+            pstmt.setString(1, imagenuno);
+            pstmt.setString(2, imagendos);
+            pstmt.setString(3, imagentres);
             pstmt.setInt(4, idBien);
             pstmt.executeUpdate();
+            response.sendRedirect("homef.jsp");
+
         } catch (SQLException e) {
             e.printStackTrace();
             request.setAttribute("error", "Error al actualizar los datos en la base de datos.");
@@ -55,8 +73,6 @@ public class UploadImages extends HttpServlet {
             request.getRequestDispatcher("homef.jsp").forward(request, response);
             return;
         }
-
-        response.sendRedirect("homef.jsp");
     }
 
     String handleFileUpload(HttpServletRequest request, String fieldName) throws IOException, ServletException {

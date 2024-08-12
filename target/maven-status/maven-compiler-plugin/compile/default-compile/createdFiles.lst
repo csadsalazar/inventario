@@ -25,6 +25,7 @@ controllers\GetUsersServlet.class
 controllers\GraphicOfObjects.class
 controllers\ListUsers.class
 models\DocumentType.class
+controllers\ListBienesServlet.class
 controllers\ActiveCondition.class
 controllers\GenerateReportExcelServlet.class
 models\Observation.class

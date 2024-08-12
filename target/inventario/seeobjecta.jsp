@@ -93,7 +93,8 @@
                     <img src="<%= (bien != null) ? bien.getImageThree() : "" %>" alt="No se adjunta evidencia" class="img-fluid rounded mx-auto d-block">
                     <img  class="">
                 </c:if>
-            </div>      
+            </div>    
+        </div>        
         </div>
         <div class="col">
           <a class="btn btn-primary" href="managementobjects.jsp">Aceptar</a>

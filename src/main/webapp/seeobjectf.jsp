@@ -22,7 +22,7 @@
         <h2>Detalles del bien <%= (bien != null) ? bien.getPlate() : "" %></h2>
       </div>
         <c:if test="${not empty error}">
-            <p style="color: red;">${error}</p>
+            <p style="color: red;">${error}</p> 
         </c:if>
     <form class="row g-3 py-3" action="AddObservation" method="POST">
       <div class="col-md-4">
@@ -59,6 +59,27 @@
             }
         %></textarea>
       </div>
+      <div>
+            <div>
+                <label for="imagenuno" class="form-label">Imagen 1</label>
+                <c:if test="${not empty bien.imageOne}">
+                    <img src="<%= (bien != null) ? bien.getImageOne() : "" %>" alt="No se adjunta evidencia" class="img-fluid rounded mx-auto d-block">
+                </c:if>
+            </div>
+            <div>
+                <label for="imagendos" class="form-label">Imagen 2</label>
+                <c:if test="${not empty bien.imageTwo}">
+                    <img src="<%= (bien != null) ? bien.getImageTwo() : "" %>" alt="No se adjunta evidencia" class="img-fluid rounded mx-auto d-block">
+                </c:if>
+            </div>
+            <div>
+                <label for="imagentres" class="form-label">Imagen 3</label>
+                <c:if test="${not empty bien.imageThree}">
+                    <img src="<%= (bien != null) ? bien.getImageThree() : "" %>" alt="No se adjunta evidencia" class="img-fluid rounded mx-auto d-block">
+                    <img  class="">
+                </c:if>
+            </div>    
+        </div>      
         <form action="Observacion" method="POST"> <!-- Utiliza el servlet Observacion para procesar la observación -->
             <input type="hidden" name="placaBien" value="<%= (bien != null) ? bien.getPlate() : "" %>">
             <input type="hidden" name="codigoBien" value="<%= bien.getCode() %>"> <!-- Enviar el código del bien como parámetro oculto -->

@@ -26,7 +26,7 @@ public class ListObjects {
                 bien.setName(rs.getString("nombre"));
                 bien.setState(rs.getString("estado"));
                 bien.setCondition(rs.getString("condicion"));
-                bien.setDate(rs.getTimestamp("fecha")); // Cambiar a Timestamp
+                bien.setDate(rs.getTimestamp("fecha"));
                 bien.setDateadmin(rs.getTimestamp("fechaAdmin"));
                 bien.setObservation(rs.getString("observacionAdmin"));
                 User user = new User(); 

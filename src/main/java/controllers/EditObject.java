@@ -1,8 +1,8 @@
 package controllers;
-import utils.ConnectionBD;
-import models.Dependency;
-import models.Object;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,14 +10,28 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import com.azure.storage.blob.BlobClient;
+import com.azure.storage.blob.BlobContainerClient;
+import com.azure.storage.blob.BlobServiceClient;
+import com.azure.storage.blob.BlobServiceClientBuilder;
+import models.Dependency;
+import models.Object;
+import utils.ConnectionBD;
 
 @WebServlet("/EditObject")
+@MultipartConfig
 public class EditObject extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    private static final String STORAGE_BASE_URL = "https://storagepermlabesinvima.blob.core.windows.net/";
+    private static final String CONTAINER_NAME = "inventariopersonalizado";
+    private static final String SAS_TOKEN = "sv=2022-11-02&ss=bfqt&srt=sco&sp=rwlacupitfx&se=2029-08-01T03:19:53Z&st=2024-07-31T19:19:53Z&spr=https&sig=SXXVMTTVpVE2jfuWXemUCeU8kKnoaBpZ%2B02C4iIWBI8%3D";
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Connection conn = null;
@@ -43,7 +57,6 @@ public class EditObject extends HttpServlet {
                 String imagenuno = resultSet.getString("imagenuno");
                 String imagendos = resultSet.getString("imagendos");
                 String imagentres = resultSet.getString("imagentres");
- 
 
                 // Crear un objeto bien y establecer sus propiedades
                 Object bien = new Object();
@@ -52,9 +65,13 @@ public class EditObject extends HttpServlet {
                 bien.setDescription(descripcion);
                 bien.setValue(valor);
                 bien.setObservation(observacion);
-                bien.setImageOne(imagenuno);
+                bien.setImageOne(imagenuno); 
                 bien.setImageTwo(imagendos);
                 bien.setImageThree(imagentres);
+
+                System.out.println("Imagen Uno: " + imagenuno);
+                System.out.println("Imagen Dos: " + imagendos);
+                System.out.println("Imagen Tres: " + imagentres);
 
                 // Obtener la dependencia asociada al bien
                 Dependency dependencia = ListDependencies.getDependencyById(idDependencia);
@@ -99,27 +116,25 @@ public class EditObject extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-
         // Obtener el username desde la sesión
         HttpSession session = request.getSession();
         String username = (String) session.getAttribute("username");
-    
+
         // Verificar si el username está presente en la sesión
         if (username == null) {
-            // Manejar el caso donde el username no está en la sesión (por ejemplo, redirigir a la página de inicio de sesión)
             request.setAttribute("error", "La sesión ha expirado. Por favor, inicia sesión nuevamente.");
             request.getRequestDispatcher("index.jsp").forward(request, response);
             return;
         }
-    
+
         // Obtener el ID del usuario usando el username
         int idUsuarioAdmin = 0;
         try {
             idUsuarioAdmin = UserController.getUserIdByUsername(username);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        }        
-        
+        }
+
         long codigo = Long.parseLong(request.getParameter("codigo"));
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
@@ -129,6 +144,26 @@ public class EditObject extends HttpServlet {
         String estado = request.getParameter("estado");
         String observacion = request.getParameter("observacion");
 
+        // Leer imágenes existentes
+        String imagenuno = request.getParameter("imagenuno_existing");
+        String imagendos = request.getParameter("imagendos_existing");
+        String imagentres = request.getParameter("imagentres_existing");
+
+        // Procesar archivos de imagen y actualizar solo si se proporcionan nuevas imágenes
+        String nuevaImagenUno = handleFileUpload(request, "imagenuno");
+        String nuevaImagenDos = handleFileUpload(request, "imagendos");
+        String nuevaImagenTres = handleFileUpload(request, "imagentres");
+
+        // Si se proporcionan nuevas imágenes, actualizar las variables de imagen correspondientes
+        if (nuevaImagenUno != null) {
+            imagenuno = nuevaImagenUno;
+        }
+        if (nuevaImagenDos != null) {
+            imagendos = nuevaImagenDos;
+        }
+        if (nuevaImagenTres != null) {
+            imagentres = nuevaImagenTres;
+        }
 
         // Verificar si el usuario existe antes de actualizar el bien
         if (UserController.userExists(usuario)) {
@@ -138,7 +173,7 @@ public class EditObject extends HttpServlet {
 
                 // Establecer la conexión y realizar la actualización en la base de datos
                 Connection conn = ConnectionBD.getConnection();
-                String sql = "UPDATE MA_Bien SET FK_Usuario=?, nombre=?, descripcion=?, valor=?, FK_Dependencia=?, estado=?, observacionAdmin=?, FK_UsuarioAdmin=?, fechaAdmin=? WHERE PK_Codigo=?";
+                String sql = "UPDATE MA_Bien SET FK_Usuario=?, nombre=?, descripcion=?, valor=?, FK_Dependencia=?, estado=?, observacionAdmin=?, FK_UsuarioAdmin=?, imagenuno=?, imagendos=?, imagentres=?, fechaAdmin=? WHERE PK_Codigo=?";
                 PreparedStatement statement = conn.prepareStatement(sql);
                 statement.setInt(1, idUsuario);
                 statement.setString(2, nombre);
@@ -148,15 +183,17 @@ public class EditObject extends HttpServlet {
                 statement.setString(6, estado);
                 statement.setString(7, observacion);
                 statement.setInt(8, idUsuarioAdmin);
-                statement.setTimestamp(9, new Timestamp(System.currentTimeMillis())); // Fecha actual
-                statement.setLong(10, codigo);
+                statement.setString(9, imagenuno);
+                statement.setString(10, imagendos);
+                statement.setString(11, imagentres);
+                statement.setTimestamp(12, new Timestamp(System.currentTimeMillis())); // Fecha actual
+                statement.setLong(13, codigo);
                 statement.executeUpdate();
                 System.out.println("Se ha actualizado con éxito");
                 // Redirigir después de la actualización
                 response.sendRedirect("managementobjects.jsp");
 
             } catch (NumberFormatException e) {
-                // Manejar la excepción de formato incorrecto de número
                 e.printStackTrace();
                 request.setAttribute("error", "Formato de código incorrecto");
                 request.getRequestDispatcher("editobject.jsp").forward(request, response);
@@ -168,9 +205,44 @@ public class EditObject extends HttpServlet {
                 e.printStackTrace();
             }
         } else {
-            // Manejar el caso donde el usuario no existe
             request.setAttribute("error", "El usuario proporcionado no existe");
             request.getRequestDispatcher("editobject.jsp").forward(request, response);
         }
+    }
+
+
+    String handleFileUpload(HttpServletRequest request, String fieldName) throws IOException, ServletException {
+        Part filePart = request.getPart(fieldName);
+        if (filePart != null && filePart.getSize() > 0) {
+            String fileName = extractFileName(filePart);
+            String encodedFileName = URLEncoder.encode(fileName, StandardCharsets.UTF_8.toString());
+
+            // Subir el archivo a Azure Blob Storage
+            BlobServiceClient blobServiceClient = new BlobServiceClientBuilder()
+                    .endpoint(STORAGE_BASE_URL)
+                    .sasToken(SAS_TOKEN)
+                    .buildClient();
+            BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(CONTAINER_NAME);
+            BlobClient blobClient = containerClient.getBlobClient(encodedFileName);
+
+            try (InputStream inputStream = filePart.getInputStream()) {
+                blobClient.upload(inputStream, filePart.getSize(), true);
+            }
+
+            // Generar la URL pública con SAS token
+            return blobClient.getBlobUrl() + "?" + SAS_TOKEN;
+        }
+        return null; // Si no hay archivo, retornar null
+    }
+
+    private String extractFileName(Part part) {
+        String contentDisp = part.getHeader("content-disposition");
+        String[] items = contentDisp.split(";");
+        for (String s : items) {
+            if (s.trim().startsWith("filename")) {
+                return s.substring(s.indexOf("=") + 2, s.length() - 1).replace("\"", "");
+            }
+        }
+        return "";
     }
 }
