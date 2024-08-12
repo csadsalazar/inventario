@@ -1,5 +1,4 @@
 package controllers;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,7 +44,7 @@ public class ActiveCondition extends HttpServlet {
             // Ejemplo de actualización (adaptar según tu esquema y necesidades)
             try {
                 Connection conn = ConnectionBD.getConnection();  
-                String sql = "UPDATE MA_Bien SET condicion=?, FK_UsuarioAdmin=?, fechaAdmin=? WHERE PK_Codigo=?";
+                String sql = "UPDATE ADMINISTRATIVA.AL_INV.MA_Bien SET condicion=?, FK_UsuarioAdmin=?, fechaAdmin=? WHERE PK_Codigo=?";
                 PreparedStatement statement = conn.prepareStatement(sql);
                 statement.setString(1, "Activo");
                 statement.setInt(2, idUsuarioAdmin);

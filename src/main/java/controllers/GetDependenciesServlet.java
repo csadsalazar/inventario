@@ -1,5 +1,4 @@
 package controllers;
-
 import models.Dependency;
 import com.google.gson.Gson;
 import java.io.IOException;
@@ -15,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class GetDependenciesServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8"); // Asegúrate de que se usa UTF-8 para la codificación
         PrintWriter out = response.getWriter();
 
         try {

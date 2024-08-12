@@ -14,7 +14,7 @@ public class ListDependencies {
         Connection conn = null;
         try {
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM MA_Dependencia";   
+            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.MA_Dependencia";   
             PreparedStatement cs = conn.prepareStatement(sql);   
             ResultSet rs = cs.executeQuery(); 
             while (rs.next()) {
@@ -45,7 +45,7 @@ public class ListDependencies {
         Connection conn = null;
         try { 
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM MA_Dependencia WHERE PK_idDependencia = ?";   
+            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.MA_Dependencia WHERE PK_idDependencia = ?";   
             PreparedStatement cs = conn.prepareStatement(sql);   
             cs.setInt(1, id);
             ResultSet rs = cs.executeQuery();

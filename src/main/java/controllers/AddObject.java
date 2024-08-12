@@ -22,7 +22,7 @@ import com.azure.storage.blob.BlobServiceClient;
 import com.azure.storage.blob.BlobServiceClientBuilder;
 import models.Dependency;
 import utils.ConnectionBD;
- 
+
 @WebServlet("/AddObject")
 @MultipartConfig
 public class AddObject extends HttpServlet { 
@@ -30,7 +30,7 @@ public class AddObject extends HttpServlet {
     private static final String STORAGE_BASE_URL = "https://storagepermlabesinvima.blob.core.windows.net/";
     private static final String CONTAINER_NAME = "inventariopersonalizado";
     private static final String SAS_TOKEN = "sv=2022-11-02&ss=bfqt&srt=sco&sp=rwlacupitfx&se=2029-08-01T03:19:53Z&st=2024-07-31T19:19:53Z&spr=https&sig=SXXVMTTVpVE2jfuWXemUCeU8kKnoaBpZ%2B02C4iIWBI8%3D";
-  
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection conn = null; 
         try {
@@ -51,7 +51,7 @@ public class AddObject extends HttpServlet {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-            }
+            } 
         }
     }
    
@@ -84,6 +84,7 @@ public class AddObject extends HttpServlet {
         long valor = Long.parseLong(request.getParameter("valor"));
         String usuario = request.getParameter("usuario");
         int dependenciaId = Integer.parseInt(request.getParameter("dependencia"));
+        int placa = Integer.parseInt(request.getParameter("placa"));
         String estado = request.getParameter("estado");
         String observacion = request.getParameter("observacion");
 
@@ -92,72 +93,58 @@ public class AddObject extends HttpServlet {
         String imagendos = request.getParameter("imagendos");
         String imagentres = request.getParameter("imagentres");
 
-        // Procesar archivos de imagen
-        String nuevaImagenUno = handleFileUpload(request, "imagenuno");
-        String nuevaImagenDos = handleFileUpload(request, "imagendos");
-        String nuevaImagenTres = handleFileUpload(request, "imagentres");
 
-        // Si no se subió una nueva imagen, mantener la existente
-        if (nuevaImagenUno != null && !nuevaImagenUno.isEmpty()) {
-            imagenuno = nuevaImagenUno;
-        }
-        if (nuevaImagenDos != null && !nuevaImagenDos.isEmpty()) {
-            imagendos = nuevaImagenDos;
-        }
-        if (nuevaImagenTres != null && !nuevaImagenTres.isEmpty()) {
-            imagentres = nuevaImagenTres;
-        }
-
-        // Verificar si el usuario existe antes de actualizar el bien
+        // Verificar si el usuario existe antes de insertar el bien
         if (UserController.userExists(usuario)) {
             try {
                 // Obtener el ID del usuario
                 int idUsuario = UserController.getUserId(usuario);
 
-                // Establecer la conexión y realizar la actualización en la base de datos
+                // Establecer la conexión y realizar la inserción en la base de datos
                 Connection conn = ConnectionBD.getConnection();
-                String sql = "UPDATE MA_Bien SET FK_Usuario=?, nombre=?, descripcion=?, valor=?, FK_Dependencia=?, estado=?, observacionAdmin=?, FK_UsuarioAdmin=?, imagenuno=?, imagendos=?, imagentres=?, fechaAdmin=? WHERE PK_Codigo=?";
+                String sql = "INSERT INTO ADMINISTRATIVA.AL_INV.MA_Bien (FK_Usuario, PK_Codigo, placa, nombre, descripcion, valor, FK_Dependencia, estado, observacionAdmin, FK_UsuarioAdmin, imagenuno, imagendos, imagentres, fechaAdmin, fecha, condicion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Activo')";
                 PreparedStatement statement = conn.prepareStatement(sql);
                 statement.setInt(1, idUsuario);
-                statement.setString(2, nombre);
-                statement.setString(3, descripcion);
-                statement.setLong(4, valor);
-                statement.setInt(5, dependenciaId);
-                statement.setString(6, estado);
-                statement.setString(7, observacion);
-                statement.setInt(8, idUsuarioAdmin);
-                statement.setString(9, imagenuno);
-                statement.setString(10, imagendos);
-                statement.setString(11, imagentres);
-                statement.setTimestamp(12, new Timestamp(System.currentTimeMillis())); // Fecha actual
-                statement.setLong(13, codigo);
+                statement.setLong(2, codigo);
+                statement.setLong(3, placa);
+                statement.setString(4, nombre);
+                statement.setString(5, descripcion);
+                statement.setLong(6, valor);
+                statement.setInt(7, dependenciaId);
+                statement.setString(8, estado);
+                statement.setString(9, observacion);
+                statement.setInt(10, idUsuarioAdmin);
+                statement.setString(11, imagenuno);
+                statement.setString(12, imagendos);
+                statement.setString(13, imagentres);
+                statement.setTimestamp(14, new Timestamp(System.currentTimeMillis())); // Fecha actual
+                statement.setTimestamp(15, new Timestamp(System.currentTimeMillis())); // Fecha actual
                 statement.executeUpdate();
-                System.out.println("Se ha actualizado con éxito");
-                // Redirigir después de la actualización
+                System.out.println("Se ha insertado con éxito");
+                // Redirigir después de la inserción
                 response.sendRedirect("managementobjects.jsp");
 
             } catch (NumberFormatException e) {
                 // Manejar la excepción de formato incorrecto de número
                 e.printStackTrace();
                 request.setAttribute("error", "Formato de código incorrecto");
-                request.getRequestDispatcher("editobject.jsp").forward(request, response);
+                request.getRequestDispatcher("addobject.jsp").forward(request, response);
             } catch (SQLException e) {
                 e.printStackTrace();
-                request.setAttribute("error", "Error al actualizar el bien: " + e.getMessage());
-                request.getRequestDispatcher("editobject.jsp").forward(request, response);
+                request.setAttribute("error", "Error al insertar el bien: " + e.getMessage());
+                request.getRequestDispatcher("addobject.jsp").forward(request, response);
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         } else {
             // Manejar el caso donde el usuario no existe
             request.setAttribute("error", "El usuario proporcionado no existe");
-            request.getRequestDispatcher("editobject.jsp").forward(request, response);
+            request.getRequestDispatcher("addobject.jsp").forward(request, response);
         }
     }
 
-
     String handleFileUpload(HttpServletRequest request, String fieldName) throws IOException, ServletException {
-    Part filePart = request.getPart(fieldName);
+        Part filePart = request.getPart(fieldName);
         if (filePart != null && filePart.getSize() > 0) {
             String fileName = extractFileName(filePart);
             String encodedFileName = URLEncoder.encode(fileName, StandardCharsets.UTF_8.toString());
@@ -190,4 +177,4 @@ public class AddObject extends HttpServlet {
         }
         return "";
     }
-}
+} 

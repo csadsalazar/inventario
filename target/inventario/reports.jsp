@@ -12,7 +12,7 @@
 <main class="container">
     <div class="text-center">
         <h1>Inventario personalizado - INVIMA</h1>
-        <h2>Reportes y alertas</h1>
+        <h2>Reportes y alertas</h2>
     </div>
     <form class="row g-3 needs-validation py-4" id="reportForm">
         <div class="col-md-4">
@@ -27,7 +27,8 @@
             <select class="form-select" id="dependencia">
             </select>
         </div>
-        <br>
+        <div class="col-md-agre">
+        </div>
         <div class="col-md-3">
             <button class="btn btn-primary" type="button" onclick="generateReport()">Acciones</button>
         </div>
@@ -87,7 +88,7 @@
             .catch(error => console.error('Error al generar el reporte Excel:', error));
     }
 
-    // Llamar a cargarDependencias al cargar la página
+    // Llamar a loadDependencies al cargar la página
     window.onload = function() {
         loadDependencies();
     };

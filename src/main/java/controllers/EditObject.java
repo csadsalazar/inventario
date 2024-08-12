@@ -41,7 +41,7 @@ public class EditObject extends HttpServlet {
 
             // Establecer la conexión y realizar la consulta para obtener los datos del bien
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM MA_Bien WHERE PK_Codigo=?";
+            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.MA_Bien WHERE PK_Codigo=?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setLong(1, codigo);
             ResultSet resultSet = statement.executeQuery();
@@ -173,7 +173,7 @@ public class EditObject extends HttpServlet {
 
                 // Establecer la conexión y realizar la actualización en la base de datos
                 Connection conn = ConnectionBD.getConnection();
-                String sql = "UPDATE MA_Bien SET FK_Usuario=?, nombre=?, descripcion=?, valor=?, FK_Dependencia=?, estado=?, observacionAdmin=?, FK_UsuarioAdmin=?, imagenuno=?, imagendos=?, imagentres=?, fechaAdmin=? WHERE PK_Codigo=?";
+                String sql = "UPDATE ADMINISTRATIVA.AL_INV.MA_Bien SET FK_Usuario=?, nombre=?, descripcion=?, valor=?, FK_Dependencia=?, estado=?, observacionAdmin=?, FK_UsuarioAdmin=?, imagenuno=?, imagendos=?, imagentres=?, fechaAdmin=? WHERE PK_Codigo=?";
                 PreparedStatement statement = conn.prepareStatement(sql);
                 statement.setInt(1, idUsuario);
                 statement.setString(2, nombre);

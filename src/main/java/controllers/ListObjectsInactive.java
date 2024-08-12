@@ -16,7 +16,7 @@ public class ListObjectsInactive {
         Connection conn = null;
         try {
             conn = ConnectionBD.getConnection();
-            String query = "{CALL ListarBienesInactivos}";
+            String query = "EXEC AL_INV.ListarBienesInactivos";
             CallableStatement cs = (CallableStatement) conn.prepareCall(query);
             ResultSet rs = cs.executeQuery();
             while (rs.next()) {

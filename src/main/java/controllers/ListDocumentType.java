@@ -14,7 +14,7 @@ public class ListDocumentType {
         Connection conn = null;
         try {
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM PA_TipoDocumento";   
+            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.PA_TipoDocumento";   
             PreparedStatement cs = conn.prepareStatement(sql);   
             ResultSet rs = cs.executeQuery(); 
             while (rs.next()) {
@@ -44,7 +44,7 @@ public class ListDocumentType {
         Connection conn = null;
         try {
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM PA_TipoDocumento WHERE PK_idTipoDocumento = ?";   
+            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.PA_TipoDocumento WHERE PK_idTipoDocumento = ?";   
             PreparedStatement cs = conn.prepareStatement(sql);   
             cs.setInt(1, id);
             ResultSet rs = cs.executeQuery();

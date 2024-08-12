@@ -1,5 +1,4 @@
 package controllers;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -150,7 +149,7 @@ public class UploadServlet extends HttpServlet {
                 }
 
                 // Insertar datos en la base de datos
-                String sql = "INSERT INTO MA_Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_UsuarioAdmin, FK_Dependencia, estado, fecha, fechaAdmin, condicion) VALUES (?,?,?,?,?,?,?,?,'No reportado',?,?,'Activo')";
+                String sql = "INSERT INTO ADMINISTRATIVA.AL_INV.MA_Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_UsuarioAdmin, FK_Dependencia, estado, fecha, fechaAdmin, condicion) VALUES (?,?,?,?,?,?,?,?,'No reportado',?,?,'Activo')";
                 try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                     pstmt.setLong(1, codigo);
                     pstmt.setString(2, nombre);
@@ -235,7 +234,7 @@ public class UploadServlet extends HttpServlet {
                 }
 
                 // Insertar datos en la base de datos
-                String sql = "INSERT INTO MA_Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_UsuarioAdmin, FK_Dependencia, estado, fecha, fechaAdmin, condicion) VALUES (?,?,?,?,?,?,?,?,'No reportado',?,?,'Activo')";
+                String sql = "INSERT INTO ADMINISTRATIVA.AL_INV.MA_Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_UsuarioAdmin, FK_Dependencia, estado, fecha, fechaAdmin, condicion) VALUES (?,?,?,?,?,?,?,?,'No reportado',?,?,'Activo')";
                 try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                     pstmt.setLong(1, codigo);
                     pstmt.setString(2, nombre);
@@ -254,7 +253,7 @@ public class UploadServlet extends HttpServlet {
     }
 
     private boolean centroDeCostoCorresponde(Connection conn, int dependenciaId, String centroDeCosto) throws SQLException {
-        String sql = "SELECT centroDeCosto FROM MA_Dependencia WHERE PK_idDependencia = ? AND centroDeCosto = ?";
+        String sql = "SELECT centroDeCosto FROM ADMINISTRATIVA.AL_INV.MA_Dependencia WHERE PK_idDependencia = ? AND centroDeCosto = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, dependenciaId);
             pstmt.setString(2, centroDeCosto);
@@ -265,7 +264,7 @@ public class UploadServlet extends HttpServlet {
     }
 
     private boolean cedulaCorresponde(Connection conn, int usuarioId, long cedula) throws SQLException {
-        String sql = "SELECT cedula FROM MA_Usuario WHERE PK_idUsuario = ? AND cedula = ?";
+        String sql = "SELECT cedula FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE PK_idUsuario = ? AND cedula = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, usuarioId);
             pstmt.setLong(2, cedula);
@@ -276,7 +275,7 @@ public class UploadServlet extends HttpServlet {
     }
 
     private int getUserId(Connection conn, String nombreUsuario) throws SQLException {
-        String sql = "SELECT PK_idUsuario FROM MA_Usuario WHERE nombre = ?";
+        String sql = "SELECT PK_idUsuario FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE nombre = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, nombreUsuario);
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -290,7 +289,7 @@ public class UploadServlet extends HttpServlet {
     }
 
     private int getDependenciaId(Connection conn, String nombreDependencia) throws SQLException {
-        String sql = "SELECT PK_idDependencia FROM MA_Dependencia WHERE nombreDependencia = ?";
+        String sql = "SELECT PK_idDependencia FROM ADMINISTRATIVA.AL_INV.MA_Dependencia WHERE nombreDependencia = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, nombreDependencia);
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -304,7 +303,7 @@ public class UploadServlet extends HttpServlet {
     }
 
     private boolean codigoExistente(Connection conn, long codigo) throws SQLException {
-        String sql = "SELECT COUNT(*) AS count FROM MA_Bien WHERE PK_Codigo = ?";
+        String sql = "SELECT COUNT(*) AS count FROM ADMINISTRATIVA.AL_INV.MA_Bien WHERE PK_Codigo = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setLong(1, codigo);
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -317,7 +316,7 @@ public class UploadServlet extends HttpServlet {
     }
 
     private boolean placaExistente(Connection conn, int placa) throws SQLException {
-        String sql = "SELECT COUNT(*) AS count FROM MA_Bien WHERE placa = ?";
+        String sql = "SELECT COUNT(*) AS count FROM ADMINISTRATIVA.AL_INV.MA_Bien WHERE placa = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, placa);
             try (ResultSet rs = pstmt.executeQuery()) {

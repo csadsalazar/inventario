@@ -16,7 +16,7 @@ public class ListObjects {
         Connection conn = null;
         try {
             conn = ConnectionBD.getConnection();
-            String query = "{CALL ListarBienesActivos}";
+            String query = "EXEC AL_INV.ListarBienesActivos";
             CallableStatement cs = (CallableStatement) conn.prepareCall(query);
             ResultSet rs = cs.executeQuery();
             while (rs.next()) {
@@ -54,7 +54,5 @@ public class ListObjects {
             }
         }
         return bienes;
-    }    
-
-    
+    }      
 } 

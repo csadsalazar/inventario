@@ -1,10 +1,8 @@
 package controllers;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import utils.ConnectionBD;
 
 public class UserController {
@@ -12,7 +10,7 @@ public class UserController {
         Connection conn = null;
         try {
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM MA_Usuario WHERE usuario=?";
+            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE usuario=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, usuario);
             ResultSet rs = ps.executeQuery();
@@ -33,7 +31,7 @@ public class UserController {
 
     public static int getUserId(String usuario) throws SQLException, ClassNotFoundException {
         Connection conn = ConnectionBD.getConnection();
-        String sql = "SELECT PK_idUsuario FROM MA_Usuario WHERE usuario=?";
+        String sql = "SELECT PK_idUsuario FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE usuario=?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, usuario);
         ResultSet rs = ps.executeQuery();
@@ -48,7 +46,7 @@ public class UserController {
     // Método para obtener el ID del usuario usando el username
     public static int getUserIdByUsername(String username) throws SQLException, ClassNotFoundException {
         Connection conn = ConnectionBD.getConnection();
-        String sql = "SELECT PK_idUsuario FROM MA_Usuario WHERE usuario = ?";
+        String sql = "SELECT PK_idUsuario FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE usuario = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, username);
         ResultSet resultSet = statement.executeQuery();
@@ -63,7 +61,7 @@ public class UserController {
         // Método para obtener el ID del usuario usando el username
         public static int getUserIdByUsernameLogin(String username) throws SQLException, ClassNotFoundException {
             int userId = -1;
-            String query = "SELECT PK_idUsuario FROM MA_Usuario WHERE usuario = ?";
+            String query = "SELECT PK_idUsuario FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE usuario = ?";
     
             try (Connection conn = ConnectionBD.getConnection();
                  PreparedStatement pstmt = conn.prepareStatement(query)) {

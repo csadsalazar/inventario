@@ -1,5 +1,4 @@
 package controllers;
-
 import models.Dependency;
 import models.Observation;
 import models.User;
@@ -16,7 +15,7 @@ public class ListObservations {
         Connection conn = null;
         try {
             conn = ConnectionBD.getConnection();
-            String query = "{CALL ListarObservaciones}";
+            String query = "EXEC AL_INV.ListarObservaciones";
             CallableStatement cs = (CallableStatement) conn.prepareCall(query);
             ResultSet rs = cs.executeQuery();
             while (rs.next()) {

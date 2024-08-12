@@ -1,5 +1,4 @@
 package controllers;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,7 +31,7 @@ public class ListBienesServlet extends HttpServlet {
         List<Object> bienesUsuario = new ArrayList<>();
         try (Connection conn = ConnectionBD.getConnection()) {
             // Modificar la consulta para filtrar los bienes
-            String queryBienes = "SELECT * FROM MA_Bien WHERE FK_Usuario = ? AND estado != 'Reportado' AND condicion = 'Activo'";
+            String queryBienes = "SELECT * FROM ADMINISTRATIVA.AL_INV.MA_Bien WHERE FK_Usuario = ? AND estado != 'Reportado' AND condicion = 'Activo'";
             PreparedStatement pstmtBienes = conn.prepareStatement(queryBienes);
             pstmtBienes.setInt(1, userId);
             ResultSet rsBienes = pstmtBienes.executeQuery();

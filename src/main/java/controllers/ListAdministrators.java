@@ -1,5 +1,4 @@
 package controllers;
-
 import models.Profile;
 import models.User;
 import utils.ConnectionBD;
@@ -15,7 +14,7 @@ public class ListAdministrators {
         Connection conn = null; 
         try {
             conn = ConnectionBD.getConnection();
-            String sql = "{CALL ListarAdministradores}";
+            String sql = "EXEC AL_INV.ListarAdministradores";
             CallableStatement cs = (CallableStatement) conn.prepareCall(sql);
             ResultSet rs = cs.executeQuery();
             while (rs.next()) {

@@ -1,5 +1,4 @@
 package controllers;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -72,7 +71,7 @@ public class ObjectsEditMasive {
     public static List<Object> getObjects(String[] ids) throws SQLException, ClassNotFoundException {
         List<Object> objectList = new ArrayList<>();
         Connection conn = ConnectionBD.getConnection();
-        StringBuilder query = new StringBuilder("SELECT * FROM MA_Bien WHERE PK_Codigo IN (");
+        StringBuilder query = new StringBuilder("SELECT * FROM ADMINISTRATIVA.AL_INV.MA_Bien WHERE PK_Codigo IN (");
 
         // Construir la consulta SQL con los IDs
         for (int i = 0; i < ids.length; i++) {
@@ -116,7 +115,7 @@ public class ObjectsEditMasive {
 
     public static void updateObjects(HttpServletRequest request, String[] ids, String name, String description, String observation, String state, String dependency, String user, String condition, String admin) throws SQLException, ClassNotFoundException {
         Connection conn = ConnectionBD.getConnection();
-        StringBuilder query = new StringBuilder("UPDATE MA_Bien SET ");
+        StringBuilder query = new StringBuilder("UPDATE ADMINISTRATIVA.AL_INV.MA_Bien SET ");
         
         // Construir la consulta SQL para los campos a actualizar
         boolean hasName = (name != null && !name.trim().isEmpty());

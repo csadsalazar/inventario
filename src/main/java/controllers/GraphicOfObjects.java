@@ -1,5 +1,4 @@
 package controllers;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.*;
@@ -23,12 +22,12 @@ public class GraphicOfObjects extends HttpServlet {
 
         try {
             conn = ConnectionBD.getConnection();
-            String query = "SELECT MA_Dependencia.nombreDependencia, " +
-                    "COUNT(MA_Bien.idBien) AS total_bienes, " +
-                    "SUM(CASE WHEN MA_Bien.estado = 'Reportado' AND MA_Bien.condicion = 'Activo' THEN 1 ELSE 0 END) AS reportados " +
-                    "FROM MA_Dependencia " +
-                    "LEFT JOIN MA_Bien ON MA_Dependencia.PK_idDependencia = MA_Bien.FK_Dependencia " +
-                    "GROUP BY MA_Dependencia.nombreDependencia";
+            String query = "SELECT ADMINISTRATIVA.AL_INV.MA_Dependencia.nombreDependencia, " +
+                    "COUNT(ADMINISTRATIVA.AL_INV.MA_Bien.idBien) AS total_bienes, " +
+                    "SUM(CASE WHEN ADMINISTRATIVA.AL_INV.MA_Bien.estado = 'Reportado' AND ADMINISTRATIVA.AL_INV.MA_Bien.condicion = 'Activo' THEN 1 ELSE 0 END) AS reportados " +
+                    "FROM ADMINISTRATIVA.AL_INV.MA_Dependencia " +
+                    "LEFT JOIN ADMINISTRATIVA.AL_INV.MA_Bien ON ADMINISTRATIVA.AL_INV.MA_Dependencia.PK_idDependencia = ADMINISTRATIVA.AL_INV.MA_Bien.FK_Dependencia " +
+                    "GROUP BY ADMINISTRATIVA.AL_INV.MA_Dependencia.nombreDependencia";
             stmt = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             rs = stmt.executeQuery();
 

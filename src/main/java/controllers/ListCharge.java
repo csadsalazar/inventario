@@ -14,7 +14,7 @@ public class ListCharge {
         Connection conn = null;
         try {
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM PA_Cargo";   
+            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.PA_Cargo";   
             PreparedStatement cs = conn.prepareStatement(sql);   
             ResultSet rs = cs.executeQuery();  
             while (rs.next()) {
@@ -44,7 +44,7 @@ public class ListCharge {
         Connection conn = null;
         try {
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM PA_Cargo WHERE PK_idCargo = ?";   
+            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.PA_Cargo WHERE PK_idCargo = ?";   
             PreparedStatement cs = conn.prepareStatement(sql);   
             cs.setInt(1, id);
             ResultSet rs = cs.executeQuery();

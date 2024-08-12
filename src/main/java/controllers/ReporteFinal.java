@@ -1,5 +1,4 @@
 package controllers;
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,7 +27,7 @@ public class ReporteFinal extends HttpServlet {
         PreparedStatement stmt = null;
         try {
             conn = ConnectionBD.getConnection(); // Utiliza tu método para obtener la conexión
-            String sql = "SELECT PK_Codigo, nombre, placa, estado FROM MA_Bien WHERE FK_Usuario = ?;";
+            String sql = "SELECT PK_Codigo, nombre, placa, estado FROM ADMINISTRATIVA.AL_INV.MA_Bien WHERE FK_Usuario = ?;";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, codigo);
             int filasAfectadas = stmt.executeUpdate();
