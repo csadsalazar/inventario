@@ -1,5 +1,4 @@
 package controllers;
-
 import models.Dependency;
 import utils.ConnectionBD;
 import java.sql.Connection;
@@ -69,5 +68,21 @@ public class ListDependencies {
             }
         }
         return dependencia;
+    }
+
+    public static String getNameDependencyById(int dependencyId) throws SQLException, ClassNotFoundException {
+        String nombre = null;
+        Connection conn = ConnectionBD.getConnection();
+        String sql = "SELECT nombreDependencia FROM ADMINISTRATIVA.AL_INV.MA_Dependencia WHERE PK_idDependencia=?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setInt(1, dependencyId);
+        ResultSet resultSet = statement.executeQuery();
+        if (resultSet.next()) {
+            nombre = resultSet.getString("nombreDependencia");
+        }
+        resultSet.close();
+        statement.close();
+        conn.close();
+        return nombre;
     }
 }

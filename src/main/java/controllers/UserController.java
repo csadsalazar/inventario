@@ -58,6 +58,38 @@ public class UserController {
         }
     }
 
+        public static String getUserEmailById(int userId) throws SQLException, ClassNotFoundException {
+            String email = null;
+            Connection conn = ConnectionBD.getConnection();
+            String sql = "SELECT correo FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE PK_idUsuario=?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                email = resultSet.getString("correo");
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+            return email;
+        }
+
+        public static String getUserNameById(int userId) throws SQLException, ClassNotFoundException {
+            String nombre = null;
+            Connection conn = ConnectionBD.getConnection();
+            String sql = "SELECT nombre FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE PK_idUsuario=?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                nombre = resultSet.getString("nombre");
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+            return nombre;
+        }
+
         // Método para obtener el ID del usuario usando el username
         public static int getUserIdByUsernameLogin(String username) throws SQLException, ClassNotFoundException {
             int userId = -1;

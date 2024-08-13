@@ -92,7 +92,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> 
                                 </div>
                                 <a href="seeobjectf.jsp?codigo=<%= unBien.getCode() %>" data-codigo="<%= unBien.getCode() %>">
                                     <img src="resources/img/icons/airplay.svg" alt="airplay">

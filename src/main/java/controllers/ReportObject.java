@@ -32,7 +32,7 @@ public class ReportObject extends HttpServlet {
     private boolean reportObject(String codigo) throws ClassNotFoundException {
         Connection conn = null;
         PreparedStatement stmt = null;
-        try {
+        try { 
             conn = ConnectionBD.getConnection(); // Utiliza tu método para obtener la conexión
             String sql = "UPDATE ADMINISTRATIVA.AL_INV.MA_Bien SET estado='En espera' WHERE PK_Codigo=?";
             stmt = conn.prepareStatement(sql);

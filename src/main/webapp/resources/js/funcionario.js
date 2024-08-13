@@ -35,7 +35,7 @@ function reportObject(codigo) {
                     confirmButtonColor: '#139EC8'
                 }).then(() => {
                     // Redirigir a la página de inicio para actualizar la lista de bienes
-                    window.location.href = "Inicio"; // O el nombre de tu servlet que carga la página de inicio
+                    window.location.href = "homef.jsp"; // O el nombre de tu servlet que carga la página de inicio
                 });
             } else {
                 Swal.fire({
