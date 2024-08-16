@@ -7,10 +7,12 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import models.Dependency;
 import models.Object;
 import models.User;
@@ -166,7 +168,7 @@ public class ObjectsEditMasive {
         if (hasName) stmt.setString(index++, name);
         if (hasDescription) stmt.setString(index++, description);
         if (hasObservation) stmt.setString(index++, observation);
-        if (hasState) stmt.setString(index++, state);
+        if (hasState) stmt.setString(index++, state); 
         if (hasCondition) stmt.setString(index++, condition);
         if (hasDependency) stmt.setString(index++, dependency);
         if (hasUser) {
@@ -184,9 +186,31 @@ public class ObjectsEditMasive {
         for (int i = 0; i < ids.length; i++) {
             stmt.setLong(index++, Long.parseLong(ids[i]));
         }
-        
         stmt.executeUpdate();
         stmt.close();
         conn.close();
+
+        List<Object> updatedObjects = getObjects(ids);
+    
+        for (Object obj : updatedObjects) {
+            String userName = UserController.getUserNameById(obj.getUser().getPK_idUser());
+            String userEmail = UserController.getUserEmailById(obj.getUser().getPK_idUser());
+            EmailSender emailSender = new EmailSender();
+            String subject = "Estado de bienes actualizados";
+            StringBuilder body = new StringBuilder("<html><body>");
+            body.append("<h1>Estimado/a ").append(userName).append(",</h1>");
+            body.append("<p>El siguiente bien ha sido actualizado:</p>");
+            body.append("<p><strong>Código:</strong> ").append(obj.getCode()).append("</p>");
+            body.append("<p><strong>Nombre:</strong> ").append(obj.getName()).append("</p>");
+            body.append("<p><strong>Descripción:</strong> ").append(obj.getDescription()).append("</p>");
+            body.append("<p><strong>Valor:</strong> ").append(obj.getValue()).append("</p>");
+            body.append("<p><strong>Dependencia:</strong> ").append(obj.getPK_idDependency().getDependencyname()).append("</p>");
+            body.append("<p><strong>Estado:</strong> ").append(obj.getState()).append("</p>");
+            body.append("<p><strong>Condición:</strong> ").append(obj.getCondition()).append("</p>");
+            body.append("<p><strong>Observación:</strong> ").append(obj.getObservation()).append("</p>");
+            body.append("</body></html>");
+            emailSender.sendEmail(userEmail, subject, body.toString());
+        }
     }
 }
+ 

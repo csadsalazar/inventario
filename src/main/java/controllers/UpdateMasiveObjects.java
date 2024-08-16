@@ -38,8 +38,6 @@ public class UpdateMasiveObjects extends HttpServlet {
         int adminId = 0;
         try {
             adminId = UserController.getUserIdByUsername(username);
-            System.out.println(adminId);
-
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             request.setAttribute("error", "Error al obtener el ID del administrador: " + e.getMessage());

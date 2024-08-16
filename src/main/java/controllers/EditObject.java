@@ -114,129 +114,135 @@ public class EditObject extends HttpServlet {
     }
 
         protected void doPost(HttpServletRequest request, HttpServletResponse response)
-                throws ServletException, IOException {
+        throws ServletException, IOException {
 
-            // Obtener el username desde la sesión
-            HttpSession session = request.getSession();
-            String username = (String) session.getAttribute("username");
+    // Obtener el username desde la sesión
+    HttpSession session = request.getSession();
+    String username = (String) session.getAttribute("username");
 
-            // Verificar si el username está presente en la sesión
-            if (username == null) {
-                request.setAttribute("error", "La sesión ha expirado. Por favor, inicia sesión nuevamente.");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-                return;
-            }
+    // Verificar si el username está presente en la sesión
+    if (username == null) {
+        request.setAttribute("error", "La sesión ha expirado. Por favor, inicia sesión nuevamente.");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+        return;
+    }
 
-            // Obtener el ID del usuario usando el username
-            int idUsuarioAdmin = 0;
-            try {
-                idUsuarioAdmin = UserController.getUserIdByUsername(username);
-            } catch (ClassNotFoundException | SQLException e) {
-                e.printStackTrace();
-            }
+    // Obtener el ID del usuario usando el username
+    int idUsuarioAdmin = 0;
+    try {
+        idUsuarioAdmin = UserController.getUserIdByUsername(username);
+    } catch (ClassNotFoundException | SQLException e) {
+        e.printStackTrace();
+    }
 
-            long codigo = Long.parseLong(request.getParameter("codigo"));
-            String nombre = request.getParameter("nombre");
-            String descripcion = request.getParameter("descripcion");
-            long valor = Long.parseLong(request.getParameter("valor"));
-            String usuario = request.getParameter("usuario");
-            int dependenciaId = Integer.parseInt(request.getParameter("dependencia"));
-            String estado = request.getParameter("estado");
-            String observacion = request.getParameter("observacion");
+    long codigo = Long.parseLong(request.getParameter("codigo"));
+    String nombre = request.getParameter("nombre");
+    String descripcion = request.getParameter("descripcion");
+    long valor = Long.parseLong(request.getParameter("valor"));
+    String usuario = request.getParameter("usuario");
+    int dependenciaId = Integer.parseInt(request.getParameter("dependencia"));
+    String estado = request.getParameter("estado");
+    String observacion = request.getParameter("observacion");
 
-            // Leer imágenes existentes
-            String imagenuno = request.getParameter("imagenuno_existing");
-            String imagendos = request.getParameter("imagendos_existing");
-            String imagentres = request.getParameter("imagentres_existing");
+    // Leer imágenes existentes
+    String imagenuno = request.getParameter("imagenuno_existing");
+    String imagendos = request.getParameter("imagendos_existing");
+    String imagentres = request.getParameter("imagentres_existing");
 
-            // Procesar archivos de imagen y actualizar solo si se proporcionan nuevas imágenes
-            String nuevaImagenUno = handleFileUpload(request, "imagenuno");
-            String nuevaImagenDos = handleFileUpload(request, "imagendos");
-            String nuevaImagenTres = handleFileUpload(request, "imagentres");
+    // Procesar archivos de imagen y actualizar solo si se proporcionan nuevas imágenes
+    String nuevaImagenUno = handleFileUpload(request, "imagenuno");
+    String nuevaImagenDos = handleFileUpload(request, "imagendos");
+    String nuevaImagenTres = handleFileUpload(request, "imagentres");
 
-            // Si se proporcionan nuevas imágenes, actualizar las variables de imagen correspondientes
-            if (nuevaImagenUno != null) {
-                imagenuno = nuevaImagenUno;
-            }
-            if (nuevaImagenDos != null) {
-                imagendos = nuevaImagenDos;
-            }
-            if (nuevaImagenTres != null) {
-                imagentres = nuevaImagenTres;
-            }
+    // Si se proporcionan nuevas imágenes, actualizar las variables de imagen correspondientes
+    if (nuevaImagenUno != null) {
+        imagenuno = nuevaImagenUno;
+    }
+    if (nuevaImagenDos != null) {
+        imagendos = nuevaImagenDos;
+    }
+    if (nuevaImagenTres != null) {
+        imagentres = nuevaImagenTres;
+    }
 
-            // Verificar si el usuario existe antes de actualizar el bien
-            if (UserController.userExists(usuario)) {
-                try {
+    // Verificar si el usuario existe antes de actualizar el bien
+    if (UserController.userExists(usuario)) {
+        try {
+            // Obtener el ID del usuario
+            int idUsuario = UserController.getUserId(usuario);
+            // Obtener el nombre de la dependencia
+            String dependenciaNombre = ListDependencies.getNameDependencyById(dependenciaId);
+            // Obtener la dirección de correo electrónico del usuario
+            String userEmail = UserController.getUserEmailById(idUsuario);
+            // Obtener el nombre del usuario
+            String userName = UserController.getUserNameById(idUsuario);
 
-                    // Obtener el ID del usuario
-                    int idUsuario = UserController.getUserId(usuario);
-                    // Obtener el nombre de la dependencia
-                    String dependenciaNombre = ListDependencies.getNameDependencyById(dependenciaId);
-                    // Obtener la dirección de correo electrónico del usuario
-                    String userEmail = UserController.getUserEmailById(idUsuario);
-                    // Obtener la dirección de correo electrónico del usuario
-                    String userName = UserController.getUserNameById(idUsuario);
+            // Establecer la conexión y realizar la actualización en la base de datos
+            Connection conn = ConnectionBD.getConnection();
+            String sql = "UPDATE ADMINISTRATIVA.AL_INV.MA_Bien SET FK_Usuario=?, nombre=?, descripcion=?, valor=?, FK_Dependencia=?, estado=?, observacionAdmin=?, FK_UsuarioAdmin=?, imagenuno=?, imagendos=?, imagentres=?, fechaAdmin=? WHERE PK_Codigo=?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, idUsuario);
+            statement.setString(2, nombre);
+            statement.setString(3, descripcion);
+            statement.setLong(4, valor);
+            statement.setInt(5, dependenciaId);
+            statement.setString(6, estado);
+            statement.setString(7, observacion);
+            statement.setInt(8, idUsuarioAdmin);
+            statement.setString(9, imagenuno);
+            statement.setString(10, imagendos);
+            statement.setString(11, imagentres);
+            statement.setTimestamp(12, new Timestamp(System.currentTimeMillis())); // Fecha actual
+            statement.setLong(13, codigo);
+            statement.executeUpdate();
 
-                    // Establecer la conexión y realizar la actualización en la base de datos
-                    Connection conn = ConnectionBD.getConnection();
-                    String sql = "UPDATE ADMINISTRATIVA.AL_INV.MA_Bien SET FK_Usuario=?, nombre=?, descripcion=?, valor=?, FK_Dependencia=?, estado=?, observacionAdmin=?, FK_UsuarioAdmin=?, imagenuno=?, imagendos=?, imagentres=?, fechaAdmin=? WHERE PK_Codigo=?";
-                    PreparedStatement statement = conn.prepareStatement(sql);
-                    statement.setInt(1, idUsuario);
-                    statement.setString(2, nombre);
-                    statement.setString(3, descripcion);
-                    statement.setLong(4, valor);
-                    statement.setInt(5, dependenciaId);
-                    statement.setString(6, estado);
-                    statement.setString(7, observacion);
-                    statement.setInt(8, idUsuarioAdmin);
-                    statement.setString(9, imagenuno);
-                    statement.setString(10, imagendos);
-                    statement.setString(11, imagentres);
-                    statement.setTimestamp(12, new Timestamp(System.currentTimeMillis())); // Fecha actual
-                    statement.setLong(13, codigo);
-                    statement.executeUpdate();
+            // Preparar y enviar el primer correo electrónico
+            EmailSender emailSender = new EmailSender(); 
+            String subject = "Estado de bien asignado";
+            StringBuilder body = new StringBuilder("<html><body>");
+            body.append("<h1>Estimado/a ").append(userName).append(",</h1>");
+            body.append("<p>El siguiente bien ha sido actualizado:</p>");
+            body.append("<p><strong>Código:</strong> ").append(codigo).append("</p>");
+            body.append("<p><strong>Nombre:</strong> ").append(nombre).append("</p>");
+            body.append("<p><strong>Descripción:</strong> ").append(descripcion).append("</p>");
+            body.append("<p><strong>Valor:</strong> ").append(valor).append("</p>");
+            body.append("<p><strong>Dependencia:</strong> ").append(dependenciaNombre).append("</p>");
+            body.append("<p><strong>Estado:</strong> ").append(estado).append("</p>");
+            body.append("<p><strong>Observación:</strong> ").append(observacion).append("</p><br>");
+            body.append("<p><strong>Saludos,</strong></p>");
+            body.append("<p><strong>Oficina Administrativa y Grupo de almacen general</strong></p>");
+            body.append("</body></html>");
+            emailSender.sendEmail(userEmail, subject, body.toString());
+            
+            // Verificar si todos los bienes del usuario están en estado Reportado y condición Activo
+            if (ListObjects.allItemsReportedAndActive(idUsuario)) {
+                StringBuilder b = new StringBuilder("<html><body>");
+                b.append("<h1>Estimado/a ").append(userName).append(",</h1>");
+                b.append("<p>Todos los bienes asignados a usted están en estado Reportado y Activos.</p>");
+                b.append("<p><strong>Saludos,</strong></p>");
+                b.append("<p><strong>Oficina Administrativa y Grupo de almacen general.</strong></p>");
+                b.append("</body></html>");
+                emailSender.sendEmail(userEmail, subject, b.toString());
+            } 
+            // Redirigir después de la actualización
+            response.sendRedirect("managementobjects.jsp");
 
-                    // Preparar y enviar el correo electrónico
-                    EmailSender emailSender = new EmailSender();
-                    String to = userEmail; // Correo electrónico del usuario asociado al bien
-                    String subject = "Estado de bien asignado";
-                    String body = "<html><body>";
-                    body += "<h1>Estimad@ " + userName + ",</h1>";
-                    body += "<p>El bien con el código " + codigo + " ha sido actualizado, sus datos son los siguientes:</p>";
-                    body += "<p><strong>Codigo:</strong> " + codigo + " (placa ultimos 4 o 5 digitos)</p>";
-                    body += "<p><strong>Nombre:</strong> " + nombre + "</p>";
-                    body += "<p><strong>Descripción:</strong> " + descripcion + "</p>";
-                    body += "<p><strong>Valor:</strong> " + valor + "</p>";
-                    body += "<p><strong>Dependencia:</strong> " + dependenciaNombre + "</p>";
-                    body += "<p><strong>Estado:</strong> " + estado + "</p>";
-                    body += "<p><strong>Observación de almacen:</strong> " + observacion + "</p>";
-                    body += "<br><p>Saludos,</p>";
-                    body += "<p><strong>Oficina Administrativa y Grupo de almacen general</strong></p>";
-                    body += "</body></html>";
-
-                    emailSender.sendEmail(to, subject, body);
-
-                    System.out.println("Se ha actualizado con éxito");
-                    // Redirigir después de la actualización
-                    response.sendRedirect("managementobjects.jsp");
-
-                } catch (NumberFormatException e) {
-                    e.printStackTrace();
-                    request.setAttribute("error", "Formato de código incorrecto");
-                    request.getRequestDispatcher("editobject.jsp").forward(request, response);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    request.setAttribute("error", "Error al actualizar el bien: " + e.getMessage());
-                    request.getRequestDispatcher("editobject.jsp").forward(request, response);
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                request.setAttribute("error", "El usuario proporcionado no existe");
-                request.getRequestDispatcher("editobject.jsp").forward(request, response);
-            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            request.setAttribute("error", "Formato de código incorrecto");
+            request.getRequestDispatcher("editobject.jsp").forward(request, response);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("error", "Error al actualizar el bien: " + e.getMessage());
+            request.getRequestDispatcher("editobject.jsp").forward(request, response);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
+    } else {
+        request.setAttribute("error", "El usuario proporcionado no existe");
+        request.getRequestDispatcher("editobject.jsp").forward(request, response);
+    }
+    }
 
     String handleFileUpload(HttpServletRequest request, String fieldName) throws IOException, ServletException {
         Part filePart = request.getPart(fieldName);

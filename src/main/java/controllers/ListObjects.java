@@ -6,8 +6,9 @@ import models.User;
 import utils.ConnectionBD;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException; 
+import java.sql.SQLException;  
 import java.util.ArrayList;
   
 public class ListObjects {
@@ -55,4 +56,37 @@ public class ListObjects {
         }
         return bienes;
     }      
+
+    public static boolean allItemsReportedAndActive(int userId) throws SQLException, ClassNotFoundException {
+        Connection conn = ConnectionBD.getConnection();
+        try {
+            // Contar bienes que están en estado 'Activo' y condición 'Reportado'
+            String sql = "SELECT COUNT(*) FROM ADMINISTRATIVA.AL_INV.MA_Bien " +
+                         "WHERE FK_Usuario = ? AND estado = 'Reportado' AND condicion = 'Activo'";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            int countReportedAndActive = resultSet.getInt(1);
+    
+            // Contar todos los bienes del usuario que tienen estado 'Activo'
+            sql = "SELECT COUNT(*) FROM ADMINISTRATIVA.AL_INV.MA_Bien " +
+                  "WHERE FK_Usuario = ? AND condicion = 'Activo'";
+            statement = conn.prepareStatement(sql);
+            statement.setInt(1, userId);
+            resultSet = statement.executeQuery();
+            resultSet.next();
+            int countAllActive = resultSet.getInt(1);
+    
+            return countReportedAndActive == countAllActive;
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
 } 

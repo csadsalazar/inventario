@@ -145,3 +145,179 @@ Estudio de desistimiento
 Aprobacion de desistimiento
 
 
+
+
+
+
+
+
+package controllers;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import models.Dependency;
+import models.Object;
+import models.User;
+import utils.ConnectionBD;
+
+public class ObjectsEditMasive {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Connection conn = null;
+        try {
+            conn = ConnectionBD.getConnection();
+            List<Dependency> dependencias = ListDependencies.getDependencies();
+            request.setAttribute("dependencia", dependencias);
+
+            HttpSession session = request.getSession();
+            String username = (String) session.getAttribute("username");
+
+            if (username == null) {
+                request.setAttribute("error", "La sesión ha expirado. Por favor, inicia sesión nuevamente.");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                return;
+            }
+
+            int idUsuarioAdmin = 0;
+            try {
+                idUsuarioAdmin = UserController.getUserIdByUsername(username);
+            } catch (ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+                request.setAttribute("error", "Error al obtener el ID del usuario: " + e.getMessage());
+                request.getRequestDispatcher("managementobjects.jsp").forward(request, response);
+                return;
+            }
+
+            request.setAttribute("userIdAdmin", idUsuarioAdmin);
+            request.getRequestDispatcher("addobject.jsp").forward(request, response);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("error", "Error al obtener las dependencias: " + e.getMessage());
+            request.getRequestDispatcher("managementobjects.jsp").forward(request, response);
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static List<Object> getObjects(String[] ids) throws SQLException, ClassNotFoundException {
+        List<Object> objectList = new ArrayList<>();
+        Connection conn = ConnectionBD.getConnection();
+        StringBuilder query = new StringBuilder("SELECT * FROM ADMINISTRATIVA.AL_INV.MA_Bien WHERE PK_Codigo IN (");
+
+        for (int i = 0; i < ids.length; i++) {
+            query.append("?");
+            if (i < ids.length - 1) {
+                query.append(",");
+            }
+        }
+        query.append(")");
+
+        PreparedStatement stmt = conn.prepareStatement(query.toString());
+
+        for (int i = 0; i < ids.length; i++) {
+            stmt.setLong(i + 1, Long.parseLong(ids[i]));
+        }
+
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            Object obj = new Object();
+            obj.setCode(rs.getLong("PK_Codigo"));
+            obj.setName(rs.getString("nombre"));
+            obj.setDescription(rs.getString("descripcion"));
+            obj.setValue(rs.getLong("valor"));
+            obj.setObservation(rs.getString("observacionAdmin"));
+            obj.setState(rs.getString("estado"));
+            obj.setCondition(rs.getString("condicion"));
+            User user = ListUsers.getUsersById(rs.getInt("FK_Usuario"));
+            obj.setUser(user);
+            User admin = ListUsers.getUsersById(rs.getInt("FK_UsuarioAdmin"));
+            obj.setAdmin(admin);
+            Dependency dependencia = ListDependencies.getDependencyById(rs.getInt("FK_Dependencia"));
+            obj.setPK_idDependency(dependencia);
+            objectList.add(obj);
+        }
+        rs.close();
+        stmt.close();
+        conn.close();
+        return objectList;
+    }
+
+    public static void updateObjects(HttpServletRequest request, String[] ids, String name, String description, String observation, String state, String dependency, String user, String condition, String admin) throws SQLException, ClassNotFoundException {
+        Connection conn = ConnectionBD.getConnection();
+        StringBuilder query = new StringBuilder("UPDATE ADMINISTRATIVA.AL_INV.MA_Bien SET ");
+    
+        boolean hasName = (name != null && !name.trim().isEmpty());
+        boolean hasDescription = (description != null && !description.trim().isEmpty());
+        boolean hasObservation = (observation != null && !observation.trim().isEmpty());
+        boolean hasState = (state != null && !state.trim().isEmpty() && !state.equals(""));
+        boolean hasCondition = (condition != null && !condition.trim().isEmpty() && !condition.equals(""));
+        boolean hasDependency = (dependency != null && !dependency.trim().isEmpty() && !dependency.equals(""));
+        boolean hasUser = (user != null && !user.trim().isEmpty());
+        boolean hasAdmin = (admin != null && !admin.trim().isEmpty());
+    
+        if (hasName) query.append("nombre = ?, ");
+        if (hasDescription) query.append("descripcion = ?, ");
+        if (hasObservation) query.append("observacionAdmin = ?, ");
+        if (hasState) query.append("estado = ?, ");
+        if (hasCondition) query.append("condicion = ?, ");
+        if (hasDependency) query.append("FK_Dependencia = ?, ");
+        if (hasUser) query.append("FK_Usuario = ?, ");
+        if (hasAdmin) query.append("FK_UsuarioAdmin = ?, ");
+    
+        query.append("fechaAdmin = ? WHERE PK_Codigo IN (");
+    
+        for (int i = 0; i < ids.length; i++) {
+            query.append("?");
+            if (i < ids.length - 1) {
+                query.append(",");
+            }
+        }
+        query.append(")");
+    
+        PreparedStatement stmt = conn.prepareStatement(query.toString());
+    
+        int index = 1;
+        if (hasName) stmt.setString(index++, name);
+        if (hasDescription) stmt.setString(index++, description);
+        if (hasObservation) stmt.setString(index++, observation);
+        else stmt.setString(index++, "Sin observación");
+        if (hasState) stmt.setString(index++, state);
+        if (hasCondition) stmt.setString(index++, condition);
+        if (hasDependency) stmt.setString(index++, dependency);
+        if (hasUser) {
+            int userId = UserController.getUserIdByUsername(user);
+            stmt.setInt(index++, userId);
+        }
+        if (hasAdmin) {
+            int adminId = Integer.parseInt(admin);
+            stmt.setInt(index++, adminId);
+        }
+        stmt.setTimestamp(index++, new Timestamp(System.currentTimeMillis()));
+    
+        for (int i = 0; i < ids.length; i++) {
+            stmt.setLong(index++, Long.parseLong(ids[i]));
+        }
+    
+        stmt.executeUpdate();
+        stmt.close();
+        conn.close();
+    
+        
+    }    
+}
