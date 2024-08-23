@@ -215,7 +215,7 @@ public class EditObject extends HttpServlet {
             emailSender.sendEmail(userEmail, subject, body.toString());
             
             // Verificar si todos los bienes del usuario están en estado Reportado y condición Activo
-            if (ListObjects.allItemsReportedAndActive(idUsuario)) {
+            if (ListObjects.allItemsReportedAndActive(idUsuario)) { 
                 StringBuilder b = new StringBuilder("<html><body>");
                 b.append("<h1>Estimado/a ").append(userName).append(",</h1>");
                 b.append("<p>Todos los bienes asignados a usted están en estado Reportado y Activos.</p>");

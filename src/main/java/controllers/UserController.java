@@ -108,4 +108,21 @@ public class UserController {
     
             return userId;
         }
-    }
+
+            public static int getUserRoleByUsername(String username) throws SQLException, ClassNotFoundException {
+                int userRole = -1; // Valor por defecto en caso de error o usuario no encontrado
+            
+                String query = "SELECT FK_Perfil FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE usuario = ?";
+                try (Connection conn = ConnectionBD.getConnection();
+                     PreparedStatement pstmt = conn.prepareStatement(query)) {
+                    pstmt.setString(1, username);
+                    try (ResultSet rs = pstmt.executeQuery()) {
+                        if (rs.next()) {
+                            userRole = rs.getInt("FK_Perfil");
+                        }
+                    }
+                }
+                return userRole;
+            }
+        }
+        

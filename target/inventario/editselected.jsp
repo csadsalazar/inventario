@@ -69,7 +69,7 @@
         </div>
         <div class="col-md-4">
         <label for="dependency" class="form-label">Dependencia</label>
-        <select class="form-select" name="dependency" id="dependency" >
+        <select class="form-select" name="dependency" id="dependency" > 
             <option value="">Seleccione una dependencia</option>
             <%
             ArrayList<Dependency> dependencias = ListDependencies.getDependencies();

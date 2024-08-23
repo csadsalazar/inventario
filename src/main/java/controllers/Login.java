@@ -33,7 +33,7 @@ public class Login extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String jsonInputString = "{\"username\": \"" + username + "\", \"password\": \"" + password + "\"}";
-
+ 
         HttpRequest req = HttpRequest.newBuilder()
             .uri(URI.create("http://172.16.10.48:8081/conexionldap/v1/verificarUsuario"))
             .POST(HttpRequest.BodyPublishers.ofString(jsonInputString))

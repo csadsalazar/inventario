@@ -1,4 +1,9 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ page import="controllers.UserController" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="javax.servlet.http.HttpSession" %>
+<%@ page import="javax.servlet.http.HttpServletResponse" %>
+<%@ page import="javax.servlet.http.HttpServletRequest" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -16,16 +21,33 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   </head>
   <body>
-  <%
-    HttpSession session1 = request.getSession();
-    String username = (String) session1.getAttribute("username");
+    <%
+        HttpSession s = request.getSession();
+        String username = (String) s.getAttribute("username");
 
-    // Redirige a index.jsp si el nombre de usuario es null
-    if (username == null) {
-        response.sendRedirect("index.jsp");
-        return; // Importante para evitar que el resto del código JSP se ejecute
-    }
-%>
+        // Redirige a index.jsp si el nombre de usuario es null
+        if (username == null) {
+            response.sendRedirect("index.jsp");
+            return;
+        }
+
+        // Obtener el rol del usuario desde la base de datos
+        int userRole = -1;
+        try {
+            userRole = UserController.getUserRoleByUsername(username);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            request.setAttribute("error", "Error al obtener el rol del usuario desde la base de datos.");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+            return;
+        }
+
+        // Redirigir según el rol del usuario
+        if (userRole != 2) {
+            response.sendRedirect("index.jsp");
+        }
+
+    %>
     <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
       <div class="container">
