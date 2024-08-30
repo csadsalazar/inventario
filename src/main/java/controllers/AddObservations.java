@@ -11,12 +11,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+ 
 @WebServlet("/AddObservations")
 public class AddObservations extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Obtener el username desde la sesión
         HttpSession session = request.getSession();
-        Integer idUsuario = (Integer) session.getAttribute("idUsuario"); // Utiliza la misma clave que en el servlet Login
+        String username = (String) session.getAttribute("username");        // Obtener el ID del usuario usando el username
+        int idUsuario = 0;
+        try {
+            idUsuario = UserController.getUserIdByUsername(username);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+
         String asunto = request.getParameter("asunto");
         String informacion = request.getParameter("informacion"); // Asegúrate de que coincida con el atributo 'name' del campo de texto en tu formulario HTML    
 

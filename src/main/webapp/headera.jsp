@@ -30,22 +30,6 @@
             response.sendRedirect("index.jsp");
             return;
         }
-
-        // Obtener el rol del usuario desde la base de datos
-        int userRole = -1;
-        try {
-            userRole = UserController.getUserRoleByUsername(username);
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-            request.setAttribute("error", "Error al obtener el rol del usuario desde la base de datos.");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-            return;
-        }
-
-        // Redirigir según el rol del usuario
-        if (userRole != 1) {
-            response.sendRedirect("index.jsp");
-        }
     %>
 
     <header>

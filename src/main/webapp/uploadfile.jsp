@@ -19,11 +19,11 @@
         <div class="col-md-6">
             <input class="form-control" type="file" id="file" name="file" required>
         </div>
-        <div class="col-md-4">
-        <button class="btn btn-primary" id="btm">Enviar</button>
+        <div class="col-md-agre">
         </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary" id="btm">Enviar</button>
+        </div> 
     </form>
 </main>
 <%@ include file="footer.jsp" %>
-
-

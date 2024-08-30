@@ -31,7 +31,7 @@
         </div>
         <div class="col-md-3">
             <button class="btn btn-primary" type="button" onclick="generateReport()">Acciones</button>
-        </div>
+        </div> 
     </form>
 </main>
 <script>

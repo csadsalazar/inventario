@@ -4,7 +4,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="models.Object" %>
 <%@ page import="controllers.ListObjects" %>
-<%@ page import="models.Dependency" %>
+<%@ page import="models.Dependency" %> 
 <%@ page import="controllers.ListDependencies" %>
 <div class="container mt-3">
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -14,7 +14,7 @@
         </ol>
     </nav>
 </div>
-<main class="container">   
+<main class="container mt-4">   
     <div class="text-center">
         <h1>Inventario personalizado - INVIMA</h1>
         <h2>Almacén</h2>
