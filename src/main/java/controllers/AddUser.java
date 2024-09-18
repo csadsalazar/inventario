@@ -65,7 +65,7 @@ public class AddUser extends HttpServlet {
     try {
         // Establecer la conexión y realizar la inserción en la base de datos
         Connection conn = ConnectionBD.getConnection();
-        String sql = "INSERT INTO ADMINISTRATIVA.AL_INV.MA_Usuario (nombre, cedula, usuario, correo, FK_Dependencia, FK_Cargo, FK_TipoDocumento, FK_Perfil) VALUES (?,?,?,?,?,?,?,2)";
+        String sql = "INSERT INTO ADMINISTRATIVA.AL_INV.Usuario (nombre, cedula, usuario, correo, FK_Dependencia, FK_Cargo, FK_TipoDocumento, FK_Perfil) VALUES (?,?,?,?,?,?,?,2)";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, nombre.toUpperCase()); // Convertir el nombre a mayúsculas
         statement.setLong(2, cedula);

@@ -14,7 +14,7 @@ public class ListUsers {
         Connection conn = null;
         try {
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.MA_Usuario";   
+            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.Usuario";   
             PreparedStatement cs = conn.prepareStatement(sql);   
             ResultSet rs = cs.executeQuery();
             while (rs.next()) {
@@ -44,7 +44,7 @@ public class ListUsers {
         Connection conn = null;
         try {
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE PK_idUsuario = ?";   
+            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.Usuario WHERE PK_idUsuario = ?";   
             PreparedStatement cs = conn.prepareStatement(sql);   
             cs.setInt(1, id);
             ResultSet rs = cs.executeQuery();

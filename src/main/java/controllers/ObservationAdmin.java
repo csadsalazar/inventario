@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import utils.ConnectionBD;
 
 @WebServlet("/ObservationAdmin")
@@ -28,7 +27,7 @@ public class ObservationAdmin extends HttpServlet {
         // Insertar la observación en la base de datos
         try {
             Connection conn = ConnectionBD.getConnection();
-            String sql = "INSERT INTO ADMINISTRATIVA.AL_INV.PA_BienPorUsuario (FK_Admin, FK_Bien, informacion, fechaObservacion) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO ADMINISTRATIVA.AL_INV.BienPorUsuario (FK_Admin, FK_Bien, informacion, fechaObservacion) VALUES (?,?,?,?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, idadmin);
             statement.setLong(2, codigoBien);

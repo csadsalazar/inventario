@@ -13,7 +13,7 @@ public class ListDependencies {
         Connection conn = null;
         try {
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.MA_Dependencia";   
+            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.Dependencia";   
             PreparedStatement cs = conn.prepareStatement(sql);   
             ResultSet rs = cs.executeQuery(); 
             while (rs.next()) {
@@ -44,7 +44,7 @@ public class ListDependencies {
         Connection conn = null;
         try { 
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.MA_Dependencia WHERE PK_idDependencia = ?";   
+            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.Dependencia WHERE PK_idDependencia = ?";   
             PreparedStatement cs = conn.prepareStatement(sql);   
             cs.setInt(1, id);
             ResultSet rs = cs.executeQuery();
@@ -73,7 +73,7 @@ public class ListDependencies {
     public static String getNameDependencyById(int dependencyId) throws SQLException, ClassNotFoundException {
         String nombre = null;
         Connection conn = ConnectionBD.getConnection();
-        String sql = "SELECT nombreDependencia FROM ADMINISTRATIVA.AL_INV.MA_Dependencia WHERE PK_idDependencia=?";
+        String sql = "SELECT nombreDependencia FROM ADMINISTRATIVA.AL_INV.Dependencia WHERE PK_idDependencia=?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setInt(1, dependencyId);
         ResultSet resultSet = statement.executeQuery();

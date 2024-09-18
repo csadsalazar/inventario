@@ -26,7 +26,7 @@ public class Observation extends HttpServlet {
         // Insertar la observación en la base de datos
         try {
             Connection conn = ConnectionBD.getConnection();
-            String sql = "INSERT INTO ADMINISTRATIVA.AL_INV.PA_BienPorUsuario (FK_Usuario, FK_Bien, asunto, informacion, fechaObservacion) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO ADMINISTRATIVA.AL_INV.BienPorUsuario (FK_Usuario, FK_Bien, asunto, informacion, fechaObservacion) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, idUsuario);
             statement.setLong(2, codigoBien);

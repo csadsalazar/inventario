@@ -62,7 +62,7 @@ public class GenerateReportUser extends HttpServlet {
     private List<Object> getObjectsByUser(int usuarioId) throws ClassNotFoundException {
         try (Connection connection = ConnectionBD.getConnection()) {
             List<Object> bienes = new ArrayList<>();
-            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.MA_Bien WHERE condicion = 'Activo' AND  FK_Usuario = ?";
+            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.Bien WHERE condicion = 'Activo' AND  FK_Usuario = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setInt(1, usuarioId);
                 try (ResultSet resultSet = statement.executeQuery()) {
@@ -94,7 +94,7 @@ public class GenerateReportUser extends HttpServlet {
 
     private User getUserById(int usuarioId) throws ClassNotFoundException {
         try (Connection connection = ConnectionBD.getConnection()) {
-            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE PK_idUsuario = ?";
+            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.Usuario WHERE PK_idUsuario = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setInt(1, usuarioId);
                 try (ResultSet resultSet = statement.executeQuery()) {

@@ -14,7 +14,7 @@ public class ListAdministratorsById {
         User administrador = null;
         try {
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE PK_idUsuario=?";
+            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.Usuario WHERE PK_idUsuario=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, codigo);
             ResultSet rs = ps.executeQuery();

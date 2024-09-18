@@ -34,7 +34,7 @@ public class ReportObject extends HttpServlet {
         PreparedStatement stmt = null;
         try { 
             conn = ConnectionBD.getConnection(); // Utiliza tu método para obtener la conexión
-            String sql = "UPDATE ADMINISTRATIVA.AL_INV.MA_Bien SET estado='En espera' WHERE PK_Codigo=?";
+            String sql = "UPDATE ADMINISTRATIVA.AL_INV.Bien SET estado='En espera' WHERE PK_Codigo=?";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, codigo);
             int filasAfectadas = stmt.executeUpdate();

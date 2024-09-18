@@ -10,7 +10,7 @@ public class UserController {
         Connection conn = null;
         try {
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE usuario=?";
+            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.Usuario WHERE usuario=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, usuario);
             ResultSet rs = ps.executeQuery();
@@ -31,7 +31,7 @@ public class UserController {
 
     public static int getUserId(String usuario) throws SQLException, ClassNotFoundException {
         Connection conn = ConnectionBD.getConnection();
-        String sql = "SELECT PK_idUsuario FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE usuario=?";
+        String sql = "SELECT PK_idUsuario FROM ADMINISTRATIVA.AL_INV.Usuario WHERE usuario=?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, usuario);
         ResultSet rs = ps.executeQuery();
@@ -46,7 +46,7 @@ public class UserController {
     // Método para obtener el ID del usuario usando el username
     public static int getUserIdByUsername(String username) throws SQLException, ClassNotFoundException {
         Connection conn = ConnectionBD.getConnection();
-        String sql = "SELECT PK_idUsuario FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE usuario = ?";
+        String sql = "SELECT PK_idUsuario FROM ADMINISTRATIVA.AL_INV.Usuario WHERE usuario = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, username);
         ResultSet resultSet = statement.executeQuery();
@@ -61,7 +61,7 @@ public class UserController {
         public static String getUserEmailById(int userId) throws SQLException, ClassNotFoundException {
             String email = null;
             Connection conn = ConnectionBD.getConnection();
-            String sql = "SELECT correo FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE PK_idUsuario=?";
+            String sql = "SELECT correo FROM ADMINISTRATIVA.AL_INV.Usuario WHERE PK_idUsuario=?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, userId);
             ResultSet resultSet = statement.executeQuery();
@@ -77,7 +77,7 @@ public class UserController {
         public static String getUserNameById(int userId) throws SQLException, ClassNotFoundException {
             String nombre = null;
             Connection conn = ConnectionBD.getConnection();
-            String sql = "SELECT nombre FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE PK_idUsuario=?";
+            String sql = "SELECT nombre FROM ADMINISTRATIVA.AL_INV.Usuario WHERE PK_idUsuario=?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, userId);
             ResultSet resultSet = statement.executeQuery();
@@ -93,7 +93,7 @@ public class UserController {
         // Método para obtener el ID del usuario usando el username
         public static int getUserIdByUsernameLogin(String username) throws SQLException, ClassNotFoundException {
             int userId = -1;
-            String query = "SELECT PK_idUsuario FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE usuario = ?";
+            String query = "SELECT PK_idUsuario FROM ADMINISTRATIVA.AL_INV.Usuario WHERE usuario = ?";
     
             try (Connection conn = ConnectionBD.getConnection();
                  PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -112,7 +112,7 @@ public class UserController {
             public static int getUserRoleByUsername(String username) throws SQLException, ClassNotFoundException {
                 int userRole = -1; // Valor por defecto en caso de error o usuario no encontrado
             
-                String query = "SELECT FK_Perfil FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE usuario = ?";
+                String query = "SELECT FK_Perfil FROM ADMINISTRATIVA.AL_INV.Usuario WHERE usuario = ?";
                 try (Connection conn = ConnectionBD.getConnection();
                      PreparedStatement pstmt = conn.prepareStatement(query)) {
                     pstmt.setString(1, username);
@@ -125,4 +125,3 @@ public class UserController {
                 return userRole;
             }
         }
-        

@@ -30,7 +30,7 @@ public class DeleteAdmin extends HttpServlet {
         PreparedStatement stmt = null; 
         try {
             conn = ConnectionBD.getConnection(); // Utiliza tu método para obtener la conexión 
-            String sql = "UPDATE ADMINISTRATIVA.AL_INV.MA_Usuario SET FK_Perfil=2 WHERE PK_idUsuario = ?";
+            String sql = "UPDATE ADMINISTRATIVA.AL_INV.Usuario SET FK_Perfil=2 WHERE PK_idUsuario = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, codigo);
             int filasAfectadas = stmt.executeUpdate();

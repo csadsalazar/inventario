@@ -15,9 +15,9 @@ public class ListObjectById {
         try {
             conn = ConnectionBD.getConnection();
             String sql = "SELECT b.*, u.PK_idUsuario as idUsuario, u.usuario, d.nombreDependencia " +
-            "FROM ADMINISTRATIVA.AL_INV.MA_Bien b " +
-            "INNER JOIN ADMINISTRATIVA.AL_INV.MA_Usuario u ON b.FK_Usuario = u.PK_idUsuario " +
-            "INNER JOIN ADMINISTRATIVA.AL_INV.MA_Dependencia d ON b.FK_Dependencia = d.PK_idDependencia " +
+            "FROM ADMINISTRATIVA.AL_INV.Bien b " +
+            "INNER JOIN ADMINISTRATIVA.AL_INV.Usuario u ON b.FK_Usuario = u.PK_idUsuario " +
+            "INNER JOIN ADMINISTRATIVA.AL_INV.Dependencia d ON b.FK_Dependencia = d.PK_idDependencia " +
             "WHERE b.PK_Codigo = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setLong(1, codigo);

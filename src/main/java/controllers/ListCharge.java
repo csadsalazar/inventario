@@ -1,5 +1,4 @@
 package controllers;
-
 import models.Charge;
 import utils.ConnectionBD;
 import java.sql.Connection;
@@ -14,13 +13,13 @@ public class ListCharge {
         Connection conn = null;
         try {
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.PA_Cargo";   
+            String sql = "SELECT * FROM ADMINISTRATIVA.dbo.MA_Cargo";   
             PreparedStatement cs = conn.prepareStatement(sql);   
             ResultSet rs = cs.executeQuery();  
             while (rs.next()) {
                 Charge charge = new Charge();
                 charge.setPK_idCharge(rs.getInt("PK_idCargo"));
-                charge.setName(rs.getString("nombre"));
+                charge.setName(rs.getString("descripcionCargo"));
                 charges.add(charge);
             } 
             rs.close();
@@ -44,14 +43,14 @@ public class ListCharge {
         Connection conn = null;
         try {
             conn = ConnectionBD.getConnection();
-            String sql = "SELECT * FROM ADMINISTRATIVA.AL_INV.PA_Cargo WHERE PK_idCargo = ?";   
+            String sql = "SELECT * FROM ADMINISTRATIVA.dbo.MA_Cargo WHERE PK_idCargo = ?";   
             PreparedStatement cs = conn.prepareStatement(sql);   
             cs.setInt(1, id);
             ResultSet rs = cs.executeQuery();
             if (rs.next()) {
                 charge = new Charge();
                 charge.setPK_idCharge(rs.getInt("PK_idCargo"));
-                charge.setName(rs.getString("nombre"));
+                charge.setName(rs.getString("descripcionCargo"));
             }
             rs.close(); 
             cs.close();

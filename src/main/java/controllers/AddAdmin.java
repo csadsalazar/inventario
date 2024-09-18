@@ -21,7 +21,7 @@ public class AddAdmin extends HttpServlet {
         try {
             // Establecer la conexión y realizar la inserción en la base de datos
             Connection conn = ConnectionBD.getConnection();
-            String sql = "UPDATE ADMINISTRATIVA.AL_INV.MA_Usuario SET FK_Perfil=? WHERE usuario=?";
+            String sql = "UPDATE ADMINISTRATIVA.AL_INV.Usuario SET FK_Perfil=? WHERE usuario=?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, perfil);
             statement.setString(2, usuario);

@@ -38,7 +38,7 @@ public class AddObservation extends HttpServlet {
 
         try {
             Connection conn = ConnectionBD.getConnection();
-            String sql = "INSERT INTO ADMINISTRATIVA.AL_INV.PA_BienPorUsuario (FK_Usuario, FK_Bien, asunto, informacion, fechaObservacion) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO ADMINISTRATIVA.AL_INV.BienPorUsuario (FK_Usuario, FK_Bien, asunto, informacion, fechaObservacion) VALUES (?,?,?,?,?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setObject(1, idUsuario);
             statement.setObject(2, codigo);

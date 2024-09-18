@@ -85,12 +85,12 @@ public class Login extends HttpServlet {
 
             // Verificar el perfil del usuario en la base de datos
             try (Connection conn = ConnectionBD.getConnection()) {
-                String queryAdmins = "SELECT * FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE usuario = ? AND FK_Perfil = 1";
+                String queryAdmins = "SELECT * FROM ADMINISTRATIVA.AL_INV.Usuario WHERE usuario = ? AND FK_Perfil = 1";
                 PreparedStatement pstmtAdmins = conn.prepareStatement(queryAdmins);
                 pstmtAdmins.setString(1, username);
                 ResultSet rsAdmins = pstmtAdmins.executeQuery();
 
-                String queryUsers = "SELECT * FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE usuario = ? AND FK_Perfil = 2";
+                String queryUsers = "SELECT * FROM ADMINISTRATIVA.AL_INV.Usuario WHERE usuario = ? AND FK_Perfil = 2";
                 PreparedStatement pstmtUsers = conn.prepareStatement(queryUsers);
                 pstmtUsers.setString(1, username);
                 ResultSet rsUsers = pstmtUsers.executeQuery();

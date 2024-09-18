@@ -47,7 +47,7 @@ if (filePart.getContentType().equals("application/vnd.ms-excel")
         try (Connection conn = ConnectionBD.getConnection();
              HSSFWorkbook workbook = new HSSFWorkbook(fileContent)) {
             Sheet sheet = workbook.getSheetAt(0);
-            String sql = "INSERT INTO ADMINISTRATIVA.AL_INV.MA_Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_UsuarioAdmin, FK_Dependencia, estado, fecha, fechaAdmin, condicion) VALUES (?,?,?,?,?,?,?,?,'No reportado',?,?,'Activo')";
+            String sql = "INSERT INTO ADMINISTRATIVA.AL_INV.Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_UsuarioAdmin, FK_Dependencia, estado, fecha, fechaAdmin, condicion) VALUES (?,?,?,?,?,?,?,?,'No reportado',?,?,'Activo')";
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 for (Row row : sheet) {
                     if (row.getRowNum() == 0) {
@@ -140,7 +140,7 @@ if (filePart.getContentType().equals("application/vnd.ms-excel")
     private void processCSV(InputStream fileContent, HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, CsvException, ServletException {
         try (Connection conn = ConnectionBD.getConnection();
              CSVReader reader = new CSVReader(new InputStreamReader(fileContent))) {
-            String sql = "INSERT INTO ADMINISTRATIVA.AL_INV.MA_Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_UsuarioAdmin, FK_Dependencia, estado, fecha, fechaAdmin, condicion) VALUES (?,?,?,?,?,?,?,?,'No reportado',?,?,'Activo')";
+            String sql = "INSERT INTO ADMINISTRATIVA.AL_INV.Bien (PK_Codigo, nombre, placa, descripcion, valor, FK_Usuario, FK_UsuarioAdmin, FK_Dependencia, estado, fecha, fechaAdmin, condicion) VALUES (?,?,?,?,?,?,?,?,'No reportado',?,?,'Activo')";
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 reader.skip(1); // Saltar la primera fila (encabezados)
                 String[] record;
@@ -208,7 +208,7 @@ if (filePart.getContentType().equals("application/vnd.ms-excel")
 
  
     private int getUserId(Connection conn, String nombreUsuario) throws SQLException {
-        String sql = "SELECT PK_idUsuario FROM ADMINISTRATIVA.AL_INV.MA_Usuario WHERE nombre = ?";
+        String sql = "SELECT PK_idUsuario FROM ADMINISTRATIVA.AL_INV.Usuario WHERE nombre = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, nombreUsuario);
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -222,7 +222,7 @@ if (filePart.getContentType().equals("application/vnd.ms-excel")
     }
  
     private int getDependenciaId(Connection conn, String nombreDependencia) throws SQLException {
-        String sql = "SELECT PK_idDependencia FROM ADMINISTRATIVA.AL_INV.MA_Dependencia WHERE nombreDependencia = ?";
+        String sql = "SELECT PK_idDependencia FROM ADMINISTRATIVA.AL_INV.Dependencia WHERE nombreDependencia = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, nombreDependencia);
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -236,7 +236,7 @@ if (filePart.getContentType().equals("application/vnd.ms-excel")
     }
 
     private boolean codigoExistente(Connection conn, long codigo) throws SQLException {
-        String sql = "SELECT COUNT(*) AS count FROM ADMINISTRATIVA.AL_INV.MA_Bien WHERE PK_Codigo = ?";
+        String sql = "SELECT COUNT(*) AS count FROM ADMINISTRATIVA.AL_INV.Bien WHERE PK_Codigo = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setLong(1, codigo);
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -249,7 +249,7 @@ if (filePart.getContentType().equals("application/vnd.ms-excel")
     }
 
     private boolean placaExistente(Connection conn, int placa) throws SQLException {
-        String sql = "SELECT COUNT(*) AS count FROM ADMINISTRATIVA.AL_INV.MA_Bien WHERE placa = ?";
+        String sql = "SELECT COUNT(*) AS count FROM ADMINISTRATIVA.AL_INV.Bien WHERE placa = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, placa);
             try (ResultSet rs = pstmt.executeQuery()) {

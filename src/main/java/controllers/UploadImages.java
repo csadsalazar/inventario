@@ -53,7 +53,7 @@ public class UploadImages extends HttpServlet {
  
         // Actualizar la base de datos
         try (Connection conn = ConnectionBD.getConnection()) {
-            String updateQuery = "UPDATE ADMINISTRATIVA.AL_INV.MA_Bien SET imagenuno = ?, imagendos = ?, imagentres = ? WHERE PK_Codigo = ?";
+            String updateQuery = "UPDATE ADMINISTRATIVA.AL_INV.Bien SET imagenuno = ?, imagendos = ?, imagentres = ? WHERE PK_Codigo = ?";
             PreparedStatement pstmt = conn.prepareStatement(updateQuery);
             pstmt.setString(1, imagenuno);
             pstmt.setString(2, imagendos);

@@ -60,7 +60,7 @@ public class ListObjects {
         Connection conn = ConnectionBD.getConnection();
         try {
             // Contar bienes que están en estado 'Activo' y condición 'Reportado'
-            String sql = "SELECT COUNT(*) FROM ADMINISTRATIVA.AL_INV.MA_Bien " +
+            String sql = "SELECT COUNT(*) FROM ADMINISTRATIVA.AL_INV.Bien " +
                          "WHERE FK_Usuario = ? AND estado = 'Reportado' AND condicion = 'Activo'";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, userId);
@@ -69,7 +69,7 @@ public class ListObjects {
             int countReportedAndActive = resultSet.getInt(1);
     
             // Contar todos los bienes del usuario que tienen estado 'Activo'
-            sql = "SELECT COUNT(*) FROM ADMINISTRATIVA.AL_INV.MA_Bien " +
+            sql = "SELECT COUNT(*) FROM ADMINISTRATIVA.AL_INV.Bien " +
                   "WHERE FK_Usuario = ? AND condicion = 'Activo'";
             statement = conn.prepareStatement(sql);
             statement.setInt(1, userId);

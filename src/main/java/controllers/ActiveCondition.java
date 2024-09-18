@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import java.sql.Timestamp;
 import utils.ConnectionBD;
 
@@ -44,7 +43,7 @@ public class ActiveCondition extends HttpServlet {
             // Ejemplo de actualización (adaptar según tu esquema y necesidades)
             try {
                 Connection conn = ConnectionBD.getConnection();  
-                String sql = "UPDATE ADMINISTRATIVA.AL_INV.MA_Bien SET condicion=?, FK_UsuarioAdmin=?, fechaAdmin=? WHERE PK_Codigo=?";
+                String sql = "UPDATE ADMINISTRATIVA.AL_INV.Bien SET condicion=?, FK_UsuarioAdmin=?, fechaAdmin=? WHERE PK_Codigo=?";
                 PreparedStatement statement = conn.prepareStatement(sql);
                 statement.setString(1, "Activo");
                 statement.setInt(2, idUsuarioAdmin);
